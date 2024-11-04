@@ -1,0 +1,16 @@
+---
+layout: default
+title: "Blog"
+---
+
+<div class="container">
+  <h2>Blog</h2>
+  <div class="collection">
+    {% for post in site.posts %}
+    <a href="{{ post.url }}" class="collection-item">
+      <span class="title">{{ post.title }}</span>
+      <p>{{ post.date | date: "%B %d, %Y" }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</div>
