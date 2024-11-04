@@ -1,0 +1,39 @@
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.nav-wrapper {
+  background-color: #1e1e1e;
+}
+
+.parallax-container {
+  height: 500px;
+}
+
+.icon-block .material-icons {
+  font-size: 60px;
+}
+
+.page-footer {
+  background-color: #1e1e1e;
+}
+
+a {
+  color: #26a69a;
+}
+
+a:hover {
+  color: #64ffda;
+}
+
+h1, h5 {
+  text-transform: uppercase;
+}
+
+p.light {
+  font-size: 1.1em;
+}
+
+/* Additional styles for responsiveness if needed */
