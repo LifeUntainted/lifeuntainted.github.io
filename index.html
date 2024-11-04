@@ -2,16 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to 321Niche.com</title>
+
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Futuristic Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- Navigation Bar -->
   <nav>
-    <a href="index.html">Home</a> |
-    <a href="about.html">About Us</a> |
-    <a href="resources.html">Resources</a>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </div>
   </nav>
-  <h1>Welcome to 321Niche.com</h1>
-  <p>Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+  </ul>
+
+  <!-- Parallax Hero Section -->
+  <div class="parallax-container">
+    <div class="parallax"><img src="images/hero-image.jpg" alt="Futuristic Background"></div>
+    <div class="container center-align" style="padding-top: 200px;">
+      <h1 class="white-text">Discover Your Future Niche Today</h1>
+      <p class="white-text">Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
+    </div>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <!-- Fast Guidance -->
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center teal-text text-darken-4"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Fast Guidance</h5>
+            <p class="light">Quickly find your niche with our streamlined tools and resources.</p>
+          </div>
+        </div>
+
+        <!-- Community Support -->
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center teal-text text-darken-4"><i class="material-icons">group</i></h2>
+            <h5 class="center">Community Support</h5>
+            <p class="light">Join a community of like-minded individuals on the same journey.</p>
+          </div>
+        </div>
+
+        <!-- AI-Powered Tools -->
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center teal-text text-darken-4"><i class="material-icons">settings</i></h2>
+            <h5 class="center">AI-Powered Tools</h5>
+            <p class="light">Leverage cutting-edge AI tools to accelerate your success.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Compiled and minified JavaScript -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Initialize Components -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+
+      // Initialize Parallax
+      var elemsParallax = document.querySelectorAll('.parallax');
+      M.Parallax.init(elemsParallax);
+    });
+  </script>
+
 </body>
 </html>
