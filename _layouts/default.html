@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }} | 321Niche</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Styles and Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  {% include navbar.html %}
+
+  <!-- Page Content -->
+  {{ content }}
+
+  <!-- Footer -->
+  {% include footer.html %}
+
+  <!-- Scripts -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Components
+      var sidenavElems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(sidenavElems);
+      var parallaxElems = document.querySelectorAll('.parallax');
+      M.Parallax.init(parallaxElems);
+    });
+  </script>
+</body>
+</html>
