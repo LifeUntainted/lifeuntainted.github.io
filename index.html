@@ -14,243 +14,140 @@
   <!-- Import Google Icon Font -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- Import Futuristic Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
-    .icon-block {
-      padding: 0 15px;
-      text-align: center;
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
     }
-    .icon-block .material-icons {
-      font-size: 48px;
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #00695c;
     }
-    .feature-title {
-      margin-top: 0;
-      margin-bottom: 15px;
+
+    .brand-logo {
+      font-weight: 700;
     }
-    .ai-tools-section {
-      background: #f5f5f5;
-      padding: 40px 0;
-      margin: 40px 0;
+
+    .parallax-container {
+      height: 100vh;
     }
-    .ai-tools-box {
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      padding: 20px;
-      background: white;
-      margin-bottom: 20px;
+
+    .hero-content {
+      padding-top: 30vh;
     }
-    .blog-preview {
-      background: #00695c;
-      color: white;
-      padding: 40px 0;
-      margin: 40px 0;
-    }
-    .carousel .carousel-item {
-      width: 400px !important;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 8px;
-      color: #333;
-    }
+
     .main-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
       opacity: 0;
       transform: translateY(50px);
       animation: fadeInUp 1s ease forwards;
     }
+
+    .feature-section {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 4rem 0;
+    }
+
+    .icon-block {
+      padding: 2rem;
+      border: 1px solid #00695c;
+      background: rgba(0, 105, 92, 0.1);
+      border-radius: 8px;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .icon-block:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon-block i {
+      font-size: 3rem;
+      color: #00695c;
+    }
+
+    .feature-title {
+      color: #fff;
+      margin: 1.5rem 0;
+      font-size: 1.5rem;
+    }
+
+    .ai-tools-section {
+      background-color: rgba(0, 0, 0, 0.95);
+      padding: 4rem 0;
+    }
+
+    .ai-tools-box {
+      border: 1px solid #00695c;
+      background: rgba(0, 105, 92, 0.1);
+      border-radius: 8px;
+      padding: 2rem;
+      height: 100%;
+    }
+
+    .carousel .carousel-item {
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid #00695c;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 400px !important;
+    }
+
+    .btn, .btn-large {
+      background-color: #00695c;
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .btn:hover, .btn-large:hover {
+      background-color: #004d40;
+    }
+
+    .page-footer {
+      background-color: #000;
+      border-top: 1px solid #00695c;
+    }
+
+    .input-field input {
+      border-bottom: 1px solid #00695c !important;
+      color: #fff !important;
+    }
+
+    .input-field input:focus {
+      border-bottom: 1px solid #00897b !important;
+      box-shadow: 0 1px 0 0 #00897b !important;
+    }
+
+    .input-field label {
+      color: #fff !important;
+    }
+
     @keyframes fadeInUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #00695c;
+      border-radius: 4px;
+    }
   </style>
 </head>
-<body>
-
-  <!-- Navigation Bar remains the same -->
-  <nav>
-    <div class="nav-wrapper">
-      <a href="index.html" class="brand-logo">321Niche</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="resources.html">Resources</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Mobile Navigation remains the same -->
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="resources.html">Resources</a></li>
-  </ul>
-
-  <!-- Parallax Hero Section -->
-  <div class="parallax-container">
-    <div class="parallax"><img src="images/hero-image.png" alt="Futuristic Background"></div>
-    <div class="container center-align" style="padding-top: 200px;">
-      <h1 class="white-text main-title">Discover Your Future Niche Today</h1>
-      <p class="white-text">Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
-    </div>
-  </div>
-
-  <!-- Content Sections -->
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <!-- Fast Guidance -->
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <i class="material-icons teal-text text-darken-4">flash_on</i>
-            <h5 class="feature-title">Fast Guidance</h5>
-            <p class="light">Quickly find your niche with our streamlined tools and resources.</p>
-          </div>
-        </div>
-
-        <!-- Community Support -->
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <i class="material-icons teal-text text-darken-4">group</i>
-            <h5 class="feature-title">Community Support</h5>
-            <p class="light">Join a community of like-minded individuals on the same journey.</p>
-          </div>
-        </div>
-
-        <!-- AI-Powered Tools -->
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <i class="material-icons teal-text text-darken-4">settings</i>
-            <h5 class="feature-title">AI-Powered Tools</h5>
-            <p class="light">Leverage cutting-edge AI tools to accelerate your success.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- AI Tools Section -->
-  <div class="ai-tools-section">
-    <div class="container">
-      <h2 class="center-align">Our AI-Powered Tools</h2>
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="ai-tools-box">
-            <h5><i class="material-icons left">trending_up</i>Niche Analyzer</h5>
-            <p>Analyze market trends and discover profitable niches with our AI algorithm.</p>
-            <a href="resources.html#analyzer" class="btn waves-effect waves-light teal darken-4">Learn More</a>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="ai-tools-box">
-            <h5><i class="material-icons left">psychology</i>Content Generator</h5>
-            <p>Generate engaging content ideas tailored to your niche market.</p>
-            <a href="resources.html#generator" class="btn waves-effect waves-light teal darken-4">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Testimonials Section -->
-  <div class="parallax-container">
-    <div class="parallax"><img src="images/testimonial-background.png" alt="Testimonial Background"></div>
-    <div class="container center-align" style="padding: 100px 0;">
-      <h2 class="white-text">What Our Customers Say</h2>
-      <div class="carousel">
-        <div class="carousel-item">
-          <p>"321Niche helped me focus and find clarity in my business direction. The AI tools were game-changing for my market research!"</p>
-          <cite>- Sarah Thompson, Digital Entrepreneur</cite>
-        </div>
-        <div class="carousel-item">
-          <p>"Thanks to the niche analyzer tool, I discovered an untapped market that perfectly aligned with my skills. My online business is thriving now!"</p>
-          <cite>- Michael Chen, E-commerce Owner</cite>
-        </div>
-        <div class="carousel-item">
-          <p>"The community support and AI-powered insights gave me the confidence to start my journey. I now know exactly what path to take!"</p>
-          <cite>- Rachel Martinez, Content Creator</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Blog Preview Section -->
-  <div class="blog-preview">
-    <div class="container center-align">
-      <h2>Latest from Our Blog</h2>
-      <p>Discover strategies, tips, and success stories from our community members.</p>
-      <div class="card" style="padding: 20px; margin: 20px 0;">
-        <h4>Featured Post: "5 Steps to Validate Your Niche Idea"</h4>
-        <p>Learn how to test and validate your niche market before investing time and resources.</p>
-        <a href="blog.html" class="btn-large waves-effect waves-light teal darken-4">Visit Our Blog</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Lead Capture Section remains the same -->
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <div class="col s12 m8 offset-m2">
-          <h2 class="center-align">Stay Updated</h2>
-          <p class="center-align">Subscribe to our newsletter and be the first to hear about new resources, tools, and community events.</p>
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s12 m8">
-                <input id="email" type="email" class="validate">
-                <label for="email">Email</label>
-              </div>
-              <div class="col s12 m4">
-                <button class="btn waves-effect waves-light teal darken-4" type="submit" name="action">Subscribe
-                  <i class="material-icons right">send</i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer remains the same -->
-  <footer class="page-footer">
-    <div class="container">
-      © 2024 321Niche
-      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-  <!-- Initialize Components -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize Mobile Navigation
-      var elems = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(elems);
-
-      // Initialize Parallax
-      var elemsParallax = document.querySelectorAll('.parallax');
-      M.Parallax.init(elemsParallax);
-
-      // Initialize Carousel
-      var elemsCarousel = document.querySelectorAll('.carousel');
-      M.Carousel.init(elemsCarousel, {
-        duration: 200,
-        shift: 50,
-        padding: 50,
-        numVisible: 3,
-        indicators: true,
-        noWrap: false
-      });
-    });
-  </script>
-
-</body>
-</html>
