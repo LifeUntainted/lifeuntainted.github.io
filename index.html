@@ -31,6 +31,7 @@
 
     .brand-logo {
       font-weight: 700;
+      margin-left: 20px;
     }
 
     .parallax-container {
@@ -48,6 +49,7 @@
       opacity: 0;
       transform: translateY(50px);
       animation: fadeInUp 1s ease forwards;
+      text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
     }
 
     .feature-section {
@@ -62,10 +64,12 @@
       border-radius: 8px;
       height: 100%;
       transition: transform 0.3s ease;
+      margin: 1rem 0;
     }
 
     .icon-block:hover {
       transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
     }
 
     .icon-block i {
@@ -90,6 +94,13 @@
       border-radius: 8px;
       padding: 2rem;
       height: 100%;
+      margin: 1rem 0;
+      transition: transform 0.3s ease;
+    }
+
+    .ai-tools-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
     }
 
     .carousel .carousel-item {
@@ -104,15 +115,18 @@
       background-color: #00695c;
       text-transform: uppercase;
       font-family: 'Orbitron', sans-serif;
+      transition: all 0.3s ease;
     }
 
     .btn:hover, .btn-large:hover {
       background-color: #004d40;
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
     }
 
     .page-footer {
       background-color: #000;
       border-top: 1px solid #00695c;
+      padding: 20px 0;
     }
 
     .input-field input {
@@ -136,7 +150,6 @@
       }
     }
 
-    /* Custom scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -149,5 +162,185 @@
       background: #00695c;
       border-radius: 4px;
     }
+
+    .sidenav {
+      background-color: #000;
+    }
+
+    .sidenav li > a {
+      color: #fff;
+    }
   </style>
 </head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+  </ul>
+
+  <!-- Hero Section -->
+  <div class="parallax-container">
+    <div class="parallax"><img src="images/hero-image.png" alt="Futuristic Background"></div>
+    <div class="container center-align hero-content">
+      <h1 class="main-title">Discover Your Future Niche Today</h1>
+      <p>Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="feature-section">
+    <div class="container">
+      <div class="row">
+        <!-- Fast Guidance -->
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <i class="material-icons">flash_on</i>
+            <h5 class="feature-title">Fast Guidance</h5>
+            <p>Quickly find your niche with our streamlined tools and resources.</p>
+          </div>
+        </div>
+
+        <!-- Community Support -->
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <i class="material-icons">group</i>
+            <h5 class="feature-title">Community Support</h5>
+            <p>Join a community of like-minded individuals on the same journey.</p>
+          </div>
+        </div>
+
+        <!-- AI-Powered Tools -->
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <i class="material-icons">settings</i>
+            <h5 class="feature-title">AI-Powered Tools</h5>
+            <p>Leverage cutting-edge AI tools to accelerate your success.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Tools Section -->
+  <div class="ai-tools-section">
+    <div class="container">
+      <h2 class="center-align">Our AI-Powered Tools</h2>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="ai-tools-box">
+            <h5><i class="material-icons left">trending_up</i>Niche Analyzer</h5>
+            <p>Analyze market trends and discover profitable niches with our AI algorithm.</p>
+            <a href="resources.html#analyzer" class="btn waves-effect waves-light">Learn More</a>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="ai-tools-box">
+            <h5><i class="material-icons left">psychology</i>Content Generator</h5>
+            <p>Generate engaging content ideas tailored to your niche market.</p>
+            <a href="resources.html#generator" class="btn waves-effect waves-light">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <div class="parallax-container">
+    <div class="parallax"><img src="images/testimonial-background.png" alt="Testimonial Background"></div>
+    <div class="container center-align" style="padding: 100px 0;">
+      <h2>What Our Customers Say</h2>
+      <div class="carousel">
+        <div class="carousel-item">
+          <p>"321Niche helped me focus and find clarity in my business direction. The AI tools were game-changing for my market research!"</p>
+          <cite>- Sarah Thompson, Digital Entrepreneur</cite>
+        </div>
+        <div class="carousel-item">
+          <p>"Thanks to the niche analyzer tool, I discovered an untapped market that perfectly aligned with my skills. My online business is thriving now!"</p>
+          <cite>- Michael Chen, E-commerce Owner</cite>
+        </div>
+        <div class="carousel-item">
+          <p>"The community support and AI-powered insights gave me the confidence to start my journey. I now know exactly what path to take!"</p>
+          <cite>- Rachel Martinez, Content Creator</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter Section -->
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 m8 offset-m2">
+          <h2 class="center-align">Stay Updated</h2>
+          <p class="center-align">Subscribe to our newsletter and be the first to hear about new resources, tools, and community events.</p>
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12 m8">
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+              <div class="col s12 m4">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Subscribe
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+
+      // Initialize Parallax
+      var elemsParallax = document.querySelectorAll('.parallax');
+      M.Parallax.init(elemsParallax);
+
+      // Initialize Carousel
+      var elemsCarousel = document.querySelectorAll('.carousel');
+      M.Carousel.init(elemsCarousel, {
+        duration: 200,
+        shift: 50,
+        padding: 50,
+        numVisible: 3,
+        indicators: true
+      });
+    });
+  </script>
+
+</body>
+</html>
