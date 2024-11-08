@@ -1,16 +1,204 @@
----
-layout: default
-title: "Blog"
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog - 321Niche.com</title>
+  
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover insights and strategies for niche marketing success on the 321Niche blog.">
 
-<div class="container">
-  <h2>Blog</h2>
-  <div class="collection">
-    {% for post in site.posts %}
-    <a href="{{ post.url }}" class="collection-item">
-      <span class="title">{{ post.title }}</span>
-      <p>{{ post.date | date: "%B %d, %Y" }}</p>
-    </a>
-    {% endfor %}
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #00695c;
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+    }
+
+    .blog-header {
+      padding: 4rem 0 2rem;
+      text-align: center;
+      border-bottom: 1px solid #00695c;
+      margin-bottom: 3rem;
+    }
+
+    .blog-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
+      margin-bottom: 1rem;
+    }
+
+    .blog-card {
+      background: rgba(0, 105, 92, 0.1);
+      border: 1px solid #00695c;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
+    }
+
+    .blog-card .title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .blog-card .date {
+      color: #00695c;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .blog-card .excerpt {
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
+
+    .blog-card .read-more {
+      color: #00695c;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .blog-card .read-more:hover {
+      color: #00897b;
+    }
+
+    .pagination {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .pagination li a {
+      background-color: rgba(0, 105, 92, 0.1);
+      color: #fff;
+      border: 1px solid #00695c;
+    }
+
+    .pagination li.active a {
+      background-color: #00695c;
+    }
+
+    .page-footer {
+      background-color: #000;
+      border-top: 1px solid #00695c;
+      padding: 20px 0;
+    }
+
+    .sidenav {
+      background-color: #000;
+    }
+
+    .sidenav li > a {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+  </ul>
+
+  <!-- Blog Header -->
+  <div class="blog-header">
+    <div class="container">
+      <h1 class="blog-title">Latest Insights</h1>
+      <p>Discover strategies, tips, and success stories to help you succeed in your niche</p>
+    </div>
   </div>
-</div>
+
+  <!-- Blog Posts -->
+  <div class="container">
+    <div class="row">
+      {% for post in site.posts %}
+      <div class="col s12">
+        <div class="blog-card">
+          <h2 class="title">{{ post.title }}</h2>
+          <div class="date">
+            <i class="material-icons tiny">event</i>
+            {{ post.date | date: "%B %d, %Y" }}
+          </div>
+          <p class="excerpt">{{ post.excerpt }}</p>
+          <a href="{{ post.url }}" class="read-more">
+            Read More <i class="material-icons tiny">arrow_forward</i>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <ul class="pagination">
+      <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+      <li class="active"><a href="#!">1</a></li>
+      <li class="waves-effect"><a href="#!">2</a></li>
+      <li class="waves-effect"><a href="#!">3</a></li>
+      <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+    });
+  </script>
+</body>
+</html>
