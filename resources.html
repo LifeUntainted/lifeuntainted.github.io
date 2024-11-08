@@ -2,23 +2,267 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resources - 321Niche.com</title>
+  
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover top AI tools and resources for niche marketing success.">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #00695c;
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+    }
+
+    .resources-header {
+      padding: 4rem 0 2rem;
+      text-align: center;
+      border-bottom: 1px solid #00695c;
+      margin-bottom: 3rem;
+    }
+
+    .resources-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
+      margin-bottom: 1rem;
+    }
+
+    .category-title {
+      color: #00695c;
+      border-bottom: 1px solid #00695c;
+      padding-bottom: 0.5rem;
+      margin: 3rem 0 1.5rem;
+    }
+
+    .resource-card {
+      background: rgba(0, 105, 92, 0.1);
+      border: 1px solid #00695c;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
+    }
+
+    .affiliate-badge {
+      background: #00695c;
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .resource-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .resource-description {
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
+
+    .resource-pricing {
+      color: #00695c;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-visit {
+      background-color: #00695c;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-visit:hover {
+      background-color: #004d40;
+    }
+
+    .disclosure {
+      background: rgba(0, 105, 92, 0.1);
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 3rem 0;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .page-footer {
+      background-color: #000;
+      border-top: 1px solid #00695c;
+      padding: 20px 0;
+    }
+
+    .sidenav {
+      background-color: #000;
+    }
+
+    .sidenav li > a {
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
+  <!-- Navigation Bar -->
   <nav>
-    <a href="index.html">Home</a> |
-    <a href="about.html">About Us</a> |
-    <a href="resources.html">Resources</a>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </div>
   </nav>
-  <h1>Resources</h1>
-  <p>Here are some tools we recommend to help you on your journey:</p>
-  <ul>
-    <li><a href="YOUR_JASPER_AFFILIATE_LINK">Jasper.ai</a> - An AI writing assistant to generate creative content.</li>
-    <li><a href="YOUR_COPYAI_AFFILIATE_LINK">Copy.ai</a> - Craft compelling copy effortlessly.</li>
-    <!-- Add more resources as you join affiliate programs -->
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
   </ul>
-  <p><em>Disclosure: Some of the links above are affiliate links, meaning we may earn a commission at no additional cost to you.</em></p>
+
+  <!-- Resources Content -->
+  <div class="container">
+    <div class="resources-header">
+      <h1 class="resources-title">AI Tools & Resources</h1>
+      <p>Supercharge your niche research and content creation with these cutting-edge tools</p>
+    </div>
+
+    <!-- Top Affiliate Tools Section -->
+    <h2 class="category-title">Top Recommended Tools (With Affiliate Programs)</h2>
+    
+    <div class="resource-card">
+      <h3 class="resource-title">Jasper.ai <span class="affiliate-badge">Affiliate Program</span></h3>
+      <p class="resource-description">Advanced AI writing assistant that helps create high-quality content for blogs, social media, and marketing materials. Offers up to 30% recurring commission on referrals.</p>
+      <p class="resource-pricing">Starting at $49/month | Commission: Up to 30% recurring</p>
+      <a href="YOUR_JASPER_AFFILIATE_LINK" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">SEMrush <span class="affiliate-badge">Affiliate Program</span></h3>
+      <p class="resource-description">All-in-one marketing toolkit for digital marketing professionals. Essential for keyword research and competitor analysis.</p>
+      <p class="resource-pricing">Starting at $119.95/month | Commission: Up to $200 per sale</p>
+      <a href="YOUR_SEMRUSH_AFFILIATE_LINK" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Systeme.io <span class="affiliate-badge">Affiliate Program</span></h3>
+      <p class="resource-description">All-in-one marketing platform for creating sales funnels, launching products, and managing affiliates.</p>
+      <p class="resource-pricing">Free plan available | Commission: Up to 40% recurring</p>
+      <a href="YOUR_SYSTEME_AFFILIATE_LINK" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- AI Content Creation Tools -->
+    <h2 class="category-title">AI Content Creation Tools</h2>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Copy.ai</h3>
+      <p class="resource-description">AI-powered copywriting tool that helps create marketing copy, blog posts, and social media content.</p>
+      <p class="resource-pricing">Starting at $36/month</p>
+      <a href="https://www.copy.ai" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">ChatGPT</h3>
+      <p class="resource-description">OpenAI's powerful language model for content generation, research, and creative writing.</p>
+      <p class="resource-pricing">Free plan available | Plus: $20/month</p>
+      <a href="https://chat.openai.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- Market Research Tools -->
+    <h2 class="category-title">Market Research & Analytics</h2>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Ahrefs</h3>
+      <p class="resource-description">Comprehensive SEO toolset for keyword research, competitor analysis, and content planning.</p>
+      <p class="resource-pricing">Starting at $99/month</p>
+      <a href="https://ahrefs.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Google Trends</h3>
+      <p class="resource-description">Free tool to explore search trends and discover emerging niches.</p>
+      <p class="resource-pricing">Free</p>
+      <a href="https://trends.google.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- Social Media Tools -->
+    <h2 class="category-title">Social Media & Marketing</h2>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Canva Pro</h3>
+      <p class="resource-description">Design tool with AI features for creating professional social media graphics and marketing materials.</p>
+      <p class="resource-pricing">Starting at $12.99/month</p>
+      <a href="https://www.canva.com/pro" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Later</h3>
+      <p class="resource-description">Social media scheduling and analytics platform with AI-powered insights.</p>
+      <p class="resource-pricing">Starting at $18/month</p>
+      <a href="https://later.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- Affiliate Disclosure -->
+    <div class="disclosure">
+      <p><i class="material-icons tiny">info</i> <strong>Affiliate Disclosure:</strong> Some links on this page are affiliate links, meaning we may earn a commission if you make a purchase through these links, at no additional cost to you. We only recommend tools we've personally used and believe will add value to your business.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+    });
+  </script>
+
 </body>
 </html>
-
