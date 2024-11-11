@@ -1,14 +1,8 @@
----
-layout: default
-title: "Blog - 321Niche"
-pagination: true
----
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
+  <title>Blog - 321Niche</title>
   
   <!-- Meta Tags -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -163,18 +157,7 @@ pagination: true
 </head>
 <body>
   <!-- Navigation Bar -->
-  <nav>
-    <div class="nav-wrapper">
-      <a href="index.html" class="brand-logo">321Niche</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="resources.html">Resources</a></li>
-      </ul>
-    </div>
-  </nav>
+  
 
   <!-- Mobile Navigation -->
   <ul class="sidenav" id="mobile-demo">
@@ -195,7 +178,7 @@ pagination: true
     </div>
 
     <div class="blog-list">
-      {% for post in site.posts %}
+      {% for post in paginator.posts %}
         <a href="{{ post.url | relative_url }}" class="blog-entry">
           <div class="blog-info">
             <h2 class="blog-title-link">{{ post.title }}</h2>
