@@ -8,58 +8,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Discover top AI tools and resources for niche marketing success.">
 
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
   <!-- Import Google Icon Font -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- Import Orbitron Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Include Materialize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
   <style>
-    /* Scoped Styles */
-    .resources-page {
+    body {
       background-color: #000;
       color: #fff;
       font-family: 'Orbitron', sans-serif;
-      margin: 0;
-      overflow-x: hidden;
     }
 
-    /* Interactive Background */
-    #particles-js {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0; /* Behind everything */
-    }
-
-    .resources-page .container {
-      position: relative;
-      z-index: 1; /* Above background */
-    }
-
-    .resources-page #resources-nav {
+    nav {
       background-color: rgba(0, 0, 0, 0.8);
       border-bottom: 1px solid #00695c;
     }
 
-    .resources-page .brand-logo {
+    .brand-logo {
       font-weight: 700;
       margin-left: 20px;
     }
 
-    .resources-page .resources-header {
+    .resources-header {
       padding: 4rem 0 2rem;
       text-align: center;
       border-bottom: 1px solid #00695c;
       margin-bottom: 3rem;
     }
 
-    .resources-page .resources-title {
+    .resources-title {
       font-size: 2.5rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -67,14 +49,14 @@
       margin-bottom: 1rem;
     }
 
-    .resources-page .category-title {
+    .category-title {
       color: #00695c;
       border-bottom: 1px solid #00695c;
       padding-bottom: 0.5rem;
       margin: 3rem 0 1.5rem;
     }
 
-    .resources-page .resource-card {
+    .resource-card {
       background: rgba(0, 105, 92, 0.1);
       border: 1px solid #00695c;
       border-radius: 8px;
@@ -83,12 +65,12 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .resources-page .resource-card:hover {
+    .resource-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
     }
 
-    .resources-page .affiliate-badge {
+    .affiliate-badge {
       background: #00695c;
       color: white;
       padding: 0.2rem 0.5rem;
@@ -98,24 +80,24 @@
       vertical-align: middle;
     }
 
-    .resources-page .resource-title {
+    .resource-title {
       font-size: 1.3rem;
       margin-bottom: 0.5rem;
       color: #fff;
     }
 
-    .resources-page .resource-description {
+    .resource-description {
       color: #ccc;
       margin-bottom: 1rem;
     }
 
-    .resources-page .resource-pricing {
+    .resource-pricing {
       color: #00695c;
       font-size: 0.9rem;
       margin-bottom: 0.5rem;
     }
 
-    .resources-page .btn-visit {
+    .btn-visit {
       background-color: #00695c;
       color: white;
       padding: 0.5rem 1rem;
@@ -124,11 +106,11 @@
       transition: background-color 0.3s ease;
     }
 
-    .resources-page .btn-visit:hover {
+    .btn-visit:hover {
       background-color: #004d40;
     }
 
-    .resources-page .disclosure {
+    .disclosure {
       background: rgba(0, 105, 92, 0.1);
       padding: 1rem;
       border-radius: 4px;
@@ -136,261 +118,195 @@
       font-size: 0.9rem;
       color: #ccc;
     }
+
+    .page-footer {
+      background-color: #000;
+      border-top: 1px solid #00695c;
+      padding: 20px 0;
+    }
+
+    .sidenav {
+      background-color: #000;
+    }
+
+    .sidenav li > a {
+      color: #fff;
+    }
   </style>
 </head>
 <body>
-  <!-- Interactive Background -->
-  <div id="particles-js"></div>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <!-- Begin Page Content -->
-  <div class="resources-page">
-    <!-- Navigation -->
-    <nav id="resources-nav">
-      <div class="nav-wrapper">
-        <a href="index.html" class="brand-logo">321Niche</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="resources.html">Resources</a></li>
-        </ul>
-      </div>
-    </nav>
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+  </ul>
 
-    <!-- Content -->
-    <div class="container">
-      <div class="resources-header">
-        <h1 class="resources-title">AI Tools & Resources</h1>
-        <p>Supercharge your niche research and content creation with these cutting-edge tools</p>
-      </div>
-
-      <!-- Conversational AI & Language Models -->
-      <h2 class="category-title">Conversational AI & Language Models</h2>
-
-      <!-- Resource Cards -->
-      <div class="resource-card">
-        <h3 class="resource-title">ChatGPT</h3>
-        <p class="resource-description">OpenAI's powerful language model for content generation, research, and creative writing.</p>
-        <p class="resource-pricing">Free plan available | Plus: $20/month | Enterprise: Custom pricing</p>
-        <a href="https://chat.openai.com" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Claude</h3>
-        <p class="resource-description">Anthropic's advanced AI assistant known for nuanced analysis, coding, and long-form content creation. Excellent for research, writing, and complex problem-solving.</p>
-        <p class="resource-pricing">Free plan available | Claude Pro: $20/month | Enterprise: Custom pricing</p>
-        <a href="https://claude.ai" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Google Gemini</h3>
-        <p class="resource-description">Google's multimodal AI model that can understand and work with text, images, and code.</p>
-        <p class="resource-pricing">Free plan available | Advanced: $19.99/month</p>
-        <a href="https://gemini.google.com" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <!-- Visual AI Tools -->
-      <h2 class="category-title">Visual AI & Image Generation</h2>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Midjourney</h3>
-        <p class="resource-description">Advanced AI image generation tool known for creating highly artistic and detailed visuals through Discord.</p>
-        <p class="resource-pricing">Starting at $10/month</p>
-        <a href="https://www.midjourney.com" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Runway Gen-3</h3>
-        <p class="resource-description">AI-powered creative suite for video editing, generation, and visual effects.</p>
-        <p class="resource-pricing">Starting at $15/month</p>
-        <a href="https://runwayml.com" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">DALL-E 3</h3>
-        <p class="resource-description">OpenAI's latest image generation model with improved accuracy and detail.</p>
-        <p class="resource-pricing">Available through ChatGPT Plus ($20/month)</p>
-        <a href="https://openai.com/dall-e-3" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Stable Diffusion</h3>
-        <p class="resource-description">Open-source image generation model with various implementations and interfaces.</p>
-        <p class="resource-pricing">Free (self-hosted) | Various pricing through platforms</p>
-        <a href="https://stability.ai" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <!-- AI Music Tools -->
-      <h2 class="category-title">AI Music & Audio</h2>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Suno.ai</h3>
-        <p class="resource-description">Create original songs with AI-generated music and lyrics in various styles.</p>
-        <p class="resource-pricing">Starting at $19/month</p>
-        <a href="https://suno.ai" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Mubert</h3>
-        <p class="resource-description">AI-powered music generation for content creators and businesses.</p>
-        <p class="resource-pricing">Starting at $12/month</p>
-        <a href="https://mubert.com" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">MuseNet</h3>
-        <p class="resource-description">OpenAI's deep neural network that generates musical compositions.</p>
-        <p class="resource-pricing">Free</p>
-        <a href="https://openai.com/research/musenet" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <!-- AI Content Creation Tools -->
-      <h2 class="category-title">AI Content Creation & Writing</h2>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Jasper.ai <span class="affiliate-badge">Affiliate Program</span></h3>
-        <p class="resource-description">Advanced AI writing assistant that helps create high-quality content for blogs, social media, and marketing materials.</p>
-        <p class="resource-pricing">Starting at $49/month | Commission: Up to 30% recurring</p>
-        <a href="YOUR_JASPER_AFFILIATE_LINK" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Copy.ai</h3>
-        <p class="resource-description">AI-powered copywriting tool that helps create marketing copy, blog posts, and social media content.</p>
-        <p class="resource-pricing">Starting at $36/month</p>
-        <a href="https://www.copy.ai" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <!-- AI Video Tools -->
-      <h2 class="category-title">AI Video Creation & Editing</h2>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Synthesia</h3>
-        <p class="resource-description">Create AI-powered video content with virtual presenters and custom avatars.</p>
-        <p class="resource-pricing">Starting at $30/month</p>
-        <a href="https://www.synthesia.io?via=321-niche" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Descript</h3>
-        <p class="resource-description">All-in-one video editing platform with AI-powered features like text-based editing and voice cloning.</p>
-        <p class="resource-pricing">Starting at $15/month</p>
-        <a href="https://www.descript.com" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <!-- Market Research Tools -->
-      <h2 class="category-title">Market Research & Analytics</h2>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Ahrefs</h3>
-        <p class="resource-description">Comprehensive SEO toolset for keyword research, competitor analysis, and backlink tracking.</p>
-        <p class="resource-pricing">Starting at $99/month</p>
-        <a href="https://ahrefs.com" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">SEMrush</h3>
-        <p class="resource-description">All-in-one marketing toolkit for SEO, PPC, social media, and content marketing.</p>
-        <p class="resource-pricing">Starting at $119.95/month</p>
-        <a href="https://www.semrush.com" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <!-- Social Media Tools -->
-      <h2 class="category-title">Social Media Management</h2>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Buffer</h3>
-        <p class="resource-description">Simplify your social media management with scheduling, analytics, and team collaboration.</p>
-        <p class="resource-pricing">Free plan available | Paid plans starting at $15/month</p>
-        <a href="https://buffer.com" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <div class="resource-card">
-        <h3 class="resource-title">Hootsuite</h3>
-        <p class="resource-description">Manage all your social media in one place with powerful tools for scheduling, monitoring, and analytics.</p>
-        <p class="resource-pricing">Starting at $49/month</p>
-        <a href="https://www.hootsuite.com" class="btn-visit" target="_blank">Visit Website</a>
-      </div>
-
-      <!-- Affiliate Disclosure -->
-      <div class="disclosure">
-        <p><i class="material-icons tiny">info</i> <strong>Affiliate Disclosure:</strong> Some links on this page are affiliate links, meaning we may earn a commission if you make a purchase through these links, at no additional cost to you. We only recommend tools we've personally used and believe will add value to your business.</p>
-      </div>
+  <!-- Resources Content -->
+  <div class="container">
+    <div class="resources-header">
+      <h1 class="resources-title">AI Tools & Resources</h1>
+      <p>Supercharge your niche research and content creation with these cutting-edge tools</p>
     </div>
 
-    <!-- Footer -->
-    <footer class="page-footer">
-      <div class="container">
-        © 2024 321Niche
-        <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
-      </div>
-    </footer>
+    <!-- Top Affiliate Tools Section -->
+    <h2 class="category-title">Top Recommended Tools (With Affiliate Programs)</h2>
+    
+    <div class="resource-card">
+      <h3 class="resource-title">Jasper.ai <span class="affiliate-badge">Affiliate Program</span></h3>
+      <p class="resource-description">Advanced AI writing assistant that helps create high-quality content for blogs, social media, and marketing materials. Offers up to 30% recurring commission on referrals.</p>
+      <p class="resource-pricing">Starting at $49/month | Commission: Up to 30% recurring</p>
+      <a href="YOUR_JASPER_AFFILIATE_LINK" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">SEMrush <span class="affiliate-badge">Affiliate Program</span></h3>
+      <p class="resource-description">All-in-one marketing toolkit for digital marketing professionals. Essential for keyword research and competitor analysis.</p>
+      <p class="resource-pricing">Starting at $119.95/month | Commission: Up to $200 per sale</p>
+      <a href="YOUR_SEMRUSH_AFFILIATE_LINK" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- Visual AI Tools -->
+    <h2 class="category-title">Visual AI & Image Generation</h2>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Midjourney</h3>
+      <p class="resource-description">Advanced AI image generation tool known for creating highly artistic and detailed visuals through Discord.</p>
+      <p class="resource-pricing">Starting at $10/month</p>
+      <a href="https://www.midjourney.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Runway Gen-3</h3>
+      <p class="resource-description">AI-powered creative suite for video editing, generation, and visual effects.</p>
+      <p class="resource-pricing">Starting at $15/month</p>
+      <a href="https://runwayml.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- AI Music & Audio Tools -->
+    <h2 class="category-title">AI Music & Audio Tools</h2>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Suno.ai</h3>
+      <p class="resource-description">Create original songs with AI-generated music and lyrics in various styles.</p>
+      <p class="resource-pricing">Starting at $19/month</p>
+      <a href="https://suno.ai" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Mubert</h3>
+      <p class="resource-description">AI-powered music generation for content creators and businesses.</p>
+      <p class="resource-pricing">Starting at $12/month</p>
+      <a href="https://mubert.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- AI Content Creation Tools -->
+    <h2 class="category-title">AI Content Creation Tools</h2>
+
+    <div class="resource-card">
+      <h3 class="resource-title">ChatGPT</h3>
+      <p class="resource-description">OpenAI's powerful language model for content generation, research, and creative writing.</p>
+      <p class="resource-pricing">Free plan available | Plus: $20/month</p>
+      <a href="https://chat.openai.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Claude.ai</h3>
+      <p class="resource-description">Anthropic's advanced AI assistant known for nuanced analysis, coding, and long-form content creation.</p>
+      <p class="resource-pricing">Free plan available | Claude Pro: $20/month</p>
+      <a href="https://claude.ai" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- Market Research Tools -->
+    <h2 class="category-title">Market Research & Analytics</h2>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Ahrefs</h3>
+      <p class="resource-description">Comprehensive SEO toolset for keyword research, competitor analysis, and content planning.</p>
+      <p class="resource-pricing">Starting at $99/month</p>
+      <a href="https://ahrefs.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">SEMrush</h3>
+      <p class="resource-description">All-in-one marketing toolkit for SEO, PPC, social media, and content marketing.</p>
+      <p class="resource-pricing">Starting at $119.95/month</p>
+      <a href="https://www.semrush.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- Social Media Management Tools -->
+    <h2 class="category-title">Social Media Management</h2>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Buffer</h3>
+      <p class="resource-description">Simplify your social media management with scheduling, analytics, and team collaboration.</p>
+      <p class="resource-pricing">Free plan available | Paid plans starting at $15/month</p>
+      <a href="https://buffer.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Hootsuite</h3>
+      <p class="resource-description">Manage all your social media in one place with powerful tools for scheduling, monitoring, and analytics.</p>
+      <p class="resource-pricing">Starting at $49/month</p>
+      <a href="https://www.hootsuite.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- AI for Marketing & Sales Tools -->
+    <h2 class="category-title">AI for Marketing & Sales Tools</h2>
+
+    <div class="resource-card">
+      <h3 class="resource-title">HubSpot CRM</h3>
+      <p class="resource-description">AI-powered CRM to help businesses organize, track, and build better relationships with leads and customers.</p>
+      <p class="resource-pricing">Free plan available | Paid plans starting at $45/month</p>
+      <a href="https://www.hubspot.com" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <div class="resource-card">
+      <h3 class="resource-title">Zoho CRM</h3>
+      <p class="resource-description">AI-driven CRM platform with sales automation, analytics, and communication tools for businesses.</p>
+      <p class="resource-pricing">Starting at $14/month</p>
+      <a href="https://www.zoho.com/crm/" class="btn-visit" target="_blank">Visit Website</a>
+    </div>
+
+    <!-- Affiliate Disclosure -->
+    <div class="disclosure">
+      <p><i class="material-icons tiny">info</i> <strong>Affiliate Disclosure:</strong> Some links on this page are affiliate links, meaning we may earn a commission if you make a purchase through these links, at no additional cost to you. We only recommend tools we've personally used and believe will add value to your business.</p>
+    </div>
   </div>
 
-  <!-- Include jQuery (required by Materialize JS) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
 
-  <!-- Include Materialize JS -->
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <!-- Include Particles.js -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-
-  <!-- Initialize Components and Particles.js -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize Materialize Components
-      M.AutoInit();
-
-      // Initialize Particles.js
-      particlesJS("particles-js", {
-        "particles": {
-          "number": {
-            "value": 80,
-            "density": {
-              "enable": true,
-              "value_area": 800
-            }
-          },
-          "color": {
-            "value": ["#FFD700", "#00897b"] // Gold and Teal colors
-          },
-          "shape": {
-            "type": "circle"
-          },
-          "opacity": {
-            "value": 0.5,
-            "random": true
-          },
-          "size": {
-            "value": 3,
-            "random": true
-          },
-          "move": {
-            "enable": true,
-            "speed": 1,
-            "direction": "none",
-            "out_mode": "out"
-          }
-        },
-        "interactivity": {
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "repulse"
-            }
-          },
-          "modes": {
-            "repulse": {
-              "distance": 100,
-              "duration": 0.4
-            }
-          }
-        },
-        "retina_detect": true
-      });
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
     });
   </script>
+
 </body>
 </html>
