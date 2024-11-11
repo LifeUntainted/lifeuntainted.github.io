@@ -1,39 +1,82 @@
 body {
-  font-family: 'Orbitron', sans-serif;
-  background-color: #121212;
-  color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 .nav-wrapper {
-  background-color: #1e1e1e;
+    background-color: #1e1e1e;
 }
 
 .parallax-container {
-  height: 500px;
+    height: 500px;
 }
 
 .icon-block .material-icons {
-  font-size: 60px;
+    font-size: 60px;
 }
 
 .page-footer {
-  background-color: #1e1e1e;
+    background-color: #1e1e1e;
 }
 
 a {
-  color: #26a69a;
+    color: #57FF8C; /* Green color for contrast */
+    text-decoration: none;
 }
 
 a:hover {
-  color: #64ffda;
+    color: #88FFAA;
 }
 
 h1, h5 {
-  text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 p.light {
-  font-size: 1.1em;
+    font-size: 1.1em;
 }
 
-/* Additional styles for responsiveness if needed */
+/* Container for blog content */
+.blog-content {
+    max-width: 800px; /* Limits text width */
+    margin: 0 auto;
+    padding: 20px;
+    color: #E0E0E0; /* Ensures readability on dark background */
+}
+
+/* Heading Styles */
+.blog-title, h1 {
+    font-size: 2em; /* Adjusted for readability */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin-top: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+/* Paragraphs */
+.blog-content p {
+    max-width: 700px; /* Narrower text for readability */
+    margin-bottom: 1.5em;
+}
+
+/* Optional: Style for Published Date */
+.blog-date {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 1rem;
+    text-align: center;
+}
