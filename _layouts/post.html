@@ -2,10 +2,161 @@
 layout: default
 ---
 
-<div class="blog-content">
-  <h1>{{ page.title }}</h1>
-  <p class="blog-date">{{ page.date | date: "%B %d, %Y" }}</p>
-  <div>
-    {{ content }}
-  </div>
+<div class="blog-post-container">
+  <article class="blog-post">
+    <header class="blog-header">
+      <h1 class="blog-title">{{ page.title }}</h1>
+      <p class="blog-date">
+        <i class="material-icons tiny">event</i>
+        {{ page.date | date: "%B %d, %Y" }}
+        {% if page.categories %}
+        - Category: {{ page.categories | join: ", " }}
+        {% endif %}
+      </p>
+    </header>
+
+    {% if page.excerpt %}
+    <div class="blog-excerpt">
+      <p>{{ page.excerpt }}</p>
+    </div>
+    {% endif %}
+
+    <div class="blog-content">
+      {{ content }}
+    </div>
+  </article>
 </div>
+
+<!-- Optional: Styling for the Blog Post -->
+<style>
+  .blog-post-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(87, 255, 140, 0.5);
+    border: 1px solid #57FF8C;
+    animation: fadeIn 1s ease-in-out;
+    position: relative;
+  }
+
+  .blog-title {
+    font-size: 2.5em;
+    color: #57FF8C;
+    text-align: center;
+    text-shadow: 0 0 15px rgba(87, 255, 140, 0.8);
+    position: relative;
+    overflow: hidden;
+    animation: glowTitle 2s infinite alternate;
+  }
+
+  @keyframes glowTitle {
+    0% {
+      text-shadow: 0 0 10px rgba(87, 255, 140, 0.5), 0 0 20px rgba(87, 255, 140, 0.4);
+    }
+    100% {
+      text-shadow: 0 0 20px rgba(87, 255, 140, 0.8), 0 0 40px rgba(87, 255, 140, 0.7);
+    }
+  }
+
+  .blog-date {
+    color: #888;
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .blog-content {
+    margin-top: 1.5rem;
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #E0E0E0;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .blog-content p:hover {
+    color: #88FFAA;
+  }
+
+  .blog-excerpt {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(0, 105, 92, 0.1);
+    padding: 15px;
+    border-left: 4px solid #57FF8C;
+    font-size: 1.2em;
+    color: #88FFAA;
+    animation: fadeInSlide 0.8s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Animated border effect for futuristic feel */
+  .blog-post-container::before,
+  .blog-post-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #57FF8C;
+    border-radius: 12px;
+    opacity: 0.4;
+    animation: borderAnim 4s linear infinite;
+    pointer-events: none;
+  }
+
+  .blog-post-container::after {
+    border-color: #88FFAA;
+    opacity: 0.6;
+    animation: borderAnimReverse 4s linear infinite;
+  }
+
+  @keyframes borderAnim {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(5px, 5px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes borderAnimReverse {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(-5px, -5px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+</style>
