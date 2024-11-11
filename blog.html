@@ -4,27 +4,16 @@ title: Blog - 321Niche
 ---
 
 <style>
-  /* Global Styles */
   body {
-    background-color: #0A0A0A; /* Match main page background */
-    color: #E0E0E0;
+    background-color: #000;
+    color: #fff;
     font-family: 'Orbitron', sans-serif;
-    margin: 0;
-    padding: 0;
   }
 
-  .container {
-    max-width: 800px; /* Limits width on larger screens */
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-
-  /* Blog Header */
   .blog-header {
     padding: 4rem 0 2rem;
     text-align: center;
-    border-bottom: 1px solid #57FF8C;
+    border-bottom: 1px solid #00695c;
     margin-bottom: 3rem;
   }
 
@@ -32,76 +21,75 @@ title: Blog - 321Niche
     font-size: 2.5rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #57FF8C; /* Match green accent color */
+    text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
     margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
   }
 
-  .blog-subtitle {
-    font-size: 1.2rem;
-    color: #888;
-  }
-
-  /* Blog List */
   .blog-list {
     margin: 2rem 0;
   }
 
   .blog-entry {
-    background: #121212;
-    border: 1px solid #333;
+    background: rgba(0, 105, 92, 0.1);
+    border: 1px solid #00695c;
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: block;
-    text-decoration: none;
-    color: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .blog-entry:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(87, 255, 140, 0.3);
+    box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
   }
 
   .blog-info {
-    display: flex;
-    flex-direction: column;
+    flex-grow: 1;
   }
 
   .blog-title-link {
-    color: #57FF8C;
-    font-size: 1.8rem;
+    color: #fff;
+    font-size: 1.3rem;
     margin-bottom: 0.5rem;
+    display: block;
     text-decoration: none;
   }
 
   .blog-title-link:hover {
-    color: #88FFAA;
+    color: #00897b;
   }
 
   .blog-date {
-    color: #888;
+    color: #00695c;
     font-size: 0.9rem;
-    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  .blog-excerpt {
-    line-height: 1.6;
-    font-size: 1.1em;
-    text-align: justify;
-    color: #E0E0E0;
+  .blog-arrow {
+    color: #00695c;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
-  /* Pagination */
+  .blog-entry:hover .blog-arrow {
+    opacity: 1;
+    transform: translateX(10px);
+  }
+
   .pagination {
     margin: 2rem 0;
     text-align: center;
   }
 
   .pagination a {
-    color: #57FF8C;
-    border: 1px solid #57FF8C;
+    color: #00695c;
+    border: 1px solid #00695c;
     padding: 0.5rem 1rem;
     margin: 0 0.25rem;
     border-radius: 4px;
@@ -110,78 +98,57 @@ title: Blog - 321Niche
   }
 
   .pagination a:hover {
-    background-color: rgba(87, 255, 140, 0.2);
+    background-color: rgba(0, 105, 92, 0.2);
   }
 
   .pagination .active {
-    background-color: #57FF8C;
-    color: #0A0A0A;
+    background-color: #00695c;
+    color: #fff;
   }
 
   .pagination .disabled {
     opacity: 0.5;
     pointer-events: none;
   }
-
-  /* Mobile Responsiveness */
-  @media (max-width: 600px) {
-    .blog-title {
-      font-size: 2rem;
-    }
-
-    .blog-title-link {
-      font-size: 1.5rem;
-    }
-
-    .blog-excerpt {
-      font-size: 1em;
-    }
-  }
 </style>
 
 <div class="container">
   <div class="blog-header">
     <h1 class="blog-title">Latest Insights</h1>
-    <p class="blog-subtitle">Discover strategies, tips, and success stories to help you succeed in your niche</p>
+    <p>Discover strategies, tips, and success stories to help you succeed in your niche</p>
   </div>
 
   <div class="blog-list">
-    {% for post in paginator.posts %}
-      <a href="{{ post.url | relative_url }}" class="blog-entry">
+    {% for post in site.posts limit:10 %}
+      <div class="blog-entry">
         <div class="blog-info">
-          <h2 class="blog-title-link">{{ post.title }}</h2>
+          <a href="{{ post.url }}" class="blog-title-link">{{ post.title }}</a>
           <div class="blog-date">
-            {{ post.date | date: "%B %d, %Y" }} - Category: {{ post.categories | join: ", " }}
-          </div>
-          <div class="blog-excerpt">
-            {{ post.excerpt | strip_html | truncate: 200 }}
+            <i class="material-icons tiny">event</i>
+            {{ post.date | date: "%B %d, %Y" }}
           </div>
         </div>
-      </a>
+        <div class="blog-arrow">→</div>
+      </div>
     {% endfor %}
   </div>
 
-  <!-- Pagination Controls -->
-  {% if paginator.total_pages > 1 %}
+  {% if site.posts.size > 10 %}
     <div class="pagination">
       {% if paginator.previous_page %}
         <a href="{{ paginator.previous_page_path }}" class="prev">Previous</a>
-      {% else %}
-        <span class="disabled">Previous</span>
       {% endif %}
       
       {% for page in (1..paginator.total_pages) %}
         {% if page == paginator.page %}
-          <span class="active">{{ page }}</span>
+          <a class="active">{{ page }}</a>
         {% else %}
-          <a href="{{ paginator.paginate_path | replace: ':num', page }}">{{ page }}</a>
+          <a href="{% if page == 1 %}{{ '/blog' | relative_url }}{% else %}{{ site.paginate_path | relative_url | replace: ':num', page }}{% endif %}">{{ page }}</a>
         {% endif %}
       {% endfor %}
       
       {% if paginator.next_page %}
         <a href="{{ paginator.next_page_path }}" class="next">Next</a>
-      {% else %}
-        <span class="disabled">Next</span>
       {% endif %}
     </div>
   {% endif %}
