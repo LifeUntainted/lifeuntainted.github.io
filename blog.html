@@ -1,105 +1,158 @@
----
-layout: default
-title: "Blog - 321Niche"
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog - 321Niche.com</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover the latest insights and strategies to help you succeed in your niche.">
 
-<style>
-  .blog-page {
-    background-color: #0A0A0A; 
-    color: #E0E0E0;
-    font-family: 'Orbitron', sans-serif;
-  }
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  .blog-header {
-    padding: 2rem 0;
-    text-align: center;
-    border-bottom: 1px solid #57FF8C; 
-    margin-bottom: 2rem;
-  }
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
-  .blog-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #57FF8C;
-    text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
-  }
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
 
-  .blog-list {
-    margin-top: 2rem;
-  }
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #00695c;
+    }
 
-  .blog-entry {
-    background: #121212;
-    border: 1px solid #333;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+    }
 
-  .blog-entry:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(87, 255, 140, 0.3);
-  }
+    .blog-header {
+      padding: 4rem 0 2rem;
+      text-align: center;
+      border-bottom: 1px solid #57FF8C;
+      margin-bottom: 3rem;
+    }
 
-  .blog-title-link {
-    color: #57FF8C;
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-    text-decoration: none;
-  }
+    .blog-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #57FF8C;
+      text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
+      margin-bottom: 1rem;
+    }
 
-  .blog-title-link:hover {
-    color: #88FFAA;
-  }
+    .blog-list {
+      margin: 2rem 0;
+    }
 
-  .blog-date {
-    color: #888;
-    font-size: 0.9rem;
-  }
+    .blog-entry {
+      background: rgba(18, 18, 18, 0.9);
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
 
-  .pagination {
-    margin: 2rem 0;
-    text-align: center;
-  }
+    .blog-entry:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(87, 255, 140, 0.3);
+    }
 
-  .pagination a {
-    color: #57FF8C;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border: 1px solid #57FF8C;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
+    .blog-title-link {
+      color: #57FF8C;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+    }
 
-  .pagination a:hover {
-    background-color: rgba(87, 255, 140, 0.2);
-  }
+    .blog-title-link:hover {
+      color: #88FFAA;
+    }
 
-  .pagination .active {
-    background-color: #57FF8C;
-    color: #0A0A0A;
-  }
-</style>
+    .blog-date {
+      color: #888;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-<div id="particles-js"></div>
+    .blog-excerpt {
+      line-height: 1.6;
+      font-size: 1.1em;
+      text-align: justify;
+      color: #E0E0E0;
+    }
 
-<div class="blog-page">
-  <div class="container">
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 600px) {
+      .blog-title {
+        font-size: 2rem;
+      }
+      .blog-title-link {
+        font-size: 1.5rem;
+      }
+      .blog-excerpt {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+  </ul>
+
+  <!-- Interactive Background -->
+  <div id="particles-js"></div>
+
+  <!-- Blog Page Content -->
+  <div class="container blog-page">
     <div class="blog-header">
       <h1 class="blog-title">Latest Insights</h1>
       <p class="blog-subtitle">Discover strategies, tips, and success stories to help you succeed in your niche</p>
@@ -108,18 +161,21 @@ title: "Blog - 321Niche"
     <div class="blog-list">
       {% for post in paginator.posts %}
         <a href="{{ post.url | relative_url }}" class="blog-entry">
-          <h2 class="blog-title-link">{{ post.title }}</h2>
-          <p class="blog-date">
-            <i class="material-icons tiny">event</i>
-            {{ post.date | date: "%B %d, %Y" }} - Category: {{ post.categories | join: ", " }}
-          </p>
-          <p class="blog-excerpt">
-            {{ post.excerpt | strip_html | truncate: 200 }}
-          </p>
+          <div class="blog-info">
+            <h2 class="blog-title-link">{{ post.title }}</h2>
+            <div class="blog-date">
+              <i class="material-icons tiny">event</i>
+              {{ post.date | date: "%B %d, %Y" }} - Category: {{ post.categories | join: ", " }}
+            </div>
+            <div class="blog-excerpt">
+              {{ post.excerpt | strip_html | truncate: 200 }}
+            </div>
+          </div>
         </a>
       {% endfor %}
     </div>
 
+    <!-- Pagination Controls -->
     {% if paginator.total_pages > 1 %}
       <div class="pagination">
         {% if paginator.previous_page %}
@@ -144,29 +200,68 @@ title: "Blog - 321Niche"
       </div>
     {% endif %}
   </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Include Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <!-- Include jQuery and Materialize JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    M.AutoInit();
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": ["#57FF8C", "#88FFAA"] },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5, "random": true },
-        "size": { "value": 3, "random": true },
-        "move": { "enable": true, "speed": 1, "direction": "none", "out_mode": "out" }
-      },
-      "interactivity": {
-        "events": { "onhover": { "enable": true, "mode": "repulse" } },
-        "modes": { "repulse": { "distance": 100, "duration": 0.4 } }
-      },
-      "retina_detect": true
+  <!-- Initialize Components and Particles.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Materialize Components
+      M.AutoInit();
+
+      // Initialize Particles.js
+      particlesJS("particles-js", {
+        "particles": {
+          "number": {
+            "value": 80,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": ["#57FF8C", "#88FFAA"]
+          },
+          "shape": {
+            "type": "circle"
+          },
+          "opacity": {
+            "value": 0.5,
+            "random": true
+          },
+          "size": {
+            "value": 3,
+            "random": true
+          },
+          "move": {
+            "enable": true,
+            "speed": 1,
+            "direction": "none",
+            "out_mode": "out"
+          }
+        },
+        "interactivity": {
+          "events": {
+            "onhover": {
+              "enable": true,
+              "mode": "repulse"
+            }
+          },
+          "modes": {
+            "repulse": {
+              "distance": 100,
+              "duration": 0.4
+            }
+          }
+        },
+        "retina_detect": true
+      });
     });
-  });
-</script>
+  </script>
+
+</body>
+</html>
