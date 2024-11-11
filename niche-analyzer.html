@@ -3,24 +3,26 @@ layout: default
 title: "Niche Analyzer"
 ---
 
-<!-- Include GSAP and jQuery in the head -->
+<!-- Include CSS and JS Libraries in the HEAD -->
 <head>
-  <!-- ... other head content ... -->
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover profitable and personalized niche ideas with our AI-powered Niche Analyzer.">
 
-  <!-- Include GSAP Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- Include jQuery (required by Materialize JS) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Include Materialize CSS and JS -->
+  <!-- Include Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <!-- Custom Styles -->
   <style>
-    /* Include the CSS from previous steps here */
+    /* Include the CSS styles here (as provided in the previous code) */
+    /* ... */
   </style>
 </head>
 
@@ -36,8 +38,9 @@ title: "Niche Analyzer"
 
   <!-- SVG Background Lines -->
   <div class="background-lines">
-    <svg width="100%" height="100%">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <!-- Example lines -->
+      <!-- Adjust the number and position of lines as desired -->
       <line x1="0%" y1="10%" x2="100%" y2="10%" stroke="#FFD700" stroke-width="0.5" />
       <line x1="0%" y1="30%" x2="100%" y2="30%" stroke="#00897b" stroke-width="0.5" />
       <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="#FFD700" stroke-width="0.5" />
@@ -53,11 +56,92 @@ title: "Niche Analyzer"
 
   <!-- Niche Analyzer Content -->
   <div class="container niche-analyzer">
-    <!-- ... Include your form here ... -->
+    <h1 class="analyzer-title">Niche Analyzer</h1>
+    <p>Discover profitable niches and insights to grow your business!</p>
+    <!-- Include your form here -->
+    <!-- ... (Form code as provided before) ... -->
   </div>
 
-  <!-- Include your scripts at the end -->
+  <!-- Include jQuery and GSAP at the end of the body for better loading -->
+  <!-- Include jQuery (required by Materialize JS) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Include Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Include GSAP Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+  <!-- Custom Scripts -->
   <script>
-    // Include the JavaScript from previous steps here
+    // DOMContentLoaded event
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Materialize Components
+      M.AutoInit();
+
+      // GSAP Animation for Intro Overlay
+      gsap.fromTo("#intro-content h1", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1 });
+      gsap.fromTo("#intro-content p", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.5 });
+
+      // Remove Intro Overlay after animation
+      setTimeout(() => {
+        gsap.to("#intro-overlay", { opacity: 0, duration: 1, onComplete: () => {
+          document.getElementById('intro-overlay').style.display = 'none';
+        }});
+      }, 3000);
+
+      // Back to Top Button functionality
+      window.addEventListener('scroll', function() {
+        const backToTop = document.getElementById('back-to-top');
+        if (window.scrollY > 500) {
+          backToTop.style.display = 'block';
+        } else {
+          backToTop.style.display = 'none';
+        }
+      });
+
+      // Handle Form Submission
+      document.getElementById('niche-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Collect form data
+        const formData = {
+          interests: document.getElementById('interests').value,
+          skills: document.getElementById('skills').value,
+          audience: document.getElementById('audience').value,
+          monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
+          trends: document.getElementById('trends').value,
+          competition: document.getElementById('competition').value,
+          scalability: M.FormSelect.getInstance(document.getElementById('scalability')).getSelectedValues()[0],
+          geographic: document.getElementById('geographic').value,
+        };
+
+        // Display loading message
+        document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
+
+        try {
+          // Send data to backend
+          const response = await fetch('/.netlify/functions/niche-analyzer', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          });
+
+          const data = await response.json();
+
+          if (data.result) {
+            // Display results
+            document.getElementById('results').innerHTML = `<h2>Your Niche Ideas:</h2><pre>${data.result}</pre>`;
+          } else {
+            document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
+          }
+        } catch (error) {
+          document.getElementById('results').innerHTML = "<p>An error occurred while processing your request.</p>";
+          console.error('Error:', error);
+        }
+      });
+    });
   </script>
 </body>
