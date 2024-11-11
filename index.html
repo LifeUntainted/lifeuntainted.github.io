@@ -129,14 +129,12 @@
       padding: 20px 0;
     }
 
-    .input-field input,
-    .input-field textarea {
+    .input-field input {
       border-bottom: 1px solid #00695c !important;
       color: #fff !important;
     }
 
-    .input-field input:focus,
-    .input-field textarea:focus {
+    .input-field input:focus {
       border-bottom: 1px solid #00897b !important;
       box-shadow: 0 1px 0 0 #00897b !important;
     }
@@ -170,28 +168,6 @@
     }
 
     .sidenav li > a {
-      color: #fff;
-    }
-
-    /* Niche Analyzer Section Styling */
-    .niche-analyzer-section {
-      background-color: rgba(0, 0, 0, 0.95);
-      padding: 4rem 0;
-    }
-
-    .niche-analyzer-section h2 {
-      margin-bottom: 2rem;
-    }
-
-    .niche-analyzer-section .btn {
-      margin-top: 2rem;
-    }
-
-    #results pre {
-      background: rgba(0, 105, 92, 0.1);
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1px solid #00695c;
       color: #fff;
     }
   </style>
@@ -272,7 +248,7 @@
           <div class="ai-tools-box">
             <h5><i class="material-icons left">trending_up</i>Niche Analyzer</h5>
             <p>Analyze market trends and discover profitable niches with our AI algorithm.</p>
-            <!-- Removed the "Learn More" button since we're adding the form below -->
+            <a href="niche-analyzer.html" class="btn waves-effect waves-light">Learn More</a>
           </div>
         </div>
         <div class="col s12 m6">
@@ -283,91 +259,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Niche Analyzer Section -->
-  <div class="niche-analyzer-section">
-    <div class="container">
-      <h2 class="center-align">Niche Analyzer</h2>
-      <p class="center-align">Discover profitable and personalized niche ideas by combining insights from your strengths, passions, and current market trends.</p>
-      <form id="niche-form">
-        <div class="row">
-          <!-- Question 1 -->
-          <div class="input-field col s12">
-            <textarea id="interests" name="interests" class="materialize-textarea" required></textarea>
-            <label for="interests">1. List 3-5 topics, industries, or hobbies you're passionate about:</label>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Question 2 -->
-          <div class="input-field col s12">
-            <textarea id="skills" name="skills" class="materialize-textarea" required></textarea>
-            <label for="skills">2. Describe any skills or expertise you have (include experience level):</label>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Question 3 -->
-          <div class="input-field col s12">
-            <textarea id="audience" name="audience" class="materialize-textarea" required></textarea>
-            <label for="audience">3. Describe your ideal audience (demographics, needs):</label>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Question 4 -->
-          <div class="input-field col s12">
-            <select id="monetization" name="monetization" multiple required>
-              <option value="" disabled selected>Choose your preferred methods</option>
-              <option value="Affiliate marketing">Affiliate marketing</option>
-              <option value="Product sales">Product sales (physical or digital)</option>
-              <option value="Services">Services (consulting, coaching, etc.)</option>
-              <option value="Advertising revenue">Advertising revenue</option>
-              <option value="Subscription">Subscription or membership model</option>
-              <option value="Other">Other</option>
-            </select>
-            <label for="monetization">4. Preferred methods of monetization:</label>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Question 5 -->
-          <div class="input-field col s12">
-            <textarea id="trends" name="trends" class="materialize-textarea"></textarea>
-            <label for="trends">5. Are you aware of any current trends or gaps in your topics of interest?</label>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Question 6 -->
-          <div class="input-field col s12">
-            <textarea id="competition" name="competition" class="materialize-textarea"></textarea>
-            <label for="competition">6. Observations about competitors in this area:</label>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Question 7 -->
-          <div class="input-field col s12">
-            <select id="scalability" name="scalability" required>
-              <option value="" disabled selected>Choose your option</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No, focused on a specialized, short-term opportunity</option>
-            </select>
-            <label for="scalability">7. Are you looking for a niche that can scale and evolve?</label>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Question 8 -->
-          <div class="input-field col s12">
-            <input type="text" id="geographic" name="geographic">
-            <label for="geographic">8. Is there a specific geographic area you'd like to focus on? (Optional)</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col s12 center-align">
-            <button type="submit" class="btn waves-effect waves-light">Analyze Niche</button>
-          </div>
-        </div>
-      </form>
-      <!-- Div to display results -->
-      <div id="results"></div>
     </div>
   </div>
 
@@ -427,14 +318,13 @@
   </footer>
 
   <!-- Scripts -->
-  <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize Mobile Navigation
-      var elemsSidenav = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(elemsSidenav);
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
 
       // Initialize Parallax
       var elemsParallax = document.querySelectorAll('.parallax');
@@ -449,57 +339,6 @@
         numVisible: 3,
         indicators: true
       });
-
-      // Initialize Select Elements
-      var elemsSelect = document.querySelectorAll('select');
-      M.FormSelect.init(elemsSelect);
-
-      // Initialize Textarea Auto-Resize
-      var elemsTextArea = document.querySelectorAll('textarea');
-      M.textareaAutoResize(elemsTextArea);
-    });
-
-    // Handle Form Submission
-    document.getElementById('niche-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Collect form data
-      const formData = {
-        interests: document.getElementById('interests').value,
-        skills: document.getElementById('skills').value,
-        audience: document.getElementById('audience').value,
-        monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
-        trends: document.getElementById('trends').value,
-        competition: document.getElementById('competition').value,
-        scalability: M.FormSelect.getInstance(document.getElementById('scalability')).getSelectedValues()[0],
-        geographic: document.getElementById('geographic').value,
-      };
-
-      // Display loading message
-      document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
-
-      try {
-        // Send data to backend
-        const response = await fetch('/.netlify/functions/niche-analyzer', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        });
-
-        const data = await response.json();
-
-        if (data.result) {
-          // Display results
-          document.getElementById('results').innerHTML = `<h2>Your Niche Ideas:</h2><pre>${data.result}</pre>`;
-        } else {
-          document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
-        }
-      } catch (error) {
-        document.getElementById('results').innerHTML = "<p>An error occurred while processing your request.</p>";
-        console.error('Error:', error);
-      }
     });
   </script>
 
