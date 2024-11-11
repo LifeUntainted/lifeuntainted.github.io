@@ -2,18 +2,14 @@ theme: minima
 title: 321Niche
 description: Helping you find and monetize your niche.
 
-# Enable Pagination
+# Pagination Settings
 paginate: 10
 paginate_path: "/blog/page:num"
 
-# Base URL (optional, useful if your site is hosted in a subdirectory)
-# Uncomment and replace with your subdirectory if applicable
-# baseurl: "/321Niche"
-
-# Set Jekyll to use the blog layout you created for posts
+# Default Layout for Posts
 defaults:
   - scope:
       path: ""
       type: "posts"
     values:
-      layout: "blog"
+      layout: "post" # Can adjust this to "blog" if you have a separate blog layout
