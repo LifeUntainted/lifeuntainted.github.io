@@ -1,154 +1,280 @@
-body {
-    font-family: 'Orbitron', sans-serif;
-    background-color: #121212;
-    color: #ffffff;
-    font-size: 16px;
-    line-height: 1.6;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="{{ page.description | default: site.description }}">
 
-.nav-wrapper {
-    background-color: #1e1e1e;
-}
+  <!-- Page Title -->
+  <title>{{ page.title }} - 321Niche.com</title>
 
-.parallax-container {
-    height: 500px;
-}
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-.icon-block .material-icons {
-    font-size: 60px;
-}
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
-.page-footer {
-    background-color: #1e1e1e;
-}
+  <!-- Include Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-a {
-    color: #57FF8C; /* Green color for contrast */
-    text-decoration: none;
-}
+  <!-- Custom Styles -->
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 0;
+      overflow-x: hidden;
+    }
 
-a:hover {
-    color: #88FFAA;
-}
+    /* Interactive Background Styles */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
 
-h1, h5 {
-    text-transform: uppercase;
-}
+    /* Content Wrapper */
+    .content-wrapper {
+      position: relative;
+      z-index: 2;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
 
-p.light {
-    font-size: 1.1em;
-}
+    /* Navbar Styles */
+    .nav-wrapper {
+      background-color: rgba(30, 30, 30, 0.8);
+      border-bottom: 1px solid #00695c;
+    }
 
-/* Container for blog content */
-.blog-content {
-    max-width: 800px; /* Limits text width */
-    margin: 0 auto;
-    padding: 40px; /* Increased padding for breathing space */
-    color: #E0E0E0; /* Ensures readability on dark background */
-    box-sizing: border-box;
-    border: 1px solid #333;
-    border-radius: 10px;
-    background-color: #181818;
-}
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+    }
 
-/* Heading Styles */
-.blog-title, h1 {
-    font-size: 2.2em; /* Adjusted for readability */
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
+    /* Blog Page Styles */
+    .blog-page {
+      background-color: #0A0A0A;
+      color: #E0E0E0;
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-h2 {
-    font-size: 1.8em;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
+    .blog-header {
+      padding: 4rem 0 2rem;
+      text-align: center;
+      border-bottom: 1px solid #57FF8C;
+      margin-bottom: 3rem;
+    }
 
-h3 {
-    font-size: 1.4em;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-/* Paragraphs */
-.blog-content p {
-    max-width: 700px; /* Narrower text for readability */
-    margin: 0 auto;
-    margin-bottom: 1.8em;
-    line-height: 1.7;
-}
-
-/* Optional: Style for Published Date */
-.blog-date {
-    font-size: 0.9em;
-    color: #888;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-/* Padding for Main Container */
-.container {
-    padding: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    box-sizing: border-box;
-}
-
-/* Improve Responsiveness */
-@media (max-width: 768px) {
     .blog-title {
-        font-size: 1.8em;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #57FF8C;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
     }
-    h2 {
-        font-size: 1.5em;
+
+    .blog-subtitle {
+      font-size: 1.2rem;
+      color: #888;
     }
-    h3 {
-        font-size: 1.2em;
+
+    /* Blog List */
+    .blog-list {
+      margin: 2rem 0;
     }
-    .blog-content p {
+
+    .blog-entry {
+      background: rgba(18, 18, 18, 0.9);
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .blog-entry:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(87, 255, 140, 0.3);
+    }
+
+    .blog-title-link {
+      color: #57FF8C;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+    }
+
+    .blog-title-link:hover {
+      color: #88FFAA;
+    }
+
+    .blog-date {
+      color: #888;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .blog-excerpt {
+      line-height: 1.6;
+      font-size: 1.1em;
+      text-align: justify;
+      color: #E0E0E0;
+    }
+
+    /* Pagination Styles */
+    .pagination {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .pagination a {
+      color: #57FF8C;
+      border: 1px solid #57FF8C;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .pagination a:hover {
+      background-color: rgba(87, 255, 140, 0.2);
+    }
+
+    .pagination .active {
+      background-color: #57FF8C;
+      color: #0A0A0A;
+    }
+
+    .pagination .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* Remove Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #00695c;
+      border-radius: 4px;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 600px) {
+      .blog-title {
+        font-size: 2rem;
+      }
+      .blog-title-link {
+        font-size: 1.5rem;
+      }
+      .blog-excerpt {
         font-size: 1em;
+      }
     }
-    .blog-content {
-        padding: 20px;
-    }
-}
+  </style>
+</head>
+<body>
+  <!-- Interactive Background -->
+  <div id="particles-js"></div>
 
-/* General Styling Improvements */
-h1, h2, h3, p {
-    margin-left: 20px;
-    margin-right: 20px;
-}
+  <!-- Content Wrapper -->
+  <div class="content-wrapper">
+    <!-- Navbar (if you have one) -->
+    {% include navbar.html %}
 
-/* Interactive Background Styles */
-#particles-js {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
+    <!-- Page Content -->
+    {{ content }}
 
-/* Content Wrapper */
-.content-wrapper {
-    position: relative;
-    z-index: 2;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-}
+    <!-- Footer (if you have one) -->
+    {% include footer.html %}
+  </div>
 
-/* Remove Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
+  <!-- Include jQuery (required by Materialize JS) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-::-webkit-scrollbar-track {
-    background: #000;
-}
+  <!-- Include Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-::-webkit-scrollbar-thumb {
-    background: #00695c;
-    border-radius: 4px;
-}
+  <!-- Include Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+  <!-- Custom Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Materialize Components
+      M.AutoInit();
+
+      // Initialize Particles.js
+      particlesJS("particles-js", {
+        "particles": {
+          "number": {
+            "value": 80,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": ["#57FF8C", "#88FFAA"]
+          },
+          "shape": {
+            "type": "circle"
+          },
+          "opacity": {
+            "value": 0.5,
+            "random": true
+          },
+          "size": {
+            "value": 3,
+            "random": true
+          },
+          "move": {
+            "enable": true,
+            "speed": 1,
+            "direction": "none",
+            "out_mode": "out"
+          }
+        },
+        "interactivity": {
+          "events": {
+            "onhover": {
+              "enable": true,
+              "mode": "repulse"
+            }
+          },
+          "modes": {
+            "repulse": {
+              "distance": 100,
+              "duration": 0.4
+            }
+          }
+        },
+        "retina_detect": true
+      });
+    });
+  </script>
+</body>
+</html>
