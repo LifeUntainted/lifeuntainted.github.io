@@ -1,6 +1,6 @@
 body {
     font-family: 'Orbitron', sans-serif;
-    background-color: #121212;
+    background: linear-gradient(135deg, #121212, #1e1e1e);
     color: #ffffff;
     font-size: 16px;
     line-height: 1.6;
@@ -25,10 +25,12 @@ body {
 a {
     color: #57FF8C; /* Green color for contrast */
     text-decoration: none;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
 a:hover {
     color: #88FFAA;
+    text-shadow: 0 0 8px #57FF8C;
 }
 
 h1, h5 {
@@ -45,32 +47,50 @@ p.light {
     margin: 0 auto;
     padding: 20px;
     color: #E0E0E0; /* Ensures readability on dark background */
+    background: rgba(30, 30, 30, 0.9);
+    box-shadow: 0 0 20px rgba(87, 255, 140, 0.3);
+    border-radius: 12px;
+    border: 1px solid #57FF8C;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(87, 255, 140, 0.5);
 }
 
 /* Heading Styles */
 .blog-title, h1 {
-    font-size: 2em; /* Adjusted for readability */
+    font-size: 2.2em; /* Adjusted for readability */
     font-weight: 700;
     margin-bottom: 1rem;
     text-align: center;
+    color: #57FF8C;
+    text-shadow: 0 0 10px rgba(87, 255, 140, 0.6);
 }
 
 h2 {
-    font-size: 1.5em;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.8em;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #88FFAA;
+    text-shadow: 0 0 8px rgba(136, 255, 170, 0.5);
 }
 
 h3 {
-    font-size: 1.2em;
-    margin-top: 1.2rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.4em;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: #E0E0E0;
 }
 
 /* Paragraphs */
 .blog-content p {
     max-width: 700px; /* Narrower text for readability */
-    margin-bottom: 1.5em;
+    margin: 0 auto;
+    margin-bottom: 1.8em;
+    line-height: 1.7;
 }
 
 /* Optional: Style for Published Date */
@@ -79,4 +99,88 @@ h3 {
     color: #888;
     margin-bottom: 1rem;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-date::before {
+    content: '\f073'; /* Calendar icon Unicode */
+    font-family: 'Material Icons';
+    margin-right: 0.5em;
+    color: #57FF8C;
+}
+
+/* Padding for Main Container */
+.container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Improve Responsiveness */
+@media (max-width: 768px) {
+    .blog-title {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.4em;
+    }
+    h3 {
+        font-size: 1.1em;
+    }
+    .blog-content {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    .blog-title {
+        font-size: 1.5em;
+    }
+    .blog-content {
+        padding: 10px;
+    }
+}
+
+/* General Styling Improvements */
+h1, h2, h3, p {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Interactive Background Styles */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+/* Remove Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00695c;
+    border-radius: 4px;
 }
