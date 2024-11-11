@@ -129,23 +129,23 @@
   <!-- Navigation Bar -->
   <nav>
     <div class="nav-wrapper">
-      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="/index.html" class="brand-logo">321Niche</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="resources.html">Resources</a></li>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/resources.html">Resources</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Mobile Navigation -->
   <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="resources.html">Resources</a></li>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/about.html">About Us</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/resources.html">Resources</a></li>
   </ul>
 
   <!-- Interactive Background -->
@@ -159,7 +159,7 @@
     </div>
 
     <div class="blog-list">
-      {% for post in paginator.posts %}
+      {% for post in site.posts %}
         <a href="{{ post.url | relative_url }}" class="blog-entry">
           <div class="blog-info">
             <h2 class="blog-title-link">{{ post.title }}</h2>
@@ -167,9 +167,11 @@
               <i class="material-icons tiny">event</i>
               {{ post.date | date: "%B %d, %Y" }} - Category: {{ post.categories | join: ", " }}
             </div>
-            <div class="blog-excerpt">
-              {{ post.excerpt | strip_html | truncate: 200 }}
-            </div>
+            {% if post.excerpt %}
+              <div class="blog-excerpt">
+                {{ post.excerpt | strip_html | truncate: 200 }}
+              </div>
+            {% endif %}
           </div>
         </a>
       {% endfor %}
