@@ -50,6 +50,11 @@
       margin-bottom: 1rem;
     }
 
+    .blog-subtitle {
+      font-size: 1.2rem;
+      color: #888;
+    }
+
     .blog-list {
       margin: 2rem 0;
     }
@@ -111,6 +116,35 @@
       z-index: 1;
     }
 
+    .pagination {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .pagination a {
+      color: #57FF8C;
+      border: 1px solid #57FF8C;
+      padding: 0.5rem 1rem;
+      margin: 0 0.25rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .pagination a:hover {
+      background-color: rgba(87, 255, 140, 0.2);
+    }
+
+    .pagination .active {
+      background-color: #57FF8C;
+      color: #0A0A0A;
+    }
+
+    .pagination .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
     @media (max-width: 600px) {
       .blog-title {
         font-size: 2rem;
@@ -129,23 +163,23 @@
   <!-- Navigation Bar -->
   <nav>
     <div class="nav-wrapper">
-      <a href="/index.html" class="brand-logo">321Niche</a>
+      <a href="index.html" class="brand-logo">321Niche</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="/about.html">About Us</a></li>
-        <li><a href="/blog.html">Blog</a></li>
-        <li><a href="/resources.html">Resources</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Mobile Navigation -->
   <ul class="sidenav" id="mobile-demo">
-    <li><a href="/index.html">Home</a></li>
-    <li><a href="/about.html">About Us</a></li>
-    <li><a href="/blog.html">Blog</a></li>
-    <li><a href="/resources.html">Resources</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
   </ul>
 
   <!-- Interactive Background -->
@@ -159,7 +193,7 @@
     </div>
 
     <div class="blog-list">
-      {% for post in site.posts %}
+      {% for post in paginator.posts %}
         <a href="{{ post.url | relative_url }}" class="blog-entry">
           <div class="blog-info">
             <h2 class="blog-title-link">{{ post.title }}</h2>
@@ -167,11 +201,13 @@
               <i class="material-icons tiny">event</i>
               {{ post.date | date: "%B %d, %Y" }} - Category: {{ post.categories | join: ", " }}
             </div>
-            {% if post.excerpt %}
-              <div class="blog-excerpt">
+            <div class="blog-excerpt">
+              {% if post.excerpt %}
                 {{ post.excerpt | strip_html | truncate: 200 }}
-              </div>
-            {% endif %}
+              {% else %}
+                {{ post.content | strip_html | truncate: 200 }}
+              {% endif %}
+            </div>
           </div>
         </a>
       {% endfor %}
