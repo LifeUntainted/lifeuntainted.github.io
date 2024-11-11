@@ -1,9 +1,14 @@
+---
+layout: default
+title: "Blog - 321Niche"
+paginate: true
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Blog - 321Niche</title>
-  
+  <title>{{ page.title }}</title>
+
   <!-- Meta Tags -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Discover the latest strategies, tips, and success stories to help you succeed in your niche.">
@@ -157,15 +162,7 @@
 </head>
 <body>
   <!-- Navigation Bar -->
-  
-
-  <!-- Mobile Navigation -->
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="resources.html">Resources</a></li>
-  </ul>
+  {% include navbar.html %}
 
   <!-- Interactive Background -->
   <div id="particles-js"></div>
