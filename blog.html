@@ -3,62 +3,43 @@ layout: default
 title: "Blog - 321Niche"
 ---
 
-<!-- Include necessary fonts and CSS (if not already included in your default layout) -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-
-<!-- Include Materialize CSS (if not already included) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-<!-- Import Google Icon Font -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
-  /* Scoped Styles */
   .blog-page {
-    background-color: #0A0A0A; /* Match main page background */
+    background-color: #0A0A0A; 
     color: #E0E0E0;
     font-family: 'Orbitron', sans-serif;
-    margin: 0;
-    padding: 0;
   }
 
-  .blog-page .container {
+  .container {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 1; /* Ensure it appears above background */
   }
 
-  /* Blog Header */
-  .blog-page .blog-header {
-    padding: 4rem 0 2rem;
+  .blog-header {
+    padding: 2rem 0;
     text-align: center;
-    border-bottom: 1px solid #57FF8C; /* Match green accent color */
-    margin-bottom: 3rem;
+    border-bottom: 1px solid #57FF8C; 
+    margin-bottom: 2rem;
   }
 
-  .blog-page .blog-title {
+  .blog-title {
     font-size: 2.5rem;
     font-weight: 700;
     text-transform: uppercase;
     color: #57FF8C;
-    margin-bottom: 1rem;
     text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
   }
 
-  .blog-page .blog-subtitle {
-    font-size: 1.2rem;
-    color: #888;
+  .blog-list {
+    margin-top: 2rem;
   }
 
-  /* Blog List */
-  .blog-page .blog-list {
-    margin: 2rem 0;
-  }
-
-  .blog-page .blog-entry {
+  .blog-entry {
     background: #121212;
     border: 1px solid #333;
     border-radius: 8px;
@@ -70,98 +51,53 @@ title: "Blog - 321Niche"
     color: inherit;
   }
 
-  .blog-page .blog-entry:hover {
+  .blog-entry:hover {
     transform: translateY(-5px);
     box-shadow: 0 0 20px rgba(87, 255, 140, 0.3);
   }
 
-  .blog-page .blog-info {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .blog-page .blog-title-link {
+  .blog-title-link {
     color: #57FF8C;
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
     text-decoration: none;
   }
 
-  .blog-page .blog-title-link:hover {
+  .blog-title-link:hover {
     color: #88FFAA;
   }
 
-  .blog-page .blog-date {
+  .blog-date {
     color: #888;
     font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
   }
 
-  .blog-page .blog-excerpt {
-    line-height: 1.6;
-    font-size: 1.1em;
-    text-align: justify;
-    color: #E0E0E0;
-  }
-
-  /* Pagination */
-  .blog-page .pagination {
+  .pagination {
     margin: 2rem 0;
     text-align: center;
   }
 
-  .blog-page .pagination a {
+  .pagination a {
     color: #57FF8C;
-    border: 1px solid #57FF8C;
     padding: 0.5rem 1rem;
-    margin: 0 0.25rem;
-    border-radius: 4px;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    border: 1px solid #57FF8C;
+    border-radius: 4px;
+    transition: background-color 0.3s;
   }
 
-  .blog-page .pagination a:hover {
+  .pagination a:hover {
     background-color: rgba(87, 255, 140, 0.2);
   }
 
-  .blog-page .pagination .active {
+  .pagination .active {
     background-color: #57FF8C;
     color: #0A0A0A;
   }
-
-  .blog-page .pagination .disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  /* Mobile Responsiveness */
-  @media (max-width: 600px) {
-    .blog-page .blog-title {
-      font-size: 2rem;
-    }
-    .blog-page .blog-title-link {
-      font-size: 1.5rem;
-    }
-    .blog-page .blog-excerpt {
-      font-size: 1em;
-    }
-  }
 </style>
 
-<!-- Include Particles.js for the interactive background -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-
-<!-- Include jQuery and Materialize JS (if not already included) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-<!-- Interactive Background Div -->
 <div id="particles-js"></div>
 
-<!-- Begin Page Content -->
 <div class="blog-page">
   <div class="container">
     <div class="blog-header">
@@ -172,22 +108,18 @@ title: "Blog - 321Niche"
     <div class="blog-list">
       {% for post in paginator.posts %}
         <a href="{{ post.url | relative_url }}" class="blog-entry">
-          <div class="blog-info">
-            <h2 class="blog-title-link">{{ post.title }}</h2>
-            <div class="blog-date">
-              <i class="material-icons tiny">event</i>
-              {{ post.date | date: "%B %d, %Y" }} - Category: {{ post.categories | join: ", " }}
-            </div>
-            <div class="blog-excerpt">
-              {{ post.excerpt | strip_html | truncate: 200 }}
-            </div>
-          </div>
-          <div class="blog-arrow">→</div>
+          <h2 class="blog-title-link">{{ post.title }}</h2>
+          <p class="blog-date">
+            <i class="material-icons tiny">event</i>
+            {{ post.date | date: "%B %d, %Y" }} - Category: {{ post.categories | join: ", " }}
+          </p>
+          <p class="blog-excerpt">
+            {{ post.excerpt | strip_html | truncate: 200 }}
+          </p>
         </a>
       {% endfor %}
     </div>
 
-    <!-- Pagination Controls -->
     {% if paginator.total_pages > 1 %}
       <div class="pagination">
         {% if paginator.previous_page %}
@@ -214,53 +146,25 @@ title: "Blog - 321Niche"
   </div>
 </div>
 
-<!-- Initialize Particles.js -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Particles.js
+    M.AutoInit();
     particlesJS("particles-js", {
       "particles": {
-        "number": {
-          "value": 80,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": ["#57FF8C", "#88FFAA"] // Green accent colors
-        },
-        "shape": {
-          "type": "circle"
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": true
-        },
-        "size": {
-          "value": 3,
-          "random": true
-        },
-        "move": {
-          "enable": true,
-          "speed": 1,
-          "direction": "none",
-          "out_mode": "out"
-        }
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": ["#57FF8C", "#88FFAA"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": true },
+        "size": { "value": 3, "random": true },
+        "move": { "enable": true, "speed": 1, "direction": "none", "out_mode": "out" }
       },
       "interactivity": {
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
-          }
-        },
-        "modes": {
-          "repulse": {
-            "distance": 100,
-            "duration": 0.4
-          }
-        }
+        "events": { "onhover": { "enable": true, "mode": "repulse" } },
+        "modes": { "repulse": { "distance": 100, "duration": 0.4 } }
       },
       "retina_detect": true
     });
