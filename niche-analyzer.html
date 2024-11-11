@@ -3,208 +3,61 @@ layout: default
 title: "Niche Analyzer"
 ---
 
-<div class="container niche-analyzer">
-    <h1 class="analyzer-title">Niche Analyzer</h1>
-    <p>Discover profitable niches and insights to grow your business!</p>
+<!-- Include GSAP and jQuery in the head -->
+<head>
+  <!-- ... other head content ... -->
 
-    <!-- Niche Analyzer Form -->
-    <form id="niche-form">
-        <div class="row">
-            <!-- Question 1 -->
-            <div class="input-field col s12">
-                <textarea id="interests" name="interests" class="materialize-textarea" required></textarea>
-                <label for="interests">1. List 3-5 topics, industries, or hobbies you're passionate about:</label>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Question 2 -->
-            <div class="input-field col s12">
-                <textarea id="skills" name="skills" class="materialize-textarea" required></textarea>
-                <label for="skills">2. Describe any skills or expertise you have (include experience level):</label>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Question 3 -->
-            <div class="input-field col s12">
-                <textarea id="audience" name="audience" class="materialize-textarea" required></textarea>
-                <label for="audience">3. Describe your ideal audience (demographics, needs):</label>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Question 4 -->
-            <div class="input-field col s12">
-                <select id="monetization" name="monetization" multiple required>
-                    <option value="" disabled selected>Choose your preferred methods</option>
-                    <option value="Affiliate marketing">Affiliate marketing</option>
-                    <option value="Product sales">Product sales (physical or digital)</option>
-                    <option value="Services">Services (consulting, coaching, etc.)</option>
-                    <option value="Advertising revenue">Advertising revenue</option>
-                    <option value="Subscription">Subscription or membership model</option>
-                    <option value="Other">Other</option>
-                </select>
-                <label for="monetization">4. Preferred methods of monetization:</label>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Question 5 -->
-            <div class="input-field col s12">
-                <textarea id="trends" name="trends" class="materialize-textarea"></textarea>
-                <label for="trends">5. Are you aware of any current trends or gaps in your topics of interest?</label>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Question 6 -->
-            <div class="input-field col s12">
-                <textarea id="competition" name="competition" class="materialize-textarea"></textarea>
-                <label for="competition">6. Observations about competitors in this area:</label>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Question 7 -->
-            <div class="input-field col s12">
-                <select id="scalability" name="scalability" required>
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No, focused on a specialized, short-term opportunity</option>
-                </select>
-                <label for="scalability">7. Are you looking for a niche that can scale and evolve?</label>
-            </div>
-        </div>
-        <div class="row">
-            <!-- Question 8 -->
-            <div class="input-field col s12">
-                <input type="text" id="geographic" name="geographic">
-                <label for="geographic">8. Is there a specific geographic area you'd like to focus on? (Optional)</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 center-align">
-                <button type="submit" class="btn waves-effect waves-light">Analyze Niche</button>
-            </div>
-        </div>
-    </form>
+  <!-- Include GSAP Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 
-    <!-- Div to display results -->
-    <div id="results"></div>
-</div>
+  <!-- Include jQuery (required by Materialize JS) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Include Materialize CSS and JS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Include Materialize CSS and JS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-<!-- Include jQuery (required by Materialize JS) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-<!-- Include Materialize JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Custom Styles -->
+  <style>
+    /* Include the CSS from previous steps here */
+  </style>
+</head>
 
-<!-- Include your custom script -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize Select Elements
-        var elemsSelect = document.querySelectorAll('select');
-        M.FormSelect.init(elemsSelect);
+<body>
+  <!-- Animated Intro Overlay -->
+  <div id="intro-overlay">
+    <canvas id="intro-canvas"></canvas>
+    <div id="intro-content">
+      <h1>321Niche</h1>
+      <p>Discover Your Future Niche</p>
+    </div>
+  </div>
 
-        // Initialize Textarea Auto-Resize
-        var elemsTextArea = document.querySelectorAll('textarea');
-        M.textareaAutoResize(elemsTextArea);
-    });
+  <!-- SVG Background Lines -->
+  <div class="background-lines">
+    <svg width="100%" height="100%">
+      <!-- Example lines -->
+      <line x1="0%" y1="10%" x2="100%" y2="10%" stroke="#FFD700" stroke-width="0.5" />
+      <line x1="0%" y1="30%" x2="100%" y2="30%" stroke="#00897b" stroke-width="0.5" />
+      <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="#FFD700" stroke-width="0.5" />
+      <line x1="0%" y1="70%" x2="100%" y2="70%" stroke="#00897b" stroke-width="0.5" />
+      <line x1="0%" y1="90%" x2="100%" y2="90%" stroke="#FFD700" stroke-width="0.5" />
+    </svg>
+  </div>
 
-    // Handle Form Submission
-    document.getElementById('niche-form').addEventListener('submit', async (e) => {
-        e.preventDefault();
+  <!-- Back to Top Button -->
+  <a href="#" id="back-to-top" class="btn-floating btn-large">
+    <i class="material-icons">keyboard_arrow_up</i>
+  </a>
 
-        // Collect form data
-        const formData = {
-            interests: document.getElementById('interests').value,
-            skills: document.getElementById('skills').value,
-            audience: document.getElementById('audience').value,
-            monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
-            trends: document.getElementById('trends').value,
-            competition: document.getElementById('competition').value,
-            scalability: M.FormSelect.getInstance(document.getElementById('scalability')).getSelectedValues()[0],
-            geographic: document.getElementById('geographic').value,
-        };
+  <!-- Niche Analyzer Content -->
+  <div class="container niche-analyzer">
+    <!-- ... Include your form here ... -->
+  </div>
 
-        // Display loading message
-        document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
-
-        try {
-            // Send data to backend
-            const response = await fetch('/.netlify/functions/niche-analyzer', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-
-            const data = await response.json();
-
-            if (data.result) {
-                // Display results
-                document.getElementById('results').innerHTML = `<h2>Your Niche Ideas:</h2><pre>${data.result}</pre>`;
-            } else {
-                document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
-            }
-        } catch (error) {
-            document.getElementById('results').innerHTML = "<p>An error occurred while processing your request.</p>";
-            console.error('Error:', error);
-        }
-    });
-</script>
-
-<!-- Custom Styles -->
-<style>
-    body {
-        background-color: #000;
-        color: #fff;
-        font-family: 'Orbitron', sans-serif;
-    }
-
-    .niche-analyzer {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-    }
-
-    .analyzer-title {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .input-field input,
-    .input-field textarea {
-        border-bottom: 1px solid #00695c !important;
-        color: #fff !important;
-    }
-
-    .input-field input:focus,
-    .input-field textarea:focus {
-        border-bottom: 1px solid #00897b !important;
-        box-shadow: 0 1px 0 0 #00897b !important;
-    }
-
-    .input-field label {
-        color: #fff !important;
-    }
-
-    .btn {
-        background-color: #00695c;
-        text-transform: uppercase;
-        font-family: 'Orbitron', sans-serif;
-        transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-        background-color: #004d40;
-        box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
-    }
-
-    #results pre {
-        background: rgba(0, 105, 92, 0.1);
-        padding: 1rem;
-        border-radius: 8px;
-        border: 1px solid #00695c;
-        color: #fff;
-        margin-top: 2rem;
-    }
-</style>
+  <!-- Include your scripts at the end -->
+  <script>
+    // Include the JavaScript from previous steps here
+  </script>
+</body>
