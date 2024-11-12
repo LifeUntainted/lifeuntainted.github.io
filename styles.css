@@ -1,3 +1,4 @@
+/* General Body Styles */
 body {
     font-family: 'Orbitron', sans-serif;
     background: linear-gradient(135deg, #121212, #1e1e1e);
@@ -6,10 +7,13 @@ body {
     line-height: 1.6;
 }
 
+/* Navbar Styles */
 .nav-wrapper {
-    background-color: #1e1e1e;
+    background-color: #000; /* Set to black for consistency */
+    border-bottom: 1px solid #00695c;
 }
 
+/* Parallax and Icons */
 .parallax-container {
     height: 500px;
 }
@@ -18,10 +22,12 @@ body {
     font-size: 60px;
 }
 
+/* Footer Styles */
 .page-footer {
     background-color: #1e1e1e;
 }
 
+/* Link Styles */
 a {
     color: #57FF8C; /* Green color for contrast */
     text-decoration: none;
@@ -33,15 +39,17 @@ a:hover {
     text-shadow: 0 0 8px #57FF8C;
 }
 
+/* Heading Styles */
 h1, h5 {
     text-transform: uppercase;
 }
 
+/* Light Paragraph Style */
 p.light {
     font-size: 1.1em;
 }
 
-/* Container for blog content */
+/* Blog Content Container */
 .blog-content {
     max-width: 800px; /* Limits text width */
     margin: 0 auto;
@@ -59,9 +67,9 @@ p.light {
     box-shadow: 0 0 30px rgba(87, 255, 140, 0.5);
 }
 
-/* Heading Styles */
+/* Blog Title Styling */
 .blog-title, h1 {
-    font-size: 2.2em; /* Adjusted for readability */
+    font-size: 2.2em;
     font-weight: 700;
     margin-bottom: 1rem;
     text-align: center;
@@ -87,13 +95,13 @@ h3 {
 
 /* Paragraphs */
 .blog-content p {
-    max-width: 700px; /* Narrower text for readability */
+    max-width: 700px;
     margin: 0 auto;
     margin-bottom: 1.8em;
     line-height: 1.7;
 }
 
-/* Optional: Style for Published Date */
+/* Blog Date Style */
 .blog-date {
     font-size: 0.9em;
     color: #888;
@@ -111,7 +119,7 @@ h3 {
     color: #57FF8C;
 }
 
-/* Padding for Main Container */
+/* Main Container Padding */
 .container {
     padding: 30px;
     max-width: 1200px;
@@ -153,8 +161,8 @@ h1, h2, h3, p {
     margin-right: 20px;
 }
 
-/* Interactive Background Styles */
-#particles-js {
+/* Interactive Background Styles - Apply only for certain pages */
+.page-interactive-bg #particles-js {
     position: fixed;
     top: 0;
     left: 0;
