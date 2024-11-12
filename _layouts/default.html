@@ -199,8 +199,10 @@
   </style>
 </head>
 <body>
-  <!-- Interactive Background -->
-  <div id="particles-js"></div>
+  <!-- Interactive Background - Only if 'particles' flag is set to true in front matter -->
+  {% if page.particles == true %}
+    <div id="particles-js"></div>
+  {% endif %}
 
   <!-- Content Wrapper -->
   <div class="content-wrapper">
@@ -222,15 +224,11 @@
   <!-- Include Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <!-- Include Particles.js -->
+  <!-- Include Particles.js only if 'particles' flag is set to true -->
+  {% if page.particles == true %}
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-
-  <!-- Custom Scripts -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize Materialize Components
-      M.AutoInit();
-
       // Initialize Particles.js
       particlesJS("particles-js", {
         "particles": {
@@ -280,5 +278,6 @@
       });
     });
   </script>
+  {% endif %}
 </body>
 </html>
