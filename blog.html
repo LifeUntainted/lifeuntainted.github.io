@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Blog - 321Niche"
-pagination: true
+paginate: 5
 ---
 
 <!-- Blog Page Content -->
@@ -12,31 +12,38 @@ pagination: true
   </div>
 
   <div class="blog-list">
-    {% for post in paginator.posts %}
-      <a href="{{ post.url | relative_url }}" class="blog-entry">
-        <div class="blog-info">
-          <h2 class="blog-title-link">{{ post.title }}</h2>
-          <div class="blog-date">
-            <i class="material-icons tiny">event</i>
-            {{ post.date | date: "%B %d, %Y" }}{% if post.categories %} - Category: {{ post.categories | join: ", " }}{% endif %}
+    {% if paginator %}
+      {% for post in paginator.posts %}
+        <a href="{{ post.url | relative_url }}" class="blog-entry">
+          <div class="blog-info">
+            <h2 class="blog-title-link">{{ post.title }}</h2>
+            <div class="blog-date">
+              <i class="material-icons tiny">event</i>
+              {{ post.date | date: "%B %d, %Y" }}
+              {% if post.categories %}
+                - Category: {{ post.categories | join: ", " }}
+              {% endif %}
+            </div>
+            <div class="blog-excerpt">
+              {% if post.excerpt %}
+                {{ post.excerpt | strip_html | truncate: 200 }}
+              {% else %}
+                {{ post.content | strip_html | truncate: 200 }}
+              {% endif %}
+            </div>
           </div>
-          <div class="blog-excerpt">
-            {% if post.excerpt %}
-              {{ post.excerpt | strip_html | truncate: 200 }}
-            {% else %}
-              {{ post.content | strip_html | truncate: 200 }}
-            {% endif %}
-          </div>
-        </div>
-      </a>
-    {% endfor %}
+        </a>
+      {% endfor %}
+    {% else %}
+      <p>No posts found!</p>
+    {% endif %}
   </div>
 
   <!-- Pagination Controls -->
-  {% if paginator.total_pages > 1 %}
+  {% if paginator and paginator.total_pages > 1 %}
     <div class="pagination">
       {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | relative_url }}" class="prev">Previous</a>
+        <a href="{{ paginator.previous_page_path }}" class="prev">Previous</a>
       {% else %}
         <span class="disabled">Previous</span>
       {% endif %}
@@ -45,12 +52,12 @@ pagination: true
         {% if page == paginator.page %}
           <span class="active">{{ page }}</span>
         {% else %}
-          <a href="{{ paginator.paginate_path | replace: ':num', page | relative_url }}">{{ page }}</a>
+          <a href="{{ paginator.paginate_path | replace: ':num', page }}">{{ page }}</a>
         {% endif %}
       {% endfor %}
 
       {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}" class="next">Next</a>
+        <a href="{{ paginator.next_page_path }}" class="next">Next</a>
       {% else %}
         <span class="disabled">Next</span>
       {% endif %}
@@ -58,9 +65,24 @@ pagination: true
   {% endif %}
 </div>
 
-<!-- Optional: Include additional styles specific to the blog page -->
+<!-- Blog-Specific Styles -->
 <style>
-  /* Blog Page Custom Styles */
+  /* Global Styles */
+  body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* Blog Header */
   .blog-header {
     padding: 4rem 0 2rem;
     text-align: center;
@@ -73,8 +95,8 @@ pagination: true
     font-weight: 700;
     text-transform: uppercase;
     color: #57FF8C;
-    margin-bottom: 1rem;
     text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
+    margin-bottom: 1rem;
   }
 
   .blog-subtitle {
@@ -82,6 +104,7 @@ pagination: true
     color: #888;
   }
 
+  /* Blog List */
   .blog-list {
     margin: 2rem 0;
   }
@@ -129,6 +152,7 @@ pagination: true
     color: #E0E0E0;
   }
 
+  /* Pagination Styles */
   .pagination {
     margin: 2rem 0;
     text-align: center;
@@ -156,5 +180,18 @@ pagination: true
   .pagination .disabled {
     opacity: 0.5;
     pointer-events: none;
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 600px) {
+    .blog-title {
+      font-size: 2rem;
+    }
+    .blog-title-link {
+      font-size: 1.5rem;
+    }
+    .blog-excerpt {
+      font-size: 1em;
+    }
   }
 </style>
