@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Blog - 321Niche"
+pagination: true
 ---
 
 <!-- Blog Page Content -->
@@ -35,7 +36,7 @@ title: "Blog - 321Niche"
   {% if paginator.total_pages > 1 %}
     <div class="pagination">
       {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path }}" class="prev">Previous</a>
+        <a href="{{ paginator.previous_page_path | relative_url }}" class="prev">Previous</a>
       {% else %}
         <span class="disabled">Previous</span>
       {% endif %}
@@ -44,12 +45,12 @@ title: "Blog - 321Niche"
         {% if page == paginator.page %}
           <span class="active">{{ page }}</span>
         {% else %}
-          <a href="{{ paginator.paginate_path | replace: ':num', page }}">{{ page }}</a>
+          <a href="{{ paginator.paginate_path | replace: ':num', page | relative_url }}">{{ page }}</a>
         {% endif %}
       {% endfor %}
 
       {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+        <a href="{{ paginator.next_page_path | relative_url }}" class="next">Next</a>
       {% else %}
         <span class="disabled">Next</span>
       {% endif %}
@@ -59,5 +60,101 @@ title: "Blog - 321Niche"
 
 <!-- Optional: Include additional styles specific to the blog page -->
 <style>
-  /* Your custom CSS styles here */
+  /* Blog Page Custom Styles */
+  .blog-header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    border-bottom: 1px solid #57FF8C;
+    margin-bottom: 3rem;
+  }
+
+  .blog-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #57FF8C;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
+  }
+
+  .blog-subtitle {
+    font-size: 1.2rem;
+    color: #888;
+  }
+
+  .blog-list {
+    margin: 2rem 0;
+  }
+
+  .blog-entry {
+    background: rgba(18, 18, 18, 0.9);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-entry:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(87, 255, 140, 0.3);
+  }
+
+  .blog-title-link {
+    color: #57FF8C;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+  }
+
+  .blog-title-link:hover {
+    color: #88FFAA;
+  }
+
+  .blog-date {
+    color: #888;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .blog-excerpt {
+    line-height: 1.6;
+    font-size: 1.1em;
+    text-align: justify;
+    color: #E0E0E0;
+  }
+
+  .pagination {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .pagination a {
+    color: #57FF8C;
+    border: 1px solid #57FF8C;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .pagination a:hover {
+    background-color: rgba(87, 255, 140, 0.2);
+  }
+
+  .pagination .active {
+    background-color: #57FF8C;
+    color: #0A0A0A;
+  }
+
+  .pagination .disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 </style>
