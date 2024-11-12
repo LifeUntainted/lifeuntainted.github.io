@@ -16,5 +16,10 @@ defaults:
     values:
       layout: "post"
 
+# Collections Settings
+collections:
+  posts:
+    output: true
+
 # Commented out the theme line to use custom layouts
 # theme: minima
