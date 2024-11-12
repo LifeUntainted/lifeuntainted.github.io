@@ -2,7 +2,7 @@ title: 321Niche
 description: Helping you find and monetize your niche.
 
 # Pagination Settings
-paginate: 10
+paginate: 5
 paginate_path: "/blog/page:num"
 
 plugins:
