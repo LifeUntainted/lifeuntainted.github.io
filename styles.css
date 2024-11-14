@@ -13,6 +13,11 @@ body {
     border-bottom: 1px solid #00695c;
 }
 
+/* Mobile Navigation Styles */
+.sidenav {
+    background-color: #000; /* Ensuring mobile navigation matches the navbar */
+}
+
 /* Parallax and Icons */
 .parallax-container {
     height: 500px;
