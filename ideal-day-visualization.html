@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ideal Day Visualization - 321Niche</title>
+
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Visualize your ideal day with our interactive exercise. Discover what you value most and plan a day that aligns with your dreams.">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #00695c;
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+    }
+
+    .visualization-container {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 4rem;
+      border-radius: 8px;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .textarea-container {
+      margin-top: 2rem;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      padding: 1rem;
+      background: rgba(0, 105, 92, 0.1);
+      border: 1px solid #00695c;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .btn, .btn-large {
+      background-color: #00695c;
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover, .btn-large:hover {
+      background-color: #004d40;
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+    }
+
+    .page-footer {
+      background-color: #000;
+      border-top: 1px solid #00695c;
+      padding: 20px 0;
+    }
+
+    .download-section {
+      text-align: center;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="tools.html">Tools & Downloads</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="tools.html">Tools & Downloads</a></li>
+  </ul>
+
+  <!-- Ideal Day Visualization Section -->
+  <div class="container">
+    <div class="visualization-container">
+      <h2 class="center-align">Ideal Day Visualization Exercise</h2>
+      <p>Imagine your perfect day. What would you do from the moment you wake up until you go to sleep? This exercise will help you visualize your ideal day and discover what truly matters to you. Take your time, reflect, and write down every detail.</p>
+      <div class="textarea-container">
+        <label for="ideal-day-textarea">Describe Your Ideal Day:</label>
+        <textarea id="ideal-day-textarea" placeholder="From morning till night, describe how your ideal day unfolds..."></textarea>
+      </div>
+      <div class="download-section">
+        <button onclick="printPage()" class="btn waves-effect waves-light">
+          <i class="material-icons left">print</i>Print This Page
+        </button>
+        <a href="downloads/ideal-day-visualization.pdf" download class="btn waves-effect waves-light">
+          <i class="material-icons left">file_download</i>Download PDF Guide
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+    });
+
+    function printPage() {
+      window.print();
+    }
+  </script>
+
+</body>
+</html>
