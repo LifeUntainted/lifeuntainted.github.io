@@ -1,6 +1,8 @@
 title: 321Niche
 description: Helping you find and monetize your niche.
 
+# Base URL of the Site
+url: "https://321niche.com"  
 # Pagination Settings
 paginate: 5
 paginate_path: "/blog/page:num"
