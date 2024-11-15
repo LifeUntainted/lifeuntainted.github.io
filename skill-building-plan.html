@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Building Plan - 321Niche</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #57FF8C;
+            text-align: center;
+        }
+
+        .skill-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid #57FF8C;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .skill-section:hover {
+            background: rgba(30, 30, 30, 1);
+        }
+
+        .skill-category {
+            cursor: pointer;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .material-icons {
+            transition: transform 0.3s ease;
+        }
+
+        .rotate {
+            transform: rotate(180deg);
+        }
+
+        .skill-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .skill-content.expanded {
+            max-height: 1000px;
+            overflow: auto;
+        }
+
+        .skill-item {
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .skill-description {
+            display: none;
+            font-size: 1rem;
+            margin-left: 20px;
+            color: #E0E0E0;
+        }
+
+        .btn {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #00695c;
+            color: #fff;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #004d40;
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">321Niche</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/resources.html">Resources</a></li>
+                <li><a href="/tools.html">Tools & Downloads</a></li>
+                <li><a href="/contact.html">Contact Us</a></li>
+                <li><a href="/skill-building-plan.html">Skill Building Plan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Skill Building Plan</h1>
+        <p>Explore various skill-building plans to empower yourself and grow within your chosen niche. Click on each section to dive into actionable plans that will help you achieve your goals.</p>
+
+        <!-- Expanded Skill Sections -->
+        <!-- Original Sections Retained -->
+        <!-- Personal Development, Business & Entrepreneurship, Communication Skills, Creative Arts, Technology & IT, Physical & Mental Wellness, Financial Literacy -->
+
+        <!-- Expanded Categories -->
+        <!-- Writing & Language Skills -->
+        <div class="skill-section">
+            <div class="skill-category" onclick="toggleSkillContent(this)">
+                Writing & Language Skills <span class="material-icons">expand_more</span>
+            </div>
+            <div class="skill-content">
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Creative Writing
+                    <div class="skill-description">Learn techniques to enhance your storytelling and imaginative writing abilities.</div>
+                </div>
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Foreign Language Learning
+                    <div class="skill-description">Pick up new languages or improve existing ones for personal or professional growth.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leadership & Management -->
+        <div class="skill-section">
+            <div class="skill-category" onclick="toggleSkillContent(this)">
+                Leadership & Management <span class="material-icons">expand_more</span>
+            </div>
+            <div class="skill-content">
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Conflict Resolution
+                    <div class="skill-description">Learn how to mediate disputes effectively and maintain a productive work environment.</div>
+                </div>
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Team Building
+                    <div class="skill-description">Understand group dynamics and how to inspire cohesive teamwork.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Culinary Skills -->
+        <div class="skill-section">
+            <div class="skill-category" onclick="toggleSkillContent(this)">
+                Culinary Skills <span class="material-icons">expand_more</span>
+            </div>
+            <div class="skill-content">
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Baking Essentials
+                    <div class="skill-description">Master baking techniques and explore different recipes from breads to pastries.</div>
+                </div>
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    International Cuisines
+                    <div class="skill-description">Learn to cook a wide range of dishes from different cultures to diversify your culinary skills.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIY & Home Improvement -->
+        <div class="skill-section">
+            <div class="skill-category" onclick="toggleSkillContent(this)">
+                DIY & Home Improvement <span class="material-icons">expand_more</span>
+            </div>
+            <div class="skill-content">
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Woodworking Basics
+                    <div class="skill-description">Learn the essential skills for woodworking, from making furniture to simple repairs.</div>
+                </div>
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Electrical Repairs
+                    <div class="skill-description">Get familiar with common electrical fixes around the house for practical DIY knowledge.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Outdoor & Survival Skills -->
+        <div class="skill-section">
+            <div class="skill-category" onclick="toggleSkillContent(this)">
+                Outdoor & Survival Skills <span class="material-icons">expand_more</span>
+            </div>
+            <div class="skill-content">
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Camping Basics
+                    <div class="skill-description">Learn how to set up a camp, build a fire, and ensure safety while camping.</div>
+                </div>
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    First Aid Essentials
+                    <div class="skill-description">Understand how to provide basic first aid during outdoor activities and emergencies.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gardening & Sustainability -->
+        <div class="skill-section">
+            <div class="skill-category" onclick="toggleSkillContent(this)">
+                Gardening & Sustainability <span class="material-icons">expand_more</span>
+            </div>
+            <div class="skill-content">
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Organic Gardening
+                    <div class="skill-description">Learn techniques to grow fruits and vegetables organically, without harmful chemicals.</div>
+                </div>
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Composting
+                    <div class="skill-description">Understand how to create and manage a compost to reduce waste and nourish your garden.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Music & Performing Arts -->
+        <div class="skill-section">
+            <div class="skill-category" onclick="toggleSkillContent(this)">
+                Music & Performing Arts <span class="material-icons">expand_more</span>
+            </div>
+            <div class="skill-content">
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Guitar Basics
+                    <div class="skill-description">Learn how to play chords and simple songs on the guitar, starting with the basics.</div>
+                </div>
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Improvisational Theater
+                    <div class="skill-description">Discover the fundamentals of improv to enhance creativity and spontaneity.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animal Care -->
+        <div class="skill-section">
+            <div class="skill-category" onclick="toggleSkillContent(this)">
+                Animal Care <span class="material-icons">expand_more</span>
+            </div>
+            <div class="skill-content">
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Pet Grooming
+                    <div class="skill-description">Learn basic grooming techniques to take good care of pets.</div>
+                </div>
+                <div class="skill-item" onclick="toggleSkillDescription(this)">
+                    Dog Training
+                    <div class="skill-description">Understand dog behavior and how to train your pet using positive reinforcement techniques.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <a href="/tools.html" class="btn">Explore More Tools & Resources</a>
+    </div>
+
+    <script>
+        function toggleSkillContent(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('.material-icons');
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.classList.remove('rotate');
+            } else {
+                content.classList.add('expanded');
+                icon.classList.add('rotate');
+            }
+        }
+
+        function toggleSkillDescription(element) {
+            event.stopPropagation();
+            const description = element.querySelector('.skill-description');
+            if (description.style.display === 'none' || description.style.display === '') {
+                description.style.display = 'block';
+            } else {
+                description.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>
