@@ -31,6 +31,9 @@
         nav {
             background-color: rgba(0, 0, 0, 0.8);
             border-bottom: 1px solid #00695c;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
         }
 
         .brand-logo {
@@ -48,7 +51,7 @@
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 50px 30px;
+            padding: 100px 30px 50px;
             position: relative;
             z-index: 1;
         }
@@ -79,50 +82,9 @@
             box-shadow: 0 0 15px #57FF8C;
         }
 
-        .skill-category {
-            cursor: pointer;
-            font-size: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #57FF8C;
-        }
-
-        .material-icons {
-            transition: transform 0.3s ease;
-        }
-
-        .rotate {
-            transform: rotate(180deg);
-        }
-
-        .skill-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-            margin-top: 10px;
-        }
-
-        .skill-content.expanded {
-            max-height: 1000px;
-            overflow: auto;
-        }
-
-        .skill-item {
-            margin: 10px 0;
-            font-size: 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            cursor: pointer;
-        }
-
-        .skill-description {
-            display: none;
-            font-size: 1rem;
-            margin-left: 20px;
-            color: #B2FFBF;
+        ul {
+            list-style: square;
+            padding-left: 1.5rem;
         }
 
         .btn {
@@ -144,6 +106,32 @@
             box-shadow: 0 0 20px rgba(0, 105, 92, 0.7);
             transform: translateY(-3px);
         }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 0;
+            border-top: 1px solid #00695c;
+            text-align: center;
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #00695c;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        #back-to-top:hover {
+            background: #004d40;
+        }
     </style>
 </head>
 
@@ -154,8 +142,8 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo">321Niche</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a href="/" class="brand-logo" aria-label="321Niche Homepage">321Niche</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons" aria-label="Open mobile navigation menu">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about.html">About Us</a></li>
@@ -192,16 +180,33 @@
                 <li>What are your hobbies or interests?</li>
                 <li>What problems do you love solving?</li>
                 <li>What would you do if money was not an issue?</li>
+                <li>What did you love doing as a child?</li>
+                <li>What makes you feel most accomplished?</li>
+                <li>Which activities give you the most energy?</li>
+                <li>What topics could you talk about for hours?</li>
+                <li>What do people come to you for help with?</li>
+                <li>What do you find yourself daydreaming about?</li>
+                <li>What kind of work feels meaningful to you?</li>
+                <li>If you could volunteer for any cause, what would it be?</li>
+                <li>What type of environment do you thrive in?</li>
+                <li>Which books or documentaries do you find fascinating?</li>
             </ul>
+        </div>
+
+        <!-- Career Map PDF Link -->
+        <div class="skill-section">
+            <h3>Download Your Career Map Guide</h3>
+            <p>To further help you in your journey, we've created a comprehensive guide you can download to map out your career path. This guide includes exercises and tips to assist you in finding the right career based on your passions.</p>
+            <a href="/downloads/Career_Map_Guide.pdf" class="btn" download>Download Career Map Guide (PDF)</a>
         </div>
     </div>
 
+    <!-- Back to Top Button -->
+    <div id="back-to-top" title="Back to top"><i class="material-icons">arrow_upward</i></div>
+
     <!-- Footer -->
-    <footer class="page-footer">
-        <div class="container">
-            © 2024 321Niche
-            <a class="grey-text text-lighten-4 right" href="/contact.html">Contact Us</a>
-        </div>
+    <footer>
+        © 2024 321Niche <a class="grey-text text-lighten-4 right" href="/contact.html">Contact Us</a>
     </footer>
 
     <!-- Scripts -->
@@ -211,6 +216,19 @@
             // Initialize Mobile Navigation
             var elems = document.querySelectorAll('.sidenav');
             M.Sidenav.init(elems);
+
+            // Show Back to Top Button
+            const backToTop = document.getElementById('back-to-top');
+            window.onscroll = function () {
+                if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            };
+            backToTop.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
 
         // Particle.js configuration
@@ -226,36 +244,6 @@
                 "color": {
                     "value": "#00e676"
                 },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    }
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
                 "line_linked": {
                     "enable": true,
                     "distance": 150,
@@ -265,21 +253,10 @@
                 },
                 "move": {
                     "enable": true,
-                    "speed": 6,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
+                    "speed": 6
                 }
             },
             "interactivity": {
-                "detect_on": "canvas",
                 "events": {
                     "onhover": {
                         "enable": true,
@@ -288,32 +265,6 @@
                     "onclick": {
                         "enable": true,
                         "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 400,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
                     }
                 }
             },
