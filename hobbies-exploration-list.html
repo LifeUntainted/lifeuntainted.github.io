@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobbies Exploration List - 321Niche</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #57FF8C;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .hobby-category {
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid #57FF8C;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 15px;
+            transition: background 0.3s;
+        }
+
+        .hobby-category:hover {
+            background: rgba(30, 30, 30, 1);
+        }
+
+        .hobby-category h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .hobby-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .hobby-list.expanded {
+            max-height: 1000px; /* Adjust height as needed */
+            overflow: auto;
+        }
+
+        .hobby-item {
+            margin-left: 20px;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .hobby-item:hover {
+            color: #88FFAA;
+        }
+
+        .hobby-description {
+            margin-left: 40px;
+            display: none;
+            color: #E0E0E0;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .icon {
+            float: right;
+            transition: transform 0.3s ease;
+        }
+
+        .rotate {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hobbies Exploration List</h1>
+
+        <!-- Sports & Physical Activities -->
+        <div class="hobby-category" onclick="toggleHobbyList(this)">
+            <h2>Sports & Physical Activities <span class="material-icons icon">expand_more</span></h2>
+            <div class="hobby-list">
+                <div class="hobby-item" onclick="toggleDescription(this)">Running
+                    <div class="hobby-description">Running is a great cardiovascular workout and helps improve stamina. You only need a good pair of running shoes to get started!</div>
+                </div>
+                <div class="hobby-item" onclick="toggleDescription(this)">Cycling
+                    <div class="hobby-description">Cycling is an enjoyable way to explore nature while exercising. You can cycle on roads or take mountain biking trails for more adventure.</div>
+                </div>
+                <div class="hobby-item" onclick="toggleDescription(this)">Swimming
+                    <div class="hobby-description">Swimming is an excellent low-impact full-body workout. It’s perfect for people of all ages and can be done in pools or natural water bodies.</div>
+                </div>
+                <div class="hobby-item" onclick="toggleDescription(this)">Yoga
+                    <div class="hobby-description">Yoga is a practice that enhances both physical and mental health. It combines postures, breathing exercises, and meditation.</div>
+                </div>
+                <div class="hobby-item" onclick="toggleDescription(this)">Hiking
+                    <div class="hobby-description">Hiking allows you to connect with nature and enjoy beautiful landscapes. It’s great for building strength and endurance.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Creative Arts -->
+        <div class="hobby-category" onclick="toggleHobbyList(this)">
+            <h2>Creative Arts <span class="material-icons icon">expand_more</span></h2>
+            <div class="hobby-list">
+                <div class="hobby-item" onclick="toggleDescription(this)">Painting
+                    <div class="hobby-description">Painting is a creative expression that allows you to use colors and strokes to create beautiful artwork. You can paint with acrylics, oils, or watercolors.</div>
+                </div>
+                <div class="hobby-item" onclick="toggleDescription(this)">Drawing
+                    <div class="hobby-description">Drawing is one of the simplest ways to create art. All you need is a pencil and paper to start sketching your ideas!</div>
+                </div>
+                <div class="hobby-item" onclick="toggleDescription(this)">Sculpting
+                    <div class="hobby-description">Sculpting involves shaping materials like clay or stone to create 3D artworks. It can be a very rewarding and tactile form of art.</div>
+                </div>
+                <div class="hobby-item" onclick="toggleDescription(this)">Photography
+                    <div class="hobby-description">Photography helps you capture moments and tell stories through images. All you need is a camera or even a smartphone to start.</div>
+                </div>
+                <div class="hobby-item" onclick="toggleDescription(this)">Writing
+                    <div class="hobby-description">Writing allows you to convey your thoughts, stories, and ideas. It’s a great way to express your creativity and imagination through words.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more categories as desired -->
+        
+    </div>
+
+    <script>
+        function toggleHobbyList(element) {
+            const list = element.querySelector('.hobby-list');
+            const icon = element.querySelector('.icon');
+            if (list.classList.contains('expanded')) {
+                list.classList.remove('expanded');
+                icon.classList.remove('rotate');
+            } else {
+                list.classList.add('expanded');
+                icon.classList.add('rotate');
+            }
+        }
+
+        function toggleDescription(element) {
+            event.stopPropagation(); // Prevent triggering parent click event
+            const description = element.querySelector('.hobby-description');
+            if (description.style.display === 'none' || description.style.display === '') {
+                description.style.display = 'block';
+            } else {
+                description.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
