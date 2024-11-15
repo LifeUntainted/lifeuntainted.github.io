@@ -5,47 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill Building Plan - 321Niche</title>
+
+    <!-- Import Google Icon Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Import Orbitron Font -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Import Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="/styles.css">
+
     <style>
         body {
             background-color: #000;
             color: #fff;
             font-family: 'Orbitron', sans-serif;
+            line-height: 1.7;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px;
         }
 
-        h1, h2 {
+        h1, h2, h3 {
             color: #57FF8C;
             text-align: center;
+            text-transform: uppercase;
+        }
+
+        p, ol, ul {
+            font-size: 1.1em;
         }
 
         .skill-section {
             margin: 20px 0;
-            padding: 15px;
+            padding: 20px;
             background: rgba(30, 30, 30, 0.9);
-            border: 1px solid #57FF8C;
-            border-radius: 10px;
-            transition: background 0.3s;
+            border: 2px solid #57FF8C;
+            border-radius: 12px;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
         }
 
         .skill-section:hover {
-            background: rgba(30, 30, 30, 1);
+            background: rgba(40, 40, 40, 1);
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #57FF8C;
         }
 
         .skill-category {
             cursor: pointer;
             font-size: 1.5rem;
-            margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #57FF8C;
         }
 
         .material-icons {
@@ -60,6 +77,7 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-out;
+            margin-top: 10px;
         }
 
         .skill-content.expanded {
@@ -70,32 +88,69 @@
         .skill-item {
             margin: 10px 0;
             font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
         }
 
         .skill-description {
             display: none;
             font-size: 1rem;
             margin-left: 20px;
-            color: #E0E0E0;
+            color: #B2FFBF;
         }
 
         .btn {
             display: block;
             width: fit-content;
-            margin: 20px auto;
-            padding: 10px 20px;
+            margin: 30px auto;
+            padding: 12px 25px;
             background-color: #00695c;
             color: #fff;
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .btn:hover {
             background-color: #004d40;
-            box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.7);
+            transform: translateY(-3px);
+        }
+
+        ol {
+            padding-left: 1.5rem;
+            list-style: decimal inside;
+        }
+
+        ul {
+            list-style: disc inside;
+            padding-left: 1.5rem;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid #00695c;
+        }
+
+        .brand-logo {
+            font-weight: 700;
+            margin-left: 20px;
+        }
+
+        .sidenav {
+            background-color: #000;
+        }
+
+        .sidenav li > a {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .sidenav li > a:hover {
+            color: #57FF8C;
         }
     </style>
 </head>
@@ -118,17 +173,25 @@
         </div>
     </nav>
 
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/resources.html">Resources</a></li>
+        <li><a href="/tools.html">Tools & Downloads</a></li>
+        <li><a href="/contact.html">Contact Us</a></li>
+        <li><a href="/skill-building-plan.html">Skill Building Plan</a></li>
+    </ul>
+
     <!-- Main Content -->
     <div class="container">
         <h1>Skill Building Plan</h1>
-        <p>Explore various skill-building plans to empower yourself and grow within your chosen niche. Click on each section to dive into actionable plans that will help you achieve your goals.</p>
+        <p>Empower yourself by developing skills in various areas. Click on each section to dive into detailed plans that will help you achieve your goals. Set achievable milestones and keep track of your progress for steady growth.</p>
 
-        <!-- Expanded Skill Sections -->
-        <!-- Original Sections Retained -->
-        <!-- Personal Development, Business & Entrepreneurship, Communication Skills, Creative Arts, Technology & IT, Physical & Mental Wellness, Financial Literacy -->
+        <p><strong>Why Skill Building Matters:</strong> Whether you are looking to advance your career, start a new hobby, or grow personally, skill-building is an essential step toward reaching your potential. Embrace the journey of continuous improvement to enrich your life.</p>
 
-        <!-- Expanded Categories -->
-        <!-- Writing & Language Skills -->
+        <!-- Skill Building Sections -->
         <div class="skill-section">
             <div class="skill-category" onclick="toggleSkillContent(this)">
                 Writing & Language Skills <span class="material-icons">expand_more</span>
@@ -136,15 +199,16 @@
             <div class="skill-content">
                 <div class="skill-item" onclick="toggleSkillDescription(this)">
                     Creative Writing
-                    <div class="skill-description">Learn techniques to enhance your storytelling and imaginative writing abilities.</div>
+                    <div class="skill-description">Learn techniques to enhance your storytelling and imaginative writing abilities. Develop your unique writing voice and create compelling narratives. <br> <strong>Suggested Tools:</strong> <a href="https://www.grammarly.com" target="_blank">Grammarly</a>, <a href="https://www.wattpad.com" target="_blank">Wattpad</a>.</div>
                 </div>
                 <div class="skill-item" onclick="toggleSkillDescription(this)">
                     Foreign Language Learning
-                    <div class="skill-description">Pick up new languages or improve existing ones for personal or professional growth.</div>
+                    <div class="skill-description">Pick up new languages or improve existing ones for personal or professional growth. Enhance communication and connect with new cultures. <br> <strong>Suggested Apps:</strong> <a href="https://www.duolingo.com" target="_blank">Duolingo</a>, <a href="https://www.memrise.com" target="_blank">Memrise</a>.</div>
                 </div>
             </div>
         </div>
 
+        <!-- Expanded Skill Categories -->
         <!-- Leadership & Management -->
         <div class="skill-section">
             <div class="skill-category" onclick="toggleSkillContent(this)">
@@ -153,11 +217,11 @@
             <div class="skill-content">
                 <div class="skill-item" onclick="toggleSkillDescription(this)">
                     Conflict Resolution
-                    <div class="skill-description">Learn how to mediate disputes effectively and maintain a productive work environment.</div>
+                    <div class="skill-description">Learn effective ways to mediate disputes and create a productive work environment. Master communication skills that foster understanding and collaboration. <br> <strong>Suggested Course:</strong> <a href="https://www.coursera.org" target="_blank">Conflict Resolution Course on Coursera</a>.</div>
                 </div>
                 <div class="skill-item" onclick="toggleSkillDescription(this)">
                     Team Building
-                    <div class="skill-description">Understand group dynamics and how to inspire cohesive teamwork.</div>
+                    <div class="skill-description">Understand group dynamics and how to inspire cohesive teamwork. Learn activities that foster trust, respect, and collaboration. <br> <strong>Books to Read:</strong> "Leaders Eat Last" by Simon Sinek, "The Five Dysfunctions of a Team" by Patrick Lencioni.</div>
                 </div>
             </div>
         </div>
@@ -170,105 +234,58 @@
             <div class="skill-content">
                 <div class="skill-item" onclick="toggleSkillDescription(this)">
                     Baking Essentials
-                    <div class="skill-description">Master baking techniques and explore different recipes from breads to pastries.</div>
+                    <div class="skill-description">Master the basics of baking, including breads, pastries, and desserts. Gain confidence in following recipes and experimenting with new ingredients. <br> <strong>Suggested Resources:</strong> <a href="https://www.kingarthurbaking.com" target="_blank">King Arthur Baking</a>, YouTube tutorials on "Baking Basics".</div>
                 </div>
                 <div class="skill-item" onclick="toggleSkillDescription(this)">
                     International Cuisines
-                    <div class="skill-description">Learn to cook a wide range of dishes from different cultures to diversify your culinary skills.</div>
+                    <div class="skill-description">Learn to cook diverse dishes from around the world, exploring different cultures through their flavors. <br> <strong>Resources:</strong> "Salt, Fat, Acid, Heat" by Samin Nosrat, <a href="https://www.masterclass.com" target="_blank">Masterclass Culinary Lessons</a>.</div>
                 </div>
             </div>
         </div>
 
-        <!-- DIY & Home Improvement -->
-        <div class="skill-section">
-            <div class="skill-category" onclick="toggleSkillContent(this)">
-                DIY & Home Improvement <span class="material-icons">expand_more</span>
-            </div>
-            <div class="skill-content">
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Woodworking Basics
-                    <div class="skill-description">Learn the essential skills for woodworking, from making furniture to simple repairs.</div>
-                </div>
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Electrical Repairs
-                    <div class="skill-description">Get familiar with common electrical fixes around the house for practical DIY knowledge.</div>
-                </div>
-            </div>
-        </div>
+        <!-- How to Build a Skill Plan Instructions -->
+        <h2>How to Create Your Skill Building Plan</h2>
+        <section class="skill-section">
+            <h3>Step-by-Step Instructions</h3>
+            <p>Use the following steps to create an effective skill-building plan:</p>
+            <ol>
+                <li><strong>Identify Your Goal:</strong> Define what you want to achieve. For example, "Become proficient in Spanish" or "Master JavaScript for web development".</li>
+                <li><strong>Break It Down:</strong> Split the larger goal into smaller, manageable milestones. For learning a language, start with "Learn 100 common phrases".</li>
+                <li><strong>Determine Resources:</strong> Identify what you need: online courses, books, videos, or mentors. Knowing what’s required will make your journey smoother.</li>
+                <li><strong>Create a Schedule:</strong> Dedicate specific times each week for skill-building. Consistency is the key to mastery—set a schedule that works for you.</li>
+                <li><strong>Track Progress:</strong> Create checkpoints to measure your progress. Tracking keeps you motivated and accountable. Use apps like <a href="https://www.trello.com" target="_blank">Trello</a> to track your goals.</li>
+                <li><strong>Seek Feedback:</strong> Engage with a community or mentor who can provide feedback on your progress. Constructive advice helps accelerate growth. Platforms like <a href="https://www.reddit.com/r/getdisciplined/" target="_blank">Reddit: Get Disciplined</a> can be helpful.</li>
+            </ol>
+        </section>
 
-        <!-- Outdoor & Survival Skills -->
-        <div class="skill-section">
-            <div class="skill-category" onclick="toggleSkillContent(this)">
-                Outdoor & Survival Skills <span class="material-icons">expand_more</span>
-            </div>
-            <div class="skill-content">
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Camping Basics
-                    <div class="skill-description">Learn how to set up a camp, build a fire, and ensure safety while camping.</div>
-                </div>
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    First Aid Essentials
-                    <div class="skill-description">Understand how to provide basic first aid during outdoor activities and emergencies.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gardening & Sustainability -->
-        <div class="skill-section">
-            <div class="skill-category" onclick="toggleSkillContent(this)">
-                Gardening & Sustainability <span class="material-icons">expand_more</span>
-            </div>
-            <div class="skill-content">
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Organic Gardening
-                    <div class="skill-description">Learn techniques to grow fruits and vegetables organically, without harmful chemicals.</div>
-                </div>
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Composting
-                    <div class="skill-description">Understand how to create and manage a compost to reduce waste and nourish your garden.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Music & Performing Arts -->
-        <div class="skill-section">
-            <div class="skill-category" onclick="toggleSkillContent(this)">
-                Music & Performing Arts <span class="material-icons">expand_more</span>
-            </div>
-            <div class="skill-content">
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Guitar Basics
-                    <div class="skill-description">Learn how to play chords and simple songs on the guitar, starting with the basics.</div>
-                </div>
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Improvisational Theater
-                    <div class="skill-description">Discover the fundamentals of improv to enhance creativity and spontaneity.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Animal Care -->
-        <div class="skill-section">
-            <div class="skill-category" onclick="toggleSkillContent(this)">
-                Animal Care <span class="material-icons">expand_more</span>
-            </div>
-            <div class="skill-content">
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Pet Grooming
-                    <div class="skill-description">Learn basic grooming techniques to take good care of pets.</div>
-                </div>
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Dog Training
-                    <div class="skill-description">Understand dog behavior and how to train your pet using positive reinforcement techniques.</div>
-                </div>
-            </div>
-        </div>
+        <!-- Checklist Section -->
+        <section class="skill-section">
+            <h3>Skill Building Checklist</h3>
+            <ul>
+                <li>Goal clearly defined</li>
+                <li>Resources and materials identified</li>
+                <li>Skill broken down into milestones</li>
+                <li>Scheduled practice sessions</li>
+                <li>Progress tracking method set up</li>
+                <li>Support network or mentor engaged</li>
+                <li>Regularly seek feedback and improve</li>
+                <li>Keep a learning journal to document your experiences</li>
+            </ul>
+        </section>
 
         <!-- CTA Button -->
         <a href="/tools.html" class="btn">Explore More Tools & Resources</a>
     </div>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Mobile Navigation
+            var elems = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(elems);
+        });
+
         function toggleSkillContent(element) {
             const content = element.nextElementSibling;
             const icon = element.querySelector('.material-icons');
