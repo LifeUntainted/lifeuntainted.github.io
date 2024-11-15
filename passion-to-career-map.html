@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passion to Career Map - 321Niche</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid #00695c;
+        }
+
+        .nav-wrapper {
+            padding: 0 20px;
+        }
+
+        .brand-logo {
+            font-weight: 700;
+        }
+
+        .sidenav {
+            background-color: #000;
+        }
+
+        .sidenav li > a, .right.hide-on-med-and-down li a {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .sidenav li > a:hover, .right.hide-on-med-and-down li a:hover {
+            color: #57FF8C;
+        }
+
+        header, .map-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(30, 30, 30, 0.9);
+            border: 1px solid #57FF8C;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        header:hover, .map-section:hover {
+            background: rgba(30, 30, 30, 1);
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(87, 255, 140, 0.5);
+        }
+
+        h1, h2 {
+            color: #57FF8C;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 1.5em;
+        }
+
+        ul {
+            list-style: disc inside;
+            margin-left: 1.5rem;
+            font-size: 1em;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background-color: #00695c;
+            color: #fff;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .download-btn:hover {
+            background-color: #004d40;
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">321Niche</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/resources.html">Resources</a></li>
+                <li><a href="/tools.html">Tools & Downloads</a></li>
+                <li><a href="/contact.html">Contact Us</a></li>
+                <li><a href="/passion-to-career-map.html">Passion to Career Map</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/resources.html">Resources</a></li>
+        <li><a href="/tools.html">Tools & Downloads</a></li>
+        <li><a href="/contact.html">Contact Us</a></li>
+        <li><a href="/passion-to-career-map.html">Passion to Career Map</a></li>
+    </ul>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Passion to Career Map</h1>
+        <p>Explore your passions and learn how to align them with potential career paths. Use this map to brainstorm, visualize, and take the first step toward a fulfilling career journey.</p>
+
+        <!-- Passion to Career Map Sections -->
+        <section class="map-section">
+            <h2>Identify Your Passions</h2>
+            <ul>
+                <li>What activities make you lose track of time?</li>
+                <li>What are your hobbies or interests?</li>
+                <li>What problems do you love solving?</li>
+                <li>What would you do if money was not an issue?</li>
+            </ul>
+        </section>
+
+        <section class="map-section">
+            <h2>Map Your Skills</h2>
+            <ul>
+                <li>What skills do you have that relate to your passions?</li>
+                <li>Are you knowledgeable about any specific fields?</li>
+                <li>What can you offer that others may need or find valuable?</li>
+            </ul>
+        </section>
+
+        <section class="map-section">
+            <h2>Discover Career Possibilities</h2>
+            <ul>
+                <li>Research industries or roles that align with your passions and skills.</li>
+                <li>Look into roles that require a combination of skills you already have.</li>
+                <li>Consider whether you can monetize your passion through freelancing, entrepreneurship, or employment.</li>
+            </ul>
+        </section>
+
+        <!-- Download Button -->
+        <a href="/downloads/passion_to_career_map.pdf" class="download-btn">Download Your Passion to Career Map PDF</a>
+    </main>
+
+    <!-- JavaScript Initialization for Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Mobile Navigation
+            var elems = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(elems);
+        });
+    </script>
+</body>
+
+</html>
