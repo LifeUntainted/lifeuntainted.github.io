@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skill Building Plan - 321Niche</title>
+    <title>Passion to Career Map - 321Niche</title>
 
     <!-- Import Google Icon Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -133,11 +133,32 @@
         nav {
             background-color: rgba(0, 0, 0, 0.8);
             border-bottom: 1px solid #00695c;
+            padding: 0 20px;
+        }
+
+        .nav-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .brand-logo {
             font-weight: 700;
-            margin-left: 20px;
+            font-size: 1.8rem;
+        }
+
+        .resources-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+            border-bottom: 1px solid #00695c;
+            margin-bottom: 3rem;
+        }
+
+        .resources-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
+            margin-bottom: 1rem;
         }
 
         .sidenav {
@@ -184,97 +205,45 @@
         <li><a href="/skill-building-plan.html">Skill Building Plan</a></li>
     </ul>
 
+    <!-- Header -->
+    <div class="resources-header">
+        <h1 class="resources-title">Passion to Career Map</h1>
+        <p>Explore your passions and learn how to align them with potential career paths. Use this map to brainstorm, visualize, and take the first step toward a fulfilling career journey.</p>
+    </div>
+
     <!-- Main Content -->
     <div class="container">
-        <h1>Skill Building Plan</h1>
-        <p>Empower yourself by developing skills in various areas. Click on each section to dive into detailed plans that will help you achieve your goals. Set achievable milestones and keep track of your progress for steady growth.</p>
-
-        <p><strong>Why Skill Building Matters:</strong> Whether you are looking to advance your career, start a new hobby, or grow personally, skill-building is an essential step toward reaching your potential. Embrace the journey of continuous improvement to enrich your life.</p>
-
         <!-- Skill Building Sections -->
         <div class="skill-section">
-            <div class="skill-category" onclick="toggleSkillContent(this)">
-                Writing & Language Skills <span class="material-icons">expand_more</span>
-            </div>
-            <div class="skill-content">
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Creative Writing
-                    <div class="skill-description">Learn techniques to enhance your storytelling and imaginative writing abilities. Develop your unique writing voice and create compelling narratives. <br> <strong>Suggested Tools:</strong> <a href="https://www.grammarly.com" target="_blank">Grammarly</a>, <a href="https://www.wattpad.com" target="_blank">Wattpad</a>.</div>
-                </div>
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Foreign Language Learning
-                    <div class="skill-description">Pick up new languages or improve existing ones for personal or professional growth. Enhance communication and connect with new cultures. <br> <strong>Suggested Apps:</strong> <a href="https://www.duolingo.com" target="_blank">Duolingo</a>, <a href="https://www.memrise.com" target="_blank">Memrise</a>.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Expanded Skill Categories -->
-        <!-- Leadership & Management -->
-        <div class="skill-section">
-            <div class="skill-category" onclick="toggleSkillContent(this)">
-                Leadership & Management <span class="material-icons">expand_more</span>
-            </div>
-            <div class="skill-content">
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Conflict Resolution
-                    <div class="skill-description">Learn effective ways to mediate disputes and create a productive work environment. Master communication skills that foster understanding and collaboration. <br> <strong>Suggested Course:</strong> <a href="https://www.coursera.org" target="_blank">Conflict Resolution Course on Coursera</a>.</div>
-                </div>
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Team Building
-                    <div class="skill-description">Understand group dynamics and how to inspire cohesive teamwork. Learn activities that foster trust, respect, and collaboration. <br> <strong>Books to Read:</strong> "Leaders Eat Last" by Simon Sinek, "The Five Dysfunctions of a Team" by Patrick Lencioni.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Culinary Skills -->
-        <div class="skill-section">
-            <div class="skill-category" onclick="toggleSkillContent(this)">
-                Culinary Skills <span class="material-icons">expand_more</span>
-            </div>
-            <div class="skill-content">
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    Baking Essentials
-                    <div class="skill-description">Master the basics of baking, including breads, pastries, and desserts. Gain confidence in following recipes and experimenting with new ingredients. <br> <strong>Suggested Resources:</strong> <a href="https://www.kingarthurbaking.com" target="_blank">King Arthur Baking</a>, YouTube tutorials on "Baking Basics".</div>
-                </div>
-                <div class="skill-item" onclick="toggleSkillDescription(this)">
-                    International Cuisines
-                    <div class="skill-description">Learn to cook diverse dishes from around the world, exploring different cultures through their flavors. <br> <strong>Resources:</strong> "Salt, Fat, Acid, Heat" by Samin Nosrat, <a href="https://www.masterclass.com" target="_blank">Masterclass Culinary Lessons</a>.</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- How to Build a Skill Plan Instructions -->
-        <h2>How to Create Your Skill Building Plan</h2>
-        <section class="skill-section">
-            <h3>Step-by-Step Instructions</h3>
-            <p>Use the following steps to create an effective skill-building plan:</p>
-            <ol>
-                <li><strong>Identify Your Goal:</strong> Define what you want to achieve. For example, "Become proficient in Spanish" or "Master JavaScript for web development".</li>
-                <li><strong>Break It Down:</strong> Split the larger goal into smaller, manageable milestones. For learning a language, start with "Learn 100 common phrases".</li>
-                <li><strong>Determine Resources:</strong> Identify what you need: online courses, books, videos, or mentors. Knowing what’s required will make your journey smoother.</li>
-                <li><strong>Create a Schedule:</strong> Dedicate specific times each week for skill-building. Consistency is the key to mastery—set a schedule that works for you.</li>
-                <li><strong>Track Progress:</strong> Create checkpoints to measure your progress. Tracking keeps you motivated and accountable. Use apps like <a href="https://www.trello.com" target="_blank">Trello</a> to track your goals.</li>
-                <li><strong>Seek Feedback:</strong> Engage with a community or mentor who can provide feedback on your progress. Constructive advice helps accelerate growth. Platforms like <a href="https://www.reddit.com/r/getdisciplined/" target="_blank">Reddit: Get Disciplined</a> can be helpful.</li>
-            </ol>
-        </section>
-
-        <!-- Checklist Section -->
-        <section class="skill-section">
-            <h3>Skill Building Checklist</h3>
+            <h2>Identify Your Passions</h2>
             <ul>
-                <li>Goal clearly defined</li>
-                <li>Resources and materials identified</li>
-                <li>Skill broken down into milestones</li>
-                <li>Scheduled practice sessions</li>
-                <li>Progress tracking method set up</li>
-                <li>Support network or mentor engaged</li>
-                <li>Regularly seek feedback and improve</li>
-                <li>Keep a learning journal to document your experiences</li>
+                <li>What activities make you lose track of time?</li>
+                <li>What are your hobbies or interests?</li>
+                <li>What problems do you love solving?</li>
+                <li>What would you do if money was not an issue?</li>
             </ul>
-        </section>
+        </div>
 
-        <!-- CTA Button -->
-        <a href="/tools.html" class="btn">Explore More Tools & Resources</a>
+        <div class="skill-section">
+            <h2>Map Your Skills</h2>
+            <ul>
+                <li>What skills do you have that relate to your passions?</li>
+                <li>Are you knowledgeable about any specific fields?</li>
+                <li>What can you offer that others may need or find valuable?</li>
+            </ul>
+        </div>
+
+        <div class="skill-section">
+            <h2>Discover Career Possibilities</h2>
+            <ul>
+                <li>Research industries or roles that align with your passions and skills.</li>
+                <li>Look into roles that require a combination of skills you already have.</li>
+                <li>Consider whether you can monetize your passion through freelancing, entrepreneurship, or employment.</li>
+            </ul>
+        </div>
+
+        <!-- Download Button -->
+        <a href="/downloads/passion_to_career_map.pdf" class="btn">Download Your Passion to Career Map PDF</a>
     </div>
 
     <!-- Scripts -->
