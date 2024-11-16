@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Strengths Assessment - 321Niche</title>
 
   <!-- Meta Tags -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Download our Strengths Assessment worksheet to identify your key strengths and learn how to apply them to your life or career.">
 
   <!-- Compiled and minified CSS -->
@@ -67,8 +68,30 @@
     .worksheet-section p {
       margin-bottom: 2rem;
     }
+
+    .input-field label {
+      color: #00e676;
+    }
+
+    .output-section {
+      margin-top: 3rem;
+      background: rgba(0, 105, 92, 0.1);
+      border: 1px solid #00695c;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+
+    .output-title {
+      color: #00e676;
+      font-size: 1.8rem;
+    }
+
+    #results {
+      white-space: pre-wrap;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- Navigation Bar -->
@@ -99,17 +122,43 @@
   <div class="container">
     <div class="strengths-container">
       <h2 class="center-align">Strengths Assessment Worksheet</h2>
-      <p>Discovering your strengths is the key to making decisions that align with your goals and values. This Strengths Assessment worksheet will guide you through identifying your core strengths and how to use them in your personal and professional life.</p>
+      <p>Discovering your strengths is the key to making decisions that align with your goals and values. Use this tool to identify your core strengths and learn how to apply them in both personal and professional areas of your life.</p>
 
-      <!-- Worksheet Section -->
+      <!-- Interactive Questions -->
+      <form id="strengths-form" class="row">
+        <div class="input-field col s12">
+          <input id="strength1" type="text" class="validate">
+          <label for="strength1">What are your top 3 strengths? (e.g., Communication, Creativity, Problem Solving)</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="situations" type="text" class="validate">
+          <label for="situations">In what situations do you feel your strengths shine the most?</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="application" type="text" class="validate">
+          <label for="application">How can you apply these strengths more in your career or personal life?</label>
+        </div>
+        <div class="center-align">
+          <button type="button" class="btn waves-effect waves-light" onclick="generateResults()">Generate Results</button>
+        </div>
+      </form>
+
+      <!-- Results Section -->
+      <div id="results-section" class="output-section" style="display: none;">
+        <h3 class="output-title">Your Strengths Assessment Summary:</h3>
+        <p id="results"></p>
+        <div class="center-align">
+          <button class="btn waves-effect waves-light" onclick="copyResults()">Copy to Clipboard</button>
+        </div>
+      </div>
+      
+      <!-- Worksheet Download -->
       <div class="worksheet-section">
-        <p>Click below to download your Strengths Assessment Worksheet:</p>
+        <p>Click below to download the comprehensive Strengths Assessment Worksheet:</p>
         <a href="downloads/strengths-assessment.pdf" download class="btn waves-effect waves-light">
           <i class="material-icons left">file_download</i>Download Worksheet
         </a>
       </div>
-
-      <p>Once you've completed the worksheet, use it to reflect on your strengths and start exploring career paths or hobbies that allow you to apply these strengths effectively.</p>
     </div>
   </div>
 
@@ -124,12 +173,32 @@
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       // Initialize Mobile Navigation
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
     });
-  </script>
 
+    function generateResults() {
+      const strength1 = document.getElementById('strength1').value;
+      const situations = document.getElementById('situations').value;
+      const application = document.getElementById('application').value;
+
+      const results = `Your Strengths:\n${strength1}\n\nWhere Your Strengths Shine:\n${situations}\n\nHow to Apply Your Strengths:\n${application}`;
+      
+      document.getElementById('results').innerText = results;
+      document.getElementById('results-section').style.display = 'block';
+    }
+
+    function copyResults() {
+      const resultsText = document.getElementById('results').innerText;
+      navigator.clipboard.writeText(resultsText).then(() => {
+        alert('Results copied to clipboard!');
+      }).catch(err => {
+        console.error('Could not copy text: ', err);
+      });
+    }
+  </script>
 </body>
+
 </html>
