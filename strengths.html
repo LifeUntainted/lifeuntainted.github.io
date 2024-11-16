@@ -73,6 +73,19 @@
       color: #00e676;
     }
 
+    input[type="text"] {
+      color: #ffffff !important; /* Ensuring text is visible while typing */
+    }
+
+    .input-field input:focus + label {
+      color: #88FFAA !important; /* Ensures label color change on focus */
+    }
+
+    .input-field input:focus {
+      border-bottom: 1px solid #88FFAA !important; /* Better color when input is focused */
+      box-shadow: 0 1px 0 0 #88FFAA !important;
+    }
+
     .output-section {
       margin-top: 3rem;
       background: rgba(0, 105, 92, 0.1);
@@ -151,7 +164,7 @@
           <button class="btn waves-effect waves-light" onclick="copyResults()">Copy to Clipboard</button>
         </div>
       </div>
-      
+
       <!-- Worksheet Download -->
       <div class="worksheet-section">
         <p>Click below to download the comprehensive Strengths Assessment Worksheet:</p>
