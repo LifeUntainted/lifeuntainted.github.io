@@ -144,6 +144,7 @@
         </div>
         <div class="center-align">
           <button type="button" class="btn waves-effect waves-light" onclick="saveJournalEntry()">Save Journal Entry</button>
+          <button type="button" class="btn waves-effect waves-light" onclick="downloadJournalEntry()">Download Journal Entry</button>
         </div>
       </form>
     </div>
@@ -164,113 +165,20 @@
       // Initialize Mobile Navigation
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
-    });
 
-    // Particle.js configuration
-    particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 120,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": "#00e676"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          },
-          "polygon": {
-            "nb_sides": 5
-          }
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": false,
-          "anim": {
-            "enable": false,
-            "speed": 1,
-            "opacity_min": 0.1,
-            "sync": false
-          }
-        },
-        "size": {
-          "value": 3,
-          "random": true,
-          "anim": {
-            "enable": false,
-            "speed": 40,
-            "size_min": 0.1,
-            "sync": false
-          }
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#00e676",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 6,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false,
-          "attract": {
-            "enable": false,
-            "rotateX": 600,
-            "rotateY": 1200
-          }
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          },
-          "resize": true
-        },
-        "modes": {
-          "grab": {
-            "distance": 400,
-            "line_linked": {
-              "opacity": 1
-            }
-          },
-          "bubble": {
-            "distance": 400,
-            "size": 40,
-            "duration": 2,
-            "opacity": 8,
-            "speed": 3
-          },
-          "repulse": {
-            "distance": 200,
-            "duration": 0.4
-          },
-          "push": {
-            "particles_nb": 4
-          },
-          "remove": {
-            "particles_nb": 2
-          }
-        }
-      },
-      "retina_detect": true
+      // Load saved data from localStorage if available
+      if (localStorage.getItem('greatExperience')) {
+        document.getElementById('great-experience').value = localStorage.getItem('greatExperience');
+      }
+      if (localStorage.getItem('challenges')) {
+        document.getElementById('challenges').value = localStorage.getItem('challenges');
+      }
+      if (localStorage.getItem('lessons')) {
+        document.getElementById('lessons').value = localStorage.getItem('lessons');
+      }
+      if (localStorage.getItem('improvements')) {
+        document.getElementById('improvements').value = localStorage.getItem('improvements');
+      }
     });
 
     // Save Journal Entry function
@@ -280,12 +188,29 @@
       const lessons = document.getElementById('lessons').value;
       const improvements = document.getElementById('improvements').value;
 
-      // Display a confirmation message
-      if (greatExperience || challenges || lessons || improvements) {
-        alert('Your journal entry has been saved! Remember to keep reflecting each day for better self-awareness.');
-      } else {
-        alert('Please fill in at least one field before saving.');
-      }
+      // Store the data in localStorage
+      localStorage.setItem('greatExperience', greatExperience);
+      localStorage.setItem('challenges', challenges);
+      localStorage.setItem('lessons', lessons);
+      localStorage.setItem('improvements', improvements);
+
+      alert('Your journal entry has been saved locally! Remember to keep reflecting each day for better self-awareness.');
+    }
+
+    // Download Journal Entry function
+    function downloadJournalEntry() {
+      const greatExperience = document.getElementById('great-experience').value;
+      const challenges = document.getElementById('challenges').value;
+      const lessons = document.getElementById('lessons').value;
+      const improvements = document.getElementById('improvements').value;
+
+      const content = `What made today great?\n${greatExperience}\n\nChallenges You Faced:\n${challenges}\n\nWhat Did You Learn?\n${lessons}\n\nHow Can You Improve Tomorrow?\n${improvements}`;
+      
+      const blob = new Blob([content], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'journal_entry.txt';
+      link.click();
     }
   </script>
 </body>
