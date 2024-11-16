@@ -91,6 +91,26 @@
             padding: 1rem;
             border-radius: 8px;
             border: 1px solid #00e676;
+            position: relative;
+        }
+
+        #search-bar {
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .edit-button,
+        .delete-button {
+            position: absolute;
+            top: 10px;
+            right: 50px;
+            margin-left: 10px;
+            color: #00e676;
+            cursor: pointer;
+        }
+
+        .delete-button {
+            right: 10px;
         }
     </style>
 </head>
@@ -150,9 +170,13 @@
                 </div>
             </form>
 
-            <!-- Saved Journal Entries -->
+            <!-- Search and Saved Journal Entries -->
             <div id="saved-entries" class="entry-list">
                 <h3 class="center-align">Your Saved Entries</h3>
+                <div class="input-field">
+                    <input type="text" id="search-bar" placeholder="Search entries..." oninput="filterEntries()">
+                </div>
+                <button class="btn waves-effect waves-light" onclick="deleteSelectedEntries()">Delete Selected Entries</button>
             </div>
         </div>
     </div>
@@ -212,6 +236,10 @@
                 const entryDiv = document.createElement('div');
                 entryDiv.classList.add('entry-item');
                 entryDiv.innerHTML = `
+                    <label>
+                        <input type="checkbox" class="filled-in entry-checkbox" data-index="${index}" />
+                        <span></span>
+                    </label>
                     <p><strong>Date:</strong> ${entry.date}</p>
                     <p><strong>What made today great?</strong> ${entry.greatExperience}</p>
                     <p><strong>Challenges You Faced:</strong> ${entry.challenges}</p>
@@ -222,29 +250,32 @@
             });
         }
 
-        // Download saved entries as a text file
-        function downloadEntries() {
-            let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
-            if (entries.length === 0) {
-                alert('No entries to download.');
-                return;
-            }
+        // Filter journal entries
+        function filterEntries() {
+            const query = document.getElementById('search-bar').value.toLowerCase();
+            const entries = document.querySelectorAll('.entry-item');
 
-            let content = '';
-            entries.forEach((entry) => {
-                content += `Date: ${entry.date}\n`;
-                content += `What made today great?: ${entry.greatExperience}\n`;
-                content += `Challenges You Faced: ${entry.challenges}\n`;
-                content += `What Did You Learn?: ${entry.lessons}\n`;
-                content += `How Can You Improve Tomorrow?: ${entry.improvements}\n`;
-                content += '\n----------------------\n\n';
+            entries.forEach(entry => {
+                if (entry.innerText.toLowerCase().includes(query)) {
+                    entry.style.display = '';
+                } else {
+                    entry.style.display = 'none';
+                }
             });
+        }
 
-            const blob = new Blob([content], { type: 'text/plain' });
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.download = 'journal_entries.txt';
-            link.click();
+        // Delete selected journal entries
+        function deleteSelectedEntries() {
+            let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+            const checkboxes = document.querySelectorAll('.entry-checkbox:checked');
+
+            const indexesToDelete = Array.from(checkboxes).map(checkbox => parseInt(checkbox.getAttribute('data-index')));
+
+            entries = entries.filter((_, index) => !indexesToDelete.includes(index));
+            localStorage.setItem('journalEntries', JSON.stringify(entries));
+
+            loadSavedEntries();
+            alert('Selected entries have been deleted');
         }
     </script>
 </body>
