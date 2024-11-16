@@ -283,3 +283,26 @@
           }
         }
       },
+      "retina_detect": true
+    });
+
+    // Generate Mission Statement
+    function generateMissionStatement() {
+      const strength = document.getElementById('strength').value;
+      const passion = document.getElementById('passion').value;
+      const impact = document.getElementById('impact').value;
+      const audience = document.getElementById('audience').value;
+      const values = document.getElementById('values').value;
+      const goals = document.getElementById('goals').value;
+
+      if (strength && passion && impact && audience && values && goals) {
+        const missionStatement = `My mission is to use my ${strength} to make an impact in the world through ${passion}. I aim to inspire and help ${audience}, while staying true to my core values of ${values}. My ultimate goal is to ${goals}.`;
+        document.getElementById('mission-statement').innerText = missionStatement;
+        document.getElementById('output').style.display = 'block';
+      } else {
+        alert('Please fill in all fields to generate your mission statement.');
+      }
+    }
+  </script>
+</body>
+</html>
