@@ -53,10 +53,19 @@
       text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
     }
 
-    .feature-section,
+    .feature-section {
+      position: absolute;
+      top: 40vh;
+      left: 0;
+      right: 0;
+      background: transparent;
+      z-index: 10;
+    }
+
     .ai-tools-section {
       background-color: rgba(0, 0, 0, 0.9);
       padding: 2rem 0; /* Reduced padding to bring sections closer together */
+      margin-top: 400px;
     }
 
     .icon-block {
