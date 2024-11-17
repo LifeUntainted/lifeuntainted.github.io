@@ -37,6 +37,19 @@
 
     .parallax-container {
       height: 75vh; /* Decreased height for better spacing */
+      position: relative;
+    }
+
+    .parallax {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      transform: translateZ(0);
     }
 
     .hero-content {
@@ -54,7 +67,7 @@
     }
 
     .feature-section {
-      position: absolute;
+      position: relative;
       top: 25vh;
       left: 50%;
       transform: translateX(-50%);
@@ -70,8 +83,8 @@
 
     .ai-tools-section {
       background-color: rgba(0, 0, 0, 0.9);
-      padding: 1.5rem 0; /* Reduced padding to bring sections closer together */
-      margin-top: 100px;
+      padding: 2rem 0; /* Increased padding for emphasis */
+      margin-top: -50px; /* Overlapping effect to make it look sleek */
     }
 
     .icon-block {
@@ -212,7 +225,7 @@
 
   <!-- Hero Section -->
   <div class="parallax-container">
-    <div class="parallax"><img src="images/hero-image.png" alt="Futuristic Background"></div>
+    <div class="parallax" style="background-image: url('images/hero-image.png');"></div>
     <div class="container center-align hero-content">
       <h1 class="main-title">Discover Your Future Niche Today</h1>
       <p>Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
