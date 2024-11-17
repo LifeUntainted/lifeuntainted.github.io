@@ -36,11 +36,11 @@
     }
 
     .parallax-container {
-      height: 80vh; /* Decreased height for better spacing */
+      height: 75vh; /* Decreased height for better spacing */
     }
 
     .hero-content {
-      padding-top: 20vh; /* Decreased padding to bring the content higher */
+      padding-top: 15vh; /* Decreased padding to bring the content higher */
     }
 
     .main-title {
@@ -55,23 +55,29 @@
 
     .feature-section {
       position: absolute;
-      top: 40vh;
-      left: 0;
-      right: 0;
-      background: transparent;
+      top: 25vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
       z-index: 10;
+    }
+
+    .feature-section .container {
+      background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better contrast */
+      padding: 1.5rem;
+      border-radius: 12px;
     }
 
     .ai-tools-section {
       background-color: rgba(0, 0, 0, 0.9);
-      padding: 2rem 0; /* Reduced padding to bring sections closer together */
-      margin-top: 400px;
+      padding: 1.5rem 0; /* Reduced padding to bring sections closer together */
+      margin-top: 100px;
     }
 
     .icon-block {
-      padding: 1.5rem; /* Adjusted padding for better text-background integration */
+      padding: 1.2rem; /* Adjusted padding for better text-background integration */
       border: 1px solid #00695c;
-      background: rgba(0, 105, 92, 0.1);
+      background: rgba(0, 105, 92, 0.2); /* More contrast for feature boxes */
       border-radius: 8px;
       height: 100%;
       transition: transform 0.3s ease;
@@ -90,7 +96,7 @@
 
     .feature-title {
       color: #fff;
-      margin: 1.5rem 0;
+      margin: 1rem 0;
       font-size: 1.5rem;
     }
 
@@ -98,7 +104,7 @@
       border: 1px solid #00695c;
       background: rgba(0, 105, 92, 0.1);
       border-radius: 8px;
-      padding: 1.5rem;
+      padding: 1.2rem;
       height: 100%;
       margin: 0.5rem 0; /* Reduced margin to decrease extra spacing */
       transition: transform 0.3s ease;
@@ -110,7 +116,7 @@
     }
 
     .carousel .carousel-item {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.9); /* Increased contrast for testimonial items */
       border: 1px solid #00695c;
       padding: 2rem;
       border-radius: 8px;
@@ -273,7 +279,7 @@
   <!-- Testimonials Section -->
   <div class="parallax-container">
     <div class="parallax"><img src="images/testimonial-background.png" alt="Testimonial Background"></div>
-    <div class="container center-align" style="padding: 100px 0;">
+    <div class="container center-align" style="padding: 80px 0;">
       <h2>What Our Customers Say</h2>
       <div class="carousel">
         <div class="carousel-item">
