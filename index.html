@@ -55,6 +55,45 @@
     .feature-section {
       background-color: rgba(0, 0, 0, 0.9);
       padding: 4rem 0;
+       <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #00695c;
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+    }
+
+    .parallax-container {
+      height: 100vh;
+    }
+
+    .hero-content {
+      padding-top: 30vh;
+    }
+
+    .main-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1s ease forwards;
+      text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
+    }
+
+    .feature-section {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 4rem 0;
+      margin-top: -100px; /* Move section closer to the parallax image */
     }
 
     .icon-block {
@@ -184,6 +223,8 @@
         <li><a href="about.html">About Us</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="resources.html">Resources</a></li>
+        <li><a href="tools.html">Tools & Downloads</a></li>
+
       </ul>
     </div>
   </nav>
@@ -194,6 +235,8 @@
     <li><a href="about.html">About Us</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="resources.html">Resources</a></li>
+    <li><a href="tools.html">Tools & Downloads</a></li>
+
   </ul>
 
   <!-- Hero Section -->
