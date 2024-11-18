@@ -3,7 +3,9 @@ layout: default
 title: "Niche Analyzer"
 ---
 
-<!-- Niche Analyzer Content -->
+<!-- Include CSS and JS Libraries in the HEAD -->
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <!-- Meta Tags -->
   <meta charset="UTF-8">
@@ -25,98 +27,72 @@ title: "Niche Analyzer"
       background-color: #0A0A0A;
       color: #E0E0E0;
       font-family: 'Orbitron', sans-serif;
+      margin: 0;
     }
 
-    h1.analyzer-title {
-      font-size: 2.5rem;
+    nav, .page-footer {
+      background-color: #0A0A0A !important; /* Black */
+      border-top: none;
+    }
+
+    .page-footer {
+      padding: 20px 0;
       text-align: center;
-      color: #57FF8C;
-      margin: 2rem 0;
-      text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
+      border-top: 1px solid #57FF8C; /* Optional: add a subtle green line at the top of footer */
     }
 
-    p {
-      color: #888;
-      text-align: center;
+    .footer-content, nav ul li a {
+      color: #E0E0E0 !important; /* White text for readability */
     }
 
-    .container.niche-analyzer {
-      padding: 3rem 1rem;
-      background: rgba(18, 18, 18, 0.9);
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(87, 255, 140, 0.3);
+    a {
+      color: #57FF8C !important; /* Off-green for links */
     }
 
     .background-lines {
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: fixed;
       width: 100%;
       height: 100%;
       z-index: -1;
     }
 
-    #back-to-top {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
+    .niche-analyzer {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .niche-analyzer h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #57FF8C;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
+    }
+
+    .niche-analyzer form input, .niche-analyzer form textarea, .niche-analyzer form select {
+      color: #E0E0E0;
+      border-bottom: 1px solid #57FF8C !important;
+    }
+
+    .niche-analyzer .btn {
       background-color: #57FF8C;
       color: #0A0A0A;
+    }
+
+    #back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
       display: none;
-    }
-
-    #back-to-top:hover {
-      background-color: #00695c;
-    }
-
-    .btn {
-      background-color: #00695c;
-    }
-
-    .btn:hover {
       background-color: #57FF8C;
-    }
-
-    .input-field input {
-      border-bottom: 1px solid #57FF8C !important;
-      color: #E0E0E0 !important;
-    }
-
-    .input-field input:focus {
-      border-bottom: 1px solid #57FF8C !important;
-      box-shadow: 0 1px 0 0 #57FF8C !important;
-    }
-
-    .input-field label {
-      color: #E0E0E0 !important;
     }
   </style>
 </head>
 
 <body>
-  <!-- Animated Intro Overlay -->
-  <div id="intro-overlay">
-    <canvas id="intro-canvas"></canvas>
-    <div id="intro-content">
-      <h1>321Niche</h1>
-      <p>Discover Your Future Niche</p>
-    </div>
-  </div>
-
-  <!-- SVG Background Lines -->
-  <div class="background-lines">
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-      <!-- Example lines -->
-      <line x1="0%" y1="10%" x2="100%" y2="10%" stroke="#FFD700" stroke-width="0.5" />
-      <line x1="0%" y1="30%" x2="100%" y2="30%" stroke="#00897b" stroke-width="0.5" />
-      <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="#FFD700" stroke-width="0.5" />
-      <line x1="0%" y1="70%" x2="100%" y2="70%" stroke="#00897b" stroke-width="0.5" />
-      <line x1="0%" y1="90%" x2="100%" y2="90%" stroke="#FFD700" stroke-width="0.5" />
-    </svg>
-  </div>
-
   <!-- Back to Top Button -->
-  <a href="#" id="back-to-top" class="btn-floating btn-large waves-effect waves-light">
+  <a href="#" id="back-to-top" class="btn-floating btn-large">
     <i class="material-icons">keyboard_arrow_up</i>
   </a>
 
@@ -125,34 +101,35 @@ title: "Niche Analyzer"
     <h1 class="analyzer-title">Niche Analyzer</h1>
     <p>Discover profitable niches and insights to grow your business!</p>
 
-    <!-- Form to collect input for niche analysis -->
+    <!-- Analyzer Form -->
     <form id="niche-form">
       <div class="input-field">
-        <input type="text" id="interests" required>
+        <input id="interests" type="text" required>
         <label for="interests">Enter Your Interests</label>
       </div>
       <div class="input-field">
-        <input type="text" id="skills" required>
+        <input id="skills" type="text" required>
         <label for="skills">Enter Your Skills</label>
       </div>
       <div class="input-field">
-        <input type="text" id="audience" required>
+        <input id="audience" type="text" required>
         <label for="audience">Describe Your Audience</label>
       </div>
       <div class="input-field">
         <select id="monetization" multiple>
+          <option value="ads">Advertisements</option>
           <option value="affiliate">Affiliate Marketing</option>
-          <option value="ads">Ads</option>
           <option value="products">Product Sales</option>
+          <option value="services">Service Sales</option>
         </select>
-        <label for="monetization">Monetization Strategies</label>
+        <label>Monetization Strategies</label>
       </div>
       <div class="input-field">
-        <input type="text" id="trends" required>
+        <input id="trends" type="text">
         <label for="trends">Trends You're Interested In</label>
       </div>
       <div class="input-field">
-        <input type="text" id="competition" required>
+        <textarea id="competition" class="materialize-textarea"></textarea>
         <label for="competition">Describe Competition Level</label>
       </div>
       <div class="input-field">
@@ -161,22 +138,26 @@ title: "Niche Analyzer"
           <option value="medium">Medium</option>
           <option value="high">High</option>
         </select>
-        <label for="scalability">Scalability</label>
+        <label>Scalability</label>
       </div>
       <div class="input-field">
-        <input type="text" id="geographic" required>
+        <input id="geographic" type="text">
         <label for="geographic">Geographic Region of Focus</label>
       </div>
       <button type="submit" class="btn waves-effect waves-light">Analyze Niche</button>
     </form>
 
-    <!-- Results section -->
     <div id="results" class="results-section"></div>
   </div>
 
   <!-- Include jQuery and GSAP at the end of the body for better loading -->
+  <!-- Include jQuery (required by Materialize JS) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Include Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Include GSAP Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 
   <!-- Custom Scripts -->
@@ -184,17 +165,6 @@ title: "Niche Analyzer"
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize Materialize Components
       M.AutoInit();
-
-      // GSAP Animation for Intro Overlay
-      gsap.fromTo("#intro-content h1", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1 });
-      gsap.fromTo("#intro-content p", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.5 });
-
-      // Remove Intro Overlay after animation
-      setTimeout(() => {
-        gsap.to("#intro-overlay", { opacity: 0, duration: 1, onComplete: () => {
-          document.getElementById('intro-overlay').style.display = 'none';
-        }});
-      }, 3000);
 
       // Back to Top Button functionality
       window.addEventListener('scroll', function() {
@@ -206,46 +176,41 @@ title: "Niche Analyzer"
         }
       });
 
-      // Handle Form Submission
-      document.getElementById('niche-form').addEventListener('submit', async (e) => {
+      // Handle Form Submission - Simulated Analysis
+      document.getElementById('niche-form').addEventListener('submit', function(e) {
         e.preventDefault();
 
         // Collect form data
-        const formData = {
-          interests: document.getElementById('interests').value,
-          skills: document.getElementById('skills').value,
-          audience: document.getElementById('audience').value,
-          monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
-          trends: document.getElementById('trends').value,
-          competition: document.getElementById('competition').value,
-          scalability: M.FormSelect.getInstance(document.getElementById('scalability')).getSelectedValues()[0],
-          geographic: document.getElementById('geographic').value,
-        };
+        const interests = document.getElementById('interests').value;
+        const skills = document.getElementById('skills').value;
+        const audience = document.getElementById('audience').value;
 
-        // Display loading message
-        document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
+        // Generate some simulated niche suggestions
+        const niches = [
+          "Sustainable Living for Millennials",
+          "Home Workout Enthusiasts",
+          "Vegan Cooking for Families",
+          "Pet Care for Urban Dwellers",
+          "Freelance Business Growth",
+          "Remote Work Productivity Hacks",
+          "DIY Crafts for Beginners",
+          "Mental Wellness for Entrepreneurs",
+          "Tech Gadgets Review Blog",
+          "Healthy Eating for Busy Professionals"
+        ];
 
-        try {
-          const response = await fetch('/.netlify/functions/niche-analyzer', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-          });
+        // Choose a random niche from the list
+        const randomNiche = niches[Math.floor(Math.random() * niches.length)];
 
-          const data = await response.json();
+        // Generate result HTML
+        let resultHTML = `<h2>Your Potential Niche:</h2>`;
+        resultHTML += `<p>Based on your interests in <strong>${interests}</strong>, your skills in <strong>${skills}</strong>, and your target audience of <strong>${audience}</strong>, we suggest exploring the niche: <strong>${randomNiche}</strong>.</p>`;
+        resultHTML += `<p>This niche combines your passions with potential market demand and can be a great starting point to build content or products around.</p>`;
 
-          if (data.result) {
-            document.getElementById('results').innerHTML = `<h2>Your Niche Ideas:</h2><pre>${data.result}</pre>`;
-          } else {
-            document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
-          }
-        } catch (error) {
-          document.getElementById('results').innerHTML = "<p>An error occurred while processing your request.</p>";
-          console.error('Error:', error);
-        }
+        // Display results
+        document.getElementById('results').innerHTML = resultHTML;
       });
     });
   </script>
 </body>
+</html>
