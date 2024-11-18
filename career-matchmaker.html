@@ -50,13 +50,16 @@
       border-radius: 8px;
       margin-top: 3rem;
       position: relative;
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
     }
 
-    .input-field input {
+    .input-field input,
+    .input-field textarea {
       color: #fff !important;
     }
 
-    .input-field input:focus {
+    .input-field input:focus,
+    .input-field textarea:focus {
       border-bottom: 1px solid #00e676 !important;
       box-shadow: 0 1px 0 0 #00e676 !important;
     }
@@ -94,6 +97,27 @@
     .output-title {
       color: #00e676;
       font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .career-description {
+      margin-top: 0.5rem;
+      color: #b2dfdb;
+    }
+
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #00e676;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 2s linear infinite;
+      margin: 2rem auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     @media screen and (max-width: 600px) {
@@ -141,27 +165,27 @@
       <div class="row">
         <form id="career-matchmaker-form" class="col s12">
           <div class="input-field col s12">
-            <input id="skills" type="text" class="validate">
+            <textarea id="skills" class="materialize-textarea"></textarea>
             <label for="skills">What are your top 3 skills?</label>
           </div>
           <div class="input-field col s12">
-            <input id="interests" type="text" class="validate">
+            <textarea id="interests" class="materialize-textarea"></textarea>
             <label for="interests">What are your interests or hobbies?</label>
           </div>
           <div class="input-field col s12">
-            <input id="work-style" type="text" class="validate">
+            <textarea id="work-style" class="materialize-textarea"></textarea>
             <label for="work-style">Describe your ideal work environment.</label>
           </div>
           <div class="input-field col s12">
-            <input id="values" type="text" class="validate">
+            <textarea id="values" class="materialize-textarea"></textarea>
             <label for="values">What values matter most to you in a career?</label>
           </div>
           <div class="input-field col s12">
-            <input id="dream-job" type="text" class="validate">
+            <textarea id="dream-job" class="materialize-textarea"></textarea>
             <label for="dream-job">What is your dream job?</label>
           </div>
           <div class="input-field col s12">
-            <input id="strengths" type="text" class="validate">
+            <textarea id="strengths" class="materialize-textarea"></textarea>
             <label for="strengths">What are your key personal strengths?</label>
           </div>
           <div class="center-align">
@@ -170,9 +194,13 @@
         </form>
       </div>
 
+      <!-- Loader -->
+      <div id="loader" class="loader" style="display: none;"></div>
+
+      <!-- Output Section -->
       <div id="output" class="output-section" style="display: none;">
         <h3 class="output-title">Your Career Matches:</h3>
-        <ul id="career-matches"></ul>
+        <ul id="career-matches" class="collection"></ul>
       </div>
     </div>
   </div>
@@ -191,151 +219,299 @@
     document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
+
+      // Initialize Materialize Textarea
+      var textNeedCount = document.querySelectorAll('textarea');
+      M.textareaAutoResize(textNeedCount);
     });
 
+    // Particle.js configuration
     particlesJS('particles-js', {
-      particles: {
-        number: {
-          value: 100,
-          density: {
-            enable: true,
-            value_area: 1000
+      "particles": {
+        "number": {
+          "value": 100,
+          "density": {
+            "enable": true,
+            "value_area": 1000
           }
         },
-        color: {
-          value: "#00e676"
+        "color": {
+          "value": "#00e676"
         },
-        shape: {
-          type: "circle",
-          stroke: {
-            width: 0,
-            color: "#000000"
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
           },
-          polygon: {
-            nb_sides: 5
+          "polygon": {
+            "nb_sides": 5
           }
         },
-        opacity: {
-          value: 0.6,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 1,
-            opacity_min: 0.3,
-            sync: false
+        "opacity": {
+          "value": 0.6,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 1,
+            "opacity_min": 0.3,
+            "sync": false
           }
         },
-        size: {
-          value: 3,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 5,
-            size_min: 0.1,
-            sync: false
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 5,
+            "size_min": 0.1,
+            "sync": false
           }
         },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#00e676",
-          opacity: 0.4,
-          width: 1
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#00e676",
+          "opacity": 0.4,
+          "width": 1
         },
-        move: {
-          enable: true,
-          speed: 6,
-          direction: "none",
-          random: false,
-          straight: false,
-          out_mode: "out",
-          bounce: false,
-          attract: {
-            enable: false,
-            rotateX: 600,
-            rotateY: 1200
+        "move": {
+          "enable": true,
+          "speed": 6,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
           }
         }
       },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: {
-            enable: true,
-            mode: "repulse"
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
           },
-          onclick: {
-            enable: true,
-            mode: "push"
+          "onclick": {
+            "enable": true,
+            "mode": "push"
           },
-          resize: true
+          "resize": true
         },
-        modes: {
-          grab: {
-            distance: 400,
-            line_linked: {
-              opacity: 1
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
             }
           },
-          bubble: {
-            distance: 400,
-            size: 40,
-            duration: 2,
-            opacity: 8,
-            speed: 3
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
           },
-          repulse: {
-            distance: 150,
-            duration: 0.4
+          "repulse": {
+            "distance": 150,
+            "duration": 0.4
           },
-          push: {
-            particles_nb: 4
+          "push": {
+            "particles_nb": 4
           },
-          remove: {
-            particles_nb: 2
+          "remove": {
+            "particles_nb": 2
           }
         }
       },
-      retina_detect: true
+      "retina_detect": true
     });
 
+    // Career Data with Descriptions
+    const careers = [
+      {
+        name: "Software Developer",
+        keywords: ["coding", "technology", "problem-solving", "programming", "software"],
+        description: "Design, develop, and maintain software applications. Requires strong analytical skills and proficiency in programming languages."
+      },
+      {
+        name: "Teacher",
+        keywords: ["education", "children", "teaching", "instruction", "learning"],
+        description: "Educate and mentor students in various subjects. Requires patience, communication skills, and a passion for helping others learn."
+      },
+      {
+        name: "Data Scientist",
+        keywords: ["data", "analysis", "statistics", "machine learning", "big data"],
+        description: "Analyze complex data to help organizations make informed decisions. Requires strong analytical skills and knowledge of statistical methods."
+      },
+      {
+        name: "Graphic Designer",
+        keywords: ["design", "creativity", "art", "visual", "branding"],
+        description: "Create visual concepts to communicate ideas that inspire and inform consumers. Requires creativity and proficiency in design software."
+      },
+      {
+        name: "Marketing Specialist",
+        keywords: ["marketing", "communication", "branding", "strategy", "advertising"],
+        description: "Develop and implement marketing strategies to promote products or services. Requires creativity and strong communication skills."
+      },
+      {
+        name: "Project Manager",
+        keywords: ["management", "organization", "leadership", "planning", "coordination"],
+        description: "Plan, execute, and oversee projects to ensure they are completed on time and within budget. Requires excellent organizational and leadership skills."
+      },
+      {
+        name: "Social Worker",
+        keywords: ["helping", "community", "social", "support", "counseling"],
+        description: "Assist individuals and communities in improving their well-being. Requires empathy, communication skills, and a passion for helping others."
+      },
+      {
+        name: "Mechanical Engineer",
+        keywords: ["engineering", "mechanics", "design", "innovation", "problem-solving"],
+        description: "Design, develop, and test mechanical devices. Requires strong analytical skills and knowledge of engineering principles."
+      },
+      {
+        name: "Healthcare Administrator",
+        keywords: ["healthcare", "management", "organization", "policy", "administration"],
+        description: "Manage operations and services in healthcare facilities. Requires leadership skills and knowledge of healthcare policies."
+      },
+      {
+        name: "Financial Analyst",
+        keywords: ["finance", "analysis", "investment", "statistics", "economics"],
+        description: "Evaluate financial data to help organizations make investment decisions. Requires strong analytical and numerical skills."
+      },
+      {
+        name: "Content Writer",
+        keywords: ["writing", "creativity", "communication", "research", "content"],
+        description: "Create engaging content for various platforms. Requires excellent writing skills and the ability to research effectively."
+      },
+      {
+        name: "UX/UI Designer",
+        keywords: ["design", "user experience", "interface", "creativity", "research"],
+        description: "Design user-friendly interfaces and improve user experience for digital products. Requires creativity and understanding of user behavior."
+      },
+      {
+        name: "Business Analyst",
+        keywords: ["analysis", "business", "strategy", "communication", "data"],
+        description: "Analyze business processes and data to improve efficiency and effectiveness. Requires strong analytical and communication skills."
+      },
+      {
+        name: "Human Resources Manager",
+        keywords: ["management", "communication", "recruitment", "organization", "people"],
+        description: "Oversee recruitment, training, and employee relations within an organization. Requires strong interpersonal and organizational skills."
+      },
+      {
+        name: "Cybersecurity Specialist",
+        keywords: ["security", "technology", "analysis", "risk management", "network"],
+        description: "Protect an organization's computer systems and networks from security breaches. Requires technical expertise and analytical skills."
+      },
+      {
+        name: "Environmental Scientist",
+        keywords: ["environment", "research", "science", "conservation", "data"],
+        description: "Study and develop solutions to environmental problems. Requires scientific knowledge and research skills."
+      },
+      {
+        name: "Public Relations Specialist",
+        keywords: ["communication", "media", "branding", "strategy", "writing"],
+        description: "Manage an organization's public image and handle communications with the media. Requires strong communication and strategic thinking skills."
+      },
+      {
+        name: "Sales Manager",
+        keywords: ["sales", "management", "communication", "strategy", "leadership"],
+        description: "Lead and manage a sales team to achieve sales targets. Requires leadership and strategic planning skills."
+      },
+      {
+        name: "Architect",
+        keywords: ["design", "creativity", "engineering", "planning", "construction"],
+        description: "Design buildings and oversee their construction. Requires creativity, technical knowledge, and project management skills."
+      },
+      {
+        name: "Research Scientist",
+        keywords: ["research", "science", "analysis", "innovation", "data"],
+        description: "Conduct experiments and research to advance knowledge in a specific field. Requires strong analytical and scientific skills."
+      },
+      // Add more careers as needed
+    ];
+
+    // Function to sanitize user inputs
+    function sanitizeInput(str) {
+      const temp = document.createElement('div');
+      temp.textContent = str;
+      return temp.innerHTML;
+    }
+
+    // Function to generate career matches
     function generateCareerMatches() {
-      const skills = document.getElementById('skills').value.toLowerCase();
-      const interests = document.getElementById('interests').value.toLowerCase();
-      const workStyle = document.getElementById('work-style').value.toLowerCase();
-      const values = document.getElementById('values').value.toLowerCase();
-      const dreamJob = document.getElementById('dream-job').value.toLowerCase();
-      const strengths = document.getElementById('strengths').value.toLowerCase();
+      // Show loader
+      document.getElementById('loader').style.display = 'block';
+      document.getElementById('output').style.display = 'none';
 
-      const careers = [
-        { name: "Software Developer", keywords: ["coding", "technology", "problem-solving"] },
-        { name: "Teacher", keywords: ["education", "children", "teaching"] },
-        { name: "Data Scientist", keywords: ["data", "analysis", "statistics"] },
-        { name: "Graphic Designer", keywords: ["design", "creativity", "art"] },
-        { name: "Marketing Specialist", keywords: ["marketing", "communication", "branding"] },
-        { name: "Project Manager", keywords: ["management", "organization", "leadership"] },
-        { name: "Social Worker", keywords: ["helping", "community", "social"] }
-      ];
+      // Delay to simulate processing time
+      setTimeout(() => {
+        // Hide loader
+        document.getElementById('loader').style.display = 'none';
 
-      let matches = careers.filter(career => {
-        return (
-          career.keywords.some(keyword => 
-            skills.includes(keyword) ||
-            interests.includes(keyword) ||
-            workStyle.includes(keyword) ||
-            values.includes(keyword) ||
-            dreamJob.includes(keyword) ||
-            strengths.includes(keyword)
-          )
-        );
-      });
+        // Get and sanitize user inputs
+        const skills = sanitizeInput(document.getElementById('skills').value.toLowerCase());
+        const interests = sanitizeInput(document.getElementById('interests').value.toLowerCase());
+        const workStyle = sanitizeInput(document.getElementById('work-style').value.toLowerCase());
+        const values = sanitizeInput(document.getElementById('values').value.toLowerCase());
+        const dreamJob = sanitizeInput(document.getElementById('dream-job').value.toLowerCase());
+        const strengths = sanitizeInput(document.getElementById('strengths').value.toLowerCase());
 
-      if (matches.length === 0) {
-        matches = [{ name: "No direct matches found, but we encourage you to explore more options!" }];
-      }
+        // Combine all inputs into an array of words
+        const inputWords = [...skills.split(/\s+/), ...interests.split(/\s+/), ...workStyle.split(/\s+/), 
+                            ...values.split(/\s+/), ...dreamJob.split(/\s+/), ...strengths.split(/\s+/)];
 
-      document.getElementById('career-matches').innerHTML = matches.map(match => `<li>${match.name}</li>`).join('');
-      document.getElementById('output').style.display = 'block';
+        // Create a frequency map of input words
+        const wordFrequency = {};
+        inputWords.forEach(word => {
+          if (word) {
+            wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+          }
+        });
+
+        // Calculate match scores for each career
+        const careerScores = careers.map(career => {
+          let score = 0;
+          career.keywords.forEach(keyword => {
+            if (wordFrequency[keyword]) {
+              score += wordFrequency[keyword];
+            }
+          });
+          return { ...career, score };
+        });
+
+        // Sort careers by score in descending order
+        careerScores.sort((a, b) => b.score - a.score);
+
+        // Filter out careers with zero score and take top 5 matches
+        const matches = careerScores.filter(career => career.score > 0).slice(0, 5);
+
+        // If no matches found
+        if (matches.length === 0) {
+          document.getElementById('career-matches').innerHTML = `<li>No direct matches found, but we encourage you to explore more options!</li>`;
+        } else {
+          // Generate HTML for matches
+          const matchesHTML = matches.map(match => `
+            <li class="collection-item">
+              <span class="title"><strong>${match.name}</strong></span>
+              <p class="career-description">${match.description}</p>
+            </li>
+          `).join('');
+          document.getElementById('career-matches').innerHTML = matchesHTML;
+        }
+
+        // Show output section
+        document.getElementById('output').style.display = 'block';
+
+        // Scroll to results
+        document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
+      }, 1000); // 1-second delay
     }
   </script>
 </body>
