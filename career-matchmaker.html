@@ -46,10 +46,19 @@
 
     .matchmaker-container {
       background-color: rgba(0, 0, 0, 0.9);
-      padding: 4rem;
+      padding: 2rem;
       border-radius: 8px;
       margin-top: 3rem;
       position: relative;
+    }
+
+    .input-field input {
+      color: #fff !important;
+    }
+
+    .input-field input:focus {
+      border-bottom: 1px solid #00e676 !important;
+      box-shadow: 0 1px 0 0 #00e676 !important;
     }
 
     .input-field label {
@@ -75,7 +84,7 @@
     }
 
     .output-section {
-      margin-top: 3rem;
+      margin-top: 2rem;
       background: rgba(0, 105, 92, 0.1);
       border: 1px solid #00695c;
       padding: 2rem;
@@ -85,6 +94,12 @@
     .output-title {
       color: #00e676;
       font-size: 1.8rem;
+    }
+
+    @media screen and (max-width: 600px) {
+      .matchmaker-container {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
@@ -125,27 +140,27 @@
 
       <div class="row">
         <form id="career-matchmaker-form" class="col s12">
-          <div class="input-field col s12 m6">
+          <div class="input-field col s12">
             <input id="skills" type="text" class="validate">
             <label for="skills">What are your top 3 skills?</label>
           </div>
-          <div class="input-field col s12 m6">
+          <div class="input-field col s12">
             <input id="interests" type="text" class="validate">
             <label for="interests">What are your interests or hobbies?</label>
           </div>
-          <div class="input-field col s12 m6">
+          <div class="input-field col s12">
             <input id="work-style" type="text" class="validate">
-            <label for="work-style">Describe your ideal work environment (e.g., collaborative, independent).</label>
+            <label for="work-style">Describe your ideal work environment.</label>
           </div>
-          <div class="input-field col s12 m6">
+          <div class="input-field col s12">
             <input id="values" type="text" class="validate">
-            <label for="values">What values matter most to you in a career? (e.g., creativity, stability)</label>
+            <label for="values">What values matter most to you in a career?</label>
           </div>
-          <div class="input-field col s12 m6">
+          <div class="input-field col s12">
             <input id="dream-job" type="text" class="validate">
             <label for="dream-job">What is your dream job?</label>
           </div>
-          <div class="input-field col s12 m6">
+          <div class="input-field col s12">
             <input id="strengths" type="text" class="validate">
             <label for="strengths">What are your key personal strengths?</label>
           </div>
@@ -174,116 +189,114 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize Mobile Navigation
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
     });
 
-    // Particle.js configuration
     particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 120,
-          "density": {
-            "enable": true,
-            "value_area": 800
+      particles: {
+        number: {
+          value: 100,
+          density: {
+            enable: true,
+            value_area: 1000
           }
         },
-        "color": {
-          "value": "#00e676"
+        color: {
+          value: "#00e676"
         },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
+        shape: {
+          type: "circle",
+          stroke: {
+            width: 0,
+            color: "#000000"
           },
-          "polygon": {
-            "nb_sides": 5
+          polygon: {
+            nb_sides: 5
           }
         },
-        "opacity": {
-          "value": 0.5,
-          "random": false,
-          "anim": {
-            "enable": false,
-            "speed": 1,
-            "opacity_min": 0.1,
-            "sync": false
+        opacity: {
+          value: 0.6,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1,
+            opacity_min: 0.3,
+            sync: false
           }
         },
-        "size": {
-          "value": 3,
-          "random": true,
-          "anim": {
-            "enable": false,
-            "speed": 40,
-            "size_min": 0.1,
-            "sync": false
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 5,
+            size_min: 0.1,
+            sync: false
           }
         },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#00e676",
-          "opacity": 0.4,
-          "width": 1
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00e676",
+          opacity: 0.4,
+          width: 1
         },
-        "move": {
-          "enable": true,
-          "speed": 6,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false,
-          "attract": {
-            "enable": false,
-            "rotateX": 600,
-            "rotateY": 1200
+        move: {
+          enable: true,
+          speed: 6,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: {
+            enable: false,
+            rotateX: 600,
+            rotateY: 1200
           }
         }
       },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "repulse"
           },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
+          onclick: {
+            enable: true,
+            mode: "push"
           },
-          "resize": true
+          resize: true
         },
-        "modes": {
-          "grab": {
-            "distance": 400,
-            "line_linked": {
-              "opacity": 1
+        modes: {
+          grab: {
+            distance: 400,
+            line_linked: {
+              opacity: 1
             }
           },
-          "bubble": {
-            "distance": 400,
-            "size": 40,
-            "duration": 2,
-            "opacity": 8,
-            "speed": 3
+          bubble: {
+            distance: 400,
+            size: 40,
+            duration: 2,
+            opacity: 8,
+            speed: 3
           },
-          "repulse": {
-            "distance": 200,
-            "duration": 0.4
+          repulse: {
+            distance: 150,
+            duration: 0.4
           },
-          "push": {
-            "particles_nb": 4
+          push: {
+            particles_nb: 4
           },
-          "remove": {
-            "particles_nb": 2
+          remove: {
+            particles_nb: 2
           }
         }
       },
-      "retina_detect": true
+      retina_detect: true
     });
 
     function generateCareerMatches() {
@@ -295,29 +308,33 @@
       const strengths = document.getElementById('strengths').value.toLowerCase();
 
       const careers = [
-        "Software Developer", "Graphic Designer", "Data Scientist", "Marketing Specialist", "Financial Analyst",
-        "Teacher", "Project Manager", "Nurse", "Electrician", "Civil Engineer", "Journalist", "UX/UI Designer",
-        "Cybersecurity Specialist", "Architect", "Human Resources Specialist", "Accountant", "Research Scientist",
-        "Sales Manager", "Mechanical Engineer", "Interior Designer", "Lawyer", "Chef", "Photographer", "Fitness Trainer",
-        "Social Media Manager", "Copywriter", "Business Analyst", "Psychologist", "Product Manager", "Web Developer",
-        "Art Director", "Veterinarian", "Pharmacist", "Dentist", "Economist", "AI Engineer", "Construction Manager",
-        "Biomedical Engineer", "Environmental Scientist", "Actuary", "Fashion Designer", "Video Game Designer",
-        "Event Planner", "Public Relations Specialist", "Digital Marketing Strategist", "Mobile App Developer",
-        "Supply Chain Analyst", "Legal Consultant", "Robotics Technician", "Teacher for Special Needs", "Speech Therapist"
+        { name: "Software Developer", keywords: ["coding", "technology", "problem-solving"] },
+        { name: "Teacher", keywords: ["education", "children", "teaching"] },
+        { name: "Data Scientist", keywords: ["data", "analysis", "statistics"] },
+        { name: "Graphic Designer", keywords: ["design", "creativity", "art"] },
+        { name: "Marketing Specialist", keywords: ["marketing", "communication", "branding"] },
+        { name: "Project Manager", keywords: ["management", "organization", "leadership"] },
+        { name: "Social Worker", keywords: ["helping", "community", "social"] }
       ];
 
       let matches = careers.filter(career => {
         return (
-          (skills && career.toLowerCase().includes(skills)) ||
-          (interests && career.toLowerCase().includes(interests)) ||
-          (workStyle && career.toLowerCase().includes(workStyle)) ||
-          (values && career.toLowerCase().includes(values)) ||
-          (dreamJob && career.toLowerCase().includes(dreamJob)) ||
-          (strengths && career.toLowerCase().includes(strengths))
+          career.keywords.some(keyword => 
+            skills.includes(keyword) ||
+            interests.includes(keyword) ||
+            workStyle.includes(keyword) ||
+            values.includes(keyword) ||
+            dreamJob.includes(keyword) ||
+            strengths.includes(keyword)
+          )
         );
       });
 
-      document.getElementById('career-matches').innerHTML = matches.map(match => `<li>${match}</li>`).join('');
+      if (matches.length === 0) {
+        matches = [{ name: "No direct matches found, but we encourage you to explore more options!" }];
+      }
+
+      document.getElementById('career-matches').innerHTML = matches.map(match => `<li>${match.name}</li>`).join('');
       document.getElementById('output').style.display = 'block';
     }
   </script>
