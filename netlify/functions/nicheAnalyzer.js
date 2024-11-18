@@ -1,11 +1,16 @@
-// File: netlify/functions/nicheAnalyzer.js
 const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
+  // Add some debugging to see what's being received
+  console.log("Received Event:", event);
+
   // Check if the request method is POST
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify({ message: "Method Not Allowed, please use POST" })
     };
   }
@@ -52,24 +57,32 @@ exports.handler = async (event) => {
       })
     });
 
+    if (!response.ok) {
+      throw new Error(`OpenAI API responded with status ${response.status}`);
+    }
+
     // Get the response from OpenAI and parse it
     const data = await response.json();
 
     // Check if OpenAI provided a valid response
     if (data.choices && data.choices.length > 0) {
       const nicheIdeas = data.choices[0].text.trim();
-      
+
       // Return a successful response with the generated niche ideas
       return {
         statusCode: 200,
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",  // Allow cross-origin
         },
         body: JSON.stringify({ result: nicheIdeas })
       };
     } else {
       return {
         statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({ error: "Failed to generate niche ideas. No valid response from OpenAI." })
       };
     }
@@ -79,7 +92,8 @@ exports.handler = async (event) => {
     return {
       statusCode: 500,
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({ error: "Failed to analyze niche. Please try again." })
     };
