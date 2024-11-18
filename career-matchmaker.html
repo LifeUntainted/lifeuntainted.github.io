@@ -409,15 +409,20 @@
         const dreamJobInput = sanitizeInput(document.getElementById('dream-job').value.toLowerCase());
         const strengthsInput = sanitizeInput(document.getElementById('strengths').value.toLowerCase());
 
-        // Combine all inputs into a single array of words
+        // Combine all inputs into a single string
         const combinedInput = `${skillsInput} ${interestsInput} ${workStyleInput} ${valuesInput} ${dreamJobInput} ${strengthsInput}`;
-        const inputWords = combinedInput.split(/\s+/).filter(word => word.length > 0);
+        
+        // Split the combined input into words, removing punctuation
+        const inputWords = combinedInput.match(/\b(\w+)\b/g) || [];
 
         // Create a frequency map for input words
         const wordFrequency = {};
         inputWords.forEach(word => {
           wordFrequency[word] = (wordFrequency[word] || 0) + 1;
         });
+
+        console.log('User Input Words:', inputWords);
+        console.log('Word Frequency:', wordFrequency);
 
         // Calculate match scores for each career
         const careerScores = careersData.map(career => {
@@ -433,19 +438,32 @@
           // Compare each keyword with user input
           careerKeywords.forEach(keyword => {
             const keywordLower = keyword.toLowerCase();
+
+            // Check for exact match
             if (wordFrequency[keywordLower]) {
               score += wordFrequency[keywordLower];
             }
+
+            // Check if any input word includes the keyword as a substring
+            inputWords.forEach(word => {
+              if (word.includes(keywordLower) && word !== keywordLower) {
+                score += 0.5; // Partial match weight
+              }
+            });
           });
 
           return { ...career, score };
         });
+
+        console.log('Career Scores:', careerScores);
 
         // Sort careers by score in descending order
         careerScores.sort((a, b) => b.score - a.score);
 
         // Filter out careers with zero score and take top 3 matches
         const matches = careerScores.filter(career => career.score > 0).slice(0, 3);
+
+        console.log('Top Matches:', matches);
 
         // If no matches found
         if (matches.length === 0) {
