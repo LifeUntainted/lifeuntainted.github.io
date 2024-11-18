@@ -3,7 +3,7 @@ layout: default
 title: "Niche Analyzer"
 ---
 
-<!-- Include CSS and JS Libraries in the HEAD -->
+<!-- Niche Analyzer Content -->
 <head>
   <!-- Meta Tags -->
   <meta charset="UTF-8">
@@ -21,8 +21,75 @@ title: "Niche Analyzer"
 
   <!-- Custom Styles -->
   <style>
-    /* Include the CSS styles here (as provided in the previous code) */
-    /* ... */
+    body {
+      background-color: #0A0A0A;
+      color: #E0E0E0;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    h1.analyzer-title {
+      font-size: 2.5rem;
+      text-align: center;
+      color: #57FF8C;
+      margin: 2rem 0;
+      text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
+    }
+
+    p {
+      color: #888;
+      text-align: center;
+    }
+
+    .container.niche-analyzer {
+      padding: 3rem 1rem;
+      background: rgba(18, 18, 18, 0.9);
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(87, 255, 140, 0.3);
+    }
+
+    .background-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    #back-to-top {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background-color: #57FF8C;
+      color: #0A0A0A;
+      display: none;
+    }
+
+    #back-to-top:hover {
+      background-color: #00695c;
+    }
+
+    .btn {
+      background-color: #00695c;
+    }
+
+    .btn:hover {
+      background-color: #57FF8C;
+    }
+
+    .input-field input {
+      border-bottom: 1px solid #57FF8C !important;
+      color: #E0E0E0 !important;
+    }
+
+    .input-field input:focus {
+      border-bottom: 1px solid #57FF8C !important;
+      box-shadow: 0 1px 0 0 #57FF8C !important;
+    }
+
+    .input-field label {
+      color: #E0E0E0 !important;
+    }
   </style>
 </head>
 
@@ -40,7 +107,6 @@ title: "Niche Analyzer"
   <div class="background-lines">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <!-- Example lines -->
-      <!-- Adjust the number and position of lines as desired -->
       <line x1="0%" y1="10%" x2="100%" y2="10%" stroke="#FFD700" stroke-width="0.5" />
       <line x1="0%" y1="30%" x2="100%" y2="30%" stroke="#00897b" stroke-width="0.5" />
       <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="#FFD700" stroke-width="0.5" />
@@ -50,7 +116,7 @@ title: "Niche Analyzer"
   </div>
 
   <!-- Back to Top Button -->
-  <a href="#" id="back-to-top" class="btn-floating btn-large">
+  <a href="#" id="back-to-top" class="btn-floating btn-large waves-effect waves-light">
     <i class="material-icons">keyboard_arrow_up</i>
   </a>
 
@@ -58,23 +124,63 @@ title: "Niche Analyzer"
   <div class="container niche-analyzer">
     <h1 class="analyzer-title">Niche Analyzer</h1>
     <p>Discover profitable niches and insights to grow your business!</p>
-    <!-- Include your form here -->
-    <!-- ... (Form code as provided before) ... -->
+
+    <!-- Form to collect input for niche analysis -->
+    <form id="niche-form">
+      <div class="input-field">
+        <input type="text" id="interests" required>
+        <label for="interests">Enter Your Interests</label>
+      </div>
+      <div class="input-field">
+        <input type="text" id="skills" required>
+        <label for="skills">Enter Your Skills</label>
+      </div>
+      <div class="input-field">
+        <input type="text" id="audience" required>
+        <label for="audience">Describe Your Audience</label>
+      </div>
+      <div class="input-field">
+        <select id="monetization" multiple>
+          <option value="affiliate">Affiliate Marketing</option>
+          <option value="ads">Ads</option>
+          <option value="products">Product Sales</option>
+        </select>
+        <label for="monetization">Monetization Strategies</label>
+      </div>
+      <div class="input-field">
+        <input type="text" id="trends" required>
+        <label for="trends">Trends You're Interested In</label>
+      </div>
+      <div class="input-field">
+        <input type="text" id="competition" required>
+        <label for="competition">Describe Competition Level</label>
+      </div>
+      <div class="input-field">
+        <select id="scalability">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <label for="scalability">Scalability</label>
+      </div>
+      <div class="input-field">
+        <input type="text" id="geographic" required>
+        <label for="geographic">Geographic Region of Focus</label>
+      </div>
+      <button type="submit" class="btn waves-effect waves-light">Analyze Niche</button>
+    </form>
+
+    <!-- Results section -->
+    <div id="results" class="results-section"></div>
   </div>
 
   <!-- Include jQuery and GSAP at the end of the body for better loading -->
-  <!-- Include jQuery (required by Materialize JS) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- Include Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-  <!-- Include GSAP Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 
   <!-- Custom Scripts -->
   <script>
-    // DOMContentLoaded event
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize Materialize Components
       M.AutoInit();
@@ -120,7 +226,6 @@ title: "Niche Analyzer"
         document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
 
         try {
-          // Send data to backend
           const response = await fetch('/.netlify/functions/niche-analyzer', {
             method: 'POST',
             headers: {
@@ -132,7 +237,6 @@ title: "Niche Analyzer"
           const data = await response.json();
 
           if (data.result) {
-            // Display results
             document.getElementById('results').innerHTML = `<h2>Your Niche Ideas:</h2><pre>${data.result}</pre>`;
           } else {
             document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
