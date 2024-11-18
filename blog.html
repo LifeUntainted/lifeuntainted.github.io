@@ -1,20 +1,53 @@
+<!-- blog.html -->
 ---
 layout: default
 title: "Blog - 321Niche"
+paginate: 10
+paginate_path: "/blog/page:num/"
 ---
-
+<!-- Blog Page -->
 <div class="container blog-page">
-  <div class="blog-header">
+  <!-- Blog Header -->
+  <div class="blog-header center-align">
     <h1 class="blog-title">Latest Insights</h1>
     <p class="blog-subtitle">Discover strategies, tips, and success stories to help you succeed in your niche</p>
   </div>
 
-  <div class="blog-list">
-    {% for post in site.posts %}
-      <a href="{{ post.url | relative_url }}" class="blog-entry">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
-      </a>
+  <!-- Blog List -->
+  <div class="blog-list row">
+    {% for post in paginator.posts %}
+      <div class="col s12 m6 l6">
+        <div class="ai-tools-box blog-entry">
+          <h5>{{ post.title }}</h5>
+          <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+          <a href="{{ post.url | relative_url }}" class="btn waves-effect waves-light">Read More</a>
+        </div>
+      </div>
     {% endfor %}
   </div>
+
+  <!-- Pagination Controls -->
+  {% if paginator.total_pages > 1 %}
+    <div class="pagination center-align">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}" class="btn waves-effect waves-light left"><i class="material-icons">chevron_left</i> Previous</a>
+      {% else %}
+        <span class="btn disabled">Previous</span>
+      {% endif %}
+
+      {% for page in (1..paginator.total_pages) %}
+        {% if page == paginator.page %}
+          <span class="btn active">{{ page }}</span>
+        {% else %}
+          <a href="{{ paginator.paginate_path | replace: ':num', page | relative_url }}" class="btn">{{ page }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}" class="btn waves-effect waves-light right">Next <i class="material-icons">chevron_right</i></a>
+      {% else %}
+        <span class="btn disabled">Next</span>
+      {% endif %}
+    </div>
+  {% endif %}
 </div>
