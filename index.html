@@ -23,7 +23,7 @@
     :root {
       --primary-color: #57FF8C;
       --secondary-color: #00695c;
-      --background-color: #121212;
+      --background-color: #000;
       --text-color: #E0E0E0;
       --hover-color: #88FFAA;
       --border-color: var(--primary-color);
@@ -117,7 +117,7 @@
     .hero-content h1 {
       font-size: 3rem;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+      text-shadow: 0 0 10px rgba(0, 105, 92, 0.7);
       opacity: 0;
       transform: translateY(50px);
       animation: fadeInUp 1s ease forwards;
@@ -129,7 +129,7 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      text-shadow: 0 0 5px rgba(0, 105, 92, 0.7);
       opacity: 0;
       transform: translateY(50px);
       animation: fadeInUp 1.2s ease forwards;
@@ -161,26 +161,24 @@
 
     /* Features Section */
     .feature-section {
-      position: absolute;
-      top: 45vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      z-index: 10;
+      background-color: var(--background-color);
+      padding: 4rem 2rem;
     }
 
-    .feature-section .container {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 105, 92, 0.3);
+    .feature-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
     }
 
     .feature-section .icon-block {
       padding: 1.2rem;
       border: 1px solid var(--secondary-color);
       background: rgba(0, 105, 92, 0.2);
-      border-radius: 8px;
+      border-radius: 12px;
       height: 100%;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       perspective: 1000px;
@@ -268,26 +266,36 @@
       color: var(--hover-color);
     }
 
-    /* Carousel */
-    .carousel {
-      margin-top: 2rem;
+    /* Testimonials Section */
+    .testimonials-section {
+      position: relative;
+      padding: 4rem 2rem;
     }
 
-    .carousel .carousel-item {
-      background: var(--card-background);
+    .testimonials-section .carousel {
+      background: rgba(0, 0, 0, 0.7);
       border: 1px solid var(--secondary-color);
       padding: 2rem;
       border-radius: 12px;
-      width: 400px !important;
-      font-size: 1.2rem;
       box-shadow: 0 4px 8px rgba(0,105,92,0.3);
     }
 
-    .carousel .carousel-item p {
-      margin-bottom: 1rem;
+    .testimonials-section .carousel-item {
+      background: transparent;
+      padding: 0;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    .carousel .carousel-item cite {
+    .testimonials-section .carousel-item p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    .testimonials-section .carousel-item cite {
       display: block;
       text-align: right;
       color: var(--primary-color);
@@ -410,6 +418,16 @@
       color: var(--primary-color);
     }
 
+    .social-icons a {
+      margin: 0 10px;
+      color: var(--footer-text);
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--primary-color);
+    }
+
     /* Responsive Design */
     @media screen and (max-width: 992px) {
       .hero-content h1 {
@@ -435,11 +453,7 @@
       }
 
       .feature-section {
-        top: 40vh;
-      }
-
-      .feature-section .container {
-        padding: 1rem;
+        padding: 2rem 1rem;
       }
 
       .feature-section .icon-block {
@@ -512,6 +526,7 @@
   <!-- Features Section -->
   <div class="feature-section">
     <div class="container">
+      <h2>Our Features</h2>
       <div class="row">
         <!-- Fast Guidance -->
         <div class="col s12 m4">
@@ -567,9 +582,8 @@
   </div>
 
   <!-- Testimonials Section -->
-  <div class="parallax-container">
-    <div class="parallax" style="background-image: url('https://source.unsplash.com/1600x900/?testimonial,nature');"></div>
-    <div class="container center-align" style="padding: 80px 0;">
+  <div class="testimonials-section">
+    <div class="container center-align">
       <h2 class="white-text">What Our Customers Say</h2>
       <div class="carousel">
         <div class="carousel-item">
@@ -622,7 +636,7 @@
 
   <!-- Footer -->
   <footer class="page-footer">
-    <div class="container">
+    <div class="container center-align">
       <h5>Trusted by Industry Leaders</h5>
       <p>Our tools have been used by over 1,000 successful entrepreneurs and have received glowing recommendations from experts across the industry.</p>
       <div class="social-icons">
@@ -643,8 +657,8 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize Mobile Navigation
-      var elems = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(elems);
+      var elemsSidenav = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elemsSidenav);
 
       // Initialize Parallax
       var elemsParallax = document.querySelectorAll('.parallax');
