@@ -135,19 +135,19 @@
           <p class="question-label">1. How do you prefer to spend your free time?</p>
           <p>
             <label>
-              <input name="q1" type="radio" value="social" />
+              <input name="q1" type="radio" value="E" />
               <span>With friends and family, socializing.</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q1" type="radio" value="creative" />
+              <input name="q1" type="radio" value="I" />
               <span>Engaging in creative activities (e.g., drawing, writing).</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q1" type="radio" value="learning" />
+              <input name="q1" type="radio" value="I" />
               <span>Reading or learning something new.</span>
             </label>
           </p>
@@ -157,19 +157,19 @@
           <p class="question-label">2. What kind of work environment do you prefer?</p>
           <p>
             <label>
-              <input name="q2" type="radio" value="structured" />
+              <input name="q2" type="radio" value="J" />
               <span>A structured and organized environment.</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q2" type="radio" value="dynamic" />
+              <input name="q2" type="radio" value="P" />
               <span>A dynamic and ever-changing environment.</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q2" type="radio" value="independent" />
+              <input name="q2" type="radio" value="I" />
               <span>An environment where I can work independently.</span>
             </label>
           </p>
@@ -179,35 +179,100 @@
           <p class="question-label">3. How do you make important decisions?</p>
           <p>
             <label>
-              <input name="q3" type="radio" value="logic" />
+              <input name="q3" type="radio" value="T" />
               <span>Based on logic and analysis.</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q3" type="radio" value="intuition" />
+              <input name="q3" type="radio" value="F" />
               <span>Based on gut feelings and intuition.</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q3" type="radio" value="consulting" />
+              <input name="q3" type="radio" value="F" />
               <span>After consulting others and weighing opinions.</span>
             </label>
           </p>
         </div>
+        
         <div class="question-group">
           <p class="question-label">4. Which statement best describes you?</p>
           <p>
             <label>
-              <input name="q4" type="radio" value="planner" />
+              <input name="q4" type="radio" value="J" />
               <span>I prefer to plan everything in advance.</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q4" type="radio" value="spontaneous" />
+              <input name="q4" type="radio" value="P" />
               <span>I enjoy spontaneity and the unexpected.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">5. How do you recharge your energy?</p>
+          <p>
+            <label>
+              <input name="q5" type="radio" value="E" />
+              <span>By being around people and socializing.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q5" type="radio" value="I" />
+              <span>By spending time alone, reflecting or reading.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">6. Do you prefer working with concrete facts or abstract ideas?</p>
+          <p>
+            <label>
+              <input name="q6" type="radio" value="S" />
+              <span>I prefer working with concrete facts and data.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q6" type="radio" value="N" />
+              <span>I enjoy working with abstract ideas and concepts.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">7. What motivates you more in life?</p>
+          <p>
+            <label>
+              <input name="q7" type="radio" value="T" />
+              <span>Achieving goals through clear reasoning and analysis.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q7" type="radio" value="F" />
+              <span>Connecting with others and building relationships.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">8. How do you approach new challenges?</p>
+          <p>
+            <label>
+              <input name="q8" type="radio" value="J" />
+              <span>With a plan and structured approach.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q8" type="radio" value="P" />
+              <span>With flexibility and openness to change.</span>
             </label>
           </p>
         </div>
@@ -350,29 +415,79 @@
 
     // Function to calculate personality type
     function calculatePersonalityType() {
-      const q1 = document.querySelector('input[name="q1"]:checked');
-      const q2 = document.querySelector('input[name="q2"]:checked');
-      const q3 = document.querySelector('input[name="q3"]:checked');
-      const q4 = document.querySelector('input[name="q4"]:checked');
+      // Initialize counts for each MBTI letter
+      var counts = {
+        'E': 0,
+        'I': 0,
+        'S': 0,
+        'N': 0,
+        'T': 0,
+        'F': 0,
+        'J': 0,
+        'P': 0
+      };
 
-      if (q1 && q2 && q3 && q4) {
-        let personalityType = "";
+      // List of question names
+      var questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'];
 
-        if (q1.value === "social" && q2.value === "structured" && q3.value === "logic" && q4.value === "planner") {
-          personalityType = "The Organizer - You prefer stability and enjoy organizing your surroundings.";
-        } else if (q1.value === "creative" && q2.value === "dynamic" && q3.value === "intuition" && q4.value === "spontaneous") {
-          personalityType = "The Creator - You thrive on creativity and spontaneity, enjoying new ideas and projects.";
-        } else if (q1.value === "learning" && q2.value === "independent" && q3.value === "logic" && q4.value === "planner") {
-          personalityType = "The Thinker - You value knowledge and prefer working independently with careful planning.";
-        } else {
-          personalityType = "The Explorer - You are flexible and adaptable, often trying new things and embracing uncertainty.";
+      // Loop through each question to gather responses
+      for (var i = 0; i < questions.length; i++) {
+        var qName = questions[i];
+        var radios = document.getElementsByName(qName);
+        var answered = false;
+
+        for (var j = 0; j < radios.length; j++) {
+          if (radios[j].checked) {
+            var value = radios[j].value;
+            counts[value]++;
+            answered = true;
+            break;
+          }
         }
 
-        document.getElementById('personality-type-result').innerText = personalityType;
-        document.getElementById('results').style.display = 'block';
-      } else {
-        alert('Please answer all questions to get your personality type.');
+        // Check if question was answered
+        if (!answered) {
+          alert('Please answer all questions.');
+          return;
+        }
       }
+
+      // Determine personality type
+      var personalityType = '';
+
+      // Extraversion vs. Introversion
+      if (counts['E'] >= counts['I']) {
+        personalityType += 'E';
+      } else {
+        personalityType += 'I';
+      }
+
+      // Sensing vs. Intuition
+      if (counts['S'] >= counts['N']) {
+        personalityType += 'S';
+      } else {
+        personalityType += 'N';
+      }
+
+      // Thinking vs. Feeling
+      if (counts['T'] >= counts['F']) {
+        personalityType += 'T';
+      } else {
+        personalityType += 'F';
+      }
+
+      // Judging vs. Perceiving
+      if (counts['J'] >= counts['P']) {
+        personalityType += 'J';
+      } else {
+        personalityType += 'P';
+      }
+
+      // Display the result
+      document.getElementById('personality-type-result').innerText = personalityType;
+      document.getElementById('results').style.display = 'block';
+      // Scroll to results
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 </body>
