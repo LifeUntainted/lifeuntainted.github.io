@@ -228,34 +228,39 @@
   <!-- Blog List -->
   <div class="container blog-page">
     <div class="blog-list row">
-      <!-- Blog Entry 1 -->
+      {% for post in paginator.posts %}
+      <!-- Blog Entry -->
       <div class="col s12 m6 l6">
         <div class="ai-tools-box blog-entry">
-          <h5>How to Discover Your Perfect Niche</h5>
-          <p>Discovering the perfect niche is crucial for your business success. This guide walks you through the steps to identify and validate your niche effectively.</p>
-          <a href="blog-post1.html" class="btn waves-effect waves-light">Read More</a>
+          <h5>{{ post.title }}</h5>
+          <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+          <a href="{{ post.url | relative_url }}" class="btn waves-effect waves-light">Read More</a>
         </div>
       </div>
-
-      <!-- Blog Entry 2 -->
-      <div class="col s12 m6 l6">
-        <div class="ai-tools-box blog-entry">
-          <h5>Top 10 Tools for Niche Research</h5>
-          <p>Equip yourself with the best tools for niche research. From keyword planners to market analysis tools, here's what you need to succeed.</p>
-          <a href="blog-post2.html" class="btn waves-effect waves-light">Read More</a>
-        </div>
-      </div>
-
-      <!-- Add more blog entries as needed -->
+      {% endfor %}
     </div>
 
     <!-- Pagination Controls -->
     <div class="pagination center-align">
-      <a href="#!" class="btn waves-effect waves-light left disabled"><i class="material-icons">chevron_left</i> Previous</a>
-      <a href="#!" class="btn waves-effect waves-light active">1</a>
-      <a href="#!" class="btn waves-effect waves-light">2</a>
-      <a href="#!" class="btn waves-effect waves-light">3</a>
-      <a href="#!" class="btn waves-effect waves-light right"><i class="material-icons">chevron_right</i> Next</a>
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}" class="btn waves-effect waves-light left"><i class="material-icons">chevron_left</i> Previous</a>
+      {% else %}
+        <a href="#" class="btn waves-effect waves-light left disabled"><i class="material-icons">chevron_left</i> Previous</a>
+      {% endif %}
+
+      {% for page in (1..paginator.total_pages) %}
+        {% if page == paginator.page %}
+          <a href="#" class="btn waves-effect waves-light active">{{ page }}</a>
+        {% else %}
+          <a href="{{ paginator.page_path(page) | relative_url }}" class="btn waves-effect waves-light">{{ page }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}" class="btn waves-effect waves-light right"><i class="material-icons">chevron_right</i> Next</a>
+      {% else %}
+        <a href="#" class="btn waves-effect waves-light right disabled"><i class="material-icons">chevron_right</i> Next</a>
+      {% endif %}
     </div>
   </div>
 
