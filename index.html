@@ -22,7 +22,7 @@
       background-color: #000;
       color: #fff;
       font-family: 'Orbitron', sans-serif;
-      margin: 0; /* Remove default browser margin */
+      margin: 0;
     }
 
     nav {
@@ -36,7 +36,7 @@
     }
 
     .parallax-container {
-      height: 75vh; /* Decreased height for better spacing */
+      height: 75vh;
       position: relative;
     }
 
@@ -53,7 +53,7 @@
     }
 
     .hero-content {
-      padding-top: 15vh; /* Decreased padding to bring the content higher */
+      padding-top: 15vh;
     }
 
     .main-title {
@@ -68,7 +68,7 @@
 
     .feature-section {
       position: absolute;
-      top: 40vh; /* Bring the section higher to reduce overlap */
+      top: 45vh;
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
@@ -76,7 +76,7 @@
     }
 
     .feature-section .container {
-      background: rgba(0, 0, 0, 0.8); /* Semi-transparent background for better contrast */
+      background: rgba(0, 0, 0, 0.8);
       padding: 1.5rem;
       border-radius: 12px;
     }
@@ -84,24 +84,34 @@
     .ai-tools-section {
       background-color: rgba(0, 0, 0, 0.9);
       padding: 4rem 0;
-      margin-top: -100px; /* Adjusted to bring it closer and reduce gap */
+      margin-top: -50px;
       position: relative;
       z-index: 5;
     }
 
     .icon-block {
-      padding: 1.2rem; /* Adjusted padding for better text-background integration */
+      padding: 1.2rem;
       border: 1px solid #00695c;
-      background: rgba(0, 105, 92, 0.2); /* More contrast for feature boxes */
+      background: rgba(0, 105, 92, 0.2);
       border-radius: 8px;
       height: 100%;
       transition: transform 0.3s ease;
-      margin: 0.5rem 0; /* Reduced margin to decrease extra spacing */
+      margin: 0.5rem 0;
+      perspective: 1000px;
     }
 
     .icon-block:hover {
-      transform: translateY(-5px);
+      transform: rotateY(180deg);
       box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
+    }
+
+    .icon-block .content {
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+
+    .icon-block:hover .content {
+      transform: rotateY(180deg);
     }
 
     .icon-block i {
@@ -121,7 +131,7 @@
       border-radius: 8px;
       padding: 1.2rem;
       height: 100%;
-      margin: 0.5rem 0; /* Reduced margin to decrease extra spacing */
+      margin: 0.5rem 0;
       transition: transform 0.3s ease;
     }
 
@@ -131,11 +141,12 @@
     }
 
     .carousel .carousel-item {
-      background: rgba(0, 0, 0, 0.9); /* Increased contrast for testimonial items */
+      background: rgba(0, 0, 0, 0.9);
       border: 1px solid #00695c;
       padding: 2rem;
       border-radius: 8px;
       width: 400px !important;
+      font-size: 1.2rem;
     }
 
     .btn, .btn-large {
@@ -153,7 +164,7 @@
     .page-footer {
       background-color: #000;
       border-top: 1px solid #00695c;
-      padding: 10px 0; /* Reduced padding for a more compact footer */
+      padding: 10px 0;
     }
 
     .input-field input {
@@ -231,6 +242,7 @@
     <div class="container center-align hero-content">
       <h1 class="main-title">Discover Your Future Niche Today</h1>
       <p>Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
+      <a href="#" class="btn waves-effect waves-light">Explore Tools Now</a>
     </div>
   </div>
 
@@ -241,27 +253,33 @@
         <!-- Fast Guidance -->
         <div class="col s12 m4">
           <div class="icon-block">
-            <i class="material-icons">flash_on</i>
-            <h5 class="feature-title">Fast Guidance</h5>
-            <p>Quickly find your niche with our streamlined tools and resources.</p>
+            <div class="content">
+              <i class="material-icons">flash_on</i>
+              <h5 class="feature-title">Fast Guidance</h5>
+              <p>Quickly find your niche with our streamlined tools and resources.</p>
+            </div>
           </div>
         </div>
 
         <!-- Community Support -->
         <div class="col s12 m4">
           <div class="icon-block">
-            <i class="material-icons">group</i>
-            <h5 class="feature-title">Community Support</h5>
-            <p>Join a community of like-minded individuals on the same journey.</p>
+            <div class="content">
+              <i class="material-icons">group</i>
+              <h5 class="feature-title">Community Support</h5>
+              <p>Join a community of like-minded individuals on the same journey.</p>
+            </div>
           </div>
         </div>
 
         <!-- AI-Powered Tools -->
         <div class="col s12 m4">
           <div class="icon-block">
-            <i class="material-icons">settings</i>
-            <h5 class="feature-title">AI-Powered Tools</h5>
-            <p>Leverage cutting-edge AI tools to accelerate your success.</p>
+            <div class="content">
+              <i class="material-icons">settings</i>
+              <h5 class="feature-title">AI-Powered Tools</h5>
+              <p>Leverage cutting-edge AI tools to accelerate your success.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -294,7 +312,7 @@
 
   <!-- Testimonials Section -->
   <div class="parallax-container">
-    <div class="parallax"><img src="images/testimonial-background.png" alt="Testimonial Background"></div>
+    <div class="parallax" style="background-image: url('images/testimonial-background.png');"></div>
     <div class="container center-align" style="padding: 80px 0;">
       <h2>What Our Customers Say</h2>
       <div class="carousel">
@@ -342,6 +360,9 @@
   <!-- Footer -->
   <footer class="page-footer">
     <div class="container">
+      <h5>Trusted by Industry Leaders</h5>
+      <p>Our tools have been used by over 1,000 successful entrepreneurs and have received glowing recommendations from experts across the industry.</p>
+      <hr>
       © 2024 321Niche
       <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
     </div>
@@ -366,7 +387,8 @@
         shift: 50,
         padding: 50,
         numVisible: 3,
-        indicators: true
+        indicators: true,
+        fullWidth: true
       });
     });
   </script>
