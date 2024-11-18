@@ -18,6 +18,9 @@
   <!-- Import Orbitron Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
+  <!-- Import particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
   <style>
     body {
       background-color: #000;
@@ -35,11 +38,32 @@
       margin-left: 20px;
     }
 
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
     .strengths-container {
       background-color: rgba(0, 0, 0, 0.9);
       padding: 4rem;
       border-radius: 8px;
       margin-top: 3rem;
+      position: relative;
+    }
+
+    .input-field input {
+      color: #fff !important;
+    }
+
+    .input-field input:focus {
+      border-bottom: 1px solid #00e676 !important;
+      box-shadow: 0 1px 0 0 #00e676 !important;
+    }
+
+    .input-field label {
+      color: #00e676;
     }
 
     .btn, .btn-large {
@@ -69,23 +93,6 @@
       margin-bottom: 2rem;
     }
 
-    .input-field label {
-      color: #00e676;
-    }
-
-    input[type="text"] {
-      color: #ffffff !important; /* Ensuring text is visible while typing */
-    }
-
-    .input-field input:focus + label {
-      color: #88FFAA !important; /* Ensures label color change on focus */
-    }
-
-    .input-field input:focus {
-      border-bottom: 1px solid #88FFAA !important; /* Better color when input is focused */
-      box-shadow: 0 1px 0 0 #88FFAA !important;
-    }
-
     .output-section {
       margin-top: 3rem;
       background: rgba(0, 105, 92, 0.1);
@@ -99,13 +106,17 @@
       font-size: 1.8rem;
     }
 
-    #results {
-      white-space: pre-wrap;
+    @media screen and (max-width: 600px) {
+      .strengths-container {
+        padding: 2rem;
+      }
     }
   </style>
 </head>
 
 <body>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
 
   <!-- Navigation Bar -->
   <nav>
@@ -141,15 +152,27 @@
       <form id="strengths-form" class="row">
         <div class="input-field col s12">
           <input id="strength1" type="text" class="validate">
-          <label for="strength1">What are your top 3 strengths? (e.g., Communication, Creativity, Problem Solving)</label>
+          <label for="strength1">What are your top 5 strengths? (e.g., Communication, Creativity, Problem Solving, Leadership, Empathy)</label>
         </div>
         <div class="input-field col s12">
           <input id="situations" type="text" class="validate">
-          <label for="situations">In what situations do you feel your strengths shine the most?</label>
+          <label for="situations">Describe a situation where you successfully utilized your strengths to achieve a positive outcome.</label>
         </div>
         <div class="input-field col s12">
-          <input id="application" type="text" class="validate">
-          <label for="application">How can you apply these strengths more in your career or personal life?</label>
+          <input id="feedback" type="text" class="validate">
+          <label for="feedback">What feedback have you received from others about your strengths?</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="motivation" type="text" class="validate">
+          <label for="motivation">What activities or tasks make you feel energized and motivated?</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="career-goals" type="text" class="validate">
+          <label for="career-goals">How do your strengths align with your career goals?</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="improvement" type="text" class="validate">
+          <label for="improvement">What strengths do you want to develop further, and how will you achieve this?</label>
         </div>
         <div class="center-align">
           <button type="button" class="btn waves-effect waves-light" onclick="generateResults()">Generate Results</button>
@@ -190,14 +213,140 @@
       // Initialize Mobile Navigation
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
+
+      // Initialize Particles.js
+      particlesJS('particles-js', {
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800
+            }
+          },
+          color: {
+            value: "#00e676"
+          },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000"
+            },
+            polygon: {
+              nb_sides: 5
+            }
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 1,
+              opacity_min: 0.3,
+              sync: false
+            }
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 4,
+              size_min: 0.1,
+              sync: false
+            }
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#00e676",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 6,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: false,
+              rotateX: 600,
+              rotateY: 1200
+            }
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse"
+            },
+            onclick: {
+              enable: true,
+              mode: "push"
+            },
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 400,
+              line_linked: {
+                opacity: 1
+              }
+            },
+            bubble: {
+              distance: 400,
+              size: 40,
+              duration: 2,
+              opacity: 8,
+              speed: 3
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4
+            },
+            push: {
+              particles_nb: 4
+            },
+            remove: {
+              particles_nb: 2
+            }
+          }
+        },
+        retina_detect: true
+      });
     });
 
     function generateResults() {
       const strength1 = document.getElementById('strength1').value;
       const situations = document.getElementById('situations').value;
-      const application = document.getElementById('application').value;
+      const feedback = document.getElementById('feedback').value;
+      const motivation = document.getElementById('motivation').value;
+      const careerGoals = document.getElementById('career-goals').value;
+      const improvement = document.getElementById('improvement').value;
 
-      const results = `Your Strengths:\n${strength1}\n\nWhere Your Strengths Shine:\n${situations}\n\nHow to Apply Your Strengths:\n${application}`;
+      const results = `Your Strengths:
+${strength1}
+
+Situations Where You Shine:
+${situations}
+
+Feedback on Your Strengths:
+${feedback}
+
+Activities that Motivate You:
+${motivation}
+
+Career Goals and Strength Alignment:
+${careerGoals}
+
+Strengths to Develop Further:
+${improvement}`;
       
       document.getElementById('results').innerText = results;
       document.getElementById('results-section').style.display = 'block';
