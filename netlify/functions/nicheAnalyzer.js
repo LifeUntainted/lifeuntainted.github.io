@@ -1,8 +1,8 @@
 const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
-  // Add some debugging to see what's being received
-  console.log("Received Event:", event);
+  // Debugging: Log the entire event to see what is received
+  console.log("Received Event:", JSON.stringify(event, null, 2));
 
   // Check if the request method is POST
   if (event.httpMethod !== 'POST') {
@@ -10,6 +10,7 @@ exports.handler = async (event) => {
       statusCode: 405,
       headers: {
         "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ message: "Method Not Allowed, please use POST" })
     };
@@ -17,10 +18,36 @@ exports.handler = async (event) => {
 
   try {
     // Parse the incoming request body (expecting JSON format)
-    const body = JSON.parse(event.body);
+    let body;
+
+    // To avoid errors when the body is empty
+    if (event.body) {
+      body = JSON.parse(event.body);
+    } else {
+      return {
+        statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: "Invalid request, body cannot be empty." })
+      };
+    }
 
     // Extract user inputs from the body
     const { interests, skills, audience, monetization, trends, competition, scalability, geographic } = body;
+
+    // Validate required fields (in case some inputs are missing)
+    if (!interests || !skills || !audience || !monetization) {
+      return {
+        statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: "Required fields missing. Please include interests, skills, audience, and monetization." })
+      };
+    }
 
     // Prepare a detailed prompt to send to OpenAI to generate niche ideas
     const prompt = `
@@ -30,10 +57,10 @@ exports.handler = async (event) => {
       - Skills: ${skills}
       - Audience: ${audience}
       - Monetization strategies: ${monetization}
-      - Trends they're interested in: ${trends}
-      - Competition Level: ${competition}
-      - Scalability: ${scalability}
-      - Geographic Region: ${geographic}
+      - Trends they're interested in: ${trends || 'N/A'}
+      - Competition Level: ${competition || 'N/A'}
+      - Scalability: ${scalability || 'N/A'}
+      - Geographic Region: ${geographic || 'N/A'}
 
       Based on this information, suggest 3 potential niches that could be profitable. For each niche:
       1. Describe the niche.
@@ -58,6 +85,7 @@ exports.handler = async (event) => {
     });
 
     if (!response.ok) {
+      console.error(`OpenAI API responded with status ${response.status}: ${response.statusText}`);
       throw new Error(`OpenAI API responded with status ${response.status}`);
     }
 
@@ -78,10 +106,12 @@ exports.handler = async (event) => {
         body: JSON.stringify({ result: nicheIdeas })
       };
     } else {
+      console.error("Failed to get valid response from OpenAI API", data);
       return {
         statusCode: 500,
         headers: {
           "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ error: "Failed to generate niche ideas. No valid response from OpenAI." })
       };
