@@ -4,11 +4,12 @@ layout: default
 title: "Welcome to 321Niche.com"
 ---
 <!-- Hero Section -->
-<div class="hero">
-  <div class="hero-content">
+<div class="parallax-container">
+  <div class="parallax" style="background-image: url('{{ "/images/hero-image.png" | relative_url }}');"></div>
+  <div class="container center-align hero-content">
     <h1 class="main-title">Discover Your Future Niche Today</h1>
     <p>Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
-    <a href="#tools" class="btn waves-effect waves-light">Explore Tools Now</a>
+    <a href="#tools" class="btn waves-effect waves-light" style="margin-top: 20px;">Explore Tools Now</a>
   </div>
 </div>
 
@@ -56,14 +57,14 @@ title: "Welcome to 321Niche.com"
         <div class="ai-tools-box">
           <h5><i class="material-icons left">trending_up</i>Niche Analyzer</h5>
           <p>Analyze market trends and discover profitable niches with our AI algorithm.</p>
-          <a href="niche-analyzer.html" class="btn waves-effect waves-light">Learn More</a>
+          <a href="{{ '/niche-analyzer.html' | relative_url }}" class="btn waves-effect waves-light">Learn More</a>
         </div>
       </div>
       <div class="col s12 m6">
         <div class="ai-tools-box">
           <h5><i class="material-icons left">build</i>Free Tools</h5>
           <p>Access a variety of free tools to enhance your niche discovery and growth.</p>
-          <a href="tools.html" class="btn waves-effect waves-light">Explore Tools</a>
+          <a href="{{ '/tools.html' | relative_url }}" class="btn waves-effect waves-light">Explore Tools</a>
         </div>
       </div>
     </div>
@@ -71,8 +72,9 @@ title: "Welcome to 321Niche.com"
 </div>
 
 <!-- Testimonials Section -->
-<div class="testimonials-section">
-  <div class="container center-align">
+<div class="parallax-container">
+  <div class="parallax" style="background-image: url('{{ "/images/testimonial-background.png" | relative_url }}');"></div>
+  <div class="container center-align" style="padding: 80px 0;">
     <h2 class="white-text">What Our Customers Say</h2>
     <div class="carousel">
       <div class="carousel-item">
