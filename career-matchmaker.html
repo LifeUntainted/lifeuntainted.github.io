@@ -364,18 +364,24 @@
       "retina_detect": true
     });
 
-    // Career Data with Descriptions will be loaded dynamically from careers.json
-
+    // Career Data will be loaded dynamically from careers.json
     let careersData = [];
 
     // Fetch career data from external JSON
     fetch('careers.json')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
       .then(data => {
         careersData = data;
+        console.log('Career data loaded successfully:', careersData);
       })
       .catch(error => {
         console.error('Error fetching career data:', error);
+        alert('Failed to load career data. Please try again later.');
       });
 
     // Function to sanitize user inputs
@@ -387,7 +393,7 @@
 
     // Basic stemming function (for demonstration purposes)
     function stem(word) {
-      // Simple rules for demonstration; consider using a library for production
+      // Simple rules for demonstration; consider using a library like Porter Stemmer for production
       if (word.endsWith('ing') || word.endsWith('ed')) {
         return word.slice(0, -3);
       } else if (word.endsWith('es') || word.endsWith('s')) {
@@ -439,9 +445,16 @@
         // Calculate match scores for each career
         const careerScores = careersData.map(career => {
           let score = 0;
-          const careerKeywords = [...career.keywords, ...career.synonyms];
-          careerKeywords.forEach(keyword => {
-            const stemmedKeyword = stem(keyword);
+
+          // Ensure keywords object has both skills and responsibilities
+          const skills = career.keywords.skills || [];
+          const responsibilities = career.keywords.responsibilities || [];
+
+          // Combine skills and responsibilities with synonyms
+          const combinedKeywords = [...skills, ...responsibilities, ...career.synonyms];
+
+          combinedKeywords.forEach(keyword => {
+            const stemmedKeyword = stem(keyword.toLowerCase());
             if (wordFrequency[stemmedKeyword]) {
               score += wordFrequency[stemmedKeyword] * 2; // Higher weight for exact matches
             } else {
@@ -453,6 +466,7 @@
               });
             }
           });
+
           return { ...career, score };
         });
 
