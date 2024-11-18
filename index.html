@@ -17,55 +17,149 @@
   <!-- Import Orbitron Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
+  <!-- Custom Styles -->
   <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Orbitron', sans-serif;
-      margin: 0;
+    /* CSS Variables */
+    :root {
+      --primary-color: #57FF8C;
+      --secondary-color: #00695c;
+      --background-color: #121212;
+      --text-color: #E0E0E0;
+      --hover-color: #88FFAA;
+      --border-color: var(--primary-color);
+      --description-color: #B0BEC5;
+      --card-background: rgba(0, 105, 92, 0.1);
+      --button-hover-color: #004d40;
+      --footer-background: #000;
+      --footer-text: #B0BEC5;
+      --overlay-color: rgba(18, 18, 18, 0.7);
     }
 
+    /* Global Styles */
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Navigation Bar */
     nav {
       background-color: rgba(0, 0, 0, 0.8);
-      border-bottom: 1px solid #00695c;
+      border-bottom: 1px solid var(--secondary-color);
+      padding: 0 20px;
     }
 
     .brand-logo {
       font-weight: 700;
       margin-left: 20px;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
     }
 
-    .parallax-container {
-      height: 75vh;
+    nav ul li a {
+      color: var(--text-color) !important;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: var(--primary-color) !important;
+    }
+
+    /* Mobile Navigation */
+    .sidenav {
+      background-color: var(--background-color);
+    }
+
+    .sidenav li > a {
+      color: var(--text-color) !important;
+      font-weight: 500;
+    }
+
+    .sidenav li > a:hover {
+      color: var(--primary-color) !important;
+    }
+
+    /* Hero Section */
+    .hero {
       position: relative;
+      height: 100vh;
+      background: url('https://source.unsplash.com/1600x900/?nature,technology') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
     }
 
-    .parallax {
-      position: fixed;
+    .hero::before {
+      content: '';
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
-      background-size: cover;
-      background-position: center;
-      transform: translateZ(0);
+      background-color: var(--overlay-color);
+      z-index: 1;
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+      transition: border-radius 0.5s ease;
     }
 
     .hero-content {
-      padding-top: 15vh;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
     }
 
-    .main-title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      text-transform: uppercase;
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
       opacity: 0;
       transform: translateY(50px);
       animation: fadeInUp 1s ease forwards;
-      text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
     }
 
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    .hero-content .btn {
+      background-color: var(--primary-color);
+      border-radius: 50px;
+      padding: 10px 30px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1.4s ease forwards;
+    }
+
+    .hero-content .btn:hover {
+      background-color: var(--hover-color);
+      transform: translateY(-3px);
+    }
+
+    /* Keyframes */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Features Section */
     .feature-section {
       position: absolute;
       top: 45vh;
@@ -77,136 +171,306 @@
 
     .feature-section .container {
       background: rgba(0, 0, 0, 0.8);
-      padding: 1.5rem;
+      padding: 2rem;
       border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 105, 92, 0.3);
     }
 
-    .ai-tools-section {
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 4rem 0;
-      margin-top: -50px;
-      position: relative;
-      z-index: 5;
-    }
-
-    .icon-block {
+    .feature-section .icon-block {
       padding: 1.2rem;
-      border: 1px solid #00695c;
+      border: 1px solid var(--secondary-color);
       background: rgba(0, 105, 92, 0.2);
       border-radius: 8px;
       height: 100%;
-      transition: transform 0.3s ease;
-      margin: 0.5rem 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       perspective: 1000px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .icon-block:hover {
-      transform: rotateY(180deg);
+    .feature-section .icon-block:hover {
+      transform: translateY(-5px);
       box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
     }
 
-    .icon-block .content {
-      transform-style: preserve-3d;
-      transition: transform 0.5s;
-    }
-
-    .icon-block:hover .content {
-      transform: rotateY(180deg);
-    }
-
-    .icon-block i {
+    .feature-section .icon-block i {
       font-size: 3rem;
-      color: #00695c;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .feature-section .icon-block:hover i {
+      color: var(--hover-color);
     }
 
     .feature-title {
       color: #fff;
       margin: 1rem 0;
       font-size: 1.5rem;
+      text-align: center;
+    }
+
+    /* AI Tools Section */
+    .ai-tools-section {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 4rem 2rem;
+      margin-top: -50px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .ai-tools-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
     }
 
     .ai-tools-box {
-      border: 1px solid #00695c;
-      background: rgba(0, 105, 92, 0.1);
-      border-radius: 8px;
-      padding: 1.2rem;
+      border: 1px solid var(--secondary-color);
+      background: var(--card-background);
+      border-radius: 12px;
+      padding: 1.5rem;
       height: 100%;
       margin: 0.5rem 0;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
     .ai-tools-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 105, 92, 0.4);
+    }
+
+    .ai-tools-box h5 {
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .ai-tools-box h5 i {
+      margin-right: 10px;
+      color: var(--primary-color);
+      transition: color 0.3s ease;
+    }
+
+    .ai-tools-box:hover h5 i {
+      color: var(--hover-color);
+    }
+
+    /* Carousel */
+    .carousel {
+      margin-top: 2rem;
     }
 
     .carousel .carousel-item {
-      background: rgba(0, 0, 0, 0.9);
-      border: 1px solid #00695c;
+      background: var(--card-background);
+      border: 1px solid var(--secondary-color);
       padding: 2rem;
-      border-radius: 8px;
+      border-radius: 12px;
       width: 400px !important;
       font-size: 1.2rem;
+      box-shadow: 0 4px 8px rgba(0,105,92,0.3);
     }
 
-    .btn, .btn-large {
-      background-color: #00695c;
+    .carousel .carousel-item p {
+      margin-bottom: 1rem;
+    }
+
+    .carousel .carousel-item cite {
+      display: block;
+      text-align: right;
+      color: var(--primary-color);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* Welcome Section */
+    .welcome-section {
+      background-color: var(--background-color);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    .welcome-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .welcome-section p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Newsletter Section */
+    .newsletter-section {
+      background-color: var(--background-color);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    .newsletter-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .newsletter-section p {
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.1rem;
+    }
+
+    .newsletter-section .input-field input {
+      border-bottom: 1px solid var(--secondary-color) !important;
+      color: #fff !important;
+    }
+
+    .newsletter-section .input-field input:focus {
+      border-bottom: 1px solid var(--hover-color) !important;
+      box-shadow: 0 1px 0 0 var(--hover-color) !important;
+    }
+
+    .newsletter-section .input-field label {
+      color: #fff !important;
+    }
+
+    .newsletter-section .btn {
+      background-color: var(--secondary-color);
       text-transform: uppercase;
       font-family: 'Orbitron', sans-serif;
       transition: all 0.3s ease;
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
     }
 
-    .btn:hover, .btn-large:hover {
-      background-color: #004d40;
+    .newsletter-section .btn:hover {
+      background-color: var(--button-hover-color);
       box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+      transform: translateY(-2px);
     }
 
+    /* Footer */
     .page-footer {
-      background-color: #000;
-      border-top: 1px solid #00695c;
-      padding: 10px 0;
+      background-color: var(--footer-background);
+      border-top: 1px solid var(--secondary-color);
+      padding: 20px 0;
+      color: var(--footer-text);
     }
 
-    .input-field input {
-      border-bottom: 1px solid #00695c !important;
-      color: #fff !important;
+    .page-footer .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .input-field input:focus {
-      border-bottom: 1px solid #00897b !important;
-      box-shadow: 0 1px 0 0 #00897b !important;
+    .page-footer h5 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .input-field label {
-      color: #fff !important;
+    .page-footer p {
+      margin-bottom: 1rem;
+      max-width: 600px;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+    .page-footer a {
+      color: var(--footer-text);
+      margin-top: 10px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .page-footer a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 992px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .feature-section .icon-block h5 {
+        font-size: 1.3rem;
+      }
+
+      .ai-tools-section h2 {
+        font-size: 2rem;
       }
     }
 
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
+    @media screen and (max-width: 600px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
 
-    ::-webkit-scrollbar-track {
-      background: #000;
-    }
+      .hero-content p {
+        font-size: 1rem;
+      }
 
-    ::-webkit-scrollbar-thumb {
-      background: #00695c;
-      border-radius: 4px;
-    }
+      .feature-section {
+        top: 40vh;
+      }
 
-    .sidenav {
-      background-color: #000;
-    }
+      .feature-section .container {
+        padding: 1rem;
+      }
 
-    .sidenav li > a {
-      color: #fff;
+      .feature-section .icon-block {
+        padding: 1rem;
+      }
+
+      .ai-tools-section {
+        padding: 2rem 1rem;
+      }
+
+      .ai-tools-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .ai-tools-box {
+        padding: 1rem;
+      }
+
+      .ai-tools-box h5 {
+        font-size: 1.2rem;
+      }
+
+      .carousel .carousel-item {
+        width: 300px !important;
+        padding: 1.5rem;
+        font-size: 1rem;
+      }
+
+      .welcome-section h2, .newsletter-section h2 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
@@ -237,12 +501,11 @@
   </ul>
 
   <!-- Hero Section -->
-  <div class="parallax-container">
-    <div class="parallax" style="background-image: url('images/hero-image.png');"></div>
-    <div class="container center-align hero-content">
+  <div class="hero">
+    <div class="hero-content">
       <h1 class="main-title">Discover Your Future Niche Today</h1>
       <p>Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
-      <a href="tools.html" class="btn waves-effect waves-light" style="margin-top: 20px;">Explore Tools Now</a>
+      <a href="#tools" class="btn waves-effect waves-light">Explore Tools Now</a>
     </div>
   </div>
 
@@ -253,33 +516,27 @@
         <!-- Fast Guidance -->
         <div class="col s12 m4">
           <div class="icon-block">
-            <div class="content">
-              <i class="material-icons">flash_on</i>
-              <h5 class="feature-title">Fast Guidance</h5>
-              <p>Quickly find your niche with our streamlined tools and resources.</p>
-            </div>
+            <i class="material-icons">flash_on</i>
+            <h5 class="feature-title">Fast Guidance</h5>
+            <p>Quickly find your niche with our streamlined tools and resources.</p>
           </div>
         </div>
 
         <!-- Community Support -->
         <div class="col s12 m4">
           <div class="icon-block">
-            <div class="content">
-              <i class="material-icons">group</i>
-              <h5 class="feature-title">Community Support</h5>
-              <p>Join a community of like-minded individuals on the same journey.</p>
-            </div>
+            <i class="material-icons">group</i>
+            <h5 class="feature-title">Community Support</h5>
+            <p>Join a community of like-minded individuals on the same journey.</p>
           </div>
         </div>
 
         <!-- AI-Powered Tools -->
         <div class="col s12 m4">
           <div class="icon-block">
-            <div class="content">
-              <i class="material-icons">settings</i>
-              <h5 class="feature-title">AI-Powered Tools</h5>
-              <p>Leverage cutting-edge AI tools to accelerate your success.</p>
-            </div>
+            <i class="material-icons">settings</i>
+            <h5 class="feature-title">AI-Powered Tools</h5>
+            <p>Leverage cutting-edge AI tools to accelerate your success.</p>
           </div>
         </div>
       </div>
@@ -287,9 +544,9 @@
   </div>
 
   <!-- AI Tools Section -->
-  <div class="ai-tools-section">
+  <div class="ai-tools-section" id="tools">
     <div class="container">
-      <h2 class="center-align">Our AI-Powered Tools</h2>
+      <h2>Our AI-Powered Tools</h2>
       <div class="row">
         <div class="col s12 m6">
           <div class="ai-tools-box">
@@ -311,9 +568,9 @@
 
   <!-- Testimonials Section -->
   <div class="parallax-container">
-    <div class="parallax" style="background-image: url('images/testimonial-background.png');"></div>
+    <div class="parallax" style="background-image: url('https://source.unsplash.com/1600x900/?testimonial,nature');"></div>
     <div class="container center-align" style="padding: 80px 0;">
-      <h2>What Our Customers Say</h2>
+      <h2 class="white-text">What Our Customers Say</h2>
       <div class="carousel">
         <div class="carousel-item">
           <p>"321Niche helped me focus and find clarity in my business direction. The AI tools were game-changing for my market research!"</p>
@@ -332,33 +589,33 @@
   </div>
 
   <!-- Welcome Section -->
-  <div class="parallax-container" style="background: rgba(0, 0, 0, 0.9);">
-    <div class="container center-align" style="padding: 50px 0;">
+  <div class="welcome-section">
+    <div class="container">
+      <h2>Welcome to 321Niche.com</h2>
       <p>Welcome to 321Niche.com, your one-stop destination for personal growth, niche discovery, and self-improvement. Here you can access a wide range of free tools designed to help you visualize your journey and achieve your goals, whether it’s discovering a profitable niche or growing personally. Our private journal system allows you to record your thoughts safely and securely, right in your browser, with data stored locally in your cookies. From niche analyzers to visualization aids, 321Niche is all about empowering you to reach your potential. Dive in, explore, and see how our tools can be the key to unlocking your future.</p>
     </div>
   </div>
 
   <!-- Newsletter Section -->
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <div class="col s12 m8 offset-m2">
-          <h2 class="center-align">Stay Updated</h2>
-          <p class="center-align">Subscribe to our newsletter and be the first to hear about new resources, tools, and community events.</p>
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s12 m8">
-                <input id="email" type="email" class="validate">
-                <label for="email">Email</label>
-              </div>
-              <div class="col s12 m4">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Subscribe
-                  <i class="material-icons right">send</i>
-                </button>
-              </div>
+  <div class="newsletter-section">
+    <div class="container">
+      <div class="section">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter and be the first to hear about new resources, tools, and community events.</p>
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12 m8 offset-m2">
+              <input id="email" type="email" class="validate" required>
+              <label for="email">Email</label>
+              <span class="helper-text" data-error="Invalid email" data-success="Valid email"></span>
             </div>
-          </form>
-        </div>
+            <div class="col s12 m4 offset-m4">
+              <button class="btn waves-effect waves-light" type="submit" name="action">Subscribe
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -368,14 +625,21 @@
     <div class="container">
       <h5>Trusted by Industry Leaders</h5>
       <p>Our tools have been used by over 1,000 successful entrepreneurs and have received glowing recommendations from experts across the industry.</p>
+      <div class="social-icons">
+        <a href="#" class="grey-text text-lighten-4"><i class="material-icons">facebook</i></a>
+        <a href="#" class="grey-text text-lighten-4"><i class="material-icons">twitter</i></a>
+        <a href="#" class="grey-text text-lighten-4"><i class="material-icons">instagram</i></a>
+        <a href="#" class="grey-text text-lighten-4"><i class="material-icons">linkedin</i></a>
+      </div>
       <hr>
-      © 2024 321Niche
-      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+      <span>&copy; 2024 321Niche</span>
+      <a href="contact.html">Contact Us</a>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize Mobile Navigation
@@ -394,10 +658,45 @@
         padding: 50,
         numVisible: 3,
         indicators: true,
-        fullWidth: true,
-        autoplay: true
+        fullWidth: false,
+        autoplay: true,
+        interval: 3000
+      });
+
+      // Initialize ScrollSpy
+      var elemsScrollSpy = document.querySelectorAll('.scrollspy');
+      M.ScrollSpy.init(elemsScrollSpy, {
+        scrollOffset: 50
+      });
+
+      // Smooth Scroll for Hero Button
+      const heroButton = document.querySelector('.hero-content .btn');
+      heroButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+          window.scrollTo({
+            top: target.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
+
+      // Form Validation (Simple Example)
+      const newsletterForm = document.querySelector('.newsletter-section form');
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = document.getElementById('email');
+        if (emailInput.checkValidity()) {
+          M.toast({html: 'Thank you for subscribing!', classes: 'rounded'});
+          emailInput.value = '';
+          M.updateTextFields();
+        } else {
+          M.toast({html: 'Please enter a valid email address.', classes: 'rounded red'});
+        }
       });
     });
   </script>
+
 </body>
 </html>
