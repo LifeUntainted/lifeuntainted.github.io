@@ -92,6 +92,16 @@
     .question-group {
       margin-bottom: 1.5rem;
     }
+
+    .output-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #00e676;
+    }
+
+    .personality-description {
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -131,6 +141,7 @@
 
       <!-- Personality Test Form -->
       <form id="personality-test-form">
+        <!-- Extraversion vs. Introversion -->
         <div class="question-group">
           <p class="question-label">1. How do you prefer to spend your free time?</p>
           <p>
@@ -154,125 +165,314 @@
         </div>
 
         <div class="question-group">
-          <p class="question-label">2. What kind of work environment do you prefer?</p>
+          <p class="question-label">2. In social gatherings, you are more likely to:</p>
           <p>
             <label>
-              <input name="q2" type="radio" value="J" />
-              <span>A structured and organized environment.</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input name="q2" type="radio" value="P" />
-              <span>A dynamic and ever-changing environment.</span>
+              <input name="q2" type="radio" value="E" />
+              <span>Engage actively with many people.</span>
             </label>
           </p>
           <p>
             <label>
               <input name="q2" type="radio" value="I" />
-              <span>An environment where I can work independently.</span>
+              <span>Have deep conversations with a few individuals.</span>
             </label>
           </p>
         </div>
 
         <div class="question-group">
-          <p class="question-label">3. How do you make important decisions?</p>
+          <p class="question-label">3. When faced with a new project, you:</p>
           <p>
             <label>
-              <input name="q3" type="radio" value="T" />
-              <span>Based on logic and analysis.</span>
+              <input name="q3" type="radio" value="E" />
+              <span>Feel energized and excited to start.</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q3" type="radio" value="F" />
-              <span>Based on gut feelings and intuition.</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input name="q3" type="radio" value="F" />
-              <span>After consulting others and weighing opinions.</span>
+              <input name="q3" type="radio" value="I" />
+              <span>Prefer to think it through before beginning.</span>
             </label>
           </p>
         </div>
-        
+
+        <!-- Sensing vs. Intuition -->
         <div class="question-group">
-          <p class="question-label">4. Which statement best describes you?</p>
+          <p class="question-label">4. When learning something new, you prefer:</p>
           <p>
             <label>
-              <input name="q4" type="radio" value="J" />
-              <span>I prefer to plan everything in advance.</span>
+              <input name="q4" type="radio" value="S" />
+              <span>Practical applications and real-life examples.</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q4" type="radio" value="P" />
-              <span>I enjoy spontaneity and the unexpected.</span>
+              <input name="q4" type="radio" value="N" />
+              <span>Theoretical concepts and abstract ideas.</span>
             </label>
           </p>
         </div>
 
         <div class="question-group">
-          <p class="question-label">5. How do you recharge your energy?</p>
+          <p class="question-label">5. When solving problems, you focus on:</p>
           <p>
             <label>
-              <input name="q5" type="radio" value="E" />
-              <span>By being around people and socializing.</span>
+              <input name="q5" type="radio" value="S" />
+              <span>Details and specific information.</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q5" type="radio" value="I" />
-              <span>By spending time alone, reflecting or reading.</span>
+              <input name="q5" type="radio" value="N" />
+              <span>The big picture and underlying patterns.</span>
             </label>
           </p>
         </div>
 
         <div class="question-group">
-          <p class="question-label">6. Do you prefer working with concrete facts or abstract ideas?</p>
+          <p class="question-label">6. You are more drawn to:</p>
           <p>
             <label>
               <input name="q6" type="radio" value="S" />
-              <span>I prefer working with concrete facts and data.</span>
+              <span>Concrete facts and data.</span>
             </label>
           </p>
           <p>
             <label>
               <input name="q6" type="radio" value="N" />
-              <span>I enjoy working with abstract ideas and concepts.</span>
+              <span>Ideas and possibilities.</span>
             </label>
           </p>
         </div>
 
+        <!-- Thinking vs. Feeling -->
         <div class="question-group">
-          <p class="question-label">7. What motivates you more in life?</p>
+          <p class="question-label">7. When making decisions, you prioritize:</p>
           <p>
             <label>
               <input name="q7" type="radio" value="T" />
-              <span>Achieving goals through clear reasoning and analysis.</span>
+              <span>Logic and objective analysis.</span>
             </label>
           </p>
           <p>
             <label>
               <input name="q7" type="radio" value="F" />
-              <span>Connecting with others and building relationships.</span>
+              <span>Personal values and the impact on others.</span>
             </label>
           </p>
         </div>
 
         <div class="question-group">
-          <p class="question-label">8. How do you approach new challenges?</p>
+          <p class="question-label">8. In discussions, you tend to:</p>
           <p>
             <label>
-              <input name="q8" type="radio" value="J" />
-              <span>With a plan and structured approach.</span>
+              <input name="q8" type="radio" value="T" />
+              <span>Focus on facts and evidence.</span>
             </label>
           </p>
           <p>
             <label>
-              <input name="q8" type="radio" value="P" />
-              <span>With flexibility and openness to change.</span>
+              <input name="q8" type="radio" value="F" />
+              <span>Consider emotions and relationships.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">9. You value:</p>
+          <p>
+            <label>
+              <input name="q9" type="radio" value="T" />
+              <span>Fairness and justice.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q9" type="radio" value="F" />
+              <span>Compassion and harmony.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Judging vs. Perceiving -->
+        <div class="question-group">
+          <p class="question-label">10. You prefer to:</p>
+          <p>
+            <label>
+              <input name="q10" type="radio" value="J" />
+              <span>Have a planned and organized approach.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q10" type="radio" value="P" />
+              <span>Stay flexible and adapt as needed.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">11. When working on tasks, you:</p>
+          <p>
+            <label>
+              <input name="q11" type="radio" value="J" />
+              <span>Prefer to set deadlines and stick to them.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q11" type="radio" value="P" />
+              <span>Like to keep options open and extend deadlines.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">12. You find comfort in:</p>
+          <p>
+            <label>
+              <input name="q12" type="radio" value="J" />
+              <span>Having things settled and decided.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q12" type="radio" value="P" />
+              <span>Embracing spontaneity and change.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Additional Questions for Better Accuracy -->
+        <!-- Extraversion vs. Introversion -->
+        <div class="question-group">
+          <p class="question-label">13. You gain energy by:</p>
+          <p>
+            <label>
+              <input name="q13" type="radio" value="E" />
+              <span>Being around people and social activities.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q13" type="radio" value="I" />
+              <span>Spending time alone or in quiet environments.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Sensing vs. Intuition -->
+        <div class="question-group">
+          <p class="question-label">14. When reading a book, you prefer:</p>
+          <p>
+            <label>
+              <input name="q14" type="radio" value="S" />
+              <span>Detailed and factual content.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q14" type="radio" value="N" />
+              <span>Exploring themes and underlying meanings.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Thinking vs. Feeling -->
+        <div class="question-group">
+          <p class="question-label">15. In a team, you are more likely to:</p>
+          <p>
+            <label>
+              <input name="q15" type="radio" value="T" />
+              <span>Focus on task completion and efficiency.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q15" type="radio" value="F" />
+              <span>Ensure everyone feels valued and heard.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Judging vs. Perceiving -->
+        <div class="question-group">
+          <p class="question-label">16. When planning a trip, you:</p>
+          <p>
+            <label>
+              <input name="q16" type="radio" value="J" />
+              <span>Create a detailed itinerary.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q16" type="radio" value="P" />
+              <span>Prefer to explore spontaneously.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Optional Additional Questions -->
+        <div class="question-group">
+          <p class="question-label">17. When faced with a problem, you:</p>
+          <p>
+            <label>
+              <input name="q17" type="radio" value="E" />
+              <span>Discuss it with others to find a solution.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q17" type="radio" value="I" />
+              <span>Prefer to solve it on your own.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">18. You believe that:</p>
+          <p>
+            <label>
+              <input name="q18" type="radio" value="S" />
+              <span>Practical solutions are the most effective.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q18" type="radio" value="N" />
+              <span>Innovative ideas lead to progress.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">19. In your work, you value:</p>
+          <p>
+            <label>
+              <input name="q19" type="radio" value="T" />
+              <span>Objective criteria and standards.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q19" type="radio" value="F" />
+              <span>Personal connections and team morale.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">20. You handle deadlines by:</p>
+          <p>
+            <label>
+              <input name="q20" type="radio" value="J" />
+              <span>Planning ahead to meet them comfortably.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q20" type="radio" value="P" />
+              <span>Working up to them with a flexible approach.</span>
             </label>
           </p>
         </div>
@@ -282,9 +482,11 @@
         </div>
       </form>
 
+      <!-- Results Section -->
       <div id="results" class="test-question" style="display: none;">
         <h3 class="output-title">Your Personality Type:</h3>
         <p id="personality-type-result"></p>
+        <div id="personality-description" class="personality-description"></div>
       </div>
     </div>
   </div>
@@ -413,6 +615,26 @@
       "retina_detect": true
     });
 
+    // Personality Type Descriptions
+    const personalityDescriptions = {
+      "ISTJ": "ISTJ - The Inspector: Practical and fact-minded individuals, whose reliability cannot be doubted.",
+      "ISFJ": "ISFJ - The Protector: Very dedicated and warm in their relationships, always ready to protect those they care about.",
+      "INFJ": "INFJ - The Advocate: Quiet and mystical, yet very inspiring and tireless idealists.",
+      "INTJ": "INTJ - The Architect: Imaginative and strategic thinkers, with a plan for everything.",
+      "ISTP": "ISTP - The Virtuoso: Bold and practical experimenters, masters of all kinds of tools.",
+      "ISFP": "ISFP - The Adventurer: Flexible and charming artists, always ready to explore and experience something new.",
+      "INFP": "INFP - The Mediator: Poetic, kind, and altruistic people, always eager to help a good cause.",
+      "INTP": "INTP - The Logician: Innovative inventors with an unquenchable thirst for knowledge.",
+      "ESTP": "ESTP - The Entrepreneur: Smart, energetic and very perceptive people, who truly enjoy living on the edge.",
+      "ESFP": "ESFP - The Entertainer: Spontaneous, energetic and enthusiastic people – life is never boring around them.",
+      "ENFP": "ENFP - The Campaigner: Enthusiastic, creative and sociable free spirits, who can always find a reason to smile.",
+      "ENTP": "ENTP - The Debater: Smart and curious thinkers who cannot resist an intellectual challenge.",
+      "ESTJ": "ESTJ - The Executive: Excellent administrators, unsurpassed at managing things – or people.",
+      "ESFJ": "ESFJ - The Consul: Extraordinarily caring, social and popular people, always eager to help.",
+      "ENFJ": "ENFJ - The Protagonist: Charismatic and inspiring leaders, able to mesmerize their listeners.",
+      "ENTJ": "ENTJ - The Commander: Bold, imaginative and strong-willed leaders, always finding a way – or making one."
+    };
+
     // Function to calculate personality type
     function calculatePersonalityType() {
       // Initialize counts for each MBTI letter
@@ -428,7 +650,8 @@
       };
 
       // List of question names
-      var questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'];
+      var questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10',
+                      'q11', 'q12', 'q13', 'q14', 'q15', 'q16', 'q17', 'q18', 'q19', 'q20'];
 
       // Loop through each question to gather responses
       for (var i = 0; i < questions.length; i++) {
@@ -485,7 +708,14 @@
 
       // Display the result
       document.getElementById('personality-type-result').innerText = personalityType;
+
+      // Display the description
+      var description = personalityDescriptions[personalityType] || "Description not available.";
+      document.getElementById('personality-description').innerText = description;
+
+      // Show the results section
       document.getElementById('results').style.display = 'block';
+
       // Scroll to results
       document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
     }
