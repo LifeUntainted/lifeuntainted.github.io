@@ -26,9 +26,6 @@
   <!-- Import Animate.css for Animations -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-  <!-- Import html2canvas for Downloading Chart -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-
   <style>
     /* Global Styles */
     body {
@@ -235,6 +232,11 @@
       .motivation-section p {
         font-size: 0.9rem;
       }
+
+      /* Adjust Chart Height on Mobile */
+      .responsive-chart {
+        height: 300px;
+      }
     }
 
     /* Responsive Chart */
@@ -328,7 +330,7 @@
       </div>
 
       <!-- Motivational Section -->
-      <div class="motivation-section animate__animated animate__fadeInUp">
+      <div class="motivation-section animate__animated animate__fadeInUp" role="region" aria-live="polite">
         <h5>Inspiration</h5>
         <p>"Balance is not something you find, it's something you create." – Jana Kingsford</p>
       </div>
