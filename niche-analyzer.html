@@ -176,39 +176,47 @@ title: "Niche Analyzer"
         }
       });
 
-      // Handle Form Submission - Simulated Analysis
-      document.getElementById('niche-form').addEventListener('submit', function(e) {
+      // Handle Form Submission
+      document.getElementById('niche-form').addEventListener('submit', async function(e) {
         e.preventDefault();
 
         // Collect form data
-        const interests = document.getElementById('interests').value;
-        const skills = document.getElementById('skills').value;
-        const audience = document.getElementById('audience').value;
+        const formData = {
+          interests: document.getElementById('interests').value,
+          skills: document.getElementById('skills').value,
+          audience: document.getElementById('audience').value,
+          monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
+          trends: document.getElementById('trends').value,
+          competition: document.getElementById('competition').value,
+          scalability: M.FormSelect.getInstance(document.getElementById('scalability')).getSelectedValues()[0],
+          geographic: document.getElementById('geographic').value
+        };
 
-        // Generate some simulated niche suggestions
-        const niches = [
-          "Sustainable Living for Millennials",
-          "Home Workout Enthusiasts",
-          "Vegan Cooking for Families",
-          "Pet Care for Urban Dwellers",
-          "Freelance Business Growth",
-          "Remote Work Productivity Hacks",
-          "DIY Crafts for Beginners",
-          "Mental Wellness for Entrepreneurs",
-          "Tech Gadgets Review Blog",
-          "Healthy Eating for Busy Professionals"
-        ];
+        // Display loading message
+        document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
 
-        // Choose a random niche from the list
-        const randomNiche = niches[Math.floor(Math.random() * niches.length)];
+        try {
+          // Send data to backend
+          const response = await fetch('/.netlify/functions/nicheAnalyzer', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          });
 
-        // Generate result HTML
-        let resultHTML = `<h2>Your Potential Niche:</h2>`;
-        resultHTML += `<p>Based on your interests in <strong>${interests}</strong>, your skills in <strong>${skills}</strong>, and your target audience of <strong>${audience}</strong>, we suggest exploring the niche: <strong>${randomNiche}</strong>.</p>`;
-        resultHTML += `<p>This niche combines your passions with potential market demand and can be a great starting point to build content or products around.</p>`;
+          const data = await response.json();
 
-        // Display results
-        document.getElementById('results').innerHTML = resultHTML;
+          if (data.result) {
+            // Display results
+            document.getElementById('results').innerHTML = `<h2>Your Niche Ideas:</h2><pre>${data.result}</pre>`;
+          } else {
+            document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
+          }
+        } catch (error) {
+          document.getElementById('results').innerHTML = "<p>An error occurred while processing your request.</p>";
+          console.error('Error:', error);
+        }
       });
     });
   </script>
