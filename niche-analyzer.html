@@ -186,10 +186,10 @@ title: "Niche Analyzer"
           skills: document.getElementById('skills').value,
           audience: document.getElementById('audience').value,
           monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
-          trends: document.getElementById('trends').value,
-          competition: document.getElementById('competition').value,
-          scalability: M.FormSelect.getInstance(document.getElementById('scalability')).getSelectedValues()[0],
-          geographic: document.getElementById('geographic').value
+          trends: document.getElementById('trends').value || 'N/A',
+          competition: document.getElementById('competition').value || 'N/A',
+          scalability: M.FormSelect.getInstance(document.getElementById('scalability')).getSelectedValues()[0] || 'N/A',
+          geographic: document.getElementById('geographic').value || 'N/A'
         };
 
         // Display loading message
@@ -204,6 +204,10 @@ title: "Niche Analyzer"
             },
             body: JSON.stringify(formData)
           });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
 
           const data = await response.json();
 
