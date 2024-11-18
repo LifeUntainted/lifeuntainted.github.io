@@ -20,9 +20,6 @@
   <!-- Import particles.js -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-  <!-- Import Compromise for Basic NLP -->
-  <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
-
   <style>
     body {
       background-color: #000;
@@ -192,7 +189,7 @@
   <div class="container">
     <div class="matchmaker-container">
       <h2 class="center-align">Career Matchmaker Tool</h2>
-      <p>Use this advanced tool to discover careers that align with your skills, personality, and passions. Answer the questions below to find the perfect career path for you.</p>
+      <p>Use this tool to discover careers that align with your skills, personality, and passions. Answer the questions below to find suitable career paths for you.</p>
 
       <div class="row">
         <form id="career-matchmaker-form" class="col s12" aria-labelledby="career-matchmaker-form">
@@ -227,7 +224,9 @@
       </div>
 
       <!-- Loader -->
-      <div id="loader" class="loader" style="display: none;" aria-live="polite" aria-label="Processing"></div>
+      <div id="loader" class="loader" style="display: none;" aria-live="polite" aria-label="Processing">
+        <span class="sr-only">Processing...</span>
+      </div>
 
       <!-- Output Section -->
       <div id="output" class="output-section" style="display: none;" aria-live="polite">
@@ -391,17 +390,6 @@
       return temp.innerHTML;
     }
 
-    // Basic stemming function (for demonstration purposes)
-    function stem(word) {
-      // Simple rules for demonstration; consider using a library like Porter Stemmer for production
-      if (word.endsWith('ing') || word.endsWith('ed')) {
-        return word.slice(0, -3);
-      } else if (word.endsWith('es') || word.endsWith('s')) {
-        return word.slice(0, -2);
-      }
-      return word;
-    }
-
     // Function to generate career matches
     function generateCareerMatches() {
       // Show loader
@@ -421,49 +409,32 @@
         const dreamJobInput = sanitizeInput(document.getElementById('dream-job').value.toLowerCase());
         const strengthsInput = sanitizeInput(document.getElementById('strengths').value.toLowerCase());
 
-        // Combine all inputs into a single string
+        // Combine all inputs into a single array of words
         const combinedInput = `${skillsInput} ${interestsInput} ${workStyleInput} ${valuesInput} ${dreamJobInput} ${strengthsInput}`;
+        const inputWords = combinedInput.split(/\s+/).filter(word => word.length > 0);
 
-        // Process input using Compromise for basic NLP
-        let doc = nlp(combinedInput);
-        let words = doc.words().out('array');
-
-        // Apply stemming
-        words = words.map(word => stem(word));
-
-        // Remove duplicates
-        words = [...new Set(words)];
-
-        // Create a frequency map
+        // Create a frequency map for input words
         const wordFrequency = {};
-        words.forEach(word => {
-          if (word) {
-            wordFrequency[word] = (wordFrequency[word] || 0) + 1;
-          }
+        inputWords.forEach(word => {
+          wordFrequency[word] = (wordFrequency[word] || 0) + 1;
         });
 
         // Calculate match scores for each career
         const careerScores = careersData.map(career => {
           let score = 0;
 
-          // Ensure keywords object has both skills and responsibilities
-          const skills = career.keywords.skills || [];
-          const responsibilities = career.keywords.responsibilities || [];
+          // Combine all keywords from skills, responsibilities, and synonyms
+          const careerKeywords = [
+            ...(career.keywords.skills || []),
+            ...(career.keywords.responsibilities || []),
+            ...(career.synonyms || [])
+          ];
 
-          // Combine skills and responsibilities with synonyms
-          const combinedKeywords = [...skills, ...responsibilities, ...career.synonyms];
-
-          combinedKeywords.forEach(keyword => {
-            const stemmedKeyword = stem(keyword.toLowerCase());
-            if (wordFrequency[stemmedKeyword]) {
-              score += wordFrequency[stemmedKeyword] * 2; // Higher weight for exact matches
-            } else {
-              // Check for partial matches
-              Object.keys(wordFrequency).forEach(word => {
-                if (word.startsWith(stemmedKeyword)) {
-                  score += wordFrequency[word];
-                }
-              });
+          // Compare each keyword with user input
+          careerKeywords.forEach(keyword => {
+            const keywordLower = keyword.toLowerCase();
+            if (wordFrequency[keywordLower]) {
+              score += wordFrequency[keywordLower];
             }
           });
 
@@ -473,14 +444,14 @@
         // Sort careers by score in descending order
         careerScores.sort((a, b) => b.score - a.score);
 
-        // Filter out careers with zero score and take top 5 matches
-        const matches = careerScores.filter(career => career.score > 0).slice(0, 5);
+        // Filter out careers with zero score and take top 3 matches
+        const matches = careerScores.filter(career => career.score > 0).slice(0, 3);
 
         // If no matches found
         if (matches.length === 0) {
           document.getElementById('career-matches').innerHTML = `
             <li class="collection-item">
-              No direct matches found, but we encourage you to explore more options!
+              No direct matches found based on your inputs. Please try refining your answers.
             </li>
           `;
         } else {
@@ -500,7 +471,7 @@
 
         // Scroll to results
         document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
-      }, 1000); // 1-second delay
+      }, 500); // 0.5-second delay for faster feedback
     }
   </script>
 </body>
