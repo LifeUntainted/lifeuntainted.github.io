@@ -125,6 +125,33 @@
         padding: 1rem;
       }
     }
+
+    /* Additional Styles for Enhanced UI */
+    .collection-item {
+      background-color: rgba(0, 105, 92, 0.2);
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+
+    .collection-item:hover {
+      background-color: rgba(0, 105, 92, 0.3);
+    }
+
+    .footer-link {
+      color: #00e676 !important;
+    }
+
+    /* Accessibility Enhancements */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
   </style>
 </head>
 <body>
@@ -136,7 +163,7 @@
   <nav>
     <div class="nav-wrapper">
       <a href="index.html" class="brand-logo">321Niche</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Open navigation menu"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
@@ -163,42 +190,42 @@
       <p>Use this advanced tool to discover careers that align with your skills, personality, and passions. Answer the questions below to find the perfect career path for you.</p>
 
       <div class="row">
-        <form id="career-matchmaker-form" class="col s12">
+        <form id="career-matchmaker-form" class="col s12" aria-labelledby="career-matchmaker-form">
           <div class="input-field col s12">
-            <textarea id="skills" class="materialize-textarea"></textarea>
+            <textarea id="skills" class="materialize-textarea" required aria-required="true" aria-label="Top 3 skills"></textarea>
             <label for="skills">What are your top 3 skills?</label>
           </div>
           <div class="input-field col s12">
-            <textarea id="interests" class="materialize-textarea"></textarea>
+            <textarea id="interests" class="materialize-textarea" required aria-required="true" aria-label="Interests or hobbies"></textarea>
             <label for="interests">What are your interests or hobbies?</label>
           </div>
           <div class="input-field col s12">
-            <textarea id="work-style" class="materialize-textarea"></textarea>
+            <textarea id="work-style" class="materialize-textarea" required aria-required="true" aria-label="Ideal work environment"></textarea>
             <label for="work-style">Describe your ideal work environment.</label>
           </div>
           <div class="input-field col s12">
-            <textarea id="values" class="materialize-textarea"></textarea>
+            <textarea id="values" class="materialize-textarea" required aria-required="true" aria-label="Values in a career"></textarea>
             <label for="values">What values matter most to you in a career?</label>
           </div>
           <div class="input-field col s12">
-            <textarea id="dream-job" class="materialize-textarea"></textarea>
+            <textarea id="dream-job" class="materialize-textarea" required aria-required="true" aria-label="Dream job"></textarea>
             <label for="dream-job">What is your dream job?</label>
           </div>
           <div class="input-field col s12">
-            <textarea id="strengths" class="materialize-textarea"></textarea>
+            <textarea id="strengths" class="materialize-textarea" required aria-required="true" aria-label="Key personal strengths"></textarea>
             <label for="strengths">What are your key personal strengths?</label>
           </div>
           <div class="center-align">
-            <button type="button" class="btn waves-effect waves-light" onclick="generateCareerMatches()">Find My Career Match</button>
+            <button type="button" class="btn waves-effect waves-light" onclick="generateCareerMatches()" aria-label="Find My Career Match">Find My Career Match</button>
           </div>
         </form>
       </div>
 
       <!-- Loader -->
-      <div id="loader" class="loader" style="display: none;"></div>
+      <div id="loader" class="loader" style="display: none;" aria-live="polite" aria-label="Processing"></div>
 
       <!-- Output Section -->
-      <div id="output" class="output-section" style="display: none;">
+      <div id="output" class="output-section" style="display: none;" aria-live="polite">
         <h3 class="output-title">Your Career Matches:</h3>
         <ul id="career-matches" class="collection"></ul>
       </div>
@@ -209,7 +236,7 @@
   <footer class="page-footer">
     <div class="container">
       © 2024 321Niche
-      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+      <a class="grey-text text-lighten-4 right footer-link" href="contact.html">Contact Us</a>
     </div>
   </footer>
 
@@ -221,8 +248,8 @@
       M.Sidenav.init(elems);
 
       // Initialize Materialize Textarea
-      var textNeedCount = document.querySelectorAll('textarea');
-      M.textareaAutoResize(textNeedCount);
+      var textAreas = document.querySelectorAll('textarea');
+      M.textareaAutoResize(textAreas);
     });
 
     // Particle.js configuration
@@ -336,103 +363,123 @@
     const careers = [
       {
         name: "Software Developer",
-        keywords: ["coding", "technology", "problem-solving", "programming", "software"],
-        description: "Design, develop, and maintain software applications. Requires strong analytical skills and proficiency in programming languages."
+        keywords: ["coding", "technology", "problem-solving", "programming", "software", "development"],
+        description: "Design, develop, and maintain software applications. Requires strong analytical skills and proficiency in programming languages.",
+        link: "https://en.wikipedia.org/wiki/Software_developer"
       },
       {
         name: "Teacher",
-        keywords: ["education", "children", "teaching", "instruction", "learning"],
-        description: "Educate and mentor students in various subjects. Requires patience, communication skills, and a passion for helping others learn."
+        keywords: ["education", "children", "teaching", "instruction", "learning", "curriculum"],
+        description: "Educate and mentor students in various subjects. Requires patience, communication skills, and a passion for helping others learn.",
+        link: "https://en.wikipedia.org/wiki/Teacher"
       },
       {
         name: "Data Scientist",
-        keywords: ["data", "analysis", "statistics", "machine learning", "big data"],
-        description: "Analyze complex data to help organizations make informed decisions. Requires strong analytical skills and knowledge of statistical methods."
+        keywords: ["data", "analysis", "statistics", "machine learning", "big data", "research"],
+        description: "Analyze complex data to help organizations make informed decisions. Requires strong analytical skills and knowledge of statistical methods.",
+        link: "https://en.wikipedia.org/wiki/Data_scientist"
       },
       {
         name: "Graphic Designer",
-        keywords: ["design", "creativity", "art", "visual", "branding"],
-        description: "Create visual concepts to communicate ideas that inspire and inform consumers. Requires creativity and proficiency in design software."
+        keywords: ["design", "creativity", "art", "visual", "branding", "graphic"],
+        description: "Create visual concepts to communicate ideas that inspire and inform consumers. Requires creativity and proficiency in design software.",
+        link: "https://en.wikipedia.org/wiki/Graphic_designer"
       },
       {
         name: "Marketing Specialist",
-        keywords: ["marketing", "communication", "branding", "strategy", "advertising"],
-        description: "Develop and implement marketing strategies to promote products or services. Requires creativity and strong communication skills."
+        keywords: ["marketing", "communication", "branding", "strategy", "advertising", "promotion"],
+        description: "Develop and implement marketing strategies to promote products or services. Requires creativity and strong communication skills.",
+        link: "https://en.wikipedia.org/wiki/Marketing_specialist"
       },
       {
         name: "Project Manager",
-        keywords: ["management", "organization", "leadership", "planning", "coordination"],
-        description: "Plan, execute, and oversee projects to ensure they are completed on time and within budget. Requires excellent organizational and leadership skills."
+        keywords: ["management", "organization", "leadership", "planning", "coordination", "execution"],
+        description: "Plan, execute, and oversee projects to ensure they are completed on time and within budget. Requires excellent organizational and leadership skills.",
+        link: "https://en.wikipedia.org/wiki/Project_manager"
       },
       {
         name: "Social Worker",
-        keywords: ["helping", "community", "social", "support", "counseling"],
-        description: "Assist individuals and communities in improving their well-being. Requires empathy, communication skills, and a passion for helping others."
+        keywords: ["helping", "community", "social", "support", "counseling", "assistance"],
+        description: "Assist individuals and communities in improving their well-being. Requires empathy, communication skills, and a passion for helping others.",
+        link: "https://en.wikipedia.org/wiki/Social_worker"
       },
       {
         name: "Mechanical Engineer",
-        keywords: ["engineering", "mechanics", "design", "innovation", "problem-solving"],
-        description: "Design, develop, and test mechanical devices. Requires strong analytical skills and knowledge of engineering principles."
+        keywords: ["engineering", "mechanics", "design", "innovation", "problem-solving", "mechanical"],
+        description: "Design, develop, and test mechanical devices. Requires strong analytical skills and knowledge of engineering principles.",
+        link: "https://en.wikipedia.org/wiki/Mechanical_engineer"
       },
       {
         name: "Healthcare Administrator",
-        keywords: ["healthcare", "management", "organization", "policy", "administration"],
-        description: "Manage operations and services in healthcare facilities. Requires leadership skills and knowledge of healthcare policies."
+        keywords: ["healthcare", "management", "organization", "policy", "administration", "hospital"],
+        description: "Manage operations and services in healthcare facilities. Requires leadership skills and knowledge of healthcare policies.",
+        link: "https://en.wikipedia.org/wiki/Healthcare_administrator"
       },
       {
         name: "Financial Analyst",
-        keywords: ["finance", "analysis", "investment", "statistics", "economics"],
-        description: "Evaluate financial data to help organizations make investment decisions. Requires strong analytical and numerical skills."
+        keywords: ["finance", "analysis", "investment", "statistics", "economics", "financial"],
+        description: "Evaluate financial data to help organizations make investment decisions. Requires strong analytical and numerical skills.",
+        link: "https://en.wikipedia.org/wiki/Financial_analyst"
       },
       {
         name: "Content Writer",
-        keywords: ["writing", "creativity", "communication", "research", "content"],
-        description: "Create engaging content for various platforms. Requires excellent writing skills and the ability to research effectively."
+        keywords: ["writing", "creativity", "communication", "research", "content", "editorial"],
+        description: "Create engaging content for various platforms. Requires excellent writing skills and the ability to research effectively.",
+        link: "https://en.wikipedia.org/wiki/Content_writer"
       },
       {
         name: "UX/UI Designer",
-        keywords: ["design", "user experience", "interface", "creativity", "research"],
-        description: "Design user-friendly interfaces and improve user experience for digital products. Requires creativity and understanding of user behavior."
+        keywords: ["design", "user experience", "interface", "creativity", "research", "usability"],
+        description: "Design user-friendly interfaces and improve user experience for digital products. Requires creativity and understanding of user behavior.",
+        link: "https://en.wikipedia.org/wiki/User_interface_design"
       },
       {
         name: "Business Analyst",
-        keywords: ["analysis", "business", "strategy", "communication", "data"],
-        description: "Analyze business processes and data to improve efficiency and effectiveness. Requires strong analytical and communication skills."
+        keywords: ["analysis", "business", "strategy", "communication", "data", "requirements"],
+        description: "Analyze business processes and data to improve efficiency and effectiveness. Requires strong analytical and communication skills.",
+        link: "https://en.wikipedia.org/wiki/Business_analyst"
       },
       {
         name: "Human Resources Manager",
-        keywords: ["management", "communication", "recruitment", "organization", "people"],
-        description: "Oversee recruitment, training, and employee relations within an organization. Requires strong interpersonal and organizational skills."
+        keywords: ["management", "communication", "recruitment", "organization", "people", "HR"],
+        description: "Oversee recruitment, training, and employee relations within an organization. Requires strong interpersonal and organizational skills.",
+        link: "https://en.wikipedia.org/wiki/Human_resource_manager"
       },
       {
         name: "Cybersecurity Specialist",
-        keywords: ["security", "technology", "analysis", "risk management", "network"],
-        description: "Protect an organization's computer systems and networks from security breaches. Requires technical expertise and analytical skills."
+        keywords: ["security", "technology", "analysis", "risk management", "network", "cybersecurity"],
+        description: "Protect an organization's computer systems and networks from security breaches. Requires technical expertise and analytical skills.",
+        link: "https://en.wikipedia.org/wiki/Cybersecurity_specialist"
       },
       {
         name: "Environmental Scientist",
-        keywords: ["environment", "research", "science", "conservation", "data"],
-        description: "Study and develop solutions to environmental problems. Requires scientific knowledge and research skills."
+        keywords: ["environment", "research", "science", "conservation", "data", "sustainability"],
+        description: "Study and develop solutions to environmental problems. Requires scientific knowledge and research skills.",
+        link: "https://en.wikipedia.org/wiki/Environmental_scientist"
       },
       {
         name: "Public Relations Specialist",
-        keywords: ["communication", "media", "branding", "strategy", "writing"],
-        description: "Manage an organization's public image and handle communications with the media. Requires strong communication and strategic thinking skills."
+        keywords: ["communication", "media", "branding", "strategy", "writing", "public_relations"],
+        description: "Manage an organization's public image and handle communications with the media. Requires strong communication and strategic thinking skills.",
+        link: "https://en.wikipedia.org/wiki/Public_relations_specialist"
       },
       {
         name: "Sales Manager",
-        keywords: ["sales", "management", "communication", "strategy", "leadership"],
-        description: "Lead and manage a sales team to achieve sales targets. Requires leadership and strategic planning skills."
+        keywords: ["sales", "management", "communication", "strategy", "leadership", "revenue"],
+        description: "Lead and manage a sales team to achieve sales targets. Requires leadership and strategic planning skills.",
+        link: "https://en.wikipedia.org/wiki/Sales_manager"
       },
       {
         name: "Architect",
-        keywords: ["design", "creativity", "engineering", "planning", "construction"],
-        description: "Design buildings and oversee their construction. Requires creativity, technical knowledge, and project management skills."
+        keywords: ["design", "creativity", "engineering", "planning", "construction", "architecture"],
+        description: "Design buildings and oversee their construction. Requires creativity, technical knowledge, and project management skills.",
+        link: "https://en.wikipedia.org/wiki/Architect"
       },
       {
         name: "Research Scientist",
-        keywords: ["research", "science", "analysis", "innovation", "data"],
-        description: "Conduct experiments and research to advance knowledge in a specific field. Requires strong analytical and scientific skills."
+        keywords: ["research", "science", "analysis", "innovation", "data", "experimentation"],
+        description: "Conduct experiments and research to advance knowledge in a specific field. Requires strong analytical and scientific skills.",
+        link: "https://en.wikipedia.org/wiki/Research_scientist"
       },
       // Add more careers as needed
     ];
@@ -479,8 +526,16 @@
         const careerScores = careers.map(career => {
           let score = 0;
           career.keywords.forEach(keyword => {
+            // Exact match
             if (wordFrequency[keyword]) {
-              score += wordFrequency[keyword];
+              score += wordFrequency[keyword] * 2; // Assign higher weight for exact keyword matches
+            }
+            // Partial match (e.g., "manage" matches "management")
+            else {
+              const regex = new RegExp(`\\b${keyword}`, 'i');
+              if (regex.test(wordFrequency[word])) {
+                score += 1;
+              }
             }
           });
           return { ...career, score };
@@ -494,13 +549,17 @@
 
         // If no matches found
         if (matches.length === 0) {
-          document.getElementById('career-matches').innerHTML = `<li>No direct matches found, but we encourage you to explore more options!</li>`;
+          document.getElementById('career-matches').innerHTML = `
+            <li class="collection-item">
+              No direct matches found, but we encourage you to explore more options!
+            </li>
+          `;
         } else {
           // Generate HTML for matches
           const matchesHTML = matches.map(match => `
             <li class="collection-item">
               <span class="title"><strong>${match.name}</strong></span>
-              <p class="career-description">${match.description}</p>
+              <p class="career-description">${match.description} <a href="${match.link}" target="_blank" rel="noopener noreferrer">Learn more</a></p>
             </li>
           `).join('');
           document.getElementById('career-matches').innerHTML = matchesHTML;
