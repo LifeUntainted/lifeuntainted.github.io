@@ -17,16 +17,35 @@
   <!-- Import Orbitron Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
+  <!-- Custom Styles -->
   <style>
+    /* CSS Variables */
+    :root {
+      --primary-color: #57FF8C;
+      --secondary-color: #00695c;
+      --background-color: #121212;
+      --text-color: #E0E0E0;
+      --hover-color: #88FFAA;
+      --border-color: var(--primary-color);
+      --description-color: #B0BEC5;
+      --card-background: rgba(0, 105, 92, 0.1);
+      --button-hover-color: #004d40;
+      --footer-background: #000;
+      --footer-text: #B0BEC5;
+    }
+
+    /* Global Styles */
     body {
-      background-color: #000;
-      color: #fff;
+      background-color: var(--background-color);
+      color: var(--text-color);
       font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
     nav {
       background-color: rgba(0, 0, 0, 0.8);
-      border-bottom: 1px solid #00695c;
+      border-bottom: 1px solid var(--secondary-color);
     }
 
     .brand-logo {
@@ -35,55 +54,100 @@
     }
 
     .tools-section {
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 4rem 0;
+      background-color: var(--background-color);
+      padding: 4rem 2rem;
     }
 
     .tool-box {
-      border: 1px solid #00695c;
-      background: rgba(0, 105, 92, 0.1);
-      border-radius: 8px;
+      background: var(--card-background);
+      border: 1px solid var(--secondary-color);
+      border-radius: 12px;
       padding: 2rem;
       height: 100%;
       margin: 1rem 0;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
     .tool-box:hover {
       transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
+      box-shadow: 0 8px 16px rgba(0, 105, 92, 0.3);
     }
 
     .tool-box h5 {
-      color: #fff;
+      color: var(--text-color);
       margin-bottom: 1rem;
+      font-size: 1.5rem;
     }
 
     .btn, .btn-large {
-      background-color: #00695c;
+      background-color: var(--secondary-color);
       text-transform: uppercase;
       font-family: 'Orbitron', sans-serif;
       transition: all 0.3s ease;
     }
 
     .btn:hover, .btn-large:hover {
-      background-color: #004d40;
+      background-color: var(--button-hover-color);
       box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
     }
 
     .page-footer {
-      background-color: #000;
-      border-top: 1px solid #00695c;
+      background-color: var(--footer-background);
+      border-top: 1px solid var(--secondary-color);
       padding: 20px 0;
+    }
+
+    .page-footer .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page-footer a {
+      color: var(--footer-text);
+      margin-top: 10px;
+      font-weight: 500;
     }
 
     .tool-icon {
       font-size: 3rem;
-      color: #00695c;
+      color: var(--primary-color);
       margin-bottom: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .tool-box:hover .tool-icon {
+      color: var(--hover-color);
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .tool-box {
+        padding: 1.5rem;
+      }
+
+      .tool-box h5 {
+        font-size: 1.2rem;
+      }
+
+      .tool-icon {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Highlighting search results */
+    .highlight {
+      background-color: yellow;
+      color: #000;
     }
   </style>
 </head>
@@ -118,8 +182,8 @@
     <div class="container">
       <h2 class="center-align">Tools & Downloads</h2>
       <div class="row">
-        <!-- Add all tools and resources with descriptions -->
-        <div class="col s12 m6">
+        <!-- Tool 1 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">favorite_border</i>
             <h5>Passion Finder Quiz</h5>
@@ -128,7 +192,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 2 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">fitness_center</i>
             <h5>Strengths Assessment</h5>
@@ -137,7 +202,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 3 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">view_comfy</i>
             <h5>Life Priorities Matrix</h5>
@@ -146,7 +212,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 4 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">lightbulb</i>
             <h5>Ideal Day Visualization</h5>
@@ -155,7 +222,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 5 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">book</i>
             <h5>Values and Beliefs Workbook</h5>
@@ -164,7 +232,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 6 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">flag</i>
             <h5>Personal Mission Statement Generator</h5>
@@ -173,7 +242,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 7 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">work_outline</i>
             <h5>Career Matchmaker Tool</h5>
@@ -182,7 +252,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 8 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">donut_large</i>
             <h5>Life Wheel Assessment</h5>
@@ -191,7 +262,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 9 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">journal</i>
             <h5>Daily Reflection Journal Template</h5>
@@ -200,7 +272,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 10 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">psychology</i>
             <h5>Personality Test (Myers-Briggs Style)</h5>
@@ -209,7 +282,8 @@
           </div>
         </div>
         
-        <div class="col s12 m6">
+        <!-- Tool 11 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">playlist_add_check</i>
             <h5>Hobbies Exploration List</h5>
@@ -218,7 +292,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 12 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">school</i>
             <h5>Skill-Building Plan Generator</h5>
@@ -227,7 +302,8 @@
           </div>
         </div>
 
-        <div class="col s12 m6">
+        <!-- Tool 13 -->
+        <div class="col s12 m6 l4">
           <div class="tool-box">
             <i class="material-icons tool-icon">map</i>
             <h5>Passion to Career Map</h5>
@@ -235,28 +311,33 @@
             <a href="passion-to-career-map.html" class="btn waves-effect waves-light">Download Map</a>
           </div>
         </div>
-
-        <!-- Add more tools as needed, with similar structure -->
       </div>
     </div>
   </div>
 
   <!-- Footer -->
   <footer class="page-footer">
-    <div class="container">
-      © 2024 321Niche
-      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    <div class="container center-align">
+      <span>&copy; 2024 321Niche</span>
+      <a class="grey-text text-lighten-4" href="contact.html">Contact Us</a>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize Mobile Navigation
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
+
+      // Initialize Tooltip
+      var tooltipElems = document.querySelectorAll('.tool-box');
+      M.Tooltip.init(tooltipElems, {
+        enterDelay: 500,
+        exitDelay: 200
+      });
     });
   </script>
 
