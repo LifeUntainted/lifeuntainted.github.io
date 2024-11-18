@@ -18,76 +18,110 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Import particles.js -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
   <style>
+    /* Global Styles */
     body {
-      background-color: #000;
-      color: #fff;
+      background-color: #121212;
+      color: #e0e0e0;
       font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden;
     }
 
+    /* Navigation Bar */
     nav {
-      background-color: rgba(0, 0, 0, 0.8);
-      border-bottom: 1px solid #00695c;
+      background-color: rgba(0, 0, 0, 0.9);
+      border-bottom: 2px solid #00e676;
     }
 
     .brand-logo {
       font-weight: 700;
       margin-left: 20px;
+      font-size: 1.8rem;
     }
 
+    /* Particle Background */
     #particles-js {
-      position: absolute;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
     }
 
+    /* Matrix Container */
     .matrix-container {
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 4rem;
-      border-radius: 8px;
-      margin-top: 3rem;
-      position: relative;
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      margin-top: 4rem;
+      box-shadow: 0 0 30px rgba(0, 230, 118, 0.5);
     }
 
+    /* Matrix Section */
     .matrix-section {
-      text-align: center;
       margin-top: 2rem;
     }
 
     .slider-label {
-      margin: 1rem 0;
+      margin: 1rem 0 0.5rem;
       font-size: 1.2rem;
+      color: #00e676;
     }
 
+    /* Buttons */
     .btn, .btn-large {
-      background-color: #00695c;
+      background-color: #00e676;
       text-transform: uppercase;
       font-family: 'Orbitron', sans-serif;
       transition: all 0.3s ease;
     }
 
     .btn:hover, .btn-large:hover {
-      background-color: #004d40;
-      box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+      background-color: #00c853;
+      box-shadow: 0 0 20px rgba(0, 230, 118, 0.7);
     }
 
+    /* Footer */
     .page-footer {
-      background-color: #000;
-      border-top: 1px solid #00695c;
+      background-color: #121212;
+      border-top: 2px solid #00e676;
       padding: 20px 0;
     }
 
+    .page-footer a {
+      color: #00e676 !important;
+    }
+
+    /* Result Container */
     .result-container {
       display: none;
       margin-top: 3rem;
       text-align: center;
+      background-color: rgba(0, 230, 118, 0.1);
+      padding: 2rem;
+      border-radius: 8px;
+      border: 2px solid #00e676;
     }
 
     .result-container h5 {
       color: #00e676;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 600px) {
+      .matrix-container {
+        padding: 2rem 1rem;
+      }
+
+      .brand-logo {
+        margin-left: 10px;
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -100,7 +134,7 @@
   <nav>
     <div class="nav-wrapper">
       <a href="index.html" class="brand-logo">321Niche</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Open navigation menu"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
@@ -124,7 +158,8 @@
   <div class="container">
     <div class="matrix-container">
       <h2 class="center-align">Life Priorities Matrix</h2>
-      <p>Use this interactive Life Priorities Matrix to rank different aspects of your life and clarify what's most important to you.</p>
+      <p class="flow-text">Use this interactive Life Priorities Matrix to rank different aspects of your life and clarify what's most important to you. Adjust the sliders below to reflect your priorities, then view your top areas of focus.</p>
+      
       <div class="matrix-section">
         <form id="matrix-form">
           <div class="row">
@@ -132,50 +167,58 @@
             <div class="col s12 m6">
               <label for="career" class="slider-label">Career</label>
               <p class="range-field">
-                <input type="range" id="career" min="0" max="10" />
+                <input type="range" id="career" min="0" max="10" step="1" value="5" aria-labelledby="career-label" />
               </p>
             </div>
             <!-- Relationships -->
             <div class="col s12 m6">
               <label for="relationships" class="slider-label">Relationships</label>
               <p class="range-field">
-                <input type="range" id="relationships" min="0" max="10" />
+                <input type="range" id="relationships" min="0" max="10" step="1" value="5" aria-labelledby="relationships-label" />
               </p>
             </div>
             <!-- Health -->
             <div class="col s12 m6">
               <label for="health" class="slider-label">Health</label>
               <p class="range-field">
-                <input type="range" id="health" min="0" max="10" />
+                <input type="range" id="health" min="0" max="10" step="1" value="5" aria-labelledby="health-label" />
               </p>
             </div>
             <!-- Creativity -->
             <div class="col s12 m6">
               <label for="creativity" class="slider-label">Creativity</label>
               <p class="range-field">
-                <input type="range" id="creativity" min="0" max="10" />
+                <input type="range" id="creativity" min="0" max="10" step="1" value="5" aria-labelledby="creativity-label" />
               </p>
             </div>
             <!-- Personal Growth -->
             <div class="col s12 m6">
               <label for="personal-growth" class="slider-label">Personal Growth</label>
               <p class="range-field">
-                <input type="range" id="personal-growth" min="0" max="10" />
+                <input type="range" id="personal-growth" min="0" max="10" step="1" value="5" aria-labelledby="personal-growth-label" />
               </p>
             </div>
             <!-- Finance -->
             <div class="col s12 m6">
               <label for="finance" class="slider-label">Finance</label>
               <p class="range-field">
-                <input type="range" id="finance" min="0" max="10" />
+                <input type="range" id="finance" min="0" max="10" step="1" value="5" aria-labelledby="finance-label" />
               </p>
             </div>
           </div>
-          <button type="button" class="btn waves-effect waves-light" onclick="calculatePriorities()">Submit</button>
+          <div class="center-align">
+            <button type="button" class="btn waves-effect waves-light" onclick="calculatePriorities()" aria-label="Submit Your Priorities">Submit</button>
+            <button type="reset" class="btn-flat waves-effect" onclick="resetForm()" aria-label="Reset the Form">Reset</button>
+          </div>
         </form>
-        <div class="result-container" id="result">
+
+        <!-- Result Container -->
+        <div class="result-container" id="result" role="region" aria-live="polite">
           <h5>Your Top Priorities:</h5>
-          <p id="result-text"></p>
+          <ul id="result-list" class="collection with-header">
+            <!-- Results will be injected here -->
+          </ul>
+          <button class="btn waves-effect waves-light" onclick="downloadPDF()" aria-label="Download Results as PDF">Download PDF</button>
         </div>
       </div>
     </div>
@@ -190,22 +233,29 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  <!-- Optional: Include a PDF generation library like jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize Mobile Navigation
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
+
+      // Initialize Tooltips
+      var tooltips = document.querySelectorAll('.tooltipped');
+      M.Tooltip.init(tooltips);
     });
 
     // Particle.js configuration
     particlesJS('particles-js', {
       "particles": {
         "number": {
-          "value": 100,
+          "value": 80,
           "density": {
             "enable": true,
-            "value_area": 800
+            "value_area": 700
           }
         },
         "color": {
@@ -222,17 +272,17 @@
           }
         },
         "opacity": {
-          "value": 0.5,
-          "random": false,
+          "value": 0.3,
+          "random": true,
           "anim": {
-            "enable": false,
-            "speed": 1,
+            "enable": true,
+            "speed": 0.5,
             "opacity_min": 0.1,
             "sync": false
           }
         },
         "size": {
-          "value": 3,
+          "value": 4,
           "random": true,
           "anim": {
             "enable": false,
@@ -245,12 +295,12 @@
           "enable": true,
           "distance": 150,
           "color": "#00e676",
-          "opacity": 0.4,
+          "opacity": 0.2,
           "width": 1
         },
         "move": {
           "enable": true,
-          "speed": 6,
+          "speed": 2,
           "direction": "none",
           "random": false,
           "straight": false,
@@ -291,7 +341,7 @@
             "speed": 3
           },
           "repulse": {
-            "distance": 200,
+            "distance": 100,
             "duration": 0.4
           },
           "push": {
@@ -305,21 +355,82 @@
       "retina_detect": true
     });
 
+    /**
+     * Function to calculate and display top priorities
+     */
     function calculatePriorities() {
       const priorities = {
-        Career: document.getElementById('career').value,
-        Relationships: document.getElementById('relationships').value,
-        Health: document.getElementById('health').value,
-        Creativity: document.getElementById('creativity').value,
-        "Personal Growth": document.getElementById('personal-growth').value,
-        Finance: document.getElementById('finance').value
+        Career: parseInt(document.getElementById('career').value),
+        Relationships: parseInt(document.getElementById('relationships').value),
+        Health: parseInt(document.getElementById('health').value),
+        Creativity: parseInt(document.getElementById('creativity').value),
+        "Personal Growth": parseInt(document.getElementById('personal-growth').value),
+        Finance: parseInt(document.getElementById('finance').value)
       };
-      
-      const sortedPriorities = Object.entries(priorities).sort((a, b) => b[1] - a[1]);
-      const resultText = sortedPriorities.map(priority => `${priority[0]}: ${priority[1]}`).join(', ');
-      
+
+      console.log('User Priorities:', priorities);
+
+      // Sort priorities in descending order
+      const sortedPriorities = Object.entries(priorities)
+        .sort((a, b) => b[1] - a[1]);
+
+      // Determine top 3 priorities
+      const topPriorities = sortedPriorities.slice(0, 3);
+
+      console.log('Top Priorities:', topPriorities);
+
+      // Clear previous results
+      const resultList = document.getElementById('result-list');
+      resultList.innerHTML = '';
+
+      // Populate results
+      topPriorities.forEach(([key, value], index) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'collection-item';
+        listItem.innerHTML = `
+          <span class="title"><strong>${index + 1}. ${key}</strong></span>
+          <p>Priority Level: ${value}/10</p>
+        `;
+        resultList.appendChild(listItem);
+      });
+
+      // Show the result container
       document.getElementById('result').style.display = 'block';
-      document.getElementById('result-text').innerText = resultText;
+    }
+
+    /**
+     * Function to reset the form and hide results
+     */
+    function resetForm() {
+      document.getElementById('matrix-form').reset();
+      document.getElementById('result').style.display = 'none';
+      // Reset sliders to default value
+      const sliders = document.querySelectorAll('input[type="range"]');
+      sliders.forEach(slider => slider.value = 5);
+    }
+
+    /**
+     * Function to download the results as a PDF
+     */
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFont('Orbitron', 'bold');
+      doc.setFontSize(16);
+      doc.text('Your Top Life Priorities', 105, 20, null, null, 'center');
+
+      doc.setFont('Orbitron', 'normal');
+      doc.setFontSize(12);
+      const priorities = document.querySelectorAll('#result-list .collection-item');
+      priorities.forEach((item, index) => {
+        const title = item.querySelector('.title').innerText;
+        const details = item.querySelector('p').innerText;
+        doc.text(`${index + 1}. ${title}`, 20, 40 + (index * 10));
+        doc.text(details, 20, 45 + (index * 10));
+      });
+
+      doc.save('Life_Priorities.pdf');
     }
   </script>
 </body>
