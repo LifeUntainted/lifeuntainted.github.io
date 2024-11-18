@@ -1,48 +1,23 @@
----
-layout: default
-title: "Blog - 321Niche"
-paginate: 5
----
+# _config.yml
 
-<div class="container blog-page">
-  <div class="blog-header">
-    <h1 class="blog-title">Latest Insights</h1>
-    <p class="blog-subtitle">Discover strategies, tips, and success stories to help you succeed in your niche</p>
-  </div>
+title: 321Niche
+description: Discover your future niche and turn your passion into income. 321Niche provides tools, resources, and community support to help you succeed.
+baseurl: "" # e.g., "/blog" if hosted in a subdirectory
+url: "https://www.321niche.com" # Replace with your actual site URL
 
-  <p>Number of posts: {{ paginator.posts | size }}</p> <!-- Debug line -->
+theme: null # Set to null if not using a predefined theme
 
-  <div class="blog-list">
-    {% for post in paginator.posts %}
-      <a href="{{ post.url | relative_url }}" class="blog-entry">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
-      </a>
-    {% endfor %}
-  </div>
+plugins:
+  - jekyll-paginate
 
-  <!-- Pagination Controls -->
-  {% if paginator.total_pages > 1 %}
-    <div class="pagination">
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | relative_url }}" class="prev">Previous</a>
-      {% else %}
-        <span class="disabled">Previous</span>
-      {% endif %}
+paginate: 10
+paginate_path: "/blog/page:num/"
 
-      {% for page in (1..paginator.total_pages) %}
-        {% if page == paginator.page %}
-          <span class="active">{{ page }}</span>
-        {% else %}
-          <a href="{{ paginator.page_path | replace: ':num', page | relative_url }}">{{ page }}</a>
-        {% endif %}
-      {% endfor %}
+markdown: kramdown
 
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}" class="next">Next</a>
-      {% else %}
-        <span class="disabled">Next</span>
-      {% endif %}
-    </div>
-  {% endif %}
-</div>
+# Exclude directories from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
