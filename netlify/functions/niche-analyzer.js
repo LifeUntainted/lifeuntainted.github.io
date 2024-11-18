@@ -2,27 +2,38 @@
 const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
+  // Check if the request method is POST
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ message: "Method Not Allowed, please use POST" })
+    };
+  }
+
   try {
-    // Parse the incoming request (expected to be a POST request)
+    // Parse the incoming request body (expecting JSON format)
     const body = JSON.parse(event.body);
 
     // Extract user inputs from the body
     const { interests, skills, audience, monetization, trends, competition, scalability, geographic } = body;
 
-    // Prepare prompt to send to OpenAI
+    // Prepare a detailed prompt to send to OpenAI to generate niche ideas
     const prompt = `
-      You are an AI assistant that helps people find profitable niches.
-      Here are some inputs: 
+      You are an AI assistant that helps people find profitable niches for their businesses.
+      Here are some inputs from a user who is looking for niche ideas:
       - Interests: ${interests}
       - Skills: ${skills}
       - Audience: ${audience}
-      - Monetization: ${monetization}
-      - Trends: ${trends}
+      - Monetization strategies: ${monetization}
+      - Trends they're interested in: ${trends}
       - Competition Level: ${competition}
       - Scalability: ${scalability}
       - Geographic Region: ${geographic}
 
-      Based on this information, suggest 3 potential niches that could be profitable. Provide a brief analysis of each niche, including potential ways to monetize them.
+      Based on this information, suggest 3 potential niches that could be profitable. For each niche:
+      1. Describe the niche.
+      2. Explain why it could be profitable.
+      3. Suggest a few ways to monetize it effectively.
     `;
 
     // Call OpenAI API
@@ -35,23 +46,41 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         model: "text-davinci-003",
         prompt: prompt,
-        max_tokens: 150,
-        temperature: 0.7
+        max_tokens: 300,
+        temperature: 0.7,
+        n: 1 // Get one response
       })
     });
 
+    // Get the response from OpenAI and parse it
     const data = await response.json();
 
-    // Respond with the result from OpenAI
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ result: data.choices[0].text })
-    };
+    // Check if OpenAI provided a valid response
+    if (data.choices && data.choices.length > 0) {
+      const nicheIdeas = data.choices[0].text.trim();
+      
+      // Return a successful response with the generated niche ideas
+      return {
+        statusCode: 200,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ result: nicheIdeas })
+      };
+    } else {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "Failed to generate niche ideas. No valid response from OpenAI." })
+      };
+    }
 
   } catch (error) {
     console.error("Error calling OpenAI API:", error);
     return {
       statusCode: 500,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ error: "Failed to analyze niche. Please try again." })
     };
   }
