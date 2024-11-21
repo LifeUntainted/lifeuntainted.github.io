@@ -103,41 +103,31 @@ title: "Niche Analyzer"
       </div>
       <div class="input-field">
         <input id="audience" type="text" required>
-        <label for="audience">Describe Your Audience</label>
+        <label for="audience">Describe Your Ideal Audience</label> 
       </div>
       <div class="input-field">
-        <select id="monetization" multiple>
+        <select id="monetization" multiple> 
+          <option value="" disabled selected>Choose your monetization strategy</option> 
           <option value="ads">Advertisements</option>
           <option value="affiliate">Affiliate Marketing</option>
           <option value="products">Product Sales</option>
           <option value="services">Service Sales</option>
+          <option value="other">Other</option> 
         </select>
-        <label>Monetization Strategies</label>
+        <label for="monetization">Monetization Strategies</label> 
       </div>
       <div class="input-field">
         <input id="trends" type="text">
-        <label for="trends">Trends You're Interested In</label>
-      </div>
-      <div class="input-field">
-        <textarea id="competition" class="materialize-textarea"></textarea>
-        <label for="competition">Describe Competition Level</label>
-      </div>
-      <div class="input-field">
-        <select id="scalability">
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-        <label>Scalability</label>
+        <label for="trends">Trends You're Interested In (Optional)</label> 
       </div>
       <div class="input-field">
         <input id="geographic" type="text">
-        <label for="geographic">Geographic Region of Focus</label>
+        <label for="geographic">Geographic Region of Focus (Optional)</label> 
       </div>
       <button type="submit" class="btn waves-effect waves-light">Analyze Niche</button>
     </form>
 
-    <div id="results" class="results-section"></div>
+    <div id="results" class="results-section"></div> 
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -164,17 +154,14 @@ title: "Niche Analyzer"
           interests: document.getElementById('interests').value,
           skills: document.getElementById('skills').value,
           audience: document.getElementById('audience').value,
-          monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
+          monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(), 
           trends: document.getElementById('trends').value || 'N/A',
-          competition: document.getElementById('competition').value || 'N/A',
-          scalability: M.FormSelect.getInstance(document.getElementById('scalability')).getSelectedValues()[0] || 'N/A',
-          geographic: document.getElementById('geographic').value || 'N/A'
+          geographic: document.getElementById('geographic').value || 'N/A' 
         };
 
         document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
 
         try {
-          // Send data to backend (Corrected URL)
           const response = await fetch('/.netlify/functions/nicheAnalyzer.js', {  
             method: 'POST',
             headers: {
