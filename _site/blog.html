@@ -1,152 +1,21 @@
-<!-- _layouts/default.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Meta Tags -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Discover your future niche and turn your passion into income. 321Niche provides tools, resources, and community support to help you succeed.">
 
-  <!-- Page Title -->
-  <title>Blog - 321Niche - 321Niche.com</title>
+---
+layout: default
+title: "Blog - 321Niche"
+---
 
-  <!-- Import Google Icon Font -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Import Orbitron Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Include Materialize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="/assets/css/styles.css">
-
-  <!-- Favicon (Optional) -->
-  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-</head>
-<body>
-
-  <!-- Navigation Bar -->
-  <!-- _includes/navbar.html -->
-<nav>
-  <div class="nav-wrapper">
-    <a href="/" class="brand-logo">321Niche</a>
-    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="/">Home</a></li>
-      <li><a href="/about.html">About Us</a></li>
-      <li><a href="/blog.html">Blog</a></li>
-      <li><a href="/resources.html">Resources</a></li>
-      <li><a href="/tools.html">Tools & Downloads</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- Mobile Navigation -->
-<ul class="sidenav" id="mobile-demo">
-  <li><a href="/">Home</a></li>
-  <li><a href="/about.html">About Us</a></li>
-  <li><a href="/blog.html">Blog</a></li>
-  <li><a href="/resources.html">Resources</a></li>
-  <li><a href="/tools.html">Tools & Downloads</a></li>
-</ul>
-
-
-  <!-- Main Content -->
-  <main>
-    <div class="container blog-page">
+<div class="container blog-page">
   <div class="blog-header">
     <h1 class="blog-title">Latest Insights</h1>
     <p class="blog-subtitle">Discover strategies, tips, and success stories to help you succeed in your niche</p>
   </div>
 
   <div class="blog-list">
-    
+    {% for post in site.posts %}
+      <a href="{{ post.url | relative_url }}" class="blog-entry">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+      </a>
+    {% endfor %}
   </div>
-
-  
 </div>
-
-  </main>
-
-  <!-- Footer -->
-  <!-- _includes/footer.html -->
-<footer class="page-footer">
-  <div class="container center-align">
-    <h5>Trusted by Industry Leaders</h5>
-    <p>Our tools have been used by over 1,000 successful entrepreneurs and have received glowing recommendations from experts across the industry.</p>
-    <div class="social-icons">
-      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">facebook</i></a>
-      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">twitter</i></a>
-      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">instagram</i></a>
-      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">linkedin</i></a>
-    </div>
-    <hr>
-    <span>&copy; 2024 321Niche</span>
-    <a href="/contact.html">Contact Us</a>
-  </div>
-</footer>
-
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
-
-  <!-- Initialize Materialize Components -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize Mobile Navigation
-      var elemsSidenav = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(elemsSidenav);
-
-      // Initialize Carousel
-      var elemsCarousel = document.querySelectorAll('.carousel');
-      M.Carousel.init(elemsCarousel, {
-        duration: 200,
-        shift: 50,
-        padding: 50,
-        numVisible: 3,
-        indicators: true,
-        fullWidth: false,
-        autoplay: true,
-        interval: 3000
-      });
-
-      // Initialize Parallax
-      var elemsParallax = document.querySelectorAll('.parallax');
-      M.Parallax.init(elemsParallax);
-
-      // Smooth Scroll for Hero Button
-      const heroButton = document.querySelector('.hero-content .btn');
-      if (heroButton) {
-        heroButton.addEventListener('click', function(e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if(target) {
-            window.scrollTo({
-              top: target.offsetTop - 70,
-              behavior: 'smooth'
-            });
-          }
-        });
-      }
-
-      // Form Validation and Submission
-      const newsletterForm = document.querySelector('.newsletter-section form');
-      if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          const emailInput = document.getElementById('email');
-          if (emailInput.checkValidity()) {
-            M.toast({html: 'Thank you for subscribing!', classes: 'rounded'});
-            emailInput.value = '';
-            M.updateTextFields();
-          } else {
-            M.toast({html: 'Please enter a valid email address.', classes: 'rounded red'});
-          }
-        });
-      }
-    });
-  </script>
-</body>
-</html>

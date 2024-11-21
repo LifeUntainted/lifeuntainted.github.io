@@ -18,10 +18,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Import particles.js -->
-  <script defer src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
   <!-- Import jsPDF for PDF Generation -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
     /* Global Styles */
@@ -57,10 +57,11 @@
     /* Quiz Container */
     .quiz-container {
       background-color: rgba(0, 0, 0, 0.85);
-      padding: 3rem 2rem;
+      padding: 2rem 1rem;
       border-radius: 12px;
-      margin-top: 4rem;
+      margin-top: 2rem;
       box-shadow: 0 0 30px rgba(0, 230, 118, 0.5);
+      border: 2px solid #00e676;
     }
 
     /* Quiz Section */
@@ -71,6 +72,7 @@
     .quiz-question {
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
+      color: #00e676;
     }
 
     .quiz-option {
@@ -171,7 +173,7 @@
 
   <!-- Passion Finder Quiz Section -->
   <div class="container">
-    <div class="quiz-container">
+    <div class="quiz-container" role="main">
       <h2 class="center-align">Passion Finder Quiz</h2>
       <p class="flow-text center-align">Discover your passions by answering the questions below. At the end, receive personalized insights to help you incorporate your passions into your life.</p>
       
@@ -185,10 +187,12 @@
 
       <div id="quiz" class="quiz-section">
         <div class="quiz-question" id="question">Loading question...</div>
-        <div id="options"></div>
+        <form id="quiz-form">
+          <div id="options" class="quiz-options"></div>
+        </form>
         <div class="center-align" style="margin-top: 2rem;">
           <button id="prev-button" class="btn-flat waves-effect waves-light" onclick="prevQuestion()" disabled aria-label="Go to Previous Question">Previous</button>
-          <button id="next-button" class="btn waves-effect waves-light" onclick="nextQuestion()" disabled aria-label="Go to Next Question">Next</button>
+          <button id="next-button" class="btn waves-effect waves-light" onclick="nextQuestion()" aria-label="Go to Next Question">Next</button>
         </div>
       </div>
 
@@ -215,342 +219,348 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  <!-- Ensure scripts are loaded in the correct order -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize Mobile Navigation
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
-    });
 
-    // Particle.js configuration
-    particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 80,
-          "density": {
+      // Initialize Accessibility Features
+      document.body.classList.add('accessible');
+
+      // Particle.js configuration
+      particlesJS('particles-js', {
+        "particles": {
+          "number": {
+            "value": 80,
+            "density": {
+              "enable": true,
+              "value_area": 700
+            }
+          },
+          "color": {
+            "value": "#00e676"
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            },
+            "polygon": {
+              "nb_sides": 5
+            }
+          },
+          "opacity": {
+            "value": 0.3,
+            "random": true,
+            "anim": {
+              "enable": true,
+              "speed": 0.5,
+              "opacity_min": 0.1,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 4,
+            "random": true,
+            "anim": {
+              "enable": false,
+              "speed": 40,
+              "size_min": 0.1,
+              "sync": false
+            }
+          },
+          "line_linked": {
             "enable": true,
-            "value_area": 700
-          }
-        },
-        "color": {
-          "value": "#00e676"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
+            "distance": 150,
+            "color": "#00e676",
+            "opacity": 0.2,
+            "width": 1
           },
-          "polygon": {
-            "nb_sides": 5
-          }
-        },
-        "opacity": {
-          "value": 0.3,
-          "random": true,
-          "anim": {
+          "move": {
             "enable": true,
-            "speed": 0.5,
-            "opacity_min": 0.1,
-            "sync": false
+            "speed": 2,
+            "direction": "none",
+            "random": false,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+              "enable": false,
+              "rotateX": 600,
+              "rotateY": 1200
+            }
           }
         },
-        "size": {
-          "value": 4,
-          "random": true,
-          "anim": {
-            "enable": false,
-            "speed": 40,
-            "size_min": 0.1,
-            "sync": false
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": {
+              "enable": true,
+              "mode": "repulse"
+            },
+            "onclick": {
+              "enable": true,
+              "mode": "push"
+            },
+            "resize": true
+          },
+          "modes": {
+            "repulse": {
+              "distance": 100,
+              "duration": 0.4
+            },
+            "push": {
+              "particles_nb": 4
+            },
+            "remove": {
+              "particles_nb": 2
+            }
           }
         },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#00e676",
-          "opacity": 0.2,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false,
-          "attract": {
-            "enable": false,
-            "rotateX": 600,
-            "rotateY": 1200
-          }
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          },
-          "resize": true
-        },
-        "modes": {
-          "repulse": {
-            "distance": 100,
-            "duration": 0.4
-          },
-          "push": {
-            "particles_nb": 4
-          },
-          "remove": {
-            "particles_nb": 2
-          }
-        }
-      },
-      "retina_detect": true
-    });
-
-    /**
-     * Quiz Data Structure
-     */
-    const quizData = [
-      {
-        question: "What activities make you lose track of time?",
-        options: ["Creative tasks (painting, writing, designing)", "Helping others", "Analyzing data or problem-solving", "Physical activities (sports, hiking)"]
-      },
-      {
-        question: "Which of these do you enjoy the most?",
-        options: ["Learning new skills", "Spending time with loved ones", "Working on personal projects", "Exploring the outdoors"]
-      },
-      {
-        question: "How do you usually prefer to spend your free time?",
-        options: ["Reading books or watching documentaries", "Volunteering", "Working on hobbies", "Exercise or adventure activities"]
-      },
-      {
-        question: "What type of work environment excites you the most?",
-        options: ["Fast-paced and creative", "Structured and collaborative", "Independent and research-focused", "Hands-on and active"]
-      },
-      {
-        question: "What do you value most in a career?",
-        options: ["Freedom to be creative", "Helping others", "Solving complex problems", "Being physically active"]
-      },
-      {
-        question: "Which of the following makes you feel most fulfilled?",
-        options: ["Creating something new", "Making a difference in someone’s life", "Solving a difficult problem", "Learning new things"]
-      },
-      {
-        question: "What kind of tasks make you feel the most energized?",
-        options: ["Collaborating with a team", "Helping someone achieve a goal", "Diving deep into research", "Working with my hands"]
-      },
-      {
-        question: "When working on a project, which part excites you the most?",
-        options: ["Coming up with ideas", "Seeing how the project impacts others", "Working out the technical details", "Getting physically involved"]
-      },
-      {
-        question: "Which of these best describes your ideal type of challenge?",
-        options: ["A creative challenge", "A challenge that helps others", "A complex analytical challenge", "A physical challenge"]
-      },
-      {
-        question: "What do you most often dream about doing?",
-        options: ["Creating art", "Making a positive impact", "Finding solutions to difficult problems", "Exploring and adventures"]
-      }
-    ];
-
-    let currentQuestionIndex = 0;
-    let userAnswers = [];
-
-    /**
-     * Initialize Quiz by Loading the First Question
-     */
-    function loadQuestion() {
-      const currentQuestion = quizData[currentQuestionIndex];
-      document.getElementById("question").innerText = currentQuestion.question;
-      const optionsContainer = document.getElementById("options");
-      optionsContainer.innerHTML = "";
-
-      currentQuestion.options.forEach((option, index) => {
-        const optionDiv = document.createElement("div");
-        optionDiv.className = "quiz-option";
-
-        const radioInput = document.createElement("input");
-        radioInput.type = "radio";
-        radioInput.id = `option${index}`;
-        radioInput.name = "quiz-option";
-        radioInput.value = option;
-        radioInput.required = true;
-
-        const label = document.createElement("label");
-        label.htmlFor = `option${index}`;
-        label.innerText = option;
-
-        optionDiv.appendChild(radioInput);
-        optionDiv.appendChild(label);
-        optionsContainer.appendChild(optionDiv);
+        "retina_detect": true
       });
 
-      // Update Progress Bar
-      updateProgress();
-    }
-
-    /**
-     * Handle Next Question Navigation
-     */
-    function nextQuestion() {
-      const selectedOption = document.querySelector('input[name="quiz-option"]:checked');
-      if (!selectedOption) {
-        M.toast({html: 'Please select an option before proceeding.', classes: 'rounded red'});
-        return;
-      }
-
-      userAnswers[currentQuestionIndex] = selectedOption.value;
-      currentQuestionIndex++;
-
-      if (currentQuestionIndex < quizData.length) {
-        loadQuestion();
-        document.getElementById("prev-button").disabled = false;
-      } else {
-        showResults();
-      }
-
-      // Disable Next Button until a new option is selected
-      document.getElementById("next-button").disabled = true;
-    }
-
-    /**
-     * Handle Previous Question Navigation
-     */
-    function prevQuestion() {
-      if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        loadQuestion();
-      }
-
-      if (currentQuestionIndex === 0) {
-        document.getElementById("prev-button").disabled = true;
-      }
-    }
-
-    /**
-     * Display Results Based on User Answers
-     */
-    function showResults() {
-      document.getElementById("quiz").style.display = "none";
-      document.getElementById("result").style.display = "block";
-
-      // Analyze Answers to Determine Passions
-      const passionCategories = {
-        "Creative": 0,
-        "Helping Others": 0,
-        "Analytical": 0,
-        "Physical": 0
-      };
-
-      userAnswers.forEach(answer => {
-        if (answer.includes("creative") || answer.includes("art") || answer.includes("painting") || answer.includes("writing") || answer.includes("designing")) {
-          passionCategories["Creative"]++;
+      /**
+       * Quiz Data Structure
+       */
+      const quizData = [
+        {
+          question: "What activities make you lose track of time?",
+          options: ["Creative tasks (painting, writing, designing)", "Helping others", "Analyzing data or problem-solving", "Physical activities (sports, hiking)"]
+        },
+        {
+          question: "Which of these do you enjoy the most?",
+          options: ["Learning new skills", "Spending time with loved ones", "Working on personal projects", "Exploring the outdoors"]
+        },
+        {
+          question: "How do you usually prefer to spend your free time?",
+          options: ["Reading books or watching documentaries", "Volunteering", "Working on hobbies", "Exercise or adventure activities"]
+        },
+        {
+          question: "What type of work environment excites you the most?",
+          options: ["Fast-paced and creative", "Structured and collaborative", "Independent and research-focused", "Hands-on and active"]
+        },
+        {
+          question: "What do you value most in a career?",
+          options: ["Freedom to be creative", "Helping others", "Solving complex problems", "Being physically active"]
+        },
+        {
+          question: "Which of the following makes you feel most fulfilled?",
+          options: ["Creating something new", "Making a difference in someone’s life", "Solving a difficult problem", "Learning new things"]
+        },
+        {
+          question: "What kind of tasks make you feel the most energized?",
+          options: ["Collaborating with a team", "Helping someone achieve a goal", "Diving deep into research", "Working with my hands"]
+        },
+        {
+          question: "When working on a project, which part excites you the most?",
+          options: ["Coming up with ideas", "Seeing how the project impacts others", "Working out the technical details", "Getting physically involved"]
+        },
+        {
+          question: "Which of these best describes your ideal type of challenge?",
+          options: ["A creative challenge", "A challenge that helps others", "A complex analytical challenge", "A physical challenge"]
+        },
+        {
+          question: "What do you most often dream about doing?",
+          options: ["Creating art", "Making a positive impact", "Finding solutions to difficult problems", "Exploring and adventures"]
         }
-        if (answer.includes("helping others") || answer.includes("volunteering") || answer.includes("making a difference") || answer.includes("making a positive impact")) {
-          passionCategories["Helping Others"]++;
-        }
-        if (answer.includes("analyzing") || answer.includes("problem-solving") || answer.includes("research") || answer.includes("solving complex problems")) {
-          passionCategories["Analytical"]++;
-        }
-        if (answer.includes("physical") || answer.includes("sports") || answer.includes("hiking") || answer.includes("exercise") || answer.includes("hands-on")) {
-          passionCategories["Physical"]++;
-        }
-      });
+      ];
 
-      // Determine Top Passions
-      const sortedPassions = Object.entries(passionCategories).sort((a, b) => b[1] - a[1]);
-      const topPassions = sortedPassions.filter(passion => passion[1] > 0).slice(0, 3);
+      let currentQuestionIndex = 0;
+      let userAnswers = [];
 
-      // Display Results
-      const resultList = document.getElementById("result-list");
-      resultList.innerHTML = '';
+      /**
+       * Initialize Quiz by Loading the First Question
+       */
+      function loadQuestion() {
+        const currentQuestion = quizData[currentQuestionIndex];
+        document.getElementById("question").innerText = currentQuestion.question;
+        const optionsContainer = document.getElementById("options");
+        optionsContainer.innerHTML = "";
 
-      if (topPassions.length === 0) {
-        resultList.innerHTML = `<li class="collection-item">No clear passions identified. Consider reflecting more deeply on your interests.</li>`;
-      } else {
-        topPassions.forEach(([passion, count], index) => {
-          const listItem = document.createElement("li");
-          listItem.className = "collection-item";
-          listItem.innerHTML = `
-            <span class="title"><strong>${index + 1}. ${passion}</strong></span>
-            <p>You selected related options ${count} times.</p>
-          `;
-          resultList.appendChild(listItem);
+        currentQuestion.options.forEach((option, index) => {
+          const optionDiv = document.createElement("p");
+
+          const label = document.createElement("label");
+          label.setAttribute("for", `option${index}`);
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.id = `option${index}`;
+          checkbox.name = "quiz-option";
+          checkbox.value = option;
+
+          const span = document.createElement("span");
+          span.innerText = option;
+
+          label.appendChild(checkbox);
+          label.appendChild(span);
+          optionDiv.appendChild(label);
+          optionsContainer.appendChild(optionDiv);
         });
+
+        // Update Progress Bar
+        updateProgress();
+
+        // Re-enable Next Button
+        document.getElementById("next-button").disabled = false;
       }
-    }
 
-    /**
-     * Update Progress Bar and Text
-     */
-    function updateProgress() {
-      const progressPercentage = ((currentQuestionIndex) / quizData.length) * 100;
-      document.getElementById("progress-bar").style.width = `${progressPercentage}%`;
-      document.getElementById("progress-text").innerText = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
-      
-      // Disable Next Button initially
-      document.getElementById("next-button").disabled = true;
+      /**
+       * Handle Next Question Navigation
+       */
+      function nextQuestion() {
+        const selectedOptions = document.querySelectorAll('input[name="quiz-option"]:checked');
+        if (selectedOptions.length === 0) {
+          M.toast({html: 'Please select at least one option before proceeding.', classes: 'rounded red'});
+          return;
+        }
 
-      // Add event listener to enable Next Button upon selection
-      const options = document.getElementsByName("quiz-option");
-      options.forEach(option => {
-        option.addEventListener("change", () => {
-          document.getElementById("next-button").disabled = false;
+        userAnswers[currentQuestionIndex] = Array.from(selectedOptions).map(option => option.value);
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < quizData.length) {
+          loadQuestion();
+          document.getElementById("prev-button").disabled = false;
+        } else {
+          showResults();
+        }
+      }
+
+      /**
+       * Handle Previous Question Navigation
+       */
+      function prevQuestion() {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          loadQuestion();
+
+          // Restore previous selections
+          const previousAnswers = userAnswers[currentQuestionIndex] || [];
+          previousAnswers.forEach(answer => {
+            const checkbox = document.querySelector(`input[name="quiz-option"][value="${answer}"]`);
+            if (checkbox) {
+              checkbox.checked = true;
+            }
+          });
+        }
+
+        if (currentQuestionIndex === 0) {
+          document.getElementById("prev-button").disabled = true;
+        }
+      }
+
+      /**
+       * Display Results Based on User Answers
+       */
+      function showResults() {
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("result").style.display = "block";
+
+        // Analyze Answers to Determine Passions
+        const passionCategories = {
+          "Creative": 0,
+          "Helping Others": 0,
+          "Analytical": 0,
+          "Physical": 0
+        };
+
+        userAnswers.forEach(answers => {
+          answers.forEach(answer => {
+            const lowerCaseAnswer = answer.toLowerCase();
+            if (lowerCaseAnswer.includes("creative") || lowerCaseAnswer.includes("art") || lowerCaseAnswer.includes("painting") || lowerCaseAnswer.includes("writing") || lowerCaseAnswer.includes("designing") || lowerCaseAnswer.includes("creating")) {
+              passionCategories["Creative"]++;
+            }
+            if (lowerCaseAnswer.includes("helping") || lowerCaseAnswer.includes("volunteering") || lowerCaseAnswer.includes("making a difference") || lowerCaseAnswer.includes("positive impact") || lowerCaseAnswer.includes("others")) {
+              passionCategories["Helping Others"]++;
+            }
+            if (lowerCaseAnswer.includes("analyzing") || lowerCaseAnswer.includes("problem-solving") || lowerCaseAnswer.includes("research") || lowerCaseAnswer.includes("solving") || lowerCaseAnswer.includes("technical")) {
+              passionCategories["Analytical"]++;
+            }
+            if (lowerCaseAnswer.includes("physical") || lowerCaseAnswer.includes("sports") || lowerCaseAnswer.includes("hiking") || lowerCaseAnswer.includes("exercise") || lowerCaseAnswer.includes("hands-on") || lowerCaseAnswer.includes("active")) {
+              passionCategories["Physical"]++;
+            }
+          });
         });
-      });
-    }
 
-    /**
-     * Restart the Quiz
-     */
-    function restartQuiz() {
-      currentQuestionIndex = 0;
-      userAnswers = [];
-      document.getElementById("result").style.display = "none";
-      document.getElementById("quiz").style.display = "block";
+        // Determine Top Passions
+        const sortedPassions = Object.entries(passionCategories).sort((a, b) => b[1] - a[1]);
+        const topPassions = sortedPassions.filter(passion => passion[1] > 0).slice(0, 3);
+
+        // Display Results
+        const resultList = document.getElementById("result-list");
+        resultList.innerHTML = '';
+
+        if (topPassions.length === 0) {
+          resultList.innerHTML = `<li class="collection-item">No clear passions identified. Consider reflecting more deeply on your interests.</li>`;
+        } else {
+          topPassions.forEach(([passion, count], index) => {
+            const listItem = document.createElement("li");
+            listItem.className = "collection-item";
+            listItem.innerHTML = `
+              <span class="title"><strong>${index + 1}. ${passion}</strong></span>
+              <p>You selected related options ${count} times.</p>
+            `;
+            resultList.appendChild(listItem);
+          });
+        }
+      }
+
+      /**
+       * Update Progress Bar and Text
+       */
+      function updateProgress() {
+        const progressPercentage = ((currentQuestionIndex) / quizData.length) * 100;
+        document.getElementById("progress-bar").style.width = `${progressPercentage}%`;
+        document.getElementById("progress-text").innerText = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
+      }
+
+      /**
+       * Restart the Quiz
+       */
+      function restartQuiz() {
+        currentQuestionIndex = 0;
+        userAnswers = [];
+        document.getElementById("result").style.display = "none";
+        document.getElementById("quiz").style.display = "block";
+        loadQuestion();
+      }
+
+      /**
+       * Download Results as PDF
+       */
+      function downloadPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.setFont('Helvetica', 'bold');
+        doc.setFontSize(16);
+        doc.text('Your Passion Finder Quiz Results', 105, 20, null, null, 'center');
+
+        doc.setFont('Helvetica', 'normal');
+        doc.setFontSize(12);
+        const passions = document.querySelectorAll('#result-list .collection-item');
+        passions.forEach((item, index) => {
+          const title = item.querySelector('.title').innerText;
+          const details = item.querySelector('p').innerText;
+          doc.text(`${title}`, 20, 40 + (index * 20));
+          doc.text(details, 20, 50 + (index * 20));
+        });
+
+        doc.save('Passion_Finder_Results.pdf');
+      }
+
+      /**
+       * Initialize the Quiz on Page Load
+       */
       loadQuestion();
-    }
-
-    /**
-     * Download Results as PDF
-     */
-    async function downloadPDF() {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-
-      doc.setFont('Orbitron', 'bold');
-      doc.setFontSize(16);
-      doc.text('Your Passion Finder Quiz Results', 105, 20, null, null, 'center');
-
-      doc.setFont('Orbitron', 'normal');
-      doc.setFontSize(12);
-      const passions = document.querySelectorAll('#result-list .collection-item');
-      passions.forEach((item, index) => {
-        const title = item.querySelector('.title').innerText;
-        const details = item.querySelector('p').innerText;
-        doc.text(`${index + 1}. ${title}`, 20, 40 + (index * 10));
-        doc.text(details, 20, 45 + (index * 10));
-      });
-
-      doc.save('Passion_Finder_Results.pdf');
-    }
-
-    /**
-     * Initialize the Quiz on Page Load
-     */
-    window.onload = () => {
-      loadQuestion();
-    };
+    });
   </script>
 </body>
 </html>
