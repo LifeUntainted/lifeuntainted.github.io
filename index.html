@@ -32,7 +32,7 @@
         }
 
         .parallax-container {
-            height: 70vh; /* Reduced height to avoid overlap */
+            height: 70vh; 
             position: relative;
         }
 
@@ -64,7 +64,7 @@
 
         .feature-section {
             position: absolute;
-            top: 40vh; /* Adjusted top value to prevent overlap */
+            top: 40vh; 
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
@@ -205,16 +205,15 @@
             color: #fff;
         }
 
-        /* Added Styles */
         .hero-content a.btn { 
             font-size: 1.2rem; 
             padding: 0.8rem 1.5rem; 
-            background-color: #00897b; /* More vibrant green */
-            box-shadow: 0 0 10px rgba(0, 105, 92, 0.8); /* Added initial box-shadow */
+            background-color: #00897b;
+            box-shadow: 0 0 10px rgba(0, 105, 92, 0.8);
         }
 
         .hero-content a.btn:hover {
-            animation: pulse 1s infinite; /* Added pulse animation on hover */
+            animation: pulse 1s infinite;
         }
 
         @keyframes pulse {
@@ -222,7 +221,6 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-
     </style>
 </head>
 <body>
@@ -254,11 +252,12 @@
     <div class="container center-align hero-content">
         <h1 class="main-title">Discover Your Future Niche Today</h1>
         <p>Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
-        <a href="tools.html" class="btn waves-effect waves-light" style="margin-top: 20px;">Explore Tools Now</a> 
-        <p style="margin-top: 1rem;"><a href="#" class="btn-flat waves-effect waves-light white-text">Join Our Community</a></p> </p> </div>
+        <a href="tools.html" class="btn waves-effect waves-light" style="margin-top: 20px;">Explore Tools Now</a>
+        <p style="margin-top: 1rem;"><a href="#" class="btn-flat waves-effect waves-light white-text">Join Our Community</a></p>
+    </div>
 </div>
 
-<div class="feature-section"> 
+<div class="feature-section">
     <div class="container">
         <div class="row">
             <div class="col s12 m4">
@@ -321,30 +320,37 @@
     <div class="container center-align" style="padding: 80px 0;">
         <h2 class="white-text">What Our Customers Say</h2>
         <div class="carousel">
-            <div class="carousel-item">
-                <p>"321Niche helped me focus and find clarity in my business direction. The AI tools were game-changing for my market research!"</p>
-                <cite>- Sarah Thompson, Digital Entrepreneur</cite>
+            <a class="carousel-item" href="#one!">
+                <div class="card-panel teal">
+                    <span class="white-text">“321Niche helped me focus and find clarity in my business direction. The AI tools were game-changing for my market research!”
+                        <br> - Sarah Thompson, Digital Entrepreneur</span>
+                </div>
+            </a>
+            <a class="carousel-item" href="#two!">
+                <div class="card-panel teal">
+                    <span class="white-text">“Thanks to the niche analyzer tool, I discovered an untapped market that perfectly aligned with my skills. My online business is thriving now!”
+                        <br> - Michael Chen, E-commerce Owner</span>
+                </div>
+            </a>
+            <a class="carousel-item" href="#three!">
+                <div class="card-panel teal">
+                    <span class="white-text">“The community support and AI-powered insights gave me the confidence to start my journey. I now know exactly what path to take!”
+                        <br> - Rachel Martinez, Content Creator
+                    </span>
+                </div>
+            </a>
             </div>
-            <div class="carousel-item">
-                <p>"Thanks to the niche analyzer tool, I discovered an untapped market that perfectly aligned with my skills. My online business is thriving now!"</p>
-                <cite>- Michael Chen, E-commerce Owner</cite>
-            </div>
-            <div class="carousel-item">
-                <p>"The community support and AI-powered insights gave me the confidence to start my journey. I now know exactly what path to take!"</p>
-                <cite>- Rachel Martinez, Content Creator</cite>
-            </div>
-        </div>
     </div>
 </div>
 
 <div class="parallax-container" style="background: rgba(0, 0, 0, 0.9);">
     <div class="container center-align" style="padding: 50px 0;">
         <p>Welcome to 321Niche.com, your one-stop destination for personal growth, niche discovery, and self-improvement. 
-           <br> Here you can access a wide range of free tools designed to help you visualize your journey and achieve your goals, 
-           whether it’s discovering a profitable niche or growing personally. 
-           <br> Our private journal system allows you to record your thoughts safely and securely, right in your browser, with data stored locally in your cookies. 
-           <br> From niche analyzers to visualization aids, 321Niche is all about empowering you to reach your potential. 
-           <br> Dive in, explore, and see how our tools can be the key to unlocking your future.</p> 
+            <br> Here you can access a wide range of free tools designed to help you visualize your journey and achieve your goals, 
+            whether it’s discovering a profitable niche or growing personally. 
+            <br> Our private journal system allows you to record your thoughts safely and securely, right in your browser, with data stored locally in your cookies. 
+            <br> From niche analyzers to visualization aids, 321Niche is all about empowering you to reach your potential. 
+            <br> Dive in, explore, and see how our tools can be the key to unlocking your future.</p> 
     </div>
 </div>
 
@@ -386,4 +392,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Initialize Mobile
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+
+        var parallaxElems = document.querySelectorAll('.parallax');
+        var parallaxInstances = M.Parallax.init(parallaxElems);
+
+        var carouselElems = document.querySelectorAll('.carousel');
+        var carouselInstances = M.Carousel.init(carouselElems, {
