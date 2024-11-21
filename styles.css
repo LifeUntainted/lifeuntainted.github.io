@@ -197,3 +197,34 @@ h1, h2, h3, p {
     background: #00695c;
     border-radius: 4px;
 }
+
+/* Pagination Styles */
+.pagination {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.pagination a, 
+.pagination span {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  background-color: #222; /* Dark background */
+  color: #57FF8C; /* Green text */
+  border: 1px solid #57FF8C;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+  background-color: #57FF8C;
+  color: #222;
+}
+
+.pagination .current { /* Style for the current page number */
+  background-color: #57FF8C;
+  color: #222;
+  font-weight: bold;
+  cursor: default; /* Indicate it's not clickable */
+}
