@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Blog - 321Niche"
-permalink: /blog/
+paginate: 5  # Number of posts per page
 ---
 
 <div class="container blog-page">
@@ -22,19 +22,19 @@ permalink: /blog/
   {% if paginator.total_pages > 1 %}
     <div class="pagination center-align">
       {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | relative_url }}" class="btn">&laquo; Previous</a>
+        <a href="{{ paginator.previous_page_path | relative_url }}" class="btn waves-effect waves-light">&laquo; Previous</a>
       {% endif %}
 
       {% for page in (1..paginator.total_pages) %}
         {% if page == paginator.page %}
           <span class="current btn disabled">{{ page }}</span>
         {% else %}
-          <a href="{{ paginator.page_path | replace: ':num', page | relative_url }}" class="btn">{{ page }}</a>
+          <a href="{{ paginator.page_path | replace: ':num', page | relative_url }}" class="btn waves-effect waves-light">{{ page }}</a>
         {% endif %}
       {% endfor %}
 
       {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | relative_url }}" class="btn">Next &raquo;</a>
+        <a href="{{ paginator.next_page_path | relative_url }}" class="btn waves-effect waves-light">Next &raquo;</a>
       {% endif %}
     </div>
   {% endif %}
