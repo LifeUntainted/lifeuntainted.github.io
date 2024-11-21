@@ -1,10 +1,8 @@
 const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
-  // Debugging: Log the entire event to see what is received
   console.log("Received Event:", JSON.stringify(event, null, 2));
 
-  // Check if the request method is POST
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -17,10 +15,8 @@ exports.handler = async (event) => {
   }
 
   try {
-    // Parse the incoming request body (expecting JSON format)
     let body;
 
-    // To avoid errors when the body is empty
     if (event.body) {
       body = JSON.parse(event.body);
     } else {
@@ -34,10 +30,9 @@ exports.handler = async (event) => {
       };
     }
 
-    // Extract user inputs from the body
-    const { interests, skills, audience, monetization, trends, competition, scalability, geographic } = body;
+    // Extract user inputs (removed competition and scalability)
+    const { interests, skills, audience, monetization, trends, geographic } = body; 
 
-    // Validate required fields (in case some inputs are missing)
     if (!interests || !skills || !audience || !monetization) {
       return {
         statusCode: 400,
@@ -49,7 +44,6 @@ exports.handler = async (event) => {
       };
     }
 
-    // Prepare a detailed prompt to send to OpenAI to generate niche ideas
     const prompt = `
       You are an AI assistant that helps people find profitable niches for their businesses.
       Here are some inputs from a user who is looking for niche ideas:
@@ -58,9 +52,7 @@ exports.handler = async (event) => {
       - Audience: ${audience}
       - Monetization strategies: ${monetization}
       - Trends they're interested in: ${trends || 'N/A'}
-      - Competition Level: ${competition || 'N/A'}
-      - Scalability: ${scalability || 'N/A'}
-      - Geographic Region: ${geographic || 'N/A'}
+      - Geographic Region: ${geographic || 'N/A'} 
 
       Based on this information, suggest 3 potential niches that could be profitable. For each niche:
       1. Describe the niche.
@@ -68,7 +60,6 @@ exports.handler = async (event) => {
       3. Suggest a few ways to monetize it effectively.
     `;
 
-    // Call OpenAI API
     const response = await fetch("https://api.openai.com/v1/completions", {
       method: "POST",
       headers: {
@@ -80,7 +71,7 @@ exports.handler = async (event) => {
         prompt: prompt,
         max_tokens: 300,
         temperature: 0.7,
-        n: 1 // Get one response
+        n: 1 
       })
     });
 
@@ -89,19 +80,16 @@ exports.handler = async (event) => {
       throw new Error(`OpenAI API responded with status ${response.status}`);
     }
 
-    // Get the response from OpenAI and parse it
     const data = await response.json();
 
-    // Check if OpenAI provided a valid response
     if (data.choices && data.choices.length > 0) {
       const nicheIdeas = data.choices[0].text.trim();
 
-      // Return a successful response with the generated niche ideas
       return {
         statusCode: 200,
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",  // Allow cross-origin
+          "Access-Control-Allow-Origin": "*", 
         },
         body: JSON.stringify({ result: nicheIdeas })
       };
