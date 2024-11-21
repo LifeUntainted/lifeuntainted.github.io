@@ -7,10 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Discover your future niche and turn your passion into income. 321Niche provides tools, resources, and community support to help you succeed.">
 
+    <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+    <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Orbitron Font -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
@@ -32,20 +35,12 @@
         }
 
         .parallax-container {
-            height: 70vh; 
+            height: 70vh;
             position: relative;
         }
 
-        .parallax {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-size: cover;
-            background-position: center;
-            transform: translateZ(0);
+        .parallax img {
+            filter: brightness(0.7);
         }
 
         .hero-content {
@@ -62,13 +57,17 @@
             text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
         }
 
+        .ai-tools-section {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 4rem 0;
+            position: relative;
+            z-index: 5;
+        }
+
         .feature-section {
-            position: absolute;
-            top: 90vh; /* Adjusted to 90vh */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            z-index: 10;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 4rem 0;
+            /* Removed absolute positioning to prevent overlap */
         }
 
         .feature-section .container {
@@ -77,23 +76,160 @@
             border-radius: 12px;
         }
 
-        .ai-tools-section {
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 4rem 0;
-            margin-top: -50px;
-            position: relative;
-            z-index: 5;
+        .icon-block {
+            padding: 1.2rem;
+            border: 1px solid #00695c;
+            background: rgba(0, 105, 92, 0.2);
+            border-radius: 8px;
+            height: 100%;
+            transition: transform 0.3s ease;
+            margin: 0.5rem 0;
+            perspective: 1000px;
         }
 
-        /* ... (Rest of the CSS) ... */
+        .icon-block:hover {
+            transform: rotateY(180deg);
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
+        }
+
+        .icon-block .content {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .icon-block:hover .content {
+            transform: rotateY(180deg);
+        }
+
+        .icon-block i {
+            font-size: 3rem;
+            color: #00695c;
+        }
+
+        .feature-title {
+            color: #fff;
+            margin: 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .ai-tools-box {
+            border: 1px solid #00695c;
+            background: rgba(0, 105, 92, 0.1);
+            border-radius: 8px;
+            padding: 1.2rem;
+            height: 100%;
+            margin: 0.5rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .ai-tools-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
+        }
+
+        .carousel .carousel-item {
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00695c;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 400px !important;
+            font-size: 1.2rem;
+        }
+
+        .btn, .btn-large {
+            background-color: #00695c;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover, .btn-large:hover {
+            background-color: #004d40;
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+        }
+
+        .page-footer {
+            background-color: #000;
+            border-top: 1px solid #00695c;
+            padding: 10px 0;
+        }
+
+        .input-field input {
+            border-bottom: 1px solid #00695c !important;
+            color: #fff !important;
+        }
+
+        .input-field input:focus {
+            border-bottom: 1px solid #00897b !important;
+            box-shadow: 0 1px 0 0 #00897b !important;
+        }
+
+        .input-field label {
+            color: #fff !important;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00695c;
+            border-radius: 4px;
+        }
+
+        .sidenav {
+            background-color: #000;
+        }
+
+        .sidenav li > a {
+            color: #fff;
+        }
+
+        .hero-content a.btn { 
+            font-size: 1.2rem; 
+            padding: 0.8rem 1.5rem; 
+            background-color: #00897b;
+            box-shadow: 0 0 10px rgba(0, 105, 92, 0.8);
+        }
+
+        .hero-content a.btn:hover {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Adjustments */
+        @media only screen and (max-width: 600px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+        }
     </style>
 </head>
 <body>
 
+<!-- Navbar -->
 <nav>
     <div class="nav-wrapper">
         <a href="index.html" class="brand-logo">321Niche</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+        </a>
         <ul class="right hide-on-med-and-down">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
@@ -104,6 +240,7 @@
     </div>
 </nav>
 
+<!-- Mobile Navigation -->
 <ul class="sidenav" id="mobile-demo">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About Us</a></li>
@@ -112,8 +249,11 @@
     <li><a href="tools.html">Tools & Downloads</a></li>
 </ul>
 
+<!-- Parallax Hero Section -->
 <div class="parallax-container">
-    <div class="parallax"><img src="images/hero-image.png" alt="Hero Image"></div>
+    <div class="parallax">
+        <img src="images/hero-image.png" alt="Hero Image">
+    </div>
     <div class="container center-align hero-content">
         <h1 class="main-title">Discover Your Future Niche Today</h1>
         <p>Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
@@ -122,6 +262,7 @@
     </div>
 </div>
 
+<!-- AI Tools Section -->
 <div class="ai-tools-section">
     <div class="container">
         <h2 class="center-align">Our AI-Powered Tools</h2>
@@ -144,34 +285,39 @@
     </div>
 </div>
 
+<!-- Testimonials Section -->
 <div class="parallax-container">
-    <div class="parallax"><img src="images/testimonial-background.png" alt="Testimonial Background"></div>
+    <div class="parallax">
+        <img src="images/testimonial-background.png" alt="Testimonial Background">
+    </div>
     <div class="container center-align" style="padding: 80px 0;">
         <h2 class="white-text">What Our Customers Say</h2>
-        <div class="carousel">
-            <a class="carousel-item" href="#one!">
+        <div class="carousel carousel-slider center">
+            <div class="carousel-fixed-item center"></div>
+            <div class="carousel-item" href="#one!">
                 <div class="card-panel teal">
                     <span class="white-text">“321Niche helped me focus and find clarity in my business direction. The AI tools were game-changing for my market research!”
                         <br> - Sarah Thompson, Digital Entrepreneur</span>
                 </div>
-            </a>
-            <a class="carousel-item" href="#two!">
+            </div>
+            <div class="carousel-item" href="#two!">
                 <div class="card-panel teal">
                     <span class="white-text">“Thanks to the niche analyzer tool, I discovered an untapped market that perfectly aligned with my skills. My online business is thriving now!”
                         <br> - Michael Chen, E-commerce Owner</span>
                 </div>
-            </a>
-            <a class="carousel-item" href="#three!">
+            </div>
+            <div class="carousel-item" href="#three!">
                 <div class="card-panel teal">
                     <span class="white-text">“The community support and AI-powered insights gave me the confidence to start my journey. I now know exactly what path to take!”
                         <br> - Rachel Martinez, Content Creator
                     </span>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- Welcome Section -->
 <div class="parallax-container" style="background: rgba(0, 0, 0, 0.9);">
     <div class="container center-align" style="padding: 50px 0;">
         <p>Welcome to 321Niche.com, your one-stop destination for personal growth, niche discovery, and self-improvement. 
@@ -183,6 +329,7 @@
     </div>
 </div>
 
+<!-- Feature Section (Three Boxes) -->
 <div class="feature-section">
     <div class="container">
         <div class="row">
@@ -219,6 +366,7 @@
     </div>
 </div>
 
+<!-- Subscription Form -->
 <div class="container">
     <div class="section">
         <div class="row">
@@ -227,12 +375,12 @@
                 <p class="center-align">Subscribe to our newsletter and be the first to hear about new resources, tools, and community events.</p>
                 <form class="col s12">
                     <div class="row">
-                        <div class="input-field col s12 m8 offset-m2">
-                            <input id="email" type="email" class="validate" required>
+                        <div class="input-field col s12 m8">
+                            <input id="email" type="email" class="validate white-text" required>
                             <label for="email">Email</label>
                             <span class="helper-text" data-error="Invalid email" data-success="Valid email"></span>
                         </div>
-                        <div class="col s12 m4 offset-m2">
+                        <div class="col s12 m4">
                             <button class="btn waves-effect waves-light" type="submit" name="action">Subscribe
                                 <i class="material-icons right">send</i>
                             </button>
@@ -244,6 +392,7 @@
     </div>
 </div>
 
+<!-- Footer -->
 <footer class="page-footer">
     <div class="container">
         <h5>Trusted by Industry Leaders</h5>
@@ -254,25 +403,33 @@
     </div>
 </footer>
 
+<!-- Materialize JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems);
+        // Initialize Sidenav
+        var sidenavElems = document.querySelectorAll('.sidenav');
+        M.Sidenav.init(sidenavElems);
 
+        // Initialize Parallax
         var parallaxElems = document.querySelectorAll('.parallax');
-        var parallaxInstances = M.Parallax.init(parallaxElems);
+        M.Parallax.init(parallaxElems);
 
+        // Initialize Carousel
         var carouselElems = document.querySelectorAll('.carousel');
-        var carouselInstances = M.Carousel.init(carouselElems, {
+        M.Carousel.init(carouselElems, {
             fullWidth: true,
             indicators: true
         });
 
+        // Auto-play Carousel
         setInterval(function() {
-            carouselInstances[0].next();
-        }, 5000); 
+            var instance = M.Carousel.getInstance(document.querySelector('.carousel'));
+            instance.next();
+        }, 5000);
     });
 </script>
+
 </body>
 </html>
