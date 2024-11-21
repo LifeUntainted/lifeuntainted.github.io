@@ -57,9 +57,9 @@
     /* Quiz Container */
     .quiz-container {
       background-color: rgba(0, 0, 0, 0.85);
-      padding: 3rem 2rem;
+      padding: 2rem 1rem;
       border-radius: 12px;
-      margin-top: 4rem;
+      margin-top: 2rem;
       box-shadow: 0 0 30px rgba(0, 230, 118, 0.5);
       border: 2px solid #00e676;
     }
@@ -72,6 +72,7 @@
     .quiz-question {
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
+      color: #00e676;
     }
 
     .quiz-option {
@@ -172,7 +173,7 @@
 
   <!-- Passion Finder Quiz Section -->
   <div class="container">
-    <div class="quiz-container">
+    <div class="quiz-container" role="main">
       <h2 class="center-align">Passion Finder Quiz</h2>
       <p class="flow-text center-align">Discover your passions by answering the questions below. At the end, receive personalized insights to help you incorporate your passions into your life.</p>
       
@@ -186,10 +187,12 @@
 
       <div id="quiz" class="quiz-section">
         <div class="quiz-question" id="question">Loading question...</div>
-        <div id="options"></div>
+        <form id="quiz-form">
+          <div id="options" class="quiz-options"></div>
+        </form>
         <div class="center-align" style="margin-top: 2rem;">
           <button id="prev-button" class="btn-flat waves-effect waves-light" onclick="prevQuestion()" disabled aria-label="Go to Previous Question">Previous</button>
-          <button id="next-button" class="btn waves-effect waves-light" onclick="nextQuestion()" disabled aria-label="Go to Next Question">Next</button>
+          <button id="next-button" class="btn waves-effect waves-light" onclick="nextQuestion()" aria-label="Go to Next Question">Next</button>
         </div>
       </div>
 
@@ -225,6 +228,9 @@
       // Initialize Mobile Navigation
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
+
+      // Initialize Accessibility Features
+      document.body.classList.add('accessible');
 
       // Particle.js configuration
       particlesJS('particles-js', {
@@ -379,40 +385,44 @@
         optionsContainer.innerHTML = "";
 
         currentQuestion.options.forEach((option, index) => {
-          const optionDiv = document.createElement("div");
-          optionDiv.className = "quiz-option";
-
-          const radioInput = document.createElement("input");
-          radioInput.type = "radio";
-          radioInput.id = `option${index}`;
-          radioInput.name = "quiz-option";
-          radioInput.value = option;
-          radioInput.required = true;
+          const optionDiv = document.createElement("p");
 
           const label = document.createElement("label");
-          label.htmlFor = `option${index}`;
-          label.innerText = option;
+          label.setAttribute("for", `option${index}`);
 
-          optionDiv.appendChild(radioInput);
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.id = `option${index}`;
+          checkbox.name = "quiz-option";
+          checkbox.value = option;
+
+          const span = document.createElement("span");
+          span.innerText = option;
+
+          label.appendChild(checkbox);
+          label.appendChild(span);
           optionDiv.appendChild(label);
           optionsContainer.appendChild(optionDiv);
         });
 
         // Update Progress Bar
         updateProgress();
+
+        // Re-enable Next Button
+        document.getElementById("next-button").disabled = false;
       }
 
       /**
        * Handle Next Question Navigation
        */
       function nextQuestion() {
-        const selectedOption = document.querySelector('input[name="quiz-option"]:checked');
-        if (!selectedOption) {
-          M.toast({html: 'Please select an option before proceeding.', classes: 'rounded red'});
+        const selectedOptions = document.querySelectorAll('input[name="quiz-option"]:checked');
+        if (selectedOptions.length === 0) {
+          M.toast({html: 'Please select at least one option before proceeding.', classes: 'rounded red'});
           return;
         }
 
-        userAnswers[currentQuestionIndex] = selectedOption.value;
+        userAnswers[currentQuestionIndex] = Array.from(selectedOptions).map(option => option.value);
         currentQuestionIndex++;
 
         if (currentQuestionIndex < quizData.length) {
@@ -421,9 +431,6 @@
         } else {
           showResults();
         }
-
-        // Disable Next Button until a new option is selected
-        document.getElementById("next-button").disabled = true;
       }
 
       /**
@@ -433,6 +440,15 @@
         if (currentQuestionIndex > 0) {
           currentQuestionIndex--;
           loadQuestion();
+
+          // Restore previous selections
+          const previousAnswers = userAnswers[currentQuestionIndex] || [];
+          previousAnswers.forEach(answer => {
+            const checkbox = document.querySelector(`input[name="quiz-option"][value="${answer}"]`);
+            if (checkbox) {
+              checkbox.checked = true;
+            }
+          });
         }
 
         if (currentQuestionIndex === 0) {
@@ -455,20 +471,22 @@
           "Physical": 0
         };
 
-        userAnswers.forEach(answer => {
-          const lowerCaseAnswer = answer.toLowerCase();
-          if (lowerCaseAnswer.includes("creative") || lowerCaseAnswer.includes("art") || lowerCaseAnswer.includes("painting") || lowerCaseAnswer.includes("writing") || lowerCaseAnswer.includes("designing") || lowerCaseAnswer.includes("creating")) {
-            passionCategories["Creative"]++;
-          }
-          if (lowerCaseAnswer.includes("helping") || lowerCaseAnswer.includes("volunteering") || lowerCaseAnswer.includes("making a difference") || lowerCaseAnswer.includes("positive impact") || lowerCaseAnswer.includes("others")) {
-            passionCategories["Helping Others"]++;
-          }
-          if (lowerCaseAnswer.includes("analyzing") || lowerCaseAnswer.includes("problem-solving") || lowerCaseAnswer.includes("research") || lowerCaseAnswer.includes("solving") || lowerCaseAnswer.includes("technical")) {
-            passionCategories["Analytical"]++;
-          }
-          if (lowerCaseAnswer.includes("physical") || lowerCaseAnswer.includes("sports") || lowerCaseAnswer.includes("hiking") || lowerCaseAnswer.includes("exercise") || lowerCaseAnswer.includes("hands-on") || lowerCaseAnswer.includes("active")) {
-            passionCategories["Physical"]++;
-          }
+        userAnswers.forEach(answers => {
+          answers.forEach(answer => {
+            const lowerCaseAnswer = answer.toLowerCase();
+            if (lowerCaseAnswer.includes("creative") || lowerCaseAnswer.includes("art") || lowerCaseAnswer.includes("painting") || lowerCaseAnswer.includes("writing") || lowerCaseAnswer.includes("designing") || lowerCaseAnswer.includes("creating")) {
+              passionCategories["Creative"]++;
+            }
+            if (lowerCaseAnswer.includes("helping") || lowerCaseAnswer.includes("volunteering") || lowerCaseAnswer.includes("making a difference") || lowerCaseAnswer.includes("positive impact") || lowerCaseAnswer.includes("others")) {
+              passionCategories["Helping Others"]++;
+            }
+            if (lowerCaseAnswer.includes("analyzing") || lowerCaseAnswer.includes("problem-solving") || lowerCaseAnswer.includes("research") || lowerCaseAnswer.includes("solving") || lowerCaseAnswer.includes("technical")) {
+              passionCategories["Analytical"]++;
+            }
+            if (lowerCaseAnswer.includes("physical") || lowerCaseAnswer.includes("sports") || lowerCaseAnswer.includes("hiking") || lowerCaseAnswer.includes("exercise") || lowerCaseAnswer.includes("hands-on") || lowerCaseAnswer.includes("active")) {
+              passionCategories["Physical"]++;
+            }
+          });
         });
 
         // Determine Top Passions
@@ -501,18 +519,6 @@
         const progressPercentage = ((currentQuestionIndex) / quizData.length) * 100;
         document.getElementById("progress-bar").style.width = `${progressPercentage}%`;
         document.getElementById("progress-text").innerText = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
-        
-        // Disable Next Button initially
-        document.getElementById("next-button").disabled = true;
-
-        // Add event listener to enable Next Button upon selection
-        const options = document.getElementsByName("quiz-option");
-        // Convert NodeList to Array for compatibility
-        Array.from(options).forEach(option => {
-          option.addEventListener("change", () => {
-            document.getElementById("next-button").disabled = false;
-          });
-        });
       }
 
       /**
@@ -554,7 +560,6 @@
        * Initialize the Quiz on Page Load
        */
       loadQuestion();
-
     });
   </script>
 </body>
