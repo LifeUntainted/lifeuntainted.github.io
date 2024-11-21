@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobbies Exploration List - 321Niche</title>
+    
+    <!-- Google Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Animate.css for Animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <!-- Materialize CSS for Enhanced Styling -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #57FF8C;
+            --background-color: #121212;
+            --text-color: #E0E0E0;
+            --hover-color: #88FFAA;
+            --border-color: var(--primary-color);
+            --description-color: #B0BEC5;
+        }
+
+        /* Global Styles */
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            margin-bottom: 30px;
+        }
+
+        /* Collapsible Header Styles */
+        .collapsible-header {
+            background: rgba(30, 30, 30, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 20px;
+            transition: background 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .collapsible-header:hover {
+            background: rgba(30, 30, 30, 1);
+            box-shadow: 0 0 20px rgba(87, 255, 140, 0.5);
+        }
+
+        .collapsible-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .material-icons.icon {
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible li.active .material-icons.icon {
+            transform: rotate(180deg);
+        }
+
+        /* Hobby Item Styles */
+        .hobby-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .hobby-item:hover {
+            background: var(--hover-color);
+            color: #000;
+        }
+
+        .hobby-item .material-icons.hobby-icon {
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+
+        .hobby-description {
+            margin-left: 33px;
+            display: none;
+            color: var(--description-color);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        /* Highlighting search results */
+        .highlight {
+            background-color: yellow;
+            color: #000;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .collapsible-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .hobby-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hobby-item .material-icons.hobby-icon {
+                margin-bottom: 5px;
+            }
+
+            .hobby-description {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hobbies Exploration List</h1>
+        
+        <!-- Search Bar -->
+        <div class="row search-bar">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">search</i>
+                <input id="search" type="text" onkeyup="filterHobbies()" placeholder="Search for a hobby..." aria-label="Search for a hobby">
+            </div>
+        </div>
+
+        <!-- Collapsible Hobby Categories -->
+        <ul class="collapsible popout">
+            <!-- Sports & Physical Activities -->
+            <li>
+                <div class="collapsible-header">
+                    <span>Sports & Physical Activities</span>
+                    <i class="material-icons icon">expand_more</i>
+                </div>
+                <div class="collapsible-body">
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">directions_run</i>Running
+                        <div class="hobby-description">Running is a great cardiovascular workout that improves stamina and overall health. All you need is a pair of running shoes to get started!</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">directions_bike</i>Cycling
+                        <div class="hobby-description">Cycling is an enjoyable way to explore nature while exercising. Whether on roads or mountain trails, it offers both adventure and fitness.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">pool</i>Swimming
+                        <div class="hobby-description">Swimming provides a full-body workout that's low-impact and perfect for all ages. Enjoy it in pools or natural water bodies.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">self_improvement</i>Yoga
+                        <div class="hobby-description">Yoga enhances both physical and mental health through postures, breathing exercises, and meditation. It's a balanced practice for the body and mind.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">terrain</i>Hiking
+                        <div class="hobby-description">Hiking connects you with nature and offers beautiful landscapes. It's excellent for building strength and endurance while enjoying the outdoors.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">fitness_center</i>Weightlifting
+                        <div class="hobby-description">Weightlifting builds muscle strength and improves overall fitness. It's a versatile activity that can be done in gyms or at home with the right equipment.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">sports_esports</i>Martial Arts
+                        <div class="hobby-description">Martial arts disciplines like Karate, Taekwondo, and Judo enhance physical fitness, discipline, and self-defense skills.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">sports_volleyball</i>Volleyball
+                        <div class="hobby-description">Volleyball is a team sport that improves coordination, agility, and teamwork. It can be played both indoors and on the beach.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">sports_basketball</i>Basketball
+                        <div class="hobby-description">Basketball enhances cardiovascular health, coordination, and teamwork. It's a fast-paced game that can be played casually or competitively.</div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Creative Arts -->
+            <li>
+                <div class="collapsible-header">
+                    <span>Creative Arts</span>
+                    <i class="material-icons icon">expand_more</i>
+                </div>
+                <div class="collapsible-body">
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">brush</i>Painting
+                        <div class="hobby-description">Painting allows you to express creativity through colors and strokes. Experiment with acrylics, oils, or watercolors to create stunning artwork.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">edit</i>Drawing
+                        <div class="hobby-description">Drawing is a fundamental art form that lets you sketch ideas with just a pencil and paper. It's perfect for developing artistic skills and creativity.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">3d_rotation</i>Sculpting
+                        <div class="hobby-description">Sculpting involves shaping materials like clay or stone to create 3D artworks. It's a tactile and rewarding form of creative expression.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">camera_alt</i>Photography
+                        <div class="hobby-description">Photography captures moments and tells stories through images. Whether using a professional camera or a smartphone, it's a versatile and accessible hobby.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">create</i>Writing
+                        <div class="hobby-description">Writing allows you to convey thoughts, stories, and ideas. Whether it's fiction, non-fiction, or poetry, it's a powerful way to express creativity.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">music_note</i>Music Composition
+                        <div class="hobby-description">Music composition lets you create original pieces, exploring melodies, harmonies, and rhythms. It's a fulfilling way to express emotions through sound.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">theater_comedy</i>Acting
+                        <div class="hobby-description">Acting enhances communication skills and allows you to explore different characters and narratives. It can be pursued in theater, film, or improv.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">videocam</i>Filmmaking
+                        <div class="hobby-description">Filmmaking combines storytelling, visual art, and technical skills to create compelling videos or movies. It's a collaborative and creative endeavor.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">palette</i>Graphic Design
+                        <div class="hobby-description">Graphic design involves creating visual content for various mediums. It's a blend of creativity and technical skills, perfect for those interested in visual communication.</div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Technology & Gadgets -->
+            <li>
+                <div class="collapsible-header">
+                    <span>Technology & Gadgets</span>
+                    <i class="material-icons icon">expand_more</i>
+                </div>
+                <div class="collapsible-body">
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">code</i>Coding
+                        <div class="hobby-description">Coding enables you to create websites, apps, and software. It's a challenging and rewarding hobby that enhances problem-solving skills.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">computer</i>Building PCs
+                        <div class="hobby-description">Building your own PC is a fun and educational experience. It gives you control over components and helps you understand computer hardware.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">robot</i>Robotics
+                        <div class="hobby-description">Robotics combines creativity and engineering to build robots. It's a fascinating hobby that can also lead to solving real-world problems.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">drone</i>Drones
+                        <div class="hobby-description">Flying drones is exhilarating and offers opportunities for aerial photography, racing, and exploring new perspectives from the sky.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">print</i>3D Printing
+                        <div class="hobby-description">3D printing brings your designs to life, allowing you to create models, prototypes, and practical items with precision and creativity.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">virtual_reality</i>Virtual Reality Gaming
+                        <div class="hobby-description">Virtual reality gaming offers immersive experiences, transporting you to different worlds and enhancing interactive entertainment.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">smart_toy</i>Smart Home Automation
+                        <div class="hobby-description">Smart home automation involves setting up devices that enhance convenience and efficiency in your living space through technology.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">memory</i>Data Science
+                        <div class="hobby-description">Data science combines statistics, programming, and domain expertise to extract insights from data, making it a highly valuable and engaging hobby.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">security</i>Cybersecurity
+                        <div class="hobby-description">Cybersecurity involves protecting systems and data from digital attacks. It's a critical and intellectually stimulating hobby.</div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Culinary Arts -->
+            <li>
+                <div class="collapsible-header">
+                    <span>Culinary Arts</span>
+                    <i class="material-icons icon">expand_more</i>
+                </div>
+                <div class="collapsible-body">
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">cake</i>Baking
+                        <div class="hobby-description">Baking is both fun and delicious. Experiment with recipes from breads to cakes, and share your creations with loved ones.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">restaurant</i>Cooking
+                        <div class="hobby-description">Cooking allows you to explore global cuisines and develop a useful skill that’s both creative and fulfilling.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">local_bar</i>Mixology
+                        <div class="hobby-description">Mixology is the art of crafting cocktails and mocktails. Create unique drinks to impress your guests and enhance your social gatherings.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">spa</i>Fermenting
+                        <div class="hobby-description">Fermenting is a traditional process to make foods like pickles, kombucha, and yogurt. It’s enjoyable and beneficial for your gut health.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">book</i>Food Blogging
+                        <div class="hobby-description">Food blogging lets you share recipes and culinary experiences. Inspire others to cook and build a community of food enthusiasts.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">icecream</i>Ice Cream Making
+                        <div class="hobby-description">Making ice cream at home allows you to experiment with flavors and create personalized frozen treats for yourself and others.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">coffee</i>Coffee Brewing
+                        <div class="hobby-description">Perfecting the art of coffee brewing enhances your mornings. Explore different brewing methods and flavors to suit your taste.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">wine_bar</i>Wine Tasting
+                        <div class="hobby-description">Wine tasting involves exploring different wines, understanding their profiles, and appreciating the nuances of each variety.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">nutrition</i>Nutritional Planning
+                        <div class="hobby-description">Nutritional planning focuses on creating balanced diets, understanding food properties, and promoting healthy eating habits.</div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Outdoor & Nature -->
+            <li>
+                <div class="collapsible-header">
+                    <span>Outdoor & Nature</span>
+                    <i class="material-icons icon">expand_more</i>
+                </div>
+                <div class="collapsible-body">
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">camping</i>Camping
+                        <div class="hobby-description">Camping allows you to disconnect and enjoy the beauty of nature. It’s a perfect hobby for a peaceful escape from daily life.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">filter_hdr</i>Bird Watching
+                        <div class="hobby-description">Bird watching is a relaxing hobby where you learn about different bird species. It’s great for connecting with nature.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">waves</i>Fishing
+                        <div class="hobby-description">Fishing requires patience but is a rewarding hobby when you catch a fish. It’s a calming way to spend time outdoors.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">local_florist</i>Gardening
+                        <div class="hobby-description">Gardening allows you to grow your own flowers, fruits, or vegetables. It’s fulfilling and therapeutic.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">stars</i>Stargazing
+                        <div class="hobby-description">Stargazing involves observing the stars, planets, and constellations. It’s fascinating and requires minimal equipment.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">nature_people</i>Kayaking
+                        <div class="hobby-description">Kayaking offers an adventurous way to explore waterways. It’s a great full-body workout and a peaceful way to enjoy nature.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">forest</i>Trail Running
+                        <div class="hobby-description">Trail running combines the benefits of running with the beauty of nature. It’s more challenging than road running and offers varied terrains.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">eco</i>Environmental Volunteering
+                        <div class="hobby-description">Environmental volunteering involves activities like tree planting, beach clean-ups, and conservation efforts. It’s rewarding and beneficial for the planet.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">emoji_nature</i>Rock Climbing
+                        <div class="hobby-description">Rock climbing is a physically and mentally challenging hobby that builds strength, endurance, and problem-solving skills.</div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- DIY & Crafting -->
+            <li>
+                <div class="collapsible-header">
+                    <span>DIY & Crafting</span>
+                    <i class="material-icons icon">expand_more</i>
+                </div>
+                <div class="collapsible-body">
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">checkroom</i>Knitting
+                        <div class="hobby-description">Knitting is a creative and relaxing hobby. Make scarves, hats, or blankets using simple knitting techniques.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">construction</i>Woodworking
+                        <div class="hobby-description">Woodworking lets you create furniture and other items. It’s a satisfying hobby that allows you to work with your hands.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">create</i>Scrapbooking
+                        <div class="hobby-description">Scrapbooking preserves your memories creatively using photos, decorations, and handwritten notes.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">candlestick</i>Candle Making
+                        <div class="hobby-description">Candle making is a calming and aromatic hobby. Create custom scents and colors, making them great gifts.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">recycle</i>Upcycling
+                        <div class="hobby-description">Upcycling transforms old items into something new and useful. It’s great for creativity and the environment.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">color_lens</i>Painting
+                        <div class="hobby-description">Painting on various surfaces allows for creative expression and the exploration of different artistic techniques.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">texture</i>Embroidery
+                        <div class="hobby-description">Embroidery involves decorating fabric using a needle and thread. It’s a meticulous hobby that results in beautiful patterns and designs.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">build</i>Model Building
+                        <div class="hobby-description">Building models, whether they are airplanes, ships, or fantasy creations, is a detailed and rewarding hobby.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">palette</i>Glassblowing
+                        <div class="hobby-description">Glassblowing is an intricate craft that involves shaping molten glass into artistic forms. It’s both challenging and awe-inspiring.</div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Music & Performing Arts -->
+            <li>
+                <div class="collapsible-header">
+                    <span>Music & Performing Arts</span>
+                    <i class="material-icons icon">expand_more</i>
+                </div>
+                <div class="collapsible-body">
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">music_note</i>Playing an Instrument
+                        <div class="hobby-description">Learning to play an instrument like guitar, piano, or drums enhances cognitive skills and provides a creative outlet.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">mic</i>Singing
+                        <div class="hobby-description">Singing improves breath control and vocal techniques while allowing for personal expression through music.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">theater_comedy</i>Acting
+                        <div class="hobby-description">Acting enhances communication skills and allows you to explore different characters and narratives in theater or film.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">videocam</i>Filmmaking
+                        <div class="hobby-description">Filmmaking combines storytelling, visual art, and technical skills to create compelling videos or movies.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">record_voice_over</i>Voice Acting
+                        <div class="hobby-description">Voice acting involves providing voices for characters in animations, games, and audiobooks, offering a unique creative challenge.</div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Science & Education -->
+            <li>
+                <div class="collapsible-header">
+                    <span>Science & Education</span>
+                    <i class="material-icons icon">expand_more</i>
+                </div>
+                <div class="collapsible-body">
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">science</i>Astronomy
+                        <div class="hobby-description">Astronomy involves studying celestial objects and phenomena. It’s a fascinating hobby for those interested in the universe.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">local_library</i>Reading
+                        <div class="hobby-description">Reading expands knowledge, enhances vocabulary, and stimulates imagination. It’s a versatile hobby that can cover countless genres.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">psychology</i>Psychology Studies
+                        <div class="hobby-description">Studying psychology helps you understand human behavior and mental processes, providing insights into personal and social dynamics.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">beach_access</i>Geocaching
+                        <div class="hobby-description">Geocaching is a real-world treasure hunt using GPS. It combines technology with outdoor adventure, making it exciting and engaging.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">biotech</i>Biotechnology Projects
+                        <div class="hobby-description">Engaging in biotechnology projects involves experimenting with biological systems, fostering innovation and scientific curiosity.</div>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Travel & Adventure -->
+            <li>
+                <div class="collapsible-header">
+                    <span>Travel & Adventure</span>
+                    <i class="material-icons icon">expand_more</i>
+                </div>
+                <div class="collapsible-body">
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">flight</i>Backpacking
+                        <div class="hobby-description">Backpacking offers an affordable and flexible way to explore new places, cultures, and landscapes while traveling.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">map</i>Map Making (Cartography)
+                        <div class="hobby-description">Cartography involves creating detailed maps, blending artistic skills with geographic knowledge.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">sailing</i>Sailing
+                        <div class="hobby-description">Sailing combines adventure with skill, allowing you to navigate waters and enjoy the tranquility of the sea.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">directions_boat_filled</i>Kayaking
+                        <div class="hobby-description">Kayaking offers an adventurous way to explore waterways. It’s a great full-body workout and a peaceful way to enjoy nature.</div>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="material-icons hobby-icon">terrain</i>Rock Climbing
+                        <div class="hobby-description">Rock climbing is a physically and mentally challenging hobby that builds strength, endurance, and problem-solving skills.</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Collapsible
+            const elems = document.querySelectorAll('.collapsible');
+            M.Collapsible.init(elems, {
+                accordion: false
+            });
+
+            // Event Delegation for Hobby Description Toggle
+            const collapsibleBody = document.querySelectorAll('.collapsible-body');
+            collapsibleBody.forEach(body => {
+                body.addEventListener('click', function(e) {
+                    const hobbyItem = e.target.closest('.hobby-item');
+                    if (hobbyItem) {
+                        e.stopPropagation();
+                        const description = hobbyItem.querySelector('.hobby-description');
+                        if (description) {
+                            description.style.display = description.style.display === 'block' ? 'none' : 'block';
+                        }
+                    }
+                });
+            });
+
+            // Search Functionality
+            const searchInput = document.getElementById('search');
+            searchInput.addEventListener('input', function() {
+                const filter = this.value.toLowerCase();
+                const hobbyItems = document.querySelectorAll('.hobby-item');
+
+                hobbyItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(filter)) {
+                        item.style.display = "";
+                        highlightText(item, filter);
+                    } else {
+                        item.style.display = "none";
+                        removeHighlight(item);
+                    }
+                });
+            });
+
+            // Function to highlight matched text
+            function highlightText(element, filter) {
+                const text = element.innerHTML;
+                const regex = new RegExp(`(${filter})`, 'gi');
+                const newText = text.replace(regex, '<span class="highlight">$1</span>');
+                element.innerHTML = newText;
+            }
+
+            // Function to remove highlights
+            function removeHighlight(element) {
+                element.innerHTML = element.textContent;
+            }
+        });
+    </script>
+</body>
+</html>

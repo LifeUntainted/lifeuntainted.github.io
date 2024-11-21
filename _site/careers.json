@@ -1,0 +1,682 @@
+[
+  {
+    "name": "Software Developer",
+    "industry": ["Technology", "IT"],
+    "job_level": "Mid",
+    "keywords": {
+      "skills": ["coding", "programming", "software development", "debugging", "version control"],
+      "responsibilities": ["design software", "develop applications", "maintain codebase", "collaborate with teams"]
+    },
+    "synonyms": ["developer", "software engineer", "application developer", "software programmer"],
+    "hard_skills": ["JavaScript", "Python", "Java", "C#", "SQL"],
+    "soft_skills": ["problem-solving", "attention to detail", "teamwork", "communication"],
+    "certifications": ["AWS Certified Developer", "Microsoft Certified: Azure Developer Associate"],
+    "years_of_experience": {
+      "minimum": 2,
+      "recommended": 5
+    },
+    "career_path": ["Junior Software Developer", "Software Developer", "Senior Software Developer", "Lead Developer", "Engineering Manager"],
+    "educational_requirements": ["Bachelor's degree in Computer Science or related field"],
+    "average_salary_range": "$60,000 - $120,000",
+    "median_salary": "$90,000",
+    "job_outlook": {
+      "growth_percentage": "22% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Office", "Remote", "Hybrid"],
+    "work_hours": ["Full-time", "Flexible Hours", "Overtime Occasionally"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Professional Development", "Flexible Working Hours"],
+    "challenges": ["Keeping up with rapidly changing technologies", "Managing tight deadlines", "Ensuring code quality"],
+    "description": "Design, develop, and maintain software applications. Requires strong analytical skills and proficiency in programming languages.",
+    "link": "https://en.wikipedia.org/wiki/Software_developer",
+    "official_resources": ["https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm"],
+    "related_careers": ["Data Scientist", "UX/UI Designer", "DevOps Engineer"],
+    "key_employers": ["Google", "Microsoft", "Amazon", "Apple", "Facebook"]
+  },
+  {
+    "name": "Teacher",
+    "industry": ["Education"],
+    "job_level": "Entry",
+    "keywords": {
+      "skills": ["teaching", "instruction", "curriculum development", "classroom management"],
+      "responsibilities": ["educate students", "create lesson plans", "assess student performance", "engage with parents"]
+    },
+    "synonyms": ["educator", "instructor", "tutor", "lecturer"],
+    "hard_skills": ["subject matter expertise", "lesson planning", "assessment"],
+    "soft_skills": ["patience", "communication", "creativity", "empathy"],
+    "certifications": ["Teaching Certification", "TESOL Certification (for English Teachers)"],
+    "years_of_experience": {
+      "minimum": 0,
+      "recommended": 3
+    },
+    "career_path": ["Teacher", "Senior Teacher", "Department Head", "Educational Administrator"],
+    "educational_requirements": ["Bachelor's degree in Education or relevant subject area", "Teaching certification"],
+    "average_salary_range": "$40,000 - $80,000",
+    "median_salary": "$60,000",
+    "job_outlook": {
+      "growth_percentage": "4% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["School", "College", "Online"],
+    "work_hours": ["Full-time", "After School Activities", "Flexible Hours"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Paid Time Off", "Professional Development"],
+    "challenges": ["Managing diverse classrooms", "Meeting varied student needs", "Handling administrative tasks"],
+    "description": "Educate and mentor students in various subjects. Requires patience, communication skills, and a passion for helping others learn.",
+    "link": "https://en.wikipedia.org/wiki/Teacher",
+    "official_resources": ["https://www.bls.gov/ooh/education-training-and-library/teachers.htm"],
+    "related_careers": ["Educational Administrator", "Curriculum Developer", "Educational Consultant"],
+    "key_employers": ["Public and Private Schools", "Universities", "Online Education Platforms"]
+  },
+  {
+    "name": "Data Scientist",
+    "industry": ["Technology", "Healthcare", "Finance", "Retail"],
+    "job_level": "Senior",
+    "keywords": {
+      "skills": ["data analysis", "machine learning", "statistical modeling", "big data", "data visualization"],
+      "responsibilities": ["analyze data", "develop predictive models", "interpret complex datasets", "present findings to stakeholders"]
+    },
+    "synonyms": ["data analyst", "machine learning engineer", "data specialist"],
+    "hard_skills": ["Python", "R", "SQL", "TensorFlow", "Tableau"],
+    "soft_skills": ["analytical thinking", "problem-solving", "communication", "critical thinking"],
+    "certifications": ["Certified Analytics Professional (CAP)", "Cloudera Certified Data Scientist"],
+    "years_of_experience": {
+      "minimum": 3,
+      "recommended": 7
+    },
+    "career_path": ["Junior Data Scientist", "Data Scientist", "Senior Data Scientist", "Lead Data Scientist", "Chief Data Officer"],
+    "educational_requirements": ["Master's degree in Data Science, Statistics, Computer Science, or related field"],
+    "average_salary_range": "$80,000 - $150,000",
+    "median_salary": "$120,000",
+    "job_outlook": {
+      "growth_percentage": "31% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Office", "Remote", "Hybrid"],
+    "work_hours": ["Full-time", "Flexible Hours"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Stock Options", "Professional Development"],
+    "challenges": ["Handling large and complex datasets", "Ensuring data privacy and security", "Communicating complex findings effectively"],
+    "description": "Analyze complex data to help organizations make informed decisions. Requires strong analytical skills and knowledge of statistical methods.",
+    "link": "https://en.wikipedia.org/wiki/Data_scientist",
+    "official_resources": ["https://www.bls.gov/ooh/computer-and-information-technology/data-scientists.htm"],
+    "related_careers": ["Business Analyst", "Machine Learning Engineer", "Data Engineer"],
+    "key_employers": ["Google", "Amazon", "Facebook", "IBM", "Netflix"]
+  },
+  {
+    "name": "Graphic Designer",
+    "industry": ["Advertising", "Marketing", "Publishing", "Technology"],
+    "job_level": "Entry",
+    "keywords": {
+      "skills": ["graphic design", "visual communication", "branding", "layout design"],
+      "responsibilities": ["create visual concepts", "develop layouts for advertisements", "design logos", "collaborate with clients"]
+    },
+    "synonyms": ["visual designer", "creative designer", "multimedia artist"],
+    "hard_skills": ["Adobe Creative Suite", "Typography", "Color Theory", "Illustration"],
+    "soft_skills": ["creativity", "attention to detail", "time management", "communication"],
+    "certifications": ["Adobe Certified Expert (ACE)", "Certified Graphic Designer"],
+    "years_of_experience": {
+      "minimum": 0,
+      "recommended": 2
+    },
+    "career_path": ["Junior Graphic Designer", "Graphic Designer", "Senior Graphic Designer", "Art Director", "Creative Director"],
+    "educational_requirements": ["Bachelor's degree in Graphic Design or related field"],
+    "average_salary_range": "$40,000 - $70,000",
+    "median_salary": "$55,000",
+    "job_outlook": {
+      "growth_percentage": "3% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Agency", "In-house", "Freelance"],
+    "work_hours": ["Full-time", "Flexible Hours", "Freelance Schedules"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Professional Development", "Creative Freedom"],
+    "challenges": ["Meeting tight deadlines", "Balancing creativity with client requirements", "Keeping up with design trends"],
+    "description": "Create visual concepts to communicate ideas that inspire and inform consumers. Requires creativity and proficiency in design software.",
+    "link": "https://en.wikipedia.org/wiki/Graphic_designer",
+    "official_resources": ["https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm"],
+    "related_careers": ["UX/UI Designer", "Art Director", "Multimedia Artist"],
+    "key_employers": ["Advertising Agencies", "Marketing Firms", "Publishing Houses", "Tech Companies", "Freelance"]
+  },
+  {
+    "name": "Marketing Specialist",
+    "industry": ["Advertising", "Marketing", "Public Relations", "Technology"],
+    "job_level": "Mid",
+    "keywords": {
+      "skills": ["marketing strategy", "brand management", "digital marketing", "market research"],
+      "responsibilities": ["develop marketing campaigns", "analyze market trends", "manage brand image", "coordinate with sales teams"]
+    },
+    "synonyms": ["marketing coordinator", "marketing manager", "digital marketer"],
+    "hard_skills": ["SEO", "Google Analytics", "Content Marketing", "Social Media Marketing"],
+    "soft_skills": ["creativity", "communication", "analytical thinking", "project management"],
+    "certifications": ["Google Ads Certification", "HubSpot Content Marketing Certification"],
+    "years_of_experience": {
+      "minimum": 2,
+      "recommended": 5
+    },
+    "career_path": ["Marketing Specialist", "Senior Marketing Specialist", "Marketing Manager", "Director of Marketing", "Chief Marketing Officer"],
+    "educational_requirements": ["Bachelor's degree in Marketing, Business, or related field"],
+    "average_salary_range": "$50,000 - $90,000",
+    "median_salary": "$70,000",
+    "job_outlook": {
+      "growth_percentage": "10% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Agency", "In-house", "Remote"],
+    "work_hours": ["Full-time", "Flexible Hours", "Overtime Occasionally"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Keeping up with digital marketing trends", "Measuring campaign effectiveness", "Balancing multiple projects"],
+    "description": "Develop and implement marketing strategies to promote products or services. Requires creativity and strong communication skills.",
+    "link": "https://en.wikipedia.org/wiki/Marketing_specialist",
+    "official_resources": ["https://www.bls.gov/ooh/business-and-financial/marketing-specialists.htm"],
+    "related_careers": ["Marketing Manager", "Content Strategist", "SEO Specialist"],
+    "key_employers": ["Advertising Agencies", "Tech Companies", "Retail Firms", "Media Companies", "Consulting Firms"]
+  },
+  {
+    "name": "Project Manager",
+    "industry": ["Construction", "IT", "Healthcare", "Finance"],
+    "job_level": "Senior",
+    "keywords": {
+      "skills": ["project planning", "resource management", "risk management", "team leadership"],
+      "responsibilities": ["define project scope", "allocate resources", "monitor progress", "ensure project delivery on time and budget"]
+    },
+    "synonyms": ["program manager", "project coordinator", "project lead"],
+    "hard_skills": ["Microsoft Project", "Agile Methodologies", "Budgeting", "Scheduling"],
+    "soft_skills": ["leadership", "communication", "problem-solving", "time management"],
+    "certifications": ["Project Management Professional (PMP)", "Certified ScrumMaster (CSM)"],
+    "years_of_experience": {
+      "minimum": 5,
+      "recommended": 10
+    },
+    "career_path": ["Project Coordinator", "Project Manager", "Senior Project Manager", "Program Manager", "Director of Project Management"],
+    "educational_requirements": ["Bachelor's degree in Business, Management, or related field", "PMP certification preferred"],
+    "average_salary_range": "$70,000 - $130,000",
+    "median_salary": "$100,000",
+    "job_outlook": {
+      "growth_percentage": "11% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Office", "Remote", "On-site"],
+    "work_hours": ["Full-time", "Flexible Hours", "Overtime Occasionally"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Managing diverse teams", "Handling project changes and scope creep", "Ensuring stakeholder satisfaction"],
+    "description": "Plan, execute, and oversee projects to ensure they are completed on time and within budget. Requires excellent organizational and leadership skills.",
+    "link": "https://en.wikipedia.org/wiki/Project_manager",
+    "official_resources": ["https://www.bls.gov/ooh/business-and-financial/project-managers.htm"],
+    "related_careers": ["Program Manager", "Operations Manager", "Business Analyst"],
+    "key_employers": ["Construction Firms", "IT Companies", "Healthcare Organizations", "Financial Institutions", "Consulting Firms"]
+  },
+  {
+    "name": "Social Worker",
+    "industry": ["Healthcare", "Non-Profit", "Government"],
+    "job_level": "Entry",
+    "keywords": {
+      "skills": ["counseling", "case management", "crisis intervention", "advocacy"],
+      "responsibilities": ["provide support to individuals and families", "connect clients with resources", "conduct assessments", "develop care plans"]
+    },
+    "synonyms": ["caseworker", "community worker", "social services worker"],
+    "hard_skills": ["Crisis Management", "Case Management Software", "Documentation"],
+    "soft_skills": ["empathy", "communication", "problem-solving", "organizational skills"],
+    "certifications": ["Licensed Social Worker (LSW)", "Certified Social Worker (CSW)"],
+    "years_of_experience": {
+      "minimum": 0,
+      "recommended": 3
+    },
+    "career_path": ["Social Worker", "Senior Social Worker", "Clinical Social Worker", "Social Work Supervisor", "Director of Social Services"],
+    "educational_requirements": ["Bachelor's degree in Social Work (BSW)"],
+    "average_salary_range": "$35,000 - $60,000",
+    "median_salary": "$50,000",
+    "job_outlook": {
+      "growth_percentage": "13% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Office", "Community Centers", "Schools", "Hospitals"],
+    "work_hours": ["Full-time", "Flexible Hours", "On-call for Emergencies"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Paid Time Off", "Professional Development"],
+    "challenges": ["Dealing with emotional and stressful situations", "Managing high caseloads", "Ensuring client confidentiality"],
+    "description": "Assist individuals and communities in improving their well-being. Requires empathy, communication skills, and a passion for helping others.",
+    "link": "https://en.wikipedia.org/wiki/Social_worker",
+    "official_resources": ["https://www.bls.gov/ooh/community-and-social-service/social-workers.htm"],
+    "related_careers": ["Mental Health Counselor", "Community Outreach Coordinator", "Case Manager"],
+    "key_employers": ["Hospitals", "Schools", "Non-Profit Organizations", "Government Agencies", "Community Health Centers"]
+  },
+  {
+    "name": "Mechanical Engineer",
+    "industry": ["Engineering", "Manufacturing", "Automotive", "Aerospace"],
+    "job_level": "Mid",
+    "keywords": {
+      "skills": ["mechanical design", "CAD", "thermodynamics", "materials science"],
+      "responsibilities": ["design mechanical systems", "conduct tests and evaluations", "oversee manufacturing processes", "collaborate with cross-functional teams"]
+    },
+    "synonyms": ["mechanical designer", "product engineer", "mechanical systems engineer"],
+    "hard_skills": ["AutoCAD", "SolidWorks", "Thermodynamics", "Finite Element Analysis"],
+    "soft_skills": ["analytical thinking", "problem-solving", "teamwork", "communication"],
+    "certifications": ["Certified Professional Engineer (PE)", "SolidWorks Certification"],
+    "years_of_experience": {
+      "minimum": 3,
+      "recommended": 6
+    },
+    "career_path": ["Mechanical Engineer", "Senior Mechanical Engineer", "Lead Engineer", "Engineering Manager", "Director of Engineering"],
+    "educational_requirements": ["Bachelor's degree in Mechanical Engineering"],
+    "average_salary_range": "$60,000 - $100,000",
+    "median_salary": "$80,000",
+    "job_outlook": {
+      "growth_percentage": "4% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Office", "Laboratory", "Manufacturing Facilities", "On-site"],
+    "work_hours": ["Full-time", "Flexible Hours", "Overtime Occasionally"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Designing for efficiency and sustainability", "Meeting project deadlines", "Integrating new technologies"],
+    "description": "Design, develop, and test mechanical devices. Requires strong analytical skills and knowledge of engineering principles.",
+    "link": "https://en.wikipedia.org/wiki/Mechanical_engineer",
+    "official_resources": ["https://www.bls.gov/ooh/architecture-and-engineering/mechanical-engineers.htm"],
+    "related_careers": ["Aerospace Engineer", "Industrial Engineer", "Product Designer"],
+    "key_employers": ["Automotive Companies", "Aerospace Firms", "Manufacturing Companies", "Engineering Consultancies", "Research Institutions"]
+  },
+  {
+    "name": "Healthcare Administrator",
+    "industry": ["Healthcare", "Hospital Administration", "Public Health"],
+    "job_level": "Senior",
+    "keywords": {
+      "skills": ["healthcare management", "policy development", "financial management", "compliance"],
+      "responsibilities": ["manage healthcare facilities", "develop and implement policies", "oversee budgets", "ensure regulatory compliance"]
+    },
+    "synonyms": ["health administrator", "hospital administrator", "health services manager"],
+    "hard_skills": ["Healthcare IT", "Financial Planning", "Regulatory Compliance", "Strategic Planning"],
+    "soft_skills": ["leadership", "decision-making", "communication", "organizational skills"],
+    "certifications": ["Certified Healthcare Administrator (CHA)", "FACHE - Fellow of the American College of Healthcare Executives"],
+    "years_of_experience": {
+      "minimum": 5,
+      "recommended": 10
+    },
+    "career_path": ["Healthcare Administrator", "Senior Healthcare Administrator", "Director of Healthcare Services", "Chief Operating Officer", "Chief Executive Officer"],
+    "educational_requirements": ["Bachelor's degree in Healthcare Administration or related field", "Master's degree preferred"],
+    "average_salary_range": "$70,000 - $140,000",
+    "median_salary": "$105,000",
+    "job_outlook": {
+      "growth_percentage": "32% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Hospital", "Clinic", "Healthcare Organizations", "Government Agencies"],
+    "work_hours": ["Full-time", "Flexible Hours", "On-call Occasionally"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Managing healthcare regulations", "Balancing budgets with patient care", "Implementing effective policies"],
+    "description": "Manage operations and services in healthcare facilities. Requires leadership skills and knowledge of healthcare policies.",
+    "link": "https://en.wikipedia.org/wiki/Healthcare_administrator",
+    "official_resources": ["https://www.bls.gov/ooh/management/medical-and-health-services-managers.htm"],
+    "related_careers": ["Health Services Manager", "Hospital CEO", "Medical Director"],
+    "key_employers": ["Hospitals", "Healthcare Networks", "Government Health Agencies", "Private Clinics", "Non-Profit Health Organizations"]
+  },
+  {
+    "name": "Financial Analyst",
+    "industry": ["Finance", "Banking", "Investment", "Insurance"],
+    "job_level": "Mid",
+    "keywords": {
+      "skills": ["financial modeling", "data analysis", "investment strategies", "risk assessment"],
+      "responsibilities": ["analyze financial data", "develop investment plans", "evaluate market trends", "prepare financial reports"]
+    },
+    "synonyms": ["financial advisor", "investment analyst", "portfolio analyst"],
+    "hard_skills": ["Excel", "Financial Modeling", "Bloomberg Terminal", "SQL"],
+    "soft_skills": ["analytical thinking", "attention to detail", "communication", "problem-solving"],
+    "certifications": ["Chartered Financial Analyst (CFA)", "Certified Financial Planner (CFP)"],
+    "years_of_experience": {
+      "minimum": 2,
+      "recommended": 5
+    },
+    "career_path": ["Financial Analyst", "Senior Financial Analyst", "Investment Manager", "Portfolio Manager", "Chief Financial Officer"],
+    "educational_requirements": ["Bachelor's degree in Finance, Economics, or related field", "CFA certification preferred"],
+    "average_salary_range": "$60,000 - $120,000",
+    "median_salary": "$90,000",
+    "job_outlook": {
+      "growth_percentage": "5% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Office", "Investment Firms", "Banks", "Insurance Companies"],
+    "work_hours": ["Full-time", "Extended Hours During Deadlines", "Flexible Hours"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Market volatility", "Maintaining accuracy under pressure", "Staying updated with financial regulations"],
+    "description": "Evaluate financial data to help organizations make investment decisions. Requires strong analytical and numerical skills.",
+    "link": "https://en.wikipedia.org/wiki/Financial_analyst",
+    "official_resources": ["https://www.bls.gov/ooh/business-and-financial/financial-analysts.htm"],
+    "related_careers": ["Investment Banker", "Portfolio Manager", "Risk Manager"],
+    "key_employers": ["Banks", "Investment Firms", "Insurance Companies", "Corporations", "Government Agencies"]
+  },
+  {
+    "name": "Content Writer",
+    "industry": ["Publishing", "Marketing", "Advertising", "Media"],
+    "job_level": "Entry",
+    "keywords": {
+      "skills": ["creative writing", "content creation", "SEO", "research"],
+      "responsibilities": ["create engaging content", "research topics", "optimize content for search engines", "collaborate with marketing teams"]
+    },
+    "synonyms": ["copywriter", "blogger", "content creator"],
+    "hard_skills": ["SEO", "CMS", "Content Management", "Editing"],
+    "soft_skills": ["creativity", "attention to detail", "time management", "communication"],
+    "certifications": ["Content Marketing Certification", "SEO Certification"],
+    "years_of_experience": {
+      "minimum": 0,
+      "recommended": 2
+    },
+    "career_path": ["Content Writer", "Senior Content Writer", "Content Manager", "Content Strategist", "Director of Content"],
+    "educational_requirements": ["Bachelor's degree in English, Journalism, Marketing, or related field"],
+    "average_salary_range": "$40,000 - $70,000",
+    "median_salary": "$55,000",
+    "job_outlook": {
+      "growth_percentage": "8% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Agency", "In-house", "Freelance", "Remote"],
+    "work_hours": ["Full-time", "Flexible Hours", "Freelance Schedules"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Paid Time Off", "Professional Development"],
+    "challenges": ["Meeting tight deadlines", "Maintaining creativity under pressure", "Ensuring SEO effectiveness"],
+    "description": "Create engaging content for various platforms. Requires excellent writing skills and the ability to research effectively.",
+    "link": "https://en.wikipedia.org/wiki/Content_writer",
+    "official_resources": ["https://www.bls.gov/ooh/media-and-communication/writers-and-authors.htm"],
+    "related_careers": ["SEO Specialist", "Content Strategist", "Editorial Assistant"],
+    "key_employers": ["Publishing Houses", "Marketing Firms", "Advertising Agencies", "Media Companies", "Freelance Platforms"]
+  },
+  {
+    "name": "UX/UI Designer",
+    "industry": ["Technology", "Design", "Marketing", "E-commerce"],
+    "job_level": "Mid",
+    "keywords": {
+      "skills": ["user experience design", "user interface design", "wireframing", "prototyping"],
+      "responsibilities": ["design user-friendly interfaces", "conduct user research", "create wireframes and prototypes", "collaborate with developers"]
+    },
+    "synonyms": ["user interface designer", "ux designer", "interaction designer"],
+    "hard_skills": ["Sketch", "Figma", "Adobe XD", "HTML/CSS"],
+    "soft_skills": ["creativity", "empathy", "communication", "problem-solving"],
+    "certifications": ["Certified UX Designer", "Interaction Design Foundation Certificates"],
+    "years_of_experience": {
+      "minimum": 3,
+      "recommended": 6
+    },
+    "career_path": ["UX/UI Designer", "Senior UX/UI Designer", "Lead Designer", "Product Designer", "Design Director"],
+    "educational_requirements": ["Bachelor's degree in Design, Human-Computer Interaction, or related field"],
+    "average_salary_range": "$60,000 - $110,000",
+    "median_salary": "$85,000",
+    "job_outlook": {
+      "growth_percentage": "8% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Agency", "In-house", "Remote", "Freelance"],
+    "work_hours": ["Full-time", "Flexible Hours", "Project-Based Schedules"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Balancing user needs with business goals", "Keeping up with design trends", "Collaborating with cross-functional teams"],
+    "description": "Design user-friendly interfaces and improve user experience for digital products. Requires creativity and understanding of user behavior.",
+    "link": "https://en.wikipedia.org/wiki/User_interface_design",
+    "official_resources": ["https://www.bls.gov/ooh/media-and-communication/art-directors.htm"],
+    "related_careers": ["Product Designer", "Interaction Designer", "Visual Designer"],
+    "key_employers": ["Tech Companies", "Design Agencies", "E-commerce Firms", "Startups", "Freelance Platforms"]
+  },
+  {
+    "name": "Business Analyst",
+    "industry": ["Finance", "Technology", "Healthcare", "Consulting"],
+    "job_level": "Mid",
+    "keywords": {
+      "skills": ["business process analysis", "data analysis", "requirements gathering", "stakeholder communication"],
+      "responsibilities": ["analyze business processes", "identify areas for improvement", "gather and document requirements", "facilitate communication between stakeholders"]
+    },
+    "synonyms": ["business consultant", "operations analyst", "process analyst"],
+    "hard_skills": ["SQL", "Excel", "Business Intelligence Tools", "Project Management"],
+    "soft_skills": ["analytical thinking", "communication", "problem-solving", "attention to detail"],
+    "certifications": ["Certified Business Analysis Professional (CBAP)", "PMI Professional in Business Analysis (PMI-PBA)"],
+    "years_of_experience": {
+      "minimum": 2,
+      "recommended": 5
+    },
+    "career_path": ["Business Analyst", "Senior Business Analyst", "Lead Business Analyst", "Business Analysis Manager", "Director of Business Analysis"],
+    "educational_requirements": ["Bachelor's degree in Business, Information Systems, or related field"],
+    "average_salary_range": "$60,000 - $100,000",
+    "median_salary": "$80,000",
+    "job_outlook": {
+      "growth_percentage": "11% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Consulting Firms", "Corporations", "Healthcare Organizations", "Government Agencies"],
+    "work_hours": ["Full-time", "Flexible Hours", "Project-Based Schedules"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Balancing multiple projects", "Managing stakeholder expectations", "Ensuring data accuracy"],
+    "description": "Analyze business processes and data to improve efficiency and effectiveness. Requires strong analytical and communication skills.",
+    "link": "https://en.wikipedia.org/wiki/Business_analyst",
+    "official_resources": ["https://www.bls.gov/ooh/business-and-financial/business-analysts.htm"],
+    "related_careers": ["Product Manager", "Operations Manager", "Financial Analyst"],
+    "key_employers": ["Consulting Firms", "Financial Institutions", "Healthcare Organizations", "Technology Companies", "Government Agencies"]
+  },
+  {
+    "name": "Human Resources Manager",
+    "industry": ["Human Resources", "Corporate", "Recruitment", "Healthcare"],
+    "job_level": "Senior",
+    "keywords": {
+      "skills": ["recruitment", "employee relations", "performance management", "HR policy development"],
+      "responsibilities": ["oversee recruitment processes", "manage employee relations", "develop and implement HR policies", "lead HR team"]
+    },
+    "synonyms": ["HR manager", "human resources director", "talent manager"],
+    "hard_skills": ["HRIS", "Performance Management Systems", "Recruitment Platforms", "Labor Laws"],
+    "soft_skills": ["leadership", "communication", "conflict resolution", "organizational skills"],
+    "certifications": ["SHRM Certified Professional (SHRM-CP)", "Professional in Human Resources (PHR)"],
+    "years_of_experience": {
+      "minimum": 5,
+      "recommended": 10
+    },
+    "career_path": ["HR Manager", "Senior HR Manager", "HR Director", "Human Resources Executive", "Chief Human Resources Officer"],
+    "educational_requirements": ["Bachelor's degree in Human Resources, Business Administration, or related field", "Master's degree preferred"],
+    "average_salary_range": "$70,000 - $140,000",
+    "median_salary": "$105,000",
+    "job_outlook": {
+      "growth_percentage": "6% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Corporate Offices", "Non-Profit Organizations", "Government Agencies", "Healthcare Facilities"],
+    "work_hours": ["Full-time", "Flexible Hours", "Overtime Occasionally"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Managing diverse workforce", "Implementing effective HR policies", "Handling employee grievances"],
+    "description": "Oversee recruitment, training, and employee relations within an organization. Requires strong interpersonal and organizational skills.",
+    "link": "https://en.wikipedia.org/wiki/Human_resource_manager",
+    "official_resources": ["https://www.bls.gov/ooh/business-and-financial/human-resources-managers.htm"],
+    "related_careers": ["Talent Acquisition Manager", "HR Business Partner", "Compensation and Benefits Manager"],
+    "key_employers": ["Corporations", "Healthcare Organizations", "Non-Profit Organizations", "Government Agencies", "Recruitment Firms"]
+  },
+  {
+    "name": "Cybersecurity Specialist",
+    "industry": ["Technology", "Finance", "Healthcare", "Government"],
+    "job_level": "Mid",
+    "keywords": {
+      "skills": ["network security", "risk management", "penetration testing", "incident response"],
+      "responsibilities": ["protect systems from cyber threats", "conduct security assessments", "develop security protocols", "respond to security incidents"]
+    },
+    "synonyms": ["information security analyst", "cyber analyst", "security consultant"],
+    "hard_skills": ["Firewall Configuration", "Intrusion Detection Systems", "Ethical Hacking", "Cryptography"],
+    "soft_skills": ["attention to detail", "problem-solving", "communication", "analytical thinking"],
+    "certifications": ["Certified Information Systems Security Professional (CISSP)", "Certified Ethical Hacker (CEH)"],
+    "years_of_experience": {
+      "minimum": 3,
+      "recommended": 7
+    },
+    "career_path": ["Cybersecurity Specialist", "Senior Cybersecurity Specialist", "Security Engineer", "Security Architect", "Chief Information Security Officer"],
+    "educational_requirements": ["Bachelor's degree in Cybersecurity, Information Technology, or related field", "Certifications like CISSP, CEH preferred"],
+    "average_salary_range": "$70,000 - $130,000",
+    "median_salary": "$100,000",
+    "job_outlook": {
+      "growth_percentage": "31% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["IT Departments", "Security Firms", "Government Agencies", "Financial Institutions"],
+    "work_hours": ["Full-time", "Flexible Hours", "On-call for Incidents"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Staying ahead of evolving cyber threats", "Managing high-stress situations during incidents", "Ensuring compliance with security standards"],
+    "description": "Protect an organization's computer systems and networks from security breaches. Requires technical expertise and analytical skills.",
+    "link": "https://en.wikipedia.org/wiki/Cybersecurity_specialist",
+    "official_resources": ["https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm"],
+    "related_careers": ["Security Engineer", "Network Security Administrator", "Incident Responder"],
+    "key_employers": ["Tech Companies", "Financial Institutions", "Healthcare Organizations", "Government Agencies", "Security Firms"]
+  },
+  {
+    "name": "Environmental Scientist",
+    "industry": ["Environmental Services", "Government", "Non-Profit", "Research"],
+    "job_level": "Entry",
+    "keywords": {
+      "skills": ["environmental research", "data analysis", "conservation", "fieldwork"],
+      "responsibilities": ["conduct environmental research", "analyze data", "develop conservation plans", "monitor environmental compliance"]
+    },
+    "synonyms": ["environmental researcher", "conservation scientist", "environmental consultant"],
+    "hard_skills": ["GIS", "Statistical Analysis", "Laboratory Techniques", "Environmental Regulations"],
+    "soft_skills": ["analytical thinking", "attention to detail", "communication", "problem-solving"],
+    "certifications": ["Certified Environmental Professional (CEP)", "GIS Certification"],
+    "years_of_experience": {
+      "minimum": 0,
+      "recommended": 2
+    },
+    "career_path": ["Environmental Scientist", "Senior Environmental Scientist", "Conservation Scientist", "Environmental Manager", "Director of Environmental Services"],
+    "educational_requirements": ["Bachelor's degree in Environmental Science, Biology, Chemistry, or related field"],
+    "average_salary_range": "$45,000 - $80,000",
+    "median_salary": "$62,000",
+    "job_outlook": {
+      "growth_percentage": "8% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Fieldwork", "Laboratory", "Office", "Government Agencies"],
+    "work_hours": ["Full-time", "Flexible Hours", "Seasonal Fieldwork"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Conducting fieldwork in various environments", "Securing research funding", "Analyzing complex environmental data"],
+    "description": "Study and develop solutions to environmental problems. Requires scientific knowledge and research skills.",
+    "link": "https://en.wikipedia.org/wiki/Environmental_scientist",
+    "official_resources": ["https://www.bls.gov/ooh/life-physical-and-social-science/environmental-scientists.htm"],
+    "related_careers": ["Conservation Officer", "Environmental Consultant", "Climate Scientist"],
+    "key_employers": ["Government Agencies", "Environmental Consultancies", "Research Institutions", "Non-Profit Organizations", "Manufacturing Firms"]
+  },
+  {
+    "name": "Public Relations Specialist",
+    "industry": ["Public Relations", "Marketing", "Media", "Corporate"],
+    "job_level": "Mid",
+    "keywords": {
+      "skills": ["media relations", "branding", "communication strategies", "crisis management"],
+      "responsibilities": ["manage public image", "handle media inquiries", "develop communication strategies", "coordinate public events"]
+    },
+    "synonyms": ["PR specialist", "communications coordinator", "publicist"],
+    "hard_skills": ["Press Release Writing", "Media Outreach", "Social Media Management", "Event Planning"],
+    "soft_skills": ["communication", "creativity", "organizational skills", "problem-solving"],
+    "certifications": ["APR - Accredited in Public Relations", "Certified Public Relations Specialist (CPRS)"],
+    "years_of_experience": {
+      "minimum": 2,
+      "recommended": 5
+    },
+    "career_path": ["Public Relations Specialist", "Senior PR Specialist", "PR Manager", "Communications Director", "Chief Communications Officer"],
+    "educational_requirements": ["Bachelor's degree in Public Relations, Communications, Marketing, or related field"],
+    "average_salary_range": "$50,000 - $100,000",
+    "median_salary": "$75,000",
+    "job_outlook": {
+      "growth_percentage": "8% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["PR Agencies", "Corporate Offices", "Non-Profit Organizations", "Media Companies"],
+    "work_hours": ["Full-time", "Flexible Hours", "Extended Hours During Campaigns"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Managing public perception during crises", "Balancing multiple clients or projects", "Maintaining consistent messaging"],
+    "description": "Manage an organization's public image and handle communications with the media. Requires strong communication and strategic thinking skills.",
+    "link": "https://en.wikipedia.org/wiki/Public_relations_specialist",
+    "official_resources": ["https://www.bls.gov/ooh/media-and-communication/public-relations-specialists.htm"],
+    "related_careers": ["Communications Manager", "Media Planner", "Publicist"],
+    "key_employers": ["PR Agencies", "Corporate Companies", "Non-Profit Organizations", "Government Agencies", "Media Firms"]
+  },
+  {
+    "name": "Sales Manager",
+    "industry": ["Sales", "Retail", "Technology", "Finance"],
+    "job_level": "Senior",
+    "keywords": {
+      "skills": ["sales strategy", "team leadership", "customer relationship management", "sales forecasting"],
+      "responsibilities": ["lead sales team", "develop sales strategies", "set sales targets", "analyze sales data"]
+    },
+    "synonyms": ["sales director", "sales lead", "sales executive"],
+    "hard_skills": ["CRM Software", "Sales Analytics", "Negotiation", "Forecasting"],
+    "soft_skills": ["leadership", "communication", "motivation", "strategic thinking"],
+    "certifications": ["Certified Sales Professional (CSP)", "Sales Management Certification"],
+    "years_of_experience": {
+      "minimum": 5,
+      "recommended": 10
+    },
+    "career_path": ["Sales Manager", "Senior Sales Manager", "Regional Sales Manager", "Sales Director", "Vice President of Sales"],
+    "educational_requirements": ["Bachelor's degree in Business, Marketing, or related field"],
+    "average_salary_range": "$70,000 - $150,000",
+    "median_salary": "$110,000",
+    "job_outlook": {
+      "growth_percentage": "7% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Office", "Remote", "On-site", "Fieldwork"],
+    "work_hours": ["Full-time", "Flexible Hours", "Extended Hours During Peak Sales Periods"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Meeting sales targets", "Managing a diverse sales team", "Adapting to market changes"],
+    "description": "Lead and manage a sales team to achieve sales targets. Requires leadership and strategic planning skills.",
+    "link": "https://en.wikipedia.org/wiki/Sales_manager",
+    "official_resources": ["https://www.bls.gov/ooh/business-and-financial/sales-managers.htm"],
+    "related_careers": ["Regional Sales Manager", "Account Executive", "Business Development Manager"],
+    "key_employers": ["Retail Chains", "Tech Companies", "Financial Institutions", "Manufacturing Firms", "Consulting Firms"]
+  },
+  {
+    "name": "Architect",
+    "industry": ["Architecture", "Construction", "Real Estate"],
+    "job_level": "Mid",
+    "keywords": {
+      "skills": ["architectural design", "building codes", "project management", "CAD"],
+      "responsibilities": ["design buildings", "oversee construction projects", "ensure compliance with regulations", "collaborate with clients and engineers"]
+    },
+    "synonyms": ["architectural designer", "building architect", "design architect"],
+    "hard_skills": ["AutoCAD", "Revit", "Building Information Modeling (BIM)", "Structural Analysis"],
+    "soft_skills": ["creativity", "attention to detail", "communication", "problem-solving"],
+    "certifications": ["Licensed Architect", "LEED Accreditation"],
+    "years_of_experience": {
+      "minimum": 4,
+      "recommended": 8
+    },
+    "career_path": ["Architect", "Senior Architect", "Lead Architect", "Project Architect", "Principal Architect"],
+    "educational_requirements": ["Bachelor's degree in Architecture", "Licensure required"],
+    "average_salary_range": "$60,000 - $120,000",
+    "median_salary": "$90,000",
+    "job_outlook": {
+      "growth_percentage": "1% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Office", "On-site", "Remote"],
+    "work_hours": ["Full-time", "Flexible Hours", "Extended Hours During Project Deadlines"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Balancing aesthetics with functionality", "Managing client expectations", "Ensuring regulatory compliance"],
+    "description": "Design buildings and oversee their construction. Requires creativity, technical knowledge, and project management skills.",
+    "link": "https://en.wikipedia.org/wiki/Architect",
+    "official_resources": ["https://www.bls.gov/ooh/architecture-and-engineering/architects.htm"],
+    "related_careers": ["Landscape Architect", "Urban Planner", "Interior Designer"],
+    "key_employers": ["Architecture Firms", "Construction Companies", "Real Estate Developers", "Government Agencies", "Freelance"]
+  },
+  {
+    "name": "Research Scientist",
+    "industry": ["Research", "Healthcare", "Technology", "Academia"],
+    "job_level": "Senior",
+    "keywords": {
+      "skills": ["experimental design", "data analysis", "scientific writing", "grant writing"],
+      "responsibilities": ["conduct experiments", "analyze research data", "publish findings", "secure research funding"]
+    },
+    "synonyms": ["laboratory scientist", "researcher", "scientific investigator"],
+    "hard_skills": ["Statistical Software", "Laboratory Techniques", "Scientific Methodology", "Technical Writing"],
+    "soft_skills": ["analytical thinking", "attention to detail", "creativity", "communication"],
+    "certifications": ["Certified Research Administrator (CRA)", "Certified Clinical Research Professional (CCRP)"],
+    "years_of_experience": {
+      "minimum": 5,
+      "recommended": 10
+    },
+    "career_path": ["Research Scientist", "Senior Research Scientist", "Principal Scientist", "Research Manager", "Director of Research"],
+    "educational_requirements": ["Ph.D. in relevant scientific field"],
+    "average_salary_range": "$70,000 - $130,000",
+    "median_salary": "$100,000",
+    "job_outlook": {
+      "growth_percentage": "6% from 2020 to 2030",
+      "source": "Bureau of Labor Statistics"
+    },
+    "work_environment": ["Laboratory", "Research Institutions", "Academia", "Corporate R&D Departments"],
+    "work_hours": ["Full-time", "Flexible Hours", "Extended Hours During Experiments"],
+    "benefits": ["Health Insurance", "Retirement Plans", "Bonuses", "Professional Development"],
+    "challenges": ["Securing research funding", "Maintaining laboratory equipment", "Publishing research findings"],
+    "description": "Conduct experiments and research to advance knowledge in a specific field. Requires strong analytical and scientific skills.",
+    "link": "https://en.wikipedia.org/wiki/Research_scientist",
+    "official_resources": ["https://www.bls.gov/ooh/life-physical-and-social-science/research-scientists.htm"],
+    "related_careers": ["Lab Manager", "Clinical Researcher", "Biostatistician"],
+    "key_employers": ["Research Institutions", "Universities", "Healthcare Organizations", "Tech Companies", "Government Agencies"]
+  }
+]

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Reflection Journal - 321Niche</title>
+
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Daily Reflection Journal to encourage self-awareness, growth, and mindfulness by allowing users to record their daily experiences and emotions.">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Import Google Icon Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Import Orbitron Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid #00695c;
+        }
+
+        .brand-logo {
+            font-weight: 700;
+            margin-left: 20px;
+        }
+
+        .journal-container {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 4rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .input-field label {
+            color: #00e676;
+        }
+
+        .btn,
+        .btn-large {
+            background-color: #00695c;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover,
+        .btn-large:hover {
+            background-color: #004d40;
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+        }
+
+        .page-footer {
+            background-color: #000;
+            border-top: 1px solid #00695c;
+            padding: 20px 0;
+        }
+
+        .journal-label {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #00e676;
+        }
+
+        .journal-textarea {
+            background: rgba(0, 105, 92, 0.1);
+            border-radius: 8px;
+            border: 1px solid #00695c;
+            padding: 1rem;
+            color: #fff;
+        }
+
+        .entry-list {
+            margin-top: 2rem;
+        }
+
+        .entry-item {
+            background: rgba(0, 0, 0, 0.8);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #00e676;
+            position: relative;
+        }
+
+        #search-bar {
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .edit-button,
+        .delete-button {
+            position: absolute;
+            top: 10px;
+            right: 50px;
+            margin-left: 10px;
+            color: #00e676;
+            cursor: pointer;
+        }
+
+        .delete-button {
+            right: 10px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">321Niche</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="tools.html">Tools & Downloads</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="tools.html">Tools & Downloads</a></li>
+    </ul>
+
+    <!-- Daily Reflection Journal Section -->
+    <div class="container">
+        <div class="journal-container">
+            <h2 class="center-align">Daily Reflection Journal</h2>
+            <p>Reflect on your day, record your thoughts, and explore your emotions. Your entries are saved only on your local machine to ensure privacy. Remember to download your reflections before clearing browser cookies or switching devices.</p>
+
+            <!-- Journal Entry Form -->
+            <form id="daily-journal-form">
+                <div class="input-field">
+                    <p class="journal-label">What made today great?</p>
+                    <textarea id="great-experience" class="materialize-textarea journal-textarea" placeholder="Write about something positive from today..."></textarea>
+                </div>
+                <div class="input-field">
+                    <p class="journal-label">Challenges You Faced</p>
+                    <textarea id="challenges" class="materialize-textarea journal-textarea" placeholder="What were some of the challenges you faced today?"></textarea>
+                </div>
+                <div class="input-field">
+                    <p class="journal-label">What Did You Learn?</p>
+                    <textarea id="lessons" class="materialize-textarea journal-textarea" placeholder="Describe something you learned or discovered today..."></textarea>
+                </div>
+                <div class="input-field">
+                    <p class="journal-label">How Can You Improve Tomorrow?</p>
+                    <textarea id="improvements" class="materialize-textarea journal-textarea" placeholder="Write down one thing you could do to make tomorrow better..."></textarea>
+                </div>
+                <div class="center-align action-buttons">
+                    <button type="button" class="btn waves-effect waves-light" onclick="saveJournalEntry()">Save Journal Entry</button>
+                    <button type="button" class="btn waves-effect waves-light" onclick="downloadEntries()">Download Entries</button>
+                </div>
+            </form>
+
+            <!-- Search and Saved Journal Entries -->
+            <div id="saved-entries" class="entry-list">
+                <h3 class="center-align">Your Saved Entries</h3>
+                <div class="input-field">
+                    <input type="text" id="search-bar" placeholder="Search entries..." oninput="filterEntries()">
+                </div>
+                <button class="btn waves-effect waves-light" onclick="deleteSelectedEntries()">Delete Selected Entries</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            © 2024 321Niche
+            <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Mobile Navigation
+            var elems = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(elems);
+            loadSavedEntries();
+        });
+
+        // Save Journal Entry function
+        function saveJournalEntry() {
+            const greatExperience = document.getElementById('great-experience').value;
+            const challenges = document.getElementById('challenges').value;
+            const lessons = document.getElementById('lessons').value;
+            const improvements = document.getElementById('improvements').value;
+
+            if (greatExperience || challenges || lessons || improvements) {
+                const entry = {
+                    greatExperience,
+                    challenges,
+                    lessons,
+                    improvements,
+                    date: new Date().toLocaleString()
+                };
+
+                let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+                entries.push(entry);
+                localStorage.setItem('journalEntries', JSON.stringify(entries));
+
+                alert('Your journal entry has been saved!');
+                loadSavedEntries();
+            } else {
+                alert('Please fill in at least one field before saving.');
+            }
+        }
+
+        // Load saved journal entries
+        function loadSavedEntries() {
+            const savedEntriesContainer = document.getElementById('saved-entries');
+            savedEntriesContainer.innerHTML = '<h3 class="center-align">Your Saved Entries</h3>';
+            let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+
+            entries.forEach((entry, index) => {
+                const entryDiv = document.createElement('div');
+                entryDiv.classList.add('entry-item');
+                entryDiv.innerHTML = `
+                    <label>
+                        <input type="checkbox" class="filled-in entry-checkbox" data-index="${index}" />
+                        <span></span>
+                    </label>
+                    <p><strong>Date:</strong> ${entry.date}</p>
+                    <p><strong>What made today great?</strong> ${entry.greatExperience}</p>
+                    <p><strong>Challenges You Faced:</strong> ${entry.challenges}</p>
+                    <p><strong>What Did You Learn?</strong> ${entry.lessons}</p>
+                    <p><strong>How Can You Improve Tomorrow?</strong> ${entry.improvements}</p>
+                    <i class="material-icons edit-button" onclick="editEntry(${index})">edit</i>
+                    <i class="material-icons delete-button" onclick="deleteEntry(${index})">delete</i>
+                `;
+                savedEntriesContainer.appendChild(entryDiv);
+            });
+        }
+
+        // Edit journal entry
+        function editEntry(index) {
+            let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+            const entry = entries[index];
+
+            document.getElementById('great-experience').value = entry.greatExperience;
+            document.getElementById('challenges').value = entry.challenges;
+            document.getElementById('lessons').value = entry.lessons;
+            document.getElementById('improvements').value = entry.improvements;
+
+            entries.splice(index, 1); // Remove the entry being edited
+            localStorage.setItem('journalEntries', JSON.stringify(entries));
+            loadSavedEntries();
+        }
+
+        // Filter journal entries
+        function filterEntries() {
+            const query = document.getElementById('search-bar').value.toLowerCase();
+            const entries = document.querySelectorAll('.entry-item');
+
+            entries.forEach(entry => {
+                if (entry.innerText.toLowerCase().includes(query)) {
+                    entry.style.display = '';
+                } else {
+                    entry.style.display = 'none';
+                }
+            });
+        }
+
+        // Delete selected journal entries
+        function deleteSelectedEntries() {
+            let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+            const checkboxes = document.querySelectorAll('.entry-checkbox:checked');
+
+            const indexesToDelete = Array.from(checkboxes).map(checkbox => parseInt(checkbox.getAttribute('data-index')));
+
+            entries = entries.filter((_, index) => !indexesToDelete.includes(index));
+            localStorage.setItem('journalEntries', JSON.stringify(entries));
+
+            loadSavedEntries();
+            alert('Selected entries have been deleted');
+        }
+
+        // Delete single journal entry
+        function deleteEntry(index) {
+            let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+            entries.splice(index, 1);
+            localStorage.setItem('journalEntries', JSON.stringify(entries));
+            loadSavedEntries();
+            alert('The entry has been deleted');
+        }
+
+        // Download entries as JSON file
+        function downloadEntries() {
+            let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+            if (entries.length === 0) {
+                alert('No entries to download.');
+                return;
+            }
+
+            const blob = new Blob([JSON.stringify(entries, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'journal_entries.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+
+</html>

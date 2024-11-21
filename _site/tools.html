@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tools & Downloads - 321Niche</title>
+
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Explore a variety of tools and resources designed to help you discover your niche and path in life. Tools for self-discovery, career planning, and personal growth.">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <style>
+    /* CSS Variables */
+    :root {
+      --primary-color: #57FF8C;
+      --secondary-color: #00695c;
+      --background-color: #121212;
+      --text-color: #E0E0E0;
+      --hover-color: #88FFAA;
+      --border-color: var(--primary-color);
+      --description-color: #B0BEC5;
+      --card-background: rgba(0, 105, 92, 0.1);
+      --button-hover-color: #004d40;
+      --footer-background: #000;
+      --footer-text: #B0BEC5;
+    }
+
+    /* Global Styles */
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid var(--secondary-color);
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+    }
+
+    .tools-section {
+      background-color: var(--background-color);
+      padding: 4rem 2rem;
+    }
+
+    .tool-box {
+      background: var(--card-background);
+      border: 1px solid var(--secondary-color);
+      border-radius: 12px;
+      padding: 2rem;
+      height: 100%;
+      margin: 1rem 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .tool-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 105, 92, 0.3);
+    }
+
+    .tool-box h5 {
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .btn, .btn-large {
+      background-color: var(--secondary-color);
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover, .btn-large:hover {
+      background-color: var(--button-hover-color);
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+    }
+
+    .page-footer {
+      background-color: var(--footer-background);
+      border-top: 1px solid var(--secondary-color);
+      padding: 20px 0;
+    }
+
+    .page-footer .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page-footer a {
+      color: var(--footer-text);
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    .tool-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .tool-box:hover .tool-icon {
+      color: var(--hover-color);
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .tool-box {
+        padding: 1.5rem;
+      }
+
+      .tool-box h5 {
+        font-size: 1.2rem;
+      }
+
+      .tool-icon {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Highlighting search results */
+    .highlight {
+      background-color: yellow;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="tools.html">Tools & Downloads</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="tools.html">Tools & Downloads</a></li>
+  </ul>
+
+  <!-- Tools Section -->
+  <div class="tools-section">
+    <div class="container">
+      <h2 class="center-align">Tools & Downloads</h2>
+      <div class="row">
+        <!-- Tool 1 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">favorite_border</i>
+            <h5>Passion Finder Quiz</h5>
+            <p>A short, engaging quiz that helps users identify their passions by exploring their interests and values. Receive a personalized report highlighting your top passions and how to incorporate them into your life or career.</p>
+            <a href="https://www.321niche.com/passionfinder.html" class="btn waves-effect waves-light">Take the Quiz</a>
+          </div>
+        </div>
+
+        <!-- Tool 2 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">fitness_center</i>
+            <h5>Strengths Assessment</h5>
+            <p>Identify your key strengths and discover how you can apply them to different areas of life or career.</p>
+            <a href="https://www.321niche.com/strengths.html" class="btn waves-effect waves-light">Download Worksheet</a>
+          </div>
+        </div>
+
+        <!-- Tool 3 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">view_comfy</i>
+            <h5>Life Priorities Matrix</h5>
+            <p>Rank different life aspects (career, relationships, health, creativity, etc.) to clarify what's most important to you.</p>
+            <a href="life-priorities-matrix.html" class="btn waves-effect waves-light">Explore Now</a>
+          </div>
+        </div>
+
+        <!-- Tool 4 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">lightbulb</i>
+            <h5>Ideal Day Visualization</h5>
+            <p>Visualize your perfect day to understand what you value most. A downloadable PDF guide for self-reflection.</p>
+            <a href="ideal-day-visualization.html" class="btn waves-effect waves-light">Download Guide</a>
+          </div>
+        </div>
+
+        <!-- Tool 5 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">book</i>
+            <h5>Values and Beliefs Workbook</h5>
+            <p>Identify your core values and beliefs, and understand how they impact your decision-making.</p>
+            <a href="values-beliefs-workbook.html" class="btn waves-effect waves-light">Download Workbook</a>
+          </div>
+        </div>
+
+        <!-- Tool 6 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">flag</i>
+            <h5>Personal Mission Statement Generator</h5>
+            <p>Craft a personal mission statement to bring clarity and focus to your goals with our interactive tool.</p>
+            <a href="personal-mission-generator.html" class="btn waves-effect waves-light">Generate Now</a>
+          </div>
+        </div>
+
+        <!-- Tool 7 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">work_outline</i>
+            <h5>Career Matchmaker Tool</h5>
+            <p>Find careers or industries that match your passions, skills, and personality type.</p>
+            <a href="career-matchmaker.html" class="btn waves-effect waves-light">Explore Careers</a>
+          </div>
+        </div>
+
+        <!-- Tool 8 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">donut_large</i>
+            <h5>Life Wheel Assessment</h5>
+            <p>Evaluate various areas of your life, such as finances, relationships, health, and personal growth, with our online tool.</p>
+            <a href="life-wheel-assessment.html" class="btn waves-effect waves-light">Assess Your Life</a>
+          </div>
+        </div>
+
+        <!-- Tool 9 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">journal</i>
+            <h5>Daily Reflection Journal Template</h5>
+            <p>Download a journal template to reflect daily and improve self-understanding over time.</p>
+            <a href="daily-reflection-journal.html" class="btn waves-effect waves-light">Download Template</a>
+          </div>
+        </div>
+
+        <!-- Tool 10 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">psychology</i>
+            <h5>Personality Test (Myers-Briggs Style)</h5>
+            <p>Learn more about your personality type and how it affects your life choices through our in-depth quiz.</p>
+            <a href="personality-test.html" class="btn waves-effect waves-light">Take the Test</a>
+          </div>
+        </div>
+        
+        <!-- Tool 11 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">playlist_add_check</i>
+            <h5>Hobbies Exploration List</h5>
+            <p>Explore new hobbies based on your interests with this downloadable checklist.</p>
+            <a href="hobbies-exploration-list.html" class="btn waves-effect waves-light">Download List</a>
+          </div>
+        </div>
+
+        <!-- Tool 12 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">school</i>
+            <h5>Skill-Building Plan Generator</h5>
+            <p>Set up a learning plan for a new skill you want to develop, including resources and timelines.</p>
+            <a href="skill-building-plan.html" class="btn waves-effect waves-light">Generate Plan</a>
+          </div>
+        </div>
+
+        <!-- Tool 13 -->
+        <div class="col s12 m6 l4">
+          <div class="tool-box">
+            <i class="material-icons tool-icon">map</i>
+            <h5>Passion to Career Map</h5>
+            <p>Connect hobbies and interests to potential career paths or side hustles with this worksheet.</p>
+            <a href="passion-to-career-map.html" class="btn waves-effect waves-light">Download Map</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container center-align">
+      <span>&copy; 2024 321Niche</span>
+      <a class="grey-text text-lighten-4" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+
+      // Initialize Tooltip
+      var tooltipElems = document.querySelectorAll('.tool-box');
+      M.Tooltip.init(tooltipElems, {
+        enterDelay: 500,
+        exitDelay: 200
+      });
+    });
+  </script>
+
+</body>
+</html>

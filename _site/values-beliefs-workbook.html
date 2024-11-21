@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Values and Beliefs Workbook - 321Niche</title>
+
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Explore your values and beliefs with our comprehensive workbook. Align your decisions with what truly matters to you.">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Import particles.js -->
+  <script defer src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <!-- Import Animate.css for Animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    /* Global Styles */
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: rgba(0, 0, 0, 0.9);
+      border-bottom: 2px solid #00e676;
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+      font-size: 1.8rem;
+    }
+
+    /* Particle Background */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Workbook Container */
+    .workbook-container {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      margin-top: 4rem;
+      box-shadow: 0 0 30px rgba(0, 230, 118, 0.5);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header Styles */
+    .workbook-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .workbook-header h2 {
+      font-size: 2.5rem;
+      color: #00e676;
+      margin-bottom: 1rem;
+    }
+
+    .workbook-header p {
+      font-size: 1.2rem;
+      color: #b2dfdb;
+    }
+
+    /* Download Section */
+    .download-section {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .download-btn {
+      background-color: #00e676;
+      color: #000;
+      font-weight: bold;
+      border-radius: 30px;
+      padding: 15px 30px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background-color: #00c853;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 230, 118, 0.7);
+    }
+
+    /* Motivational Section */
+    .motivation-section {
+      margin-top: 3rem;
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(0, 230, 118, 0.1);
+      border-radius: 8px;
+      border: 2px solid #00e676;
+    }
+
+    .motivation-section h5 {
+      color: #00e676;
+      margin-bottom: 1rem;
+    }
+
+    .motivation-section p {
+      font-size: 1rem;
+      color: #b2dfdb;
+    }
+
+    /* Testimonials Carousel */
+    .testimonial-carousel {
+      margin-top: 3rem;
+    }
+
+    .testimonial {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 0 1rem;
+      box-shadow: 0 0 15px rgba(0, 230, 118, 0.5);
+    }
+
+    .testimonial p {
+      font-style: italic;
+      color: #b2dfdb;
+    }
+
+    .testimonial .author {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #00e676;
+    }
+
+    /* Footer */
+    .page-footer {
+      background-color: #121212;
+      border-top: 2px solid #00e676;
+      padding: 20px 0;
+    }
+
+    .page-footer a {
+      color: #00e676 !important;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 600px) {
+      .workbook-container {
+        padding: 2rem 1rem;
+      }
+
+      .brand-logo {
+        margin-left: 10px;
+        font-size: 1.5rem;
+      }
+
+      .workbook-header h2 {
+        font-size: 2rem;
+      }
+
+      .testimonial {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Open navigation menu"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="tools.html">Tools & Downloads</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="tools.html">Tools & Downloads</a></li>
+  </ul>
+
+  <!-- Values and Beliefs Workbook Section -->
+  <div class="container">
+    <div class="workbook-container">
+      <div class="workbook-header">
+        <h2>Values and Beliefs Workbook</h2>
+        <p>Understanding your values and beliefs is fundamental to making decisions that align with who you are. This comprehensive workbook will help you explore your core beliefs and values, guiding you towards a more fulfilling life that reflects what truly matters to you.</p>
+      </div>
+
+      <!-- Motivational Quote -->
+      <div class="motivation-section animate__animated animate__fadeInUp">
+        <h5>Inspiration</h5>
+        <p>"Your values become your destiny." – Mahatma Gandhi</p>
+      </div>
+
+      <!-- Download Section -->
+      <div class="download-section">
+        <a href="downloads/values_beliefs_workbook.pdf" download class="download-btn waves-effect waves-light">
+          <i class="material-icons left">file_download</i>Download Workbook PDF
+        </a>
+      </div>
+
+      <!-- Testimonials Carousel -->
+      <div class="testimonial-carousel">
+        <h5 class="center-align">What Others Are Saying</h5>
+        <div class="carousel carousel-slider center" data-indicators="true">
+          <div class="carousel-item">
+            <div class="testimonial">
+              <p>"This workbook transformed the way I approach my daily decisions. Highly recommended!"</p>
+              <div class="author">- Sarah L.</div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="testimonial">
+              <p>"A must-have tool for anyone looking to align their life with their true values."</p>
+              <div class="author">- Michael B.</div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="testimonial">
+              <p>"Insightful and well-structured. It helped me clarify what truly matters."</p>
+              <div class="author">- Emily R.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+
+      // Initialize Carousel
+      var carouselElems = document.querySelectorAll('.carousel');
+      M.Carousel.init(carouselElems, {
+        fullWidth: true,
+        indicators: true,
+        duration: 200,
+        padding: 100
+      });
+
+      // Initialize Tooltips (if any)
+      var tooltips = document.querySelectorAll('.tooltipped');
+      M.Tooltip.init(tooltips);
+    });
+
+    // Particle.js configuration
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 700
+          }
+        },
+        "color": {
+          "value": "#00e676"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 0.5,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 4,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#00e676",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "repulse": {
+            "distance": 100,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>

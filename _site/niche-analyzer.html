@@ -1,0 +1,340 @@
+<!-- _layouts/default.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover your future niche and turn your passion into income. 321Niche provides tools, resources, and community support to help you succeed.">
+
+  <!-- Page Title -->
+  <title>Niche Analyzer - 321Niche.com</title>
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Include Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <!-- Favicon (Optional) -->
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <!-- _includes/navbar.html -->
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">321Niche</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About Us</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/resources.html">Resources</a></li>
+      <li><a href="/tools.html">Tools & Downloads</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Mobile Navigation -->
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about.html">About Us</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li><a href="/resources.html">Resources</a></li>
+  <li><a href="/tools.html">Tools & Downloads</a></li>
+</ul>
+
+
+  <!-- Main Content -->
+  <main>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover profitable and personalized niche ideas with our AI-powered Niche Analyzer.">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <style>
+    body {
+      background-color: #0A0A0A;
+      color: #E0E0E0;
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+    }
+
+    nav, .page-footer {
+      background-color: #0A0A0A !important; 
+      border-top: none;
+    }
+
+    .page-footer {
+      padding: 20px 0;
+      text-align: center;
+      border-top: 1px solid #57FF8C; 
+    }
+
+    .footer-content, nav ul li a {
+      color: #E0E0E0 !important; 
+    }
+
+    a {
+      color: #57FF8C !important;
+    }
+
+    .background-lines {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .niche-analyzer {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .niche-analyzer h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #57FF8C;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
+    }
+
+    .niche-analyzer form input, .niche-analyzer form textarea, .niche-analyzer form select {
+      color: #E0E0E0;
+      border-bottom: 1px solid #57FF8C !important;
+    }
+
+    .niche-analyzer .btn {
+      background-color: #57FF8C;
+      color: #0A0A0A;
+    }
+
+    #back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: none;
+      background-color: #57FF8C;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="#" id="back-to-top" class="btn-floating btn-large">
+    <i class="material-icons">keyboard_arrow_up</i>
+  </a>
+
+  <div class="container niche-analyzer">
+    <h1 class="analyzer-title">Niche Analyzer</h1>
+    <p>Discover profitable niches and insights to grow your business!</p>
+
+    <form id="niche-form">
+      <div class="input-field">
+        <input id="interests" type="text" required>
+        <label for="interests">Enter Your Interests</label>
+      </div>
+      <div class="input-field">
+        <input id="skills" type="text" required>
+        <label for="skills">Enter Your Skills</label>
+      </div>
+      <div class="input-field">
+        <input id="audience" type="text" required>
+        <label for="audience">Describe Your Audience</label>
+      </div>
+      <div class="input-field">
+        <select id="monetization" multiple>
+          <option value="ads">Advertisements</option>
+          <option value="affiliate">Affiliate Marketing</option>
+          <option value="products">Product Sales</option>
+          <option value="services">Service Sales</option>
+        </select>
+        <label>Monetization Strategies</label>
+      </div>
+      <div class="input-field">
+        <input id="trends" type="text">
+        <label for="trends">Trends You're Interested In</label>
+      </div>
+      <div class="input-field">
+        <textarea id="competition" class="materialize-textarea"></textarea>
+        <label for="competition">Describe Competition Level</label>
+      </div>
+      <div class="input-field">
+        <select id="scalability">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <label>Scalability</label>
+      </div>
+      <div class="input-field">
+        <input id="geographic" type="text">
+        <label for="geographic">Geographic Region of Focus</label>
+      </div>
+      <button type="submit" class="btn waves-effect waves-light">Analyze Niche</button>
+    </form>
+
+    <div id="results" class="results-section"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      M.AutoInit();
+
+      window.addEventListener('scroll', function() {
+        const backToTop = document.getElementById('back-to-top');
+        if (window.scrollY > 500) {
+          backToTop.style.display = 'block';
+        } else {
+          backToTop.style.display = 'none';
+        }
+      });
+
+      document.getElementById('niche-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const formData = {
+          interests: document.getElementById('interests').value,
+          skills: document.getElementById('skills').value,
+          audience: document.getElementById('audience').value,
+          monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
+          trends: document.getElementById('trends').value || 'N/A',
+          competition: document.getElementById('competition').value || 'N/A',
+          scalability: M.FormSelect.getInstance(document.getElementById('scalability')).getSelectedValues()[0] || 'N/A',
+          geographic: document.getElementById('geographic').value || 'N/A'
+        };
+
+        document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
+
+        try {
+          // Send data to backend (Corrected URL)
+          const response = await fetch('/.netlify/functions/nicheAnalyzer.js', {  
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          if (data.result) {
+            document.getElementById('results').innerHTML = `<h2>Your Niche Ideas:</h2><pre>${data.result}</pre>`;
+          } else {
+            document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
+          }
+        } catch (error) {
+          document.getElementById('results').innerHTML = "<p>An error occurred while processing your request.</p>";
+          console.error('Error:', error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+  </main>
+
+  <!-- Footer -->
+  <!-- _includes/footer.html -->
+<footer class="page-footer">
+  <div class="container center-align">
+    <h5>Trusted by Industry Leaders</h5>
+    <p>Our tools have been used by over 1,000 successful entrepreneurs and have received glowing recommendations from experts across the industry.</p>
+    <div class="social-icons">
+      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">facebook</i></a>
+      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">twitter</i></a>
+      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">instagram</i></a>
+      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">linkedin</i></a>
+    </div>
+    <hr>
+    <span>&copy; 2024 321Niche</span>
+    <a href="/contact.html">Contact Us</a>
+  </div>
+</footer>
+
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+
+  <!-- Initialize Materialize Components -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elemsSidenav = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elemsSidenav);
+
+      // Initialize Carousel
+      var elemsCarousel = document.querySelectorAll('.carousel');
+      M.Carousel.init(elemsCarousel, {
+        duration: 200,
+        shift: 50,
+        padding: 50,
+        numVisible: 3,
+        indicators: true,
+        fullWidth: false,
+        autoplay: true,
+        interval: 3000
+      });
+
+      // Initialize Parallax
+      var elemsParallax = document.querySelectorAll('.parallax');
+      M.Parallax.init(elemsParallax);
+
+      // Smooth Scroll for Hero Button
+      const heroButton = document.querySelector('.hero-content .btn');
+      if (heroButton) {
+        heroButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if(target) {
+            window.scrollTo({
+              top: target.offsetTop - 70,
+              behavior: 'smooth'
+            });
+          }
+        });
+      }
+
+      // Form Validation and Submission
+      const newsletterForm = document.querySelector('.newsletter-section form');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const emailInput = document.getElementById('email');
+          if (emailInput.checkValidity()) {
+            M.toast({html: 'Thank you for subscribing!', classes: 'rounded'});
+            emailInput.value = '';
+            M.updateTextFields();
+          } else {
+            M.toast({html: 'Please enter a valid email address.', classes: 'rounded red'});
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

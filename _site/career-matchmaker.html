@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Career Matchmaker Tool - 321Niche</title>
+
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Find the perfect career match with our advanced Career Matchmaker tool. Align your skills, interests, and personality to discover ideal career paths.">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Import particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #00695c;
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .matchmaker-container {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 2rem;
+      border-radius: 8px;
+      margin-top: 3rem;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+    }
+
+    .input-field input,
+    .input-field textarea {
+      color: #fff !important;
+    }
+
+    .input-field input:focus,
+    .input-field textarea:focus {
+      border-bottom: 1px solid #00e676 !important;
+      box-shadow: 0 1px 0 0 #00e676 !important;
+    }
+
+    .input-field label {
+      color: #00e676;
+    }
+
+    .btn, .btn-large {
+      background-color: #00695c;
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover, .btn-large:hover {
+      background-color: #004d40;
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+    }
+
+    .page-footer {
+      background-color: #000;
+      border-top: 1px solid #00695c;
+      padding: 20px 0;
+    }
+
+    .output-section {
+      margin-top: 2rem;
+      background: rgba(0, 105, 92, 0.1);
+      border: 1px solid #00695c;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+
+    .output-title {
+      color: #00e676;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .career-description {
+      margin-top: 0.5rem;
+      color: #b2dfdb;
+    }
+
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-top: 8px solid #00e676;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 2s linear infinite;
+      margin: 2rem auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media screen and (max-width: 600px) {
+      .matchmaker-container {
+        padding: 1rem;
+      }
+    }
+
+    /* Additional Styles for Enhanced UI */
+    .collection-item {
+      background-color: rgba(0, 105, 92, 0.2);
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+
+    .collection-item:hover {
+      background-color: rgba(0, 105, 92, 0.3);
+    }
+
+    .footer-link {
+      color: #00e676 !important;
+    }
+
+    /* Accessibility Enhancements */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Open navigation menu"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="tools.html">Tools & Downloads</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="tools.html">Tools & Downloads</a></li>
+  </ul>
+
+  <!-- Career Matchmaker Tool Section -->
+  <div class="container">
+    <div class="matchmaker-container">
+      <h2 class="center-align">Career Matchmaker Tool</h2>
+      <p>Use this tool to discover careers that align with your skills, personality, and passions. Answer the questions below to find suitable career paths for you.</p>
+
+      <div class="row">
+        <form id="career-matchmaker-form" class="col s12" aria-labelledby="career-matchmaker-form">
+          <div class="input-field col s12">
+            <textarea id="skills" class="materialize-textarea" required aria-required="true" aria-label="Top 3 skills" placeholder="e.g., Coding, Problem-solving, Communication"></textarea>
+            <label for="skills">What are your top 3 skills?</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="interests" class="materialize-textarea" required aria-required="true" aria-label="Interests or hobbies" placeholder="e.g., Reading, Traveling, Painting"></textarea>
+            <label for="interests">What are your interests or hobbies?</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="work-style" class="materialize-textarea" required aria-required="true" aria-label="Ideal work environment" placeholder="e.g., Collaborative, Remote, Fast-paced"></textarea>
+            <label for="work-style">Describe your ideal work environment.</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="values" class="materialize-textarea" required aria-required="true" aria-label="Values in a career" placeholder="e.g., Integrity, Innovation, Work-life balance"></textarea>
+            <label for="values">What values matter most to you in a career?</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="dream-job" class="materialize-textarea" required aria-required="true" aria-label="Dream job" placeholder="e.g., CEO of a tech company, Author, Artist"></textarea>
+            <label for="dream-job">What is your dream job?</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="strengths" class="materialize-textarea" required aria-required="true" aria-label="Key personal strengths" placeholder="e.g., Leadership, Creativity, Analytical thinking"></textarea>
+            <label for="strengths">What are your key personal strengths?</label>
+          </div>
+          <div class="center-align">
+            <button type="button" class="btn waves-effect waves-light" onclick="generateCareerMatches()" aria-label="Find My Career Match">Find My Career Match</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Loader -->
+      <div id="loader" class="loader" style="display: none;" aria-live="polite" aria-label="Processing">
+        <span class="sr-only">Processing...</span>
+      </div>
+
+      <!-- Output Section -->
+      <div id="output" class="output-section" style="display: none;" aria-live="polite">
+        <h3 class="output-title">Your Career Matches:</h3>
+        <ul id="career-matches" class="collection"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right footer-link" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+
+      // Initialize Materialize Textarea
+      var textAreas = document.querySelectorAll('textarea');
+      M.textareaAutoResize(textAreas);
+    });
+
+    // Particle.js configuration
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 700
+          }
+        },
+        "color": {
+          "value": "#00e676"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 1,
+            "opacity_min": 0.3,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 3,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#00e676",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 4,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 150,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Career Data will be loaded dynamically from careers.json
+    let careersData = [];
+
+    // Fetch career data from external JSON
+    fetch('careers.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        careersData = data;
+        console.log('Career data loaded successfully:', careersData);
+      })
+      .catch(error => {
+        console.error('Error fetching career data:', error);
+        alert('Failed to load career data. Please try again later.');
+      });
+
+    // Function to sanitize user inputs
+    function sanitizeInput(str) {
+      const temp = document.createElement('div');
+      temp.textContent = str;
+      return temp.innerHTML;
+    }
+
+    // Function to generate career matches
+    function generateCareerMatches() {
+      // Show loader
+      document.getElementById('loader').style.display = 'block';
+      document.getElementById('output').style.display = 'none';
+
+      // Delay to simulate processing time
+      setTimeout(() => {
+        // Hide loader
+        document.getElementById('loader').style.display = 'none';
+
+        // Get and sanitize user inputs
+        const skillsInput = sanitizeInput(document.getElementById('skills').value.toLowerCase());
+        const interestsInput = sanitizeInput(document.getElementById('interests').value.toLowerCase());
+        const workStyleInput = sanitizeInput(document.getElementById('work-style').value.toLowerCase());
+        const valuesInput = sanitizeInput(document.getElementById('values').value.toLowerCase());
+        const dreamJobInput = sanitizeInput(document.getElementById('dream-job').value.toLowerCase());
+        const strengthsInput = sanitizeInput(document.getElementById('strengths').value.toLowerCase());
+
+        // Combine all inputs into a single string
+        const combinedInput = `${skillsInput} ${interestsInput} ${workStyleInput} ${valuesInput} ${dreamJobInput} ${strengthsInput}`;
+        
+        // Split the combined input into words, removing punctuation
+        const inputWords = combinedInput.match(/\b(\w+)\b/g) || [];
+
+        // Create a frequency map for input words
+        const wordFrequency = {};
+        inputWords.forEach(word => {
+          wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+        });
+
+        console.log('User Input Words:', inputWords);
+        console.log('Word Frequency:', wordFrequency);
+
+        // Calculate match scores for each career
+        const careerScores = careersData.map(career => {
+          let score = 0;
+
+          // Combine all keywords from skills, responsibilities, and synonyms
+          const careerKeywords = [
+            ...(career.keywords.skills || []),
+            ...(career.keywords.responsibilities || []),
+            ...(career.synonyms || [])
+          ];
+
+          // Compare each keyword with user input
+          careerKeywords.forEach(keyword => {
+            const keywordLower = keyword.toLowerCase();
+
+            // Check for exact match
+            if (wordFrequency[keywordLower]) {
+              score += wordFrequency[keywordLower];
+            }
+
+            // Check if any input word includes the keyword as a substring
+            inputWords.forEach(word => {
+              if (word.includes(keywordLower) && word !== keywordLower) {
+                score += 0.5; // Partial match weight
+              }
+            });
+          });
+
+          return { ...career, score };
+        });
+
+        console.log('Career Scores:', careerScores);
+
+        // Sort careers by score in descending order
+        careerScores.sort((a, b) => b.score - a.score);
+
+        // Filter out careers with zero score and take top 3 matches
+        const matches = careerScores.filter(career => career.score > 0).slice(0, 3);
+
+        console.log('Top Matches:', matches);
+
+        // If no matches found
+        if (matches.length === 0) {
+          document.getElementById('career-matches').innerHTML = `
+            <li class="collection-item">
+              No direct matches found based on your inputs. Please try refining your answers.
+            </li>
+          `;
+        } else {
+          // Generate HTML for matches
+          const matchesHTML = matches.map(match => `
+            <li class="collection-item">
+              <span class="title"><strong>${match.name}</strong></span>
+              <p class="career-description">${match.description} <a href="${match.link}" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+              <a href="${match.link}" class="btn-small" target="_blank" rel="noopener noreferrer">Explore ${match.name}</a>
+            </li>
+          `).join('');
+          document.getElementById('career-matches').innerHTML = matchesHTML;
+        }
+
+        // Show output section
+        document.getElementById('output').style.display = 'block';
+
+        // Scroll to results
+        document.getElementById('output').scrollIntoView({ behavior: 'smooth' });
+      }, 500); // 0.5-second delay for faster feedback
+    }
+  </script>
+</body>
+</html>

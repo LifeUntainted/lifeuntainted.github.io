@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Strengths Assessment - 321Niche</title>
+
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Download our Strengths Assessment worksheet to identify your key strengths and learn how to apply them to your life or career.">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Import particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #00695c;
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .strengths-container {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 4rem;
+      border-radius: 8px;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .input-field input {
+      color: #fff !important;
+    }
+
+    .input-field input:focus {
+      border-bottom: 1px solid #00e676 !important;
+      box-shadow: 0 1px 0 0 #00e676 !important;
+    }
+
+    .input-field label {
+      color: #00e676;
+    }
+
+    .btn, .btn-large {
+      background-color: #00695c;
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover, .btn-large:hover {
+      background-color: #004d40;
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+    }
+
+    .page-footer {
+      background-color: #000;
+      border-top: 1px solid #00695c;
+      padding: 20px 0;
+    }
+
+    .worksheet-section {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .worksheet-section p {
+      margin-bottom: 2rem;
+    }
+
+    .output-section {
+      margin-top: 3rem;
+      background: rgba(0, 105, 92, 0.1);
+      border: 1px solid #00695c;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+
+    .output-title {
+      color: #00e676;
+      font-size: 1.8rem;
+    }
+
+    @media screen and (max-width: 600px) {
+      .strengths-container {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="tools.html">Tools & Downloads</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="tools.html">Tools & Downloads</a></li>
+  </ul>
+
+  <!-- Strengths Assessment Section -->
+  <div class="container">
+    <div class="strengths-container">
+      <h2 class="center-align">Strengths Assessment Worksheet</h2>
+      <p>Discovering your strengths is the key to making decisions that align with your goals and values. Use this tool to identify your core strengths and learn how to apply them in both personal and professional areas of your life.</p>
+
+      <!-- Interactive Questions -->
+      <form id="strengths-form" class="row">
+        <div class="input-field col s12">
+          <input id="strength1" type="text" class="validate">
+          <label for="strength1">What are your top 5 strengths? (e.g., Communication, Creativity, Problem Solving, Leadership, Empathy)</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="situations" type="text" class="validate">
+          <label for="situations">Describe a situation where you successfully utilized your strengths to achieve a positive outcome.</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="feedback" type="text" class="validate">
+          <label for="feedback">What feedback have you received from others about your strengths?</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="motivation" type="text" class="validate">
+          <label for="motivation">What activities or tasks make you feel energized and motivated?</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="career-goals" type="text" class="validate">
+          <label for="career-goals">How do your strengths align with your career goals?</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="improvement" type="text" class="validate">
+          <label for="improvement">What strengths do you want to develop further, and how will you achieve this?</label>
+        </div>
+        <div class="center-align">
+          <button type="button" class="btn waves-effect waves-light" onclick="generateResults()">Generate Results</button>
+        </div>
+      </form>
+
+      <!-- Results Section -->
+      <div id="results-section" class="output-section" style="display: none;">
+        <h3 class="output-title">Your Strengths Assessment Summary:</h3>
+        <p id="results"></p>
+        <div class="center-align">
+          <button class="btn waves-effect waves-light" onclick="copyResults()">Copy to Clipboard</button>
+        </div>
+      </div>
+
+      <!-- Worksheet Download -->
+      <div class="worksheet-section">
+        <p>Click below to download the comprehensive Strengths Assessment Worksheet:</p>
+        <a href="downloads/strengths-assessment.pdf" download class="btn waves-effect waves-light">
+          <i class="material-icons left">file_download</i>Download Worksheet
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+
+      // Initialize Particles.js
+      particlesJS('particles-js', {
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800
+            }
+          },
+          color: {
+            value: "#00e676"
+          },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000"
+            },
+            polygon: {
+              nb_sides: 5
+            }
+          },
+          opacity: {
+            value: 0.5,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 1,
+              opacity_min: 0.3,
+              sync: false
+            }
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 4,
+              size_min: 0.1,
+              sync: false
+            }
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#00e676",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 6,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: false,
+              rotateX: 600,
+              rotateY: 1200
+            }
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse"
+            },
+            onclick: {
+              enable: true,
+              mode: "push"
+            },
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 400,
+              line_linked: {
+                opacity: 1
+              }
+            },
+            bubble: {
+              distance: 400,
+              size: 40,
+              duration: 2,
+              opacity: 8,
+              speed: 3
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4
+            },
+            push: {
+              particles_nb: 4
+            },
+            remove: {
+              particles_nb: 2
+            }
+          }
+        },
+        retina_detect: true
+      });
+    });
+
+    function generateResults() {
+      const strength1 = document.getElementById('strength1').value;
+      const situations = document.getElementById('situations').value;
+      const feedback = document.getElementById('feedback').value;
+      const motivation = document.getElementById('motivation').value;
+      const careerGoals = document.getElementById('career-goals').value;
+      const improvement = document.getElementById('improvement').value;
+
+      const results = `Your Strengths:
+${strength1}
+
+Situations Where You Shine:
+${situations}
+
+Feedback on Your Strengths:
+${feedback}
+
+Activities that Motivate You:
+${motivation}
+
+Career Goals and Strength Alignment:
+${careerGoals}
+
+Strengths to Develop Further:
+${improvement}`;
+      
+      document.getElementById('results').innerText = results;
+      document.getElementById('results-section').style.display = 'block';
+    }
+
+    function copyResults() {
+      const resultsText = document.getElementById('results').innerText;
+      navigator.clipboard.writeText(resultsText).then(() => {
+        alert('Results copied to clipboard!');
+      }).catch(err => {
+        console.error('Could not copy text: ', err);
+      });
+    }
+  </script>
+</body>
+
+</html>

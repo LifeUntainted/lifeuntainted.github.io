@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Personality Test - 321Niche</title>
+
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Take our comprehensive personality test to understand your strengths, preferences, and how they can guide you towards a fulfilling career and lifestyle.">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Import particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid #00695c;
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .test-container {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 4rem;
+      border-radius: 8px;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .input-field label {
+      color: #00e676;
+    }
+
+    .btn, .btn-large {
+      background-color: #00695c;
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover, .btn-large:hover {
+      background-color: #004d40;
+      box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+    }
+
+    .page-footer {
+      background-color: #000;
+      border-top: 1px solid #00695c;
+      padding: 20px 0;
+    }
+
+    .question-label {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #00e676;
+    }
+
+    .test-question {
+      background: rgba(0, 105, 92, 0.1);
+      border-radius: 8px;
+      border: 1px solid #00695c;
+      padding: 1rem;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+
+    .question-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .output-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #00e676;
+    }
+
+    .personality-description {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="tools.html">Tools & Downloads</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="tools.html">Tools & Downloads</a></li>
+  </ul>
+
+  <!-- Personality Test Section -->
+  <div class="container">
+    <div class="test-container">
+      <h2 class="center-align">Personality Test</h2>
+      <p>Take our personality test to gain insights into your strengths, preferences, and how they align with different life paths and careers. Answer the questions below as honestly as possible to get the best results.</p>
+
+      <!-- Personality Test Form -->
+      <form id="personality-test-form">
+        <!-- Extraversion vs. Introversion -->
+        <div class="question-group">
+          <p class="question-label">1. How do you prefer to spend your free time?</p>
+          <p>
+            <label>
+              <input name="q1" type="radio" value="E" />
+              <span>With friends and family, socializing.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q1" type="radio" value="I" />
+              <span>Engaging in creative activities (e.g., drawing, writing).</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q1" type="radio" value="I" />
+              <span>Reading or learning something new.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">2. In social gatherings, you are more likely to:</p>
+          <p>
+            <label>
+              <input name="q2" type="radio" value="E" />
+              <span>Engage actively with many people.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q2" type="radio" value="I" />
+              <span>Have deep conversations with a few individuals.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">3. When faced with a new project, you:</p>
+          <p>
+            <label>
+              <input name="q3" type="radio" value="E" />
+              <span>Feel energized and excited to start.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q3" type="radio" value="I" />
+              <span>Prefer to think it through before beginning.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Sensing vs. Intuition -->
+        <div class="question-group">
+          <p class="question-label">4. When learning something new, you prefer:</p>
+          <p>
+            <label>
+              <input name="q4" type="radio" value="S" />
+              <span>Practical applications and real-life examples.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q4" type="radio" value="N" />
+              <span>Theoretical concepts and abstract ideas.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">5. When solving problems, you focus on:</p>
+          <p>
+            <label>
+              <input name="q5" type="radio" value="S" />
+              <span>Details and specific information.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q5" type="radio" value="N" />
+              <span>The big picture and underlying patterns.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">6. You are more drawn to:</p>
+          <p>
+            <label>
+              <input name="q6" type="radio" value="S" />
+              <span>Concrete facts and data.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q6" type="radio" value="N" />
+              <span>Ideas and possibilities.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Thinking vs. Feeling -->
+        <div class="question-group">
+          <p class="question-label">7. When making decisions, you prioritize:</p>
+          <p>
+            <label>
+              <input name="q7" type="radio" value="T" />
+              <span>Logic and objective analysis.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q7" type="radio" value="F" />
+              <span>Personal values and the impact on others.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">8. In discussions, you tend to:</p>
+          <p>
+            <label>
+              <input name="q8" type="radio" value="T" />
+              <span>Focus on facts and evidence.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q8" type="radio" value="F" />
+              <span>Consider emotions and relationships.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">9. You value:</p>
+          <p>
+            <label>
+              <input name="q9" type="radio" value="T" />
+              <span>Fairness and justice.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q9" type="radio" value="F" />
+              <span>Compassion and harmony.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Judging vs. Perceiving -->
+        <div class="question-group">
+          <p class="question-label">10. You prefer to:</p>
+          <p>
+            <label>
+              <input name="q10" type="radio" value="J" />
+              <span>Have a planned and organized approach.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q10" type="radio" value="P" />
+              <span>Stay flexible and adapt as needed.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">11. When working on tasks, you:</p>
+          <p>
+            <label>
+              <input name="q11" type="radio" value="J" />
+              <span>Prefer to set deadlines and stick to them.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q11" type="radio" value="P" />
+              <span>Like to keep options open and extend deadlines.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">12. You find comfort in:</p>
+          <p>
+            <label>
+              <input name="q12" type="radio" value="J" />
+              <span>Having things settled and decided.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q12" type="radio" value="P" />
+              <span>Embracing spontaneity and change.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Additional Questions for Better Accuracy -->
+        <!-- Extraversion vs. Introversion -->
+        <div class="question-group">
+          <p class="question-label">13. You gain energy by:</p>
+          <p>
+            <label>
+              <input name="q13" type="radio" value="E" />
+              <span>Being around people and social activities.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q13" type="radio" value="I" />
+              <span>Spending time alone or in quiet environments.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Sensing vs. Intuition -->
+        <div class="question-group">
+          <p class="question-label">14. When reading a book, you prefer:</p>
+          <p>
+            <label>
+              <input name="q14" type="radio" value="S" />
+              <span>Detailed and factual content.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q14" type="radio" value="N" />
+              <span>Exploring themes and underlying meanings.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Thinking vs. Feeling -->
+        <div class="question-group">
+          <p class="question-label">15. In a team, you are more likely to:</p>
+          <p>
+            <label>
+              <input name="q15" type="radio" value="T" />
+              <span>Focus on task completion and efficiency.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q15" type="radio" value="F" />
+              <span>Ensure everyone feels valued and heard.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Judging vs. Perceiving -->
+        <div class="question-group">
+          <p class="question-label">16. When planning a trip, you:</p>
+          <p>
+            <label>
+              <input name="q16" type="radio" value="J" />
+              <span>Create a detailed itinerary.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q16" type="radio" value="P" />
+              <span>Prefer to explore spontaneously.</span>
+            </label>
+          </p>
+        </div>
+
+        <!-- Optional Additional Questions -->
+        <div class="question-group">
+          <p class="question-label">17. When faced with a problem, you:</p>
+          <p>
+            <label>
+              <input name="q17" type="radio" value="E" />
+              <span>Discuss it with others to find a solution.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q17" type="radio" value="I" />
+              <span>Prefer to solve it on your own.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">18. You believe that:</p>
+          <p>
+            <label>
+              <input name="q18" type="radio" value="S" />
+              <span>Practical solutions are the most effective.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q18" type="radio" value="N" />
+              <span>Innovative ideas lead to progress.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">19. In your work, you value:</p>
+          <p>
+            <label>
+              <input name="q19" type="radio" value="T" />
+              <span>Objective criteria and standards.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q19" type="radio" value="F" />
+              <span>Personal connections and team morale.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="question-group">
+          <p class="question-label">20. You handle deadlines by:</p>
+          <p>
+            <label>
+              <input name="q20" type="radio" value="J" />
+              <span>Planning ahead to meet them comfortably.</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="q20" type="radio" value="P" />
+              <span>Working up to them with a flexible approach.</span>
+            </label>
+          </p>
+        </div>
+
+        <div class="center-align">
+          <button type="button" class="btn waves-effect waves-light" onclick="calculatePersonalityType()">Submit</button>
+        </div>
+      </form>
+
+      <!-- Results Section -->
+      <div id="results" class="test-question" style="display: none;">
+        <h3 class="output-title">Your Personality Type:</h3>
+        <p id="personality-type-result"></p>
+        <div id="personality-description" class="personality-description"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+    });
+
+    // Particle.js configuration
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 120,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#00e676"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#00e676",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 6,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Personality Type Descriptions
+    const personalityDescriptions = {
+      "ISTJ": "ISTJ - The Inspector: Practical and fact-minded individuals, whose reliability cannot be doubted.",
+      "ISFJ": "ISFJ - The Protector: Very dedicated and warm in their relationships, always ready to protect those they care about.",
+      "INFJ": "INFJ - The Advocate: Quiet and mystical, yet very inspiring and tireless idealists.",
+      "INTJ": "INTJ - The Architect: Imaginative and strategic thinkers, with a plan for everything.",
+      "ISTP": "ISTP - The Virtuoso: Bold and practical experimenters, masters of all kinds of tools.",
+      "ISFP": "ISFP - The Adventurer: Flexible and charming artists, always ready to explore and experience something new.",
+      "INFP": "INFP - The Mediator: Poetic, kind, and altruistic people, always eager to help a good cause.",
+      "INTP": "INTP - The Logician: Innovative inventors with an unquenchable thirst for knowledge.",
+      "ESTP": "ESTP - The Entrepreneur: Smart, energetic and very perceptive people, who truly enjoy living on the edge.",
+      "ESFP": "ESFP - The Entertainer: Spontaneous, energetic and enthusiastic people – life is never boring around them.",
+      "ENFP": "ENFP - The Campaigner: Enthusiastic, creative and sociable free spirits, who can always find a reason to smile.",
+      "ENTP": "ENTP - The Debater: Smart and curious thinkers who cannot resist an intellectual challenge.",
+      "ESTJ": "ESTJ - The Executive: Excellent administrators, unsurpassed at managing things – or people.",
+      "ESFJ": "ESFJ - The Consul: Extraordinarily caring, social and popular people, always eager to help.",
+      "ENFJ": "ENFJ - The Protagonist: Charismatic and inspiring leaders, able to mesmerize their listeners.",
+      "ENTJ": "ENTJ - The Commander: Bold, imaginative and strong-willed leaders, always finding a way – or making one."
+    };
+
+    // Function to calculate personality type
+    function calculatePersonalityType() {
+      // Initialize counts for each MBTI letter
+      var counts = {
+        'E': 0,
+        'I': 0,
+        'S': 0,
+        'N': 0,
+        'T': 0,
+        'F': 0,
+        'J': 0,
+        'P': 0
+      };
+
+      // List of question names
+      var questions = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10',
+                      'q11', 'q12', 'q13', 'q14', 'q15', 'q16', 'q17', 'q18', 'q19', 'q20'];
+
+      // Loop through each question to gather responses
+      for (var i = 0; i < questions.length; i++) {
+        var qName = questions[i];
+        var radios = document.getElementsByName(qName);
+        var answered = false;
+
+        for (var j = 0; j < radios.length; j++) {
+          if (radios[j].checked) {
+            var value = radios[j].value;
+            counts[value]++;
+            answered = true;
+            break;
+          }
+        }
+
+        // Check if question was answered
+        if (!answered) {
+          alert('Please answer all questions.');
+          return;
+        }
+      }
+
+      // Determine personality type
+      var personalityType = '';
+
+      // Extraversion vs. Introversion
+      if (counts['E'] >= counts['I']) {
+        personalityType += 'E';
+      } else {
+        personalityType += 'I';
+      }
+
+      // Sensing vs. Intuition
+      if (counts['S'] >= counts['N']) {
+        personalityType += 'S';
+      } else {
+        personalityType += 'N';
+      }
+
+      // Thinking vs. Feeling
+      if (counts['T'] >= counts['F']) {
+        personalityType += 'T';
+      } else {
+        personalityType += 'F';
+      }
+
+      // Judging vs. Perceiving
+      if (counts['J'] >= counts['P']) {
+        personalityType += 'J';
+      } else {
+        personalityType += 'P';
+      }
+
+      // Display the result
+      document.getElementById('personality-type-result').innerText = personalityType;
+
+      // Display the description
+      var description = personalityDescriptions[personalityType] || "Description not available.";
+      document.getElementById('personality-description').innerText = description;
+
+      // Show the results section
+      document.getElementById('results').style.display = 'block';
+
+      // Scroll to results
+      document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

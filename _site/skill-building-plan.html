@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passion to Career Map - 321Niche</title>
+
+    <!-- Import Google Icon Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Import Orbitron Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Import Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/styles.css">
+
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        h1, h2, h3 {
+            color: #57FF8C;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        p, ol, ul {
+            font-size: 1.1em;
+        }
+
+        .skill-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(30, 30, 30, 0.9);
+            border: 2px solid #57FF8C;
+            border-radius: 12px;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-section:hover {
+            background: rgba(40, 40, 40, 1);
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #57FF8C;
+        }
+
+        .skill-category {
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #57FF8C;
+        }
+
+        .material-icons {
+            transition: transform 0.3s ease;
+        }
+
+        .rotate {
+            transform: rotate(180deg);
+        }
+
+        .skill-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            margin-top: 10px;
+        }
+
+        .skill-content.expanded {
+            max-height: 1000px;
+            overflow: auto;
+        }
+
+        .skill-item {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .skill-description {
+            display: none;
+            font-size: 1rem;
+            margin-left: 20px;
+            color: #B2FFBF;
+        }
+
+        .btn {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background-color: #00695c;
+            color: #fff;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #004d40;
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.7);
+            transform: translateY(-3px);
+        }
+
+        ol {
+            padding-left: 1.5rem;
+            list-style: decimal inside;
+        }
+
+        ul {
+            list-style: disc inside;
+            padding-left: 1.5rem;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid #00695c;
+            padding: 0 20px;
+        }
+
+        .nav-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .brand-logo {
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .resources-header {
+            padding: 4rem 0 2rem;
+            text-align: center;
+            border-bottom: 1px solid #00695c;
+            margin-bottom: 3rem;
+        }
+
+        .resources-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .sidenav {
+            background-color: #000;
+        }
+
+        .sidenav li > a {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .sidenav li > a:hover {
+            color: #57FF8C;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">321Niche</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/resources.html">Resources</a></li>
+                <li><a href="/tools.html">Tools & Downloads</a></li>
+                <li><a href="/contact.html">Contact Us</a></li>
+                <li><a href="/skill-building-plan.html">Skill Building Plan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/resources.html">Resources</a></li>
+        <li><a href="/tools.html">Tools & Downloads</a></li>
+        <li><a href="/contact.html">Contact Us</a></li>
+        <li><a href="/skill-building-plan.html">Skill Building Plan</a></li>
+    </ul>
+
+    <!-- Header -->
+    <div class="resources-header">
+        <h1 class="resources-title">Passion to Career Map</h1>
+        <p>Explore your passions and learn how to align them with potential career paths. Use this map to brainstorm, visualize, and take the first step toward a fulfilling career journey.</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Skill Building Sections -->
+        <div class="skill-section">
+            <h2>Identify Your Passions</h2>
+            <ul>
+                <li>What activities make you lose track of time?</li>
+                <li>What are your hobbies or interests?</li>
+                <li>What problems do you love solving?</li>
+                <li>What would you do if money was not an issue?</li>
+            </ul>
+        </div>
+
+        <div class="skill-section">
+            <h2>Map Your Skills</h2>
+            <ul>
+                <li>What skills do you have that relate to your passions?</li>
+                <li>Are you knowledgeable about any specific fields?</li>
+                <li>What can you offer that others may need or find valuable?</li>
+            </ul>
+        </div>
+
+        <div class="skill-section">
+            <h2>Discover Career Possibilities</h2>
+            <ul>
+                <li>Research industries or roles that align with your passions and skills.</li>
+                <li>Look into roles that require a combination of skills you already have.</li>
+                <li>Consider whether you can monetize your passion through freelancing, entrepreneurship, or employment.</li>
+            </ul>
+        </div>
+
+        <!-- Download Button -->
+        <a href="/downloads/passion_to_career_map.pdf" class="btn">Download Your Passion to Career Map PDF</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Mobile Navigation
+            var elems = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(elems);
+        });
+
+        function toggleSkillContent(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('.material-icons');
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.classList.remove('rotate');
+            } else {
+                content.classList.add('expanded');
+                icon.classList.add('rotate');
+            }
+        }
+
+        function toggleSkillDescription(element) {
+            event.stopPropagation();
+            const description = element.querySelector('.skill-description');
+            if (description.style.display === 'none' || description.style.display === '') {
+                description.style.display = 'block';
+            } else {
+                description.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>

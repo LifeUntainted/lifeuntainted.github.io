@@ -1,0 +1,9 @@
+[build]
+  publish = "_site/"  # Assuming your build output is in the "docs" folder
+
+[[redirects]]
+  from = "/.netlify/functions/nicheAnalyzer"
+  to = "/.netlify/functions/nicheAnalyzer.js" 
+  status = 200
+  force = true
+  methods = ["POST", "OPTIONS"]

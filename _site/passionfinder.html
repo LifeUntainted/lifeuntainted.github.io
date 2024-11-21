@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Passion Finder Quiz - 321Niche</title>
+
+  <!-- Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover your passions with our interactive Passion Finder Quiz. Answer engaging questions and receive personalized insights into your passions and how to incorporate them into your life.">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Import particles.js -->
+  <script defer src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <!-- Import jsPDF for PDF Generation -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    /* Global Styles */
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Orbitron', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: rgba(0, 0, 0, 0.9);
+      border-bottom: 2px solid #00e676;
+    }
+
+    .brand-logo {
+      font-weight: 700;
+      margin-left: 20px;
+      font-size: 1.8rem;
+    }
+
+    /* Particle Background */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Quiz Container */
+    .quiz-container {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      margin-top: 4rem;
+      box-shadow: 0 0 30px rgba(0, 230, 118, 0.5);
+    }
+
+    /* Quiz Section */
+    .quiz-section {
+      margin-top: 2rem;
+    }
+
+    .quiz-question {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-option {
+      margin-bottom: 1rem;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      margin-bottom: 2rem;
+    }
+
+    /* Buttons */
+    .btn, .btn-large {
+      background-color: #00e676;
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover, .btn-large:hover {
+      background-color: #00c853;
+      box-shadow: 0 0 20px rgba(0, 230, 118, 0.7);
+    }
+
+    /* Footer */
+    .page-footer {
+      background-color: #121212;
+      border-top: 2px solid #00e676;
+      padding: 20px 0;
+    }
+
+    .page-footer a {
+      color: #00e676 !important;
+    }
+
+    /* Result Container */
+    .result-container {
+      display: none;
+      margin-top: 3rem;
+      text-align: center;
+      background-color: rgba(0, 230, 118, 0.1);
+      padding: 2rem;
+      border-radius: 8px;
+      border: 2px solid #00e676;
+    }
+
+    .result-container h5 {
+      color: #00e676;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 600px) {
+      .quiz-container {
+        padding: 2rem 1rem;
+      }
+
+      .brand-logo {
+        margin-left: 10px;
+        font-size: 1.5rem;
+      }
+
+      .quiz-question {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Open navigation menu"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="tools.html">Tools & Downloads</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="tools.html">Tools & Downloads</a></li>
+  </ul>
+
+  <!-- Passion Finder Quiz Section -->
+  <div class="container">
+    <div class="quiz-container">
+      <h2 class="center-align">Passion Finder Quiz</h2>
+      <p class="flow-text center-align">Discover your passions by answering the questions below. At the end, receive personalized insights to help you incorporate your passions into your life.</p>
+      
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress">
+          <div class="determinate" id="progress-bar" style="width: 0%"></div>
+        </div>
+        <p id="progress-text" class="center-align">Question 1 of 10</p>
+      </div>
+
+      <div id="quiz" class="quiz-section">
+        <div class="quiz-question" id="question">Loading question...</div>
+        <div id="options"></div>
+        <div class="center-align" style="margin-top: 2rem;">
+          <button id="prev-button" class="btn-flat waves-effect waves-light" onclick="prevQuestion()" disabled aria-label="Go to Previous Question">Previous</button>
+          <button id="next-button" class="btn waves-effect waves-light" onclick="nextQuestion()" disabled aria-label="Go to Next Question">Next</button>
+        </div>
+      </div>
+
+      <!-- Result Section -->
+      <div class="result-container" id="result" role="region" aria-live="polite">
+        <h5>Your Top Passions:</h5>
+        <ul id="result-list" class="collection with-header">
+          <!-- Results will be injected here -->
+        </ul>
+        <div class="center-align" style="margin-top: 2rem;">
+          <button class="btn waves-effect waves-light" onclick="downloadPDF()" aria-label="Download Results as PDF">Download PDF</button>
+          <button class="btn-flat waves-effect waves-light" onclick="restartQuiz()" aria-label="Restart Quiz">Restart Quiz</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+    });
+
+    // Particle.js configuration
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 700
+          }
+        },
+        "color": {
+          "value": "#00e676"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 0.5,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 4,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#00e676",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "repulse": {
+            "distance": 100,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    /**
+     * Quiz Data Structure
+     */
+    const quizData = [
+      {
+        question: "What activities make you lose track of time?",
+        options: ["Creative tasks (painting, writing, designing)", "Helping others", "Analyzing data or problem-solving", "Physical activities (sports, hiking)"]
+      },
+      {
+        question: "Which of these do you enjoy the most?",
+        options: ["Learning new skills", "Spending time with loved ones", "Working on personal projects", "Exploring the outdoors"]
+      },
+      {
+        question: "How do you usually prefer to spend your free time?",
+        options: ["Reading books or watching documentaries", "Volunteering", "Working on hobbies", "Exercise or adventure activities"]
+      },
+      {
+        question: "What type of work environment excites you the most?",
+        options: ["Fast-paced and creative", "Structured and collaborative", "Independent and research-focused", "Hands-on and active"]
+      },
+      {
+        question: "What do you value most in a career?",
+        options: ["Freedom to be creative", "Helping others", "Solving complex problems", "Being physically active"]
+      },
+      {
+        question: "Which of the following makes you feel most fulfilled?",
+        options: ["Creating something new", "Making a difference in someone’s life", "Solving a difficult problem", "Learning new things"]
+      },
+      {
+        question: "What kind of tasks make you feel the most energized?",
+        options: ["Collaborating with a team", "Helping someone achieve a goal", "Diving deep into research", "Working with my hands"]
+      },
+      {
+        question: "When working on a project, which part excites you the most?",
+        options: ["Coming up with ideas", "Seeing how the project impacts others", "Working out the technical details", "Getting physically involved"]
+      },
+      {
+        question: "Which of these best describes your ideal type of challenge?",
+        options: ["A creative challenge", "A challenge that helps others", "A complex analytical challenge", "A physical challenge"]
+      },
+      {
+        question: "What do you most often dream about doing?",
+        options: ["Creating art", "Making a positive impact", "Finding solutions to difficult problems", "Exploring and adventures"]
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+
+    /**
+     * Initialize Quiz by Loading the First Question
+     */
+    function loadQuestion() {
+      const currentQuestion = quizData[currentQuestionIndex];
+      document.getElementById("question").innerText = currentQuestion.question;
+      const optionsContainer = document.getElementById("options");
+      optionsContainer.innerHTML = "";
+
+      currentQuestion.options.forEach((option, index) => {
+        const optionDiv = document.createElement("div");
+        optionDiv.className = "quiz-option";
+
+        const radioInput = document.createElement("input");
+        radioInput.type = "radio";
+        radioInput.id = `option${index}`;
+        radioInput.name = "quiz-option";
+        radioInput.value = option;
+        radioInput.required = true;
+
+        const label = document.createElement("label");
+        label.htmlFor = `option${index}`;
+        label.innerText = option;
+
+        optionDiv.appendChild(radioInput);
+        optionDiv.appendChild(label);
+        optionsContainer.appendChild(optionDiv);
+      });
+
+      // Update Progress Bar
+      updateProgress();
+    }
+
+    /**
+     * Handle Next Question Navigation
+     */
+    function nextQuestion() {
+      const selectedOption = document.querySelector('input[name="quiz-option"]:checked');
+      if (!selectedOption) {
+        M.toast({html: 'Please select an option before proceeding.', classes: 'rounded red'});
+        return;
+      }
+
+      userAnswers[currentQuestionIndex] = selectedOption.value;
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex < quizData.length) {
+        loadQuestion();
+        document.getElementById("prev-button").disabled = false;
+      } else {
+        showResults();
+      }
+
+      // Disable Next Button until a new option is selected
+      document.getElementById("next-button").disabled = true;
+    }
+
+    /**
+     * Handle Previous Question Navigation
+     */
+    function prevQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        loadQuestion();
+      }
+
+      if (currentQuestionIndex === 0) {
+        document.getElementById("prev-button").disabled = true;
+      }
+    }
+
+    /**
+     * Display Results Based on User Answers
+     */
+    function showResults() {
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").style.display = "block";
+
+      // Analyze Answers to Determine Passions
+      const passionCategories = {
+        "Creative": 0,
+        "Helping Others": 0,
+        "Analytical": 0,
+        "Physical": 0
+      };
+
+      userAnswers.forEach(answer => {
+        if (answer.includes("creative") || answer.includes("art") || answer.includes("painting") || answer.includes("writing") || answer.includes("designing")) {
+          passionCategories["Creative"]++;
+        }
+        if (answer.includes("helping others") || answer.includes("volunteering") || answer.includes("making a difference") || answer.includes("making a positive impact")) {
+          passionCategories["Helping Others"]++;
+        }
+        if (answer.includes("analyzing") || answer.includes("problem-solving") || answer.includes("research") || answer.includes("solving complex problems")) {
+          passionCategories["Analytical"]++;
+        }
+        if (answer.includes("physical") || answer.includes("sports") || answer.includes("hiking") || answer.includes("exercise") || answer.includes("hands-on")) {
+          passionCategories["Physical"]++;
+        }
+      });
+
+      // Determine Top Passions
+      const sortedPassions = Object.entries(passionCategories).sort((a, b) => b[1] - a[1]);
+      const topPassions = sortedPassions.filter(passion => passion[1] > 0).slice(0, 3);
+
+      // Display Results
+      const resultList = document.getElementById("result-list");
+      resultList.innerHTML = '';
+
+      if (topPassions.length === 0) {
+        resultList.innerHTML = `<li class="collection-item">No clear passions identified. Consider reflecting more deeply on your interests.</li>`;
+      } else {
+        topPassions.forEach(([passion, count], index) => {
+          const listItem = document.createElement("li");
+          listItem.className = "collection-item";
+          listItem.innerHTML = `
+            <span class="title"><strong>${index + 1}. ${passion}</strong></span>
+            <p>You selected related options ${count} times.</p>
+          `;
+          resultList.appendChild(listItem);
+        });
+      }
+    }
+
+    /**
+     * Update Progress Bar and Text
+     */
+    function updateProgress() {
+      const progressPercentage = ((currentQuestionIndex) / quizData.length) * 100;
+      document.getElementById("progress-bar").style.width = `${progressPercentage}%`;
+      document.getElementById("progress-text").innerText = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
+      
+      // Disable Next Button initially
+      document.getElementById("next-button").disabled = true;
+
+      // Add event listener to enable Next Button upon selection
+      const options = document.getElementsByName("quiz-option");
+      options.forEach(option => {
+        option.addEventListener("change", () => {
+          document.getElementById("next-button").disabled = false;
+        });
+      });
+    }
+
+    /**
+     * Restart the Quiz
+     */
+    function restartQuiz() {
+      currentQuestionIndex = 0;
+      userAnswers = [];
+      document.getElementById("result").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      loadQuestion();
+    }
+
+    /**
+     * Download Results as PDF
+     */
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFont('Orbitron', 'bold');
+      doc.setFontSize(16);
+      doc.text('Your Passion Finder Quiz Results', 105, 20, null, null, 'center');
+
+      doc.setFont('Orbitron', 'normal');
+      doc.setFontSize(12);
+      const passions = document.querySelectorAll('#result-list .collection-item');
+      passions.forEach((item, index) => {
+        const title = item.querySelector('.title').innerText;
+        const details = item.querySelector('p').innerText;
+        doc.text(`${index + 1}. ${title}`, 20, 40 + (index * 10));
+        doc.text(details, 20, 45 + (index * 10));
+      });
+
+      doc.save('Passion_Finder_Results.pdf');
+    }
+
+    /**
+     * Initialize the Quiz on Page Load
+     */
+    window.onload = () => {
+      loadQuestion();
+    };
+  </script>
+</body>
+</html>

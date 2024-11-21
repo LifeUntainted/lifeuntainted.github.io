@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to 321Niche.com</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Discover your future niche and turn your passion into income. 321Niche provides tools, resources, and community support to help you succeed.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid #00695c;
+        }
+
+        .brand-logo {
+            font-weight: 700;
+            margin-left: 20px;
+        }
+
+        .parallax-container {
+            height: 70vh; /* Reduced height to avoid overlap */
+            position: relative;
+        }
+
+        .parallax {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            transform: translateZ(0);
+        }
+
+        .hero-content {
+            padding-top: 15vh;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards;
+            text-shadow: 0 0 10px rgba(0, 105, 92, 0.5);
+        }
+
+        .feature-section {
+            position: absolute;
+            top: 40vh; /* Adjusted top value to prevent overlap */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            z-index: 10;
+        }
+
+        .feature-section .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .ai-tools-section {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 4rem 0;
+            margin-top: -50px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .icon-block {
+            padding: 1.2rem;
+            border: 1px solid #00695c;
+            background: rgba(0, 105, 92, 0.2);
+            border-radius: 8px;
+            height: 100%;
+            transition: transform 0.3s ease;
+            margin: 0.5rem 0;
+            perspective: 1000px;
+        }
+
+        .icon-block:hover {
+            transform: rotateY(180deg);
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
+        }
+
+        .icon-block .content {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .icon-block:hover .content {
+            transform: rotateY(180deg);
+        }
+
+        .icon-block i {
+            font-size: 3rem;
+            color: #00695c;
+        }
+
+        .feature-title {
+            color: #fff;
+            margin: 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .ai-tools-box {
+            border: 1px solid #00695c;
+            background: rgba(0, 105, 92, 0.1);
+            border-radius: 8px;
+            padding: 1.2rem;
+            height: 100%;
+            margin: 0.5rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .ai-tools-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.3);
+        }
+
+        .carousel .carousel-item {
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00695c;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 400px !important;
+            font-size: 1.2rem;
+        }
+
+        .btn, .btn-large {
+            background-color: #00695c;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover, .btn-large:hover {
+            background-color: #004d40;
+            box-shadow: 0 0 20px rgba(0, 105, 92, 0.5);
+        }
+
+        .page-footer {
+            background-color: #000;
+            border-top: 1px solid #00695c;
+            padding: 10px 0;
+        }
+
+        .input-field input {
+            border-bottom: 1px solid #00695c !important;
+            color: #fff !important;
+        }
+
+        .input-field input:focus {
+            border-bottom: 1px solid #00897b !important;
+            box-shadow: 0 1px 0 0 #00897b !important;
+        }
+
+        .input-field label {
+            color: #fff !important;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00695c;
+            border-radius: 4px;
+        }
+
+        .sidenav {
+            background-color: #000;
+        }
+
+        .sidenav li > a {
+            color: #fff;
+        }
+
+        /* Added Styles */
+        .hero-content a.btn { 
+            font-size: 1.2rem; 
+            padding: 0.8rem 1.5rem; 
+            background-color: #00897b; /* More vibrant green */
+            box-shadow: 0 0 10px rgba(0, 105, 92, 0.8); /* Added initial box-shadow */
+        }
+
+        .hero-content a.btn:hover {
+            animation: pulse 1s infinite; /* Added pulse animation on hover */
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="index.html" class="brand-logo">321Niche</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="tools.html">Tools & Downloads</a></li>
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="tools.html">Tools & Downloads</a></li>
+</ul>
+
+<div class="parallax-container">
+    <div class="parallax" style="background-image: url('images/hero-image.png');"></div>
+    <div class="container center-align hero-content">
+        <h1 class="main-title">Discover Your Future Niche Today</h1>
+        <p>Your journey to discovering a profitable niche starts here. We provide tools and guidance to help you turn your passion into income.</p>
+        <a href="tools.html" class="btn waves-effect waves-light" style="margin-top: 20px;">Explore Tools Now</a> 
+        <p style="margin-top: 1rem;"><a href="#" class="btn-flat waves-effect waves-light white-text">Join Our Community</a></p> </p> </div>
+</div>
+
+<div class="feature-section"> 
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <div class="content">
+                        <i class="material-icons">flash_on</i>
+                        <h5 class="feature-title">Fast Guidance</h5>
+                        <p>Quickly find your niche with our streamlined tools and resources.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <div class="content">
+                        <i class="material-icons">group</i>
+                        <h5 class="feature-title">Community Support</h5>
+                        <p>Join a community of like-minded individuals on the same journey.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <div class="content">
+                        <i class="material-icons">settings</i>
+                        <h5 class="feature-title">AI-Powered Tools</h5>
+                        <p>Leverage cutting-edge AI tools to accelerate your success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ai-tools-section">
+    <div class="container">
+        <h2 class="center-align">Our AI-Powered Tools</h2>
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="ai-tools-box">
+                    <h5><i class="material-icons left">trending_up</i>Niche Analyzer</h5>
+                    <p>Analyze market trends and discover profitable niches with our AI algorithm.</p>
+                    <a href="niche-analyzer.html" class="btn waves-effect waves-light">Learn More</a>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <div class="ai-tools-box">
+                    <h5><i class="material-icons left">build</i>Free Tools</h5>
+                    <p>Access a variety of free tools to enhance your niche discovery and growth.</p>
+                    <a href="tools.html" class="btn waves-effect waves-light">Explore Tools</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="parallax-container">
+    <div class="parallax" style="background-image: url('images/testimonial-background.png');"></div>
+    <div class="container center-align" style="padding: 80px 0;">
+        <h2 class="white-text">What Our Customers Say</h2>
+        <div class="carousel">
+            <div class="carousel-item">
+                <p>"321Niche helped me focus and find clarity in my business direction. The AI tools were game-changing for my market research!"</p>
+                <cite>- Sarah Thompson, Digital Entrepreneur</cite>
+            </div>
+            <div class="carousel-item">
+                <p>"Thanks to the niche analyzer tool, I discovered an untapped market that perfectly aligned with my skills. My online business is thriving now!"</p>
+                <cite>- Michael Chen, E-commerce Owner</cite>
+            </div>
+            <div class="carousel-item">
+                <p>"The community support and AI-powered insights gave me the confidence to start my journey. I now know exactly what path to take!"</p>
+                <cite>- Rachel Martinez, Content Creator</cite>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="parallax-container" style="background: rgba(0, 0, 0, 0.9);">
+    <div class="container center-align" style="padding: 50px 0;">
+        <p>Welcome to 321Niche.com, your one-stop destination for personal growth, niche discovery, and self-improvement. 
+           <br> Here you can access a wide range of free tools designed to help you visualize your journey and achieve your goals, 
+           whether it’s discovering a profitable niche or growing personally. 
+           <br> Our private journal system allows you to record your thoughts safely and securely, right in your browser, with data stored locally in your cookies. 
+           <br> From niche analyzers to visualization aids, 321Niche is all about empowering you to reach your potential. 
+           <br> Dive in, explore, and see how our tools can be the key to unlocking your future.</p> 
+    </div>
+</div>
+
+<div class="container">
+    <div class="section">
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <h2 class="center-align">Stay Updated</h2>
+                <p class="center-align">Subscribe to our newsletter and be the first to hear about new resources, tools, and community events.</p>
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12 m8 offset-m2">
+                            <input id="email" type="email" class="validate" required>
+                            <label for="email">Email</label>
+                            <span class="helper-text" data-error="Invalid email" data-success="Valid email"></span>
+                        </div>
+                        <div class="col s12 m4 offset-m2">
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Subscribe
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="page-footer">
+    <div class="container">
+        <h5>Trusted by Industry Leaders</h5>
+        <p>Our tools have been used by over 1,000 successful entrepreneurs and have received glowing recommendations from experts across the industry.</p>
+        <hr>
+        © 2024 321Niche
+        <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Mobile
