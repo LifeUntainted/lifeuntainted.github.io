@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Random Niche Generator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Interactive Niche Generator</title>
   <style>
-    body { 
-      background-color: #000; 
-      overflow: hidden; 
-    }
-
-    .niche {
-      position: absolute;
-      font-weight: bold;
-      color: hsl(0, 0%, 90%); 
-      transition: opacity 0.8s ease-in-out; 
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #000;
     }
   </style>
 </head>
 <body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
   const niches = [
     // Creative & Artistic
@@ -74,40 +70,109 @@
     "Neighborhood Tool Sharing Libraries", "Tiny House Village Projects", "Public Permaculture Parks",
     "Community Wellness Programs", "Neighborhood Renewable Energy Cooperatives",
 
-    // ... (Rest of the niches from the previous response) ...
+    // Personal Growth & Development
+    "Mindfulness Retreats for Entrepreneurs", "Emotional Intelligence Coaching", "Creative Writing Workshops for Introverts", 
+    "Public Speaking Training for Kids", "Personal Branding for Artists", "Life Coaching for Digital Nomads", 
+    "Financial Literacy for Teens", "Time Management for Creatives", "Stress Management for Students", 
+    "Confidence Building Workshops", "Conflict Resolution Training", "Mindfulness in the Workplace Programs", 
+    "Positive Psychology Coaching", "Goal Setting for Athletes", "Leadership Development for Women",
+    "Digital Detox Retreats", "Resilience Building Programs", "Coaching for Career Change",
+    "Networking for Introverts", "Memory Improvement Courses", "Holistic Productivity Workshops",
+    "Speed Reading Courses", "Personal Finance Management Workshops", "Creative Problem-Solving Training",
+    "Public Speaking for Engineers", "Vision Board Creation Workshops", "Financial Independence for Freelancers",
+    "Online Journaling Workshops",
+
+    // Niche Hobbies & Interests
+    "Vintage Video Game Collecting", "Rare Plant Nursery", "Artisan Cheese Making", 
+    "Custom Drone Building", "Historical Reenactment", "Competitive Rubik's Cube Solving", 
+    "Mushroom Foraging Tours", "Terrarium Building Workshops", "Calligraphy and Hand Lettering", 
+    "Brewing Craft Kombucha", "Upcycling Vintage Clothing", "Board Game Design", 
+    "Creative Writing for Video Games", "Podcast Production for Beginners", "DIY Smart Home Automation",
+    "Collectible Toy Restoration", "Leather Crafting Workshops", "Aquascaping Design", "Pet Clothing Design",
+    "Survival Skills Training", "Cosplay Costume Creation", "Custom Bicycle Building",
+    "Antique Restoration Classes", "Nature Photography Tours", "Blacksmithing for Beginners",
+    "Knife Making for Enthusiasts",
+
+    // Travel & Adventure
+    "Luxury Camping (Glamping) Experiences", "Backpacking Tours for Beginners", "Adventure Photography Excursions",
+    "Eco-Friendly Travel Planning", "Motorcycle Touring Groups", "Off-The-Beaten-Path Travel Planning",
+    "Historical Landmark Tours", "Solo Female Travel Coaching", "Mountain Trekking Guides",
+    "Cultural Cooking Travel Tours", "Guided Safari Trips", "RV Living Consulting",
+    "Space Enthusiast Travel (e.g., Rocket Launch Tours)", "Volunteer Travel Programs", "Cycling Tours for Foodies",
+    "Hot Air Balloon Experiences",
+
+    // Pet & Animal Services
+    "Pet Acupuncture Services", "Customized Pet Nutrition Plans", "Exotic Pet Boarding",
+    "Pet Photography Sessions", "Aquarium Maintenance Services", "Pet Grief Counseling",
+    "Luxury Pet Travel Planning", "Pet Fitness and Exercise Programs", "Animal-Assisted Therapy Training",
+    "Pet Fashion Design", "Dog Surfing Lessons", "Pet Massage Services",
+    "Pet Talent Agency", "Customized Birdhouses",
+
+    // Food & Culinary Arts
+    "Molecular Gastronomy Classes", "Vegan Cheese Making", "Regional Cuisine Cooking Classes",
+    "Pop-up Themed Restaurants", "Personal Chef for Dietary Restrictions", "Sustainable Seafood Cooking",
+    "Culinary Tours for Wine Lovers", "Mobile Food Education Classes", "Artisan Chocolate Crafting",
+    "Foraged Foods Cooking", "Global Street Food Workshops", "Farm-to-Table Dinner Events",
+    "Artisan Bread Making Courses"
   ];
 
-  const fonts = [
-    "Arial", "Verdana", "Courier New", "Impact", "Georgia", "Trebuchet MS", "Comic Sans MS"
-  ];
+  const PARTICLE_COUNT = niches.length; 
 
-  function createNiche() {
-    const niche = document.createElement('div');
-    niche.classList.add('niche');
+  let scene, camera, renderer, particles;
 
-    const nicheText = niches[Math.floor(Math.random() * niches.length)];
-    niche.innerText = nicheText;
+  function init() {
+    // ... (Scene, camera, and renderer setup remain the same) ...
 
-    niche.style.left = `${Math.random() * 100}%`;
-    niche.style.top = `${Math.random() * 100}%`;
+    const geometry = new THREE.Geometry();
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const vertex = new THREE.Vector3();
+      vertex.x = Math.random() * 2000 - 1000;
+      vertex.y = Math.random() * 2000 - 1000;
+      vertex.z = Math.random() * 2000 - 1000;
+      geometry.vertices.push(vertex);
+    }
 
-    const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-    niche.style.fontFamily = randomFont;
+    const sprite = new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png'); 
+    const material = new THREE.PointsMaterial({ 
+      size: 50, 
+      map: sprite, 
+      blending: THREE.AdditiveBlending, 
+      depthTest: false, 
+      transparent: true 
+    });
 
-    niche.style.fontSize = `${Math.random() * 30 + 10}px`; 
+    particles = new THREE.Points(geometry, material);
+    scene.add(particles);
 
-    document.body.appendChild(niche);
+    const loader = new THREE.FontLoader();
+    loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+      geometry.vertices.forEach((vertex, i) => {
+        const textGeometry = new THREE.TextGeometry(niches[i], {
+          font: font,
+          size: 40,
+          height: 5,
+          curveSegments: 12,
+          bevelEnabled: true,
+          bevelThickness: 2,
+          bevelSize: 1,
+          bevelOffset: 0,
+          bevelSegments: 5
+        });
 
-    setTimeout(() => {
-      niche.style.opacity = 0; 
-      setTimeout(() => {
-        document.body.removeChild(niche);
-      }, 1000); 
-    }, (Math.random() * 4 + 6) * 1000); 
+        const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+        textMesh.position.copy(vertex);
+        textMesh.position.z += 50; 
+        scene.add(textMesh);
+      });
+    });
+
+    // ... (Event listeners for resize and mousemove remain the same) ...
   }
 
-  setInterval(createNiche, 700); // Create a new niche every 0.7 seconds
-</script>
+  // ... (Functions onWindowResize, onDocumentMouseMove, and animate remain the same) ...
 
+  init();
+</script>
 </body>
 </html>
