@@ -4,20 +4,12 @@
   <meta charset="UTF-8">
   <title>Life Wheel Assessment - 321Niche</title>
 
-  <!-- Meta Tags -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Interactive Life Wheel Assessment to evaluate and visualize different areas of your life, including finances, relationships, health, and personal growth.">
 
-  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-  <!-- Import Google Icon Font -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Import Orbitron Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Import Animate.css for Animations -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
   <style>
@@ -100,7 +92,7 @@
 
     /* Custom Slider Styling */
     .slider {
-      height: 6px; /* Reduced height */
+      height: 6px; 
       background-color: #00e676;
       margin-bottom: 2rem;
     }
@@ -244,388 +236,203 @@
 </head>
 <body>
 
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
+<div id="particles-js"></div>
 
-  <!-- Navigation Bar -->
-  <nav>
-    <div class="nav-wrapper">
-      <a href="index.html" class="brand-logo">321Niche</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Open navigation menu"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="tools.html">Tools & Downloads</a></li>
-      </ul>
+<nav>
+  <div class="nav-wrapper">
+    <a href="index.html" class="brand-logo">321Niche</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Open navigation menu"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="tools.html">Tools & Downloads</a></li>
+    </ul>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About Us</a></li>
+  <li><a href="blog.html">Blog</a></li>
+  <li><a href="resources.html">Resources</a></li>
+  <li><a href="tools.html">Tools & Downloads</a></li>
+</ul>
+
+<div class="container">
+  <div class="life-wheel-container animate__animated animate__fadeInUp">
+    <div class="life-wheel-header">
+      <h2>Life Wheel Assessment</h2>
+      <p>Evaluate and visualize the balance in different areas of your life. Adjust the sliders below to reflect your current status, and see your Life Wheel chart update in real-time.</p>
     </div>
-  </nav>
 
-  <!-- Mobile Navigation -->
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="resources.html">Resources</a></li>
-    <li><a href="tools.html">Tools & Downloads</a></li>
-  </ul>
+    <div class="responsive-chart">
+      <canvas id="lifeWheelChart"></canvas>
+    </div>
 
-  <!-- Life Wheel Assessment Section -->
-  <div class="container">
-    <div class="life-wheel-container animate__animated animate__fadeInUp">
-      <div class="life-wheel-header">
-        <h2>Life Wheel Assessment</h2>
-        <p>Evaluate and visualize the balance in different areas of your life. Adjust the sliders below to reflect your current status, and see your Life Wheel chart update in real-time.</p>
-      </div>
-
-      <!-- Life Wheel Chart -->
-      <div class="responsive-chart">
-        <canvas id="lifeWheelChart"></canvas>
-      </div>
-
-      <!-- Sliders -->
-      <div class="slider-container">
-        <!-- Health -->
-        <div class="row">
-          <div class="col s12">
-            <div class="slider-label">
-              <span>Health</span>
-              <span id="health-value">5</span>
-            </div>
-            <div class="slider">
-              <input type="range" id="health" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('health', this.value)">
-            </div>
+    <div class="slider-container">
+      <div class="row">
+        <div class="col s12">
+          <div class="slider-label">
+            <span>Health</span>
+            <span id="health-value">5</span>
           </div>
-        </div>
-        <!-- Career -->
-        <div class="row">
-          <div class="col s12">
-            <div class="slider-label">
-              <span>Career</span>
-              <span id="career-value">5</span>
-            </div>
-            <div class="slider">
-              <input type="range" id="career" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('career', this.value)">
-            </div>
-          </div>
-        </div>
-        <!-- Finances -->
-        <div class="row">
-          <div class="col s12">
-            <div class="slider-label">
-              <span>Finances</span>
-              <span id="finances-value">5</span>
-            </div>
-            <div class="slider">
-              <input type="range" id="finances" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('finances', this.value)">
-            </div>
-          </div>
-        </div>
-        <!-- Relationships -->
-        <div class="row">
-          <div class="col s12">
-            <div class="slider-label">
-              <span>Relationships</span>
-              <span id="relationships-value">5</span>
-            </div>
-            <div class="slider">
-              <input type="range" id="relationships" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('relationships', this.value)">
-            </div>
-          </div>
-        </div>
-        <!-- Personal Growth -->
-        <div class="row">
-          <div class="col s12">
-            <div class="slider-label">
-              <span>Personal Growth</span>
-              <span id="personalGrowth-value">5</span>
-            </div>
-            <div class="slider">
-              <input type="range" id="personalGrowth" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('personalGrowth', this.value)">
-            </div>
-          </div>
-        </div>
-        <!-- Recreation -->
-        <div class="row">
-          <div class="col s12">
-            <div class="slider-label">
-              <span>Recreation</span>
-              <span id="recreation-value">5</span>
-            </div>
-            <div class="slider">
-              <input type="range" id="recreation" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('recreation', this.value)">
-            </div>
+          <div class="slider">
+            <input type="range" id="health" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('health', this.value)">
           </div>
         </div>
       </div>
-
-      <!-- Buttons -->
-      <div class="center-align">
-        <button class="btn" onclick="downloadChart()">Download Chart</button>
-        <button class="btn-flat" onclick="resetSliders()">Reset</button>
+      <div class="row">
+        <div class="col s12">
+          <div class="slider-label">
+            <span>Career</span>
+            <span id="career-value">5</span>
+          </div>
+          <div class="slider">
+            <input type="range" id="career" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('career', this.value)">
+          </div>
+        </div>
       </div>
-
-      <!-- Motivational Section -->
-      <div class="motivation-section animate__animated animate__fadeInUp" role="region" aria-live="polite">
-        <h5>Inspiration</h5>
-        <p>"Balance is not something you find, it's something you create." – Jana Kingsford</p>
+      <div class="row">
+        <div class="col s12">
+          <div class="slider-label">
+            <span>Finances</span>
+            <span id="finances-value">5</span>
+          </div>
+          <div class="slider">
+            <input type="range" id="finances" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('finances', this.value)">
+          </div>
+        </div>
       </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="slider-label">
+            <span>Relationships</span>
+            <span id="relationships-value">5</span>
+          </div>
+          <div class="slider">
+            <input type="range" id="relationships" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('relationships', this.value)">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="slider-label">
+            <span>Personal Growth</span>
+            <span id="personalGrowth-value">5</span>
+          </div>
+          <div class="slider">
+            <input type="range" id="personalGrowth" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('personalGrowth', this.value)">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="slider-label">
+            <span>Recreation</span>
+            <span id="recreation-value">5</span>
+          </div>
+          <div class="slider">
+            <input type="range" id="recreation" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('recreation', this.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="center-align">
+      <button class="btn" onclick="downloadChart()">Download Chart</button>
+      <button class="btn-flat" onclick="resetSliders()">Reset</button>
+    </div>
+
+    <div class="motivation-section animate__animated animate__fadeInUp" role="region" aria-live="polite">
+      <h5>Inspiration</h5>
+      <p>"Balance is not something you find, it's something you create." – Jana Kingsford</p>
     </div>
   </div>
+</div>
 
-  <!-- Footer -->
-  <footer class="page-footer">
-    <div class="container">
-      © 2024 321Niche
-      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
-    </div>
-  </footer>
+<footer class="page-footer">
+  <div class="container">
+    © 2024 321Niche
+    <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+  </div>
+</footer>
 
-  <!-- Scripts -->
-  <!-- Materialize JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
-  <!-- Chart.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js" defer></script>
-  <!-- particles.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
-  <!-- html2canvas for Downloading Chart -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize Mobile Navigation
-      var elems = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(elems);
-    });
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Mobile Navigation
+    var elems = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(elems);
 
-    // Particle.js configuration
-    particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 80,
-          "density": {
-            "enable": true,
-            "value_area": 700
-          }
-        },
-        "color": {
-          "value": "#00e676"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          },
-          "polygon": {
-            "nb_sides": 5
-          }
-        },
-        "opacity": {
-          "value": 0.3,
-          "random": true,
-          "anim": {
-            "enable": true,
-            "speed": 0.5,
-            "opacity_min": 0.1,
-            "sync": false
-          }
-        },
-        "size": {
-          "value": 4,
-          "random": true,
-          "anim": {
-            "enable": false,
-            "speed": 40,
-            "size_min": 0.1,
-            "sync": false
-          }
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#00e676",
-          "opacity": 0.2,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out",
-          "bounce": false,
-          "attract": {
-            "enable": false,
-            "rotateX": 600,
-            "rotateY": 1200
-          }
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          },
-          "resize": true
-        },
-        "modes": {
-          "repulse": {
-            "distance": 100,
-            "duration": 0.4
-          },
-          "push": {
-            "particles_nb": 4
-          },
-          "remove": {
-            "particles_nb": 2
-          }
-        }
-      },
-      "retina_detect": true
-    });
-
-    // Life Wheel Chart configuration
+    // Initialize the chart
     const ctx = document.getElementById('lifeWheelChart').getContext('2d');
-    let lifeWheelChart;
-
-    window.addEventListener('load', () => {
-      // Initialize Chart after ensuring Chart.js is loaded
-      if (Chart) {
-        console.log('Chart.js loaded successfully.');
-        lifeWheelChart = new Chart(ctx, {
-          type: 'radar',
-          data: {
-            labels: ['Health', 'Career', 'Finances', 'Relationships', 'Personal Growth', 'Recreation'],
-            datasets: [{
-              label: 'Life Balance',
-              data: [5, 5, 5, 5, 5, 5],
-              backgroundColor: 'rgba(0, 230, 118, 0.2)',
-              borderColor: '#00e676',
-              borderWidth: 2,
-              pointBackgroundColor: '#00e676',
-              pointBorderColor: '#fff',
-              pointHoverBackgroundColor: '#fff',
-              pointHoverBorderColor: '#00e676'
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              r: {
-                angleLines: {
-                  color: '#00e676'
-                },
-                grid: {
-                  color: '#00e676'
-                },
-                pointLabels: {
-                  color: '#00e676',
-                  font: {
-                    size: 14,
-                    family: 'Orbitron'
-                  }
-                },
-                ticks: {
-                  backdropColor: 'transparent',
-                  color: '#00e676',
-                  font: {
-                    size: 12,
-                    family: 'Orbitron'
-                  },
-                  stepSize: 2,
-                  beginAtZero: true,
-                  max: 10
-                }
+    const lifeWheelChart = new Chart(ctx, {
+      type: 'radar',
+      data: {
+        labels: ['Health', 'Career', 'Finances', 'Relationships', 'Personal Growth', 'Recreation'],
+        datasets: [{
+          label: 'Life Balance',
+          data: [5, 5, 5, 5, 5, 5],
+          backgroundColor: 'rgba(0, 230, 118, 0.2)',
+          borderColor: '#00e676',
+          borderWidth: 2,
+          pointBackgroundColor: '#00e676',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: '#00e676'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            angleLines: {
+              color: '#00e676'
+            },
+            grid: {
+              color: '#00e676'
+            },
+            pointLabels: {
+              color: '#00e676',
+              font: {
+                size: 14,
+                family: 'Orbitron'
               }
             },
-            plugins: {
-              legend: {
-                labels: {
-                  color: '#00e676',
-                  font: {
-                    family: 'Orbitron'
-                  }
-                }
+            ticks: {
+              backdropColor: 'transparent',
+              color: '#00e676',
+              font: {
+                size: 12,
+                family: 'Orbitron'
+              },
+              stepSize: 2,
+              beginAtZero: true,
+              max: 10
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#00e676',
+              font: {
+                family: 'Orbitron'
               }
             }
           }
-        });
-      } else {
-        console.error('Chart.js failed to load.');
+        }
       }
-
-      // Initialize slider values
-      const sliders = document.querySelectorAll('.slider input[type="range"]');
-      sliders.forEach(slider => {
-        updateSliderValue(slider.id, slider.value);
-      });
-      updateChart();
     });
 
-    /**
-     * Update Slider Value Display
-     * @param {string} id - The ID of the slider
-     * @param {number} value - The current value of the slider
-     */
-    function updateSliderValue(id, value) {
-      document.getElementById(`${id}-value`).innerText = value;
-    }
-
-    /**
-     * Update the Life Wheel Chart based on slider values
-     */
-    function updateChart() {
-      if (!lifeWheelChart) {
-        console.error('Life Wheel Chart is not initialized.');
-        return;
-      }
-      const health = parseInt(document.getElementById('health').value);
-      const career = parseInt(document.getElementById('career').value);
-      const finances = parseInt(document.getElementById('finances').value);
-      const relationships = parseInt(document.getElementById('relationships').value);
-      const personalGrowth = parseInt(document.getElementById('personalGrowth').value);
-      const recreation = parseInt(document.getElementById('recreation').value);
-
-      lifeWheelChart.data.datasets[0].data = [health, career, finances, relationships, personalGrowth, recreation];
-      lifeWheelChart.update();
-    }
-
-    /**
-     * Reset all sliders to default values
-     */
-    function resetSliders() {
-      const sliders = document.querySelectorAll('.slider input[type="range"]');
-      sliders.forEach(slider => {
-        slider.value = 5;
-        updateSliderValue(slider.id, 5);
-      });
-      updateChart();
-    }
-
-    /**
-     * Download the Life Wheel Chart as an image
-     */
-    function downloadChart() {
-      if (!lifeWheelChart) {
-        console.error('Life Wheel Chart is not initialized.');
-        return;
-      }
-      const canvas = document.getElementById('lifeWheelChart');
-      const link = document.createElement('a');
-      link.href = canvas.toDataURL('image/png');
-      link.download = 'life_wheel_chart.png';
-      link.click();
-    }
-  </script>
-</body>
-</html>
+    // Initialize slider values
+    const sliders = document.querySelectorAll('.slider input[type="range"]');
+    sliders.forEach(slider => {
+      update
