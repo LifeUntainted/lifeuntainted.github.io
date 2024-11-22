@@ -4,12 +4,20 @@
   <meta charset="UTF-8">
   <title>Life Wheel Assessment - 321Niche</title>
 
+  <!-- Meta Tags -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Interactive Life Wheel Assessment to evaluate and visualize different areas of your life, including finances, relationships, health, and personal growth.">
 
+  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Import Google Icon Font -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Import Animate.css for Animations -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
   <style>
@@ -92,7 +100,7 @@
 
     /* Custom Slider Styling */
     .slider {
-      height: 6px; 
+      height: 6px;
       background-color: #00e676;
       margin-bottom: 2rem;
     }
@@ -124,17 +132,11 @@
       background: #00c853;
     }
 
-    .slider input[type="range"]::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #00e676;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .slider input[type="range"]::-moz-range-thumb:hover {
-      background: #00c853;
+    /* Responsive Chart */
+    .responsive-chart {
+      position: relative;
+      height: 400px;
+      width: 100%;
     }
 
     /* Buttons */
@@ -153,17 +155,6 @@
       background-color: #00c853;
       box-shadow: 0 0 15px rgba(0, 230, 118, 0.7);
       transform: scale(1.05);
-    }
-
-    /* Footer */
-    .page-footer {
-      background-color: #121212;
-      border-top: 2px solid #00e676;
-      padding: 20px 0;
-    }
-
-    .page-footer a {
-      color: #00e676 !important;
     }
 
     /* Motivational Section */
@@ -187,252 +178,128 @@
       font-size: 1rem;
       color: #b2dfdb;
     }
-
-    /* Responsive Design */
-    @media screen and (max-width: 600px) {
-      .life-wheel-container {
-        padding: 2rem 1rem;
-      }
-
-      .brand-logo {
-        margin-left: 10px;
-        font-size: 1.5rem;
-      }
-
-      .life-wheel-header h2 {
-        font-size: 2rem;
-      }
-
-      .slider-label {
-        font-size: 0.9rem;
-      }
-
-      .btn, .btn-large {
-        padding: 8px 16px;
-        margin: 5px;
-      }
-
-      .motivation-section h5 {
-        font-size: 1.2rem;
-      }
-
-      .motivation-section p {
-        font-size: 0.9rem;
-      }
-
-      /* Adjust Chart Height on Mobile */
-      .responsive-chart {
-        height: 300px;
-      }
-    }
-
-    /* Responsive Chart */
-    .responsive-chart {
-      position: relative;
-      height: 400px;
-      width: 100%;
-    }
   </style>
 </head>
 <body>
 
-<div id="particles-js"></div>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
 
-<nav>
-  <div class="nav-wrapper">
-    <a href="index.html" class="brand-logo">321Niche</a>
-    <a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Open navigation menu"><i class="material-icons">menu</i></a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li><a href="tools.html">Tools & Downloads</a></li>
-    </ul>
-  </div>
-</nav>
-
-<ul class="sidenav" id="mobile-demo">
-  <li><a href="index.html">Home</a></li>
-  <li><a href="about.html">About Us</a></li>
-  <li><a href="blog.html">Blog</a></li>
-  <li><a href="resources.html">Resources</a></li>
-  <li><a href="tools.html">Tools & Downloads</a></li>
-</ul>
-
-<div class="container">
-  <div class="life-wheel-container animate__animated animate__fadeInUp">
-    <div class="life-wheel-header">
-      <h2>Life Wheel Assessment</h2>
-      <p>Evaluate and visualize the balance in different areas of your life. Adjust the sliders below to reflect your current status, and see your Life Wheel chart update in real-time.</p>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">321Niche</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Open navigation menu"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="tools.html">Tools & Downloads</a></li>
+      </ul>
     </div>
+  </nav>
 
-    <div class="responsive-chart">
-      <canvas id="lifeWheelChart"></canvas>
-    </div>
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="tools.html">Tools & Downloads</a></li>
+  </ul>
 
-    <div class="slider-container">
-      <div class="row">
-        <div class="col s12">
-          <div class="slider-label">
-            <span>Health</span>
-            <span id="health-value">5</span>
-          </div>
-          <div class="slider">
-            <input type="range" id="health" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('health', this.value)">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <div class="slider-label">
-            <span>Career</span>
-            <span id="career-value">5</span>
-          </div>
-          <div class="slider">
-            <input type="range" id="career" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('career', this.value)">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <div class="slider-label">
-            <span>Finances</span>
-            <span id="finances-value">5</span>
-          </div>
-          <div class="slider">
-            <input type="range" id="finances" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('finances', this.value)">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <div class="slider-label">
-            <span>Relationships</span>
-            <span id="relationships-value">5</span>
-          </div>
-          <div class="slider">
-            <input type="range" id="relationships" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('relationships', this.value)">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <div class="slider-label">
-            <span>Personal Growth</span>
-            <span id="personalGrowth-value">5</span>
-          </div>
-          <div class="slider">
-            <input type="range" id="personalGrowth" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('personalGrowth', this.value)">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s12">
-          <div class="slider-label">
-            <span>Recreation</span>
-            <span id="recreation-value">5</span>
-          </div>
-          <div class="slider">
-            <input type="range" id="recreation" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('recreation', this.value)">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="center-align">
-      <button class="btn" onclick="downloadChart()">Download Chart</button>
-      <button class="btn-flat" onclick="resetSliders()">Reset</button>
-    </div>
-
-    <div class="motivation-section animate__animated animate__fadeInUp" role="region" aria-live="polite">
-      <h5>Inspiration</h5>
-      <p>"Balance is not something you find, it's something you create." – Jana Kingsford</p>
-    </div>
-  </div>
-</div>
-
-<footer class="page-footer">
+  <!-- Life Wheel Assessment Section -->
   <div class="container">
-    © 2024 321Niche
-    <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    <div class="life-wheel-container animate__animated animate__fadeInUp">
+      <div class="life-wheel-header">
+        <h2>Life Wheel Assessment</h2>
+        <p>Evaluate and visualize the balance in different areas of your life. Adjust the sliders below to reflect your current status, and see your Life Wheel chart update in real-time.</p>
+      </div>
+
+      <!-- Life Wheel Chart -->
+      <div class="responsive-chart">
+        <canvas id="lifeWheelChart"></canvas>
+      </div>
+
+      <!-- Sliders -->
+      <div class="slider-container">
+        <div class="row">
+          <div class="col s12">
+            <div class="slider-label">
+              <span>Health</span>
+              <span id="health-value">5</span>
+            </div>
+            <div class="slider">
+              <input type="range" id="health" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('health', this.value)">
+            </div>
+          </div>
+        </div>
+        <!-- Repeat slider row for Career, Finances, Relationships, Personal Growth, Recreation -->
+      </div>
+
+      <!-- Buttons -->
+      <div class="center-align">
+        <button class="btn" onclick="downloadChart()">Download Chart</button>
+        <button class="btn-flat" onclick="resetSliders()">Reset</button>
+      </div>
+
+      <!-- Motivational Section -->
+      <div class="motivation-section animate__animated animate__fadeInUp" role="region" aria-live="polite">
+        <h5>Inspiration</h5>
+        <p>"Balance is not something you find, it's something you create." – Jana Kingsford</p>
+      </div>
+    </div>
   </div>
-</footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      © 2024 321Niche
+      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
+    </div>
+  </footer>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Mobile Navigation
-    var elems = document.querySelectorAll('.sidenav');
-    M.Sidenav.init(elems);
+  <!-- Scripts -->
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  <!-- Chart.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js" defer></script>
+  <!-- particles.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
 
-    // Initialize the chart
-    const ctx = document.getElementById('lifeWheelChart').getContext('2d');
-    const lifeWheelChart = new Chart(ctx, {
-      type: 'radar',
-      data: {
-        labels: ['Health', 'Career', 'Finances', 'Relationships', 'Personal Growth', 'Recreation'],
-        datasets: [{
-          label: 'Life Balance',
-          data: [5, 5, 5, 5, 5, 5],
-          backgroundColor: 'rgba(0, 230, 118, 0.2)',
-          borderColor: '#00e676',
-          borderWidth: 2,
-          pointBackgroundColor: '#00e676',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: '#00e676'
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          r: {
-            angleLines: {
-              color: '#00e676'
-            },
-            grid: {
-              color: '#00e676'
-            },
-            pointLabels: {
-              color: '#00e676',
-              font: {
-                size: 14,
-                family: 'Orbitron'
-              }
-            },
-            ticks: {
-              backdropColor: 'transparent',
-              color: '#00e676',
-              font: {
-                size: 12,
-                family: 'Orbitron'
-              },
-              stepSize: 2,
-              beginAtZero: true,
-              max: 10
+  <script>
+    window.onload = function() {
+      // Initialize Mobile Navigation
+      var elems = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems);
+
+      // Initialize Particle.js
+      particlesJS('particles-js', {
+        "particles": {
+          "number": {
+            "value": 80,
+            "density": {
+              "enable": true,
+              "value_area": 700
             }
-          }
-        },
-        plugins: {
-          legend: {
-            labels: {
-              color: '#00e676',
-              font: {
-                family: 'Orbitron'
-              }
-            }
+          },
+          "color": {
+            "value": "#00e676"
+          },
+          "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#00e676",
+            "opacity": 0.2,
+            "width": 1
+          },
+          "move": {
+            "enable": true,
+            "speed": 2
           }
         }
-      }
-    });
+      });
 
-    // Initialize slider values
-    const sliders = document.querySelectorAll('.slider input[type="range"]');
-    sliders.forEach(slider => {
-      update
+      // Initialize Life Wheel Chart
+      const ctx = document.getElement
