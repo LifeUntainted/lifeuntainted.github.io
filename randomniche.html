@@ -6,6 +6,7 @@
     body { 
       background-color: #000; 
       overflow: hidden; 
+      position: relative;
     }
 
     .niche {
@@ -13,6 +14,7 @@
       font-weight: bold;
       color: hsl(0, 0%, 90%); 
       transition: opacity 1s ease-in-out; 
+      pointer-events: none;
     }
   </style>
 </head>
@@ -29,6 +31,10 @@
     "NFT Art Consulting", "Augmented Reality Murals", "Custom Emoji and Sticker Creation",
     "Digital Calligraphy Courses", "AI-Powered Comic Book Art", "Personalized Songwriting Services",
     "Virtual Reality Filmmaking", "Interactive Children's Theater", "Projection Mapping Art Installations",
+    "Augmented Reality Art Galleries", "Virtual Music Festivals", "AI-Generated Visual Effects Services",
+    "Kinetic Sculpture Design", "Interactive Storytelling Experiences", "Digital Art Restoration",
+    "Personalized Music Composition for Special Events", "AI-Generated Fashion Design", "3D-Printed Clothing",
+    "Customized Street Art Tours", "Virtual Reality Dance Performances", "Generative Poetry Apps",
 
     // Technology & Future
     "Drone Racing Leagues", "AI-Powered Personal Assistants", "Smart Home Integration Services", 
@@ -39,45 +45,39 @@
     "Smart Agriculture Solutions", "Wearable Health Tech Devices", "Augmented Reality Architecture Visualization",
     "3D Holographic Advertising", "Robotics for Kids Education", "AI-Based Mental Health Chatbots",
     "Personalized VR Learning Experiences", "AI-Powered Drone Delivery Services", "Cybersecurity for Smart Homes",
-    "Biometric Security Solutions", "Electric Vehicle Charging Station Installation", "Wearable Fitness Technology",
+    "Biometric Security Solutions", "Electric Vehicle Charging Station Installation", "Wearable Fitness Technology",\    "Home Robotics Installation Services", "AI-Driven Content Moderation", "Blockchain-Based Supply Chain Tracking",\    "AI-Powered Personalized News Feeds", "Virtual Reality Training Simulations", "Ethical AI Development Consulting",\    "Quantum Computing for Business", "Autonomous Delivery Robot Services", "AI-Generated Music for Wellness Programs",
 
     // Health & Wellness
     "Holistic Health Retreats", "Personalized Meditation Programs", "Mental Wellness Apps for Gamers", 
     "Nutrition Coaching for Athletes", "Sleep Optimization Consultations", "Stress Management for Remote Workers", 
     "Yoga for Seniors", "Ayurvedic Cooking Classes", "Forest Bathing Tours", 
     "Mindfulness Retreats for Executives", "Pet Therapy Services", "Eco-Therapy Programs", 
-    "Sound Healing Workshops", "Therapeutic Art Programs", "Herbal Medicine Gardens",
-    "Mobile Wellness Spa", "Specialty Fitness Programs for People with Disabilities", "Organic Meal Planning Services",
-    "Digital Detox Challenges", "Gut Health Workshops", "Cold Exposure Training",
-    "Mindfulness for Children", "Stress Reduction through Art Therapy", "Personalized Fitness Plans with AI",\    "Plant-Based Nutrition Coaching", "Emotional Resilience Programs", "Herbal Apothecary Classes",\n
+    "Sound Healing Workshops", "Therapeutic Art Programs", "Herbal Medicine Gardens",\    "Mobile Wellness Spa", "Specialty Fitness Programs for People with Disabilities", "Organic Meal Planning Services",\    "Digital Detox Challenges", "Gut Health Workshops", "Cold Exposure Training",\    "Mindfulness for Children", "Stress Reduction through Art Therapy", "Personalized Fitness Plans with AI",\    "Plant-Based Nutrition Coaching", "Emotional Resilience Programs", "Herbal Apothecary Classes",\    "Customized Aromatherapy Blends", "Sleep Coaching for Insomniacs", "Mindful Eating Workshops",\    "Workplace Wellness Programs", "Corporate Mindfulness Training", "Stress Reduction for Students",\    "Wellness Retreats for Gamers", "Holistic Pet Wellness", "Virtual Yoga Classes for Corporate Teams",\n
     // Community & Lifestyle
     "Co-living Spaces for Digital Nomads", "Community Gardens with Educational Programs", "Sustainable Tiny Home Construction", 
     "Skill-Sharing Workshops", "Local Food Delivery Services", "Upcycled Furniture Restoration", 
     "Community-Owned Renewable Energy", "Zero-Waste Lifestyle Coaching", "Tiny House Festivals", 
     "Urban Beekeeping", "Permaculture Design Courses", "Seed Libraries", 
     "Community Composting Programs", "Repair Cafes", "Local Craft Markets",
-    "Nature Immersion Programs", "Sustainable Event Planning", "Pop-up Farmers' Markets",
-    "Local Swap Meets", "Skill-Based Bartering Networks", "Volunteer Vacation Planning",\    "Community-Supported Agriculture (CSA) Programs", "Eco-Tourism for Families", "Urban Foraging Tours",\    "Local Time Banking Initiatives", "Community Upcycling Projects", "Eco-Friendly Co-Working Spaces",\n
+    "Nature Immersion Programs", "Sustainable Event Planning", "Pop-up Farmers' Markets",\    "Local Swap Meets", "Skill-Based Bartering Networks", "Volunteer Vacation Planning",\    "Community-Supported Agriculture (CSA) Programs", "Eco-Tourism for Families", "Urban Foraging Tours",\    "Local Time Banking Initiatives", "Community Upcycling Projects", "Eco-Friendly Co-Working Spaces",\    "Neighborhood Tool Sharing Libraries", "Tiny House Village Projects", "Public Permaculture Parks",\    "Community-Owned Renewable Energy Projects", "Sustainable Transportation Solutions", "Eco-Friendly Festivals and Events",\    "Neighborhood Food Forests", "Local Craftsmanship Apprenticeships", "Eco-Friendly Housing Collectives",\n
     // Personal Growth & Development
     "Mindfulness Retreats for Entrepreneurs", "Emotional Intelligence Coaching", "Creative Writing Workshops for Introverts", 
     "Public Speaking Training for Kids", "Personal Branding for Artists", "Life Coaching for Digital Nomads", 
     "Financial Literacy for Teens", "Time Management for Creatives", "Stress Management for Students", 
     "Confidence Building Workshops", "Conflict Resolution Training", "Mindfulness in the Workplace Programs", 
-    "Positive Psychology Coaching", "Goal Setting for Athletes", "Leadership Development for Women",
-    "Digital Detox Retreats", "Resilience Building Programs", "Coaching for Career Change",
-    "Networking for Introverts", "Memory Improvement Courses", "Holistic Productivity Workshops",\    "Speed Reading Courses", "Personal Finance Management Workshops", "Creative Problem-Solving Training",\    "Public Speaking for Engineers", "Vision Board Creation Workshops", "Financial Independence for Freelancers",\n
+    "Positive Psychology Coaching", "Goal Setting for Athletes", "Leadership Development for Women",\    "Digital Detox Retreats", "Resilience Building Programs", "Coaching for Career Change",\    "Networking for Introverts", "Memory Improvement Courses", "Holistic Productivity Workshops",\    "Speed Reading Courses", "Personal Finance Management Workshops", "Creative Problem-Solving Training",\    "Public Speaking for Engineers", "Vision Board Creation Workshops", "Financial Independence for Freelancers",\    "Clarity Coaching for Decision-Making", "Goal Mapping for Creatives", "Social Media Detox Programs",\    "Mindfulness for Children with ADHD", "Emotional Intelligence for Leaders", "Conflict Resolution in the Workplace",\    "Creative Visualization Techniques", "Mindful Leadership Programs", "Parenting Workshops for New Dads",\n
     // Niche Hobbies & Interests
     "Vintage Video Game Collecting", "Rare Plant Nursery", "Artisan Cheese Making", 
     "Custom Drone Building", "Historical Reenactment", "Competitive Rubik's Cube Solving", 
     "Mushroom Foraging Tours", "Terrarium Building Workshops", "Calligraphy and Hand Lettering", 
     "Brewing Craft Kombucha", "Upcycling Vintage Clothing", "Board Game Design", 
-    "Creative Writing for Video Games", "Podcast Production for Beginners", "DIY Smart Home Automation",\    "Collectible Toy Restoration", "Leather Crafting Workshops", "Aquascaping Design", "Pet Clothing Design",\    "Survival Skills Training", "Cosplay Costume Creation", "Custom Bicycle Building",\    "Antique Restoration Classes", "Nature Photography Tours", "Blacksmithing for Beginners",\    "Bee Keeping for Beginners", "Custom Soap Making", "Medieval Sword Fighting Classes",\    "Felting and Fiber Arts", "Magic and Illusion Workshops", "Urban Exploration Clubs",\    "Escape Room Design", "Custom Pinball Machine Building", "Candle Making for Relaxation",\    "Artisan Bread Baking", "Homebrewing and Winemaking", "Woodworking and Carpentry",\    "Pottery and Ceramics", "Jewelry Making with Recycled Materials", "Origami and Papercrafts",\    "Taxidermy for Beginners", "Collecting and Restoring Antique Clocks", "Model Ship Building",\n
+    "Creative Writing for Video Games", "Podcast Production for Beginners", "DIY Smart Home Automation",\    "Collectible Toy Restoration", "Leather Crafting Workshops", "Aquascaping Design", "Pet Clothing Design",\    "Survival Skills Training", "Cosplay Costume Creation", "Custom Bicycle Building",\    "Antique Restoration Classes", "Nature Photography Tours", "Blacksmithing for Beginners",\    "Bee Keeping for Beginners", "Custom Soap Making", "Medieval Sword Fighting Classes",\    "Felting and Fiber Arts", "Magic and Illusion Workshops", "Urban Exploration Clubs",\    "Escape Room Design", "Custom Pinball Machine Building", "Candle Making for Relaxation",\    "Artisan Bread Baking", "Homebrewing and Winemaking", "Woodworking and Carpentry",\    "Pottery and Ceramics", "Jewelry Making with Recycled Materials", "Origami and Papercrafts",\    "Taxidermy for Beginners", "Collecting and Restoring Antique Clocks", "Model Ship Building",\    "Knife Forging Workshops", "Hunting for Rare Fossils", "Custom Retro Arcade Cabinet Building",\    "Bookbinding and Journal Making", "Urban Sketching Workshops", "Film Photography and Darkroom Development",\    "Astrophotography for Beginners", "Leather Book Cover Crafting", "DIY Camping Gear Creation",\n
     // Travel & Adventure
-    "Luxury Camping (Glamping) Experiences", "Backpacking Tours for Beginners", "Adventure Photography Excursions",\    "Eco-Friendly Travel Planning", "Motorcycle Touring Groups", "Off-The-Beaten-Path Travel Planning",\    "Historical Landmark Tours", "Solo Female Travel Coaching", "Mountain Trekking Guides",\    "Cultural Cooking Travel Tours", "Guided Safari Trips", "RV Living Consulting",\    "Space Enthusiast Travel (e.g., Rocket Launch Tours)", "Volunteer Travel Programs", "Cycling Tours for Foodies",\n
+    "Luxury Camping (Glamping) Experiences", "Backpacking Tours for Beginners", "Adventure Photography Excursions",\    "Eco-Friendly Travel Planning", "Motorcycle Touring Groups", "Off-The-Beaten-Path Travel Planning",\    "Historical Landmark Tours", "Solo Female Travel Coaching", "Mountain Trekking Guides",\    "Cultural Cooking Travel Tours", "Guided Safari Trips", "RV Living Consulting",\    "Space Enthusiast Travel (e.g., Rocket Launch Tours)", "Volunteer Travel Programs", "Cycling Tours for Foodies",\    "Paragliding Adventure Trips", "Deep Sea Diving Expeditions", "Private Island Getaway Planning",\    "Wildlife Conservation Volunteering", "Sustainable Tourism Development", "Adventure Travel for Seniors",\    "Hot Air Balloon Adventure Packages", "Haunted Destination Tours", "Luxury Train Travel Experiences",\n
     // Pet & Animal Services
-    "Pet Acupuncture Services", "Customized Pet Nutrition Plans", "Exotic Pet Boarding",\    "Pet Photography Sessions", "Aquarium Maintenance Services", "Pet Grief Counseling",\    "Luxury Pet Travel Planning", "Pet Fitness and Exercise Programs", "Animal-Assisted Therapy Training",\    "Pet Fashion Design", "Dog Surfing Lessons", "Pet Massage Services",\    "Pet Talent Agency", "Customized Birdhouses", "Exotic Pet Rehoming Services",\n
+    "Pet Acupuncture Services", "Customized Pet Nutrition Plans", "Exotic Pet Boarding",\    "Pet Photography Sessions", "Aquarium Maintenance Services", "Pet Grief Counseling",\    "Luxury Pet Travel Planning", "Pet Fitness and Exercise Programs", "Animal-Assisted Therapy Training",\    "Pet Fashion Design", "Dog Surfing Lessons", "Pet Massage Services",\    "Pet Talent Agency", "Customized Birdhouses", "Exotic Pet Rehoming Services",\    "Dog Agility Training Courses", "Therapy Dog Certification Assistance", "Pet Nutrition Supplements",\    "Pet Sitting for Exotic Animals", "Dog Walking and Hiking Adventures", "Pet Grooming for Special Needs Animals",\    "Pet Behavioral Consultation", "Customized Reptile Habitats", "Pet Adoption Events for Hard-to-Place Animals",\n
     // Food & Culinary Arts
-    "Molecular Gastronomy Classes", "Vegan Cheese Making", "Regional Cuisine Cooking Classes",\    "Pop-up Themed Restaurants", "Personal Chef for Dietary Restrictions", "Sustainable Seafood Cooking",\    "Culinary Tours for Wine Lovers", "Mobile Food Education Classes", "Artisan Chocolate Crafting",\    "Foraged Foods Cooking", "Global Street Food Workshops", "Farm-to-Table Dinner Events",\    "Historic Recipe Re-creations", "Private Sushi Rolling Classes", "Customized Meal Prep for Athletes"
+    "Molecular Gastronomy Classes", "Vegan Cheese Making", "Regional Cuisine Cooking Classes",\    "Pop-up Themed Restaurants", "Personal Chef for Dietary Restrictions", "Sustainable Seafood Cooking",\    "Culinary Tours for Wine Lovers", "Mobile Food Education Classes", "Artisan Chocolate Crafting",\    "Foraged Foods Cooking", "Global Street Food Workshops", "Farm-to-Table Dinner Events",\    "Historic Recipe Re-creations", "Private Sushi Rolling Classes", "Customized Meal Prep for Athletes",\    "Artisan Pasta Making Workshops", "Fusion Cuisine Cooking Classes", "Food Truck Business Consulting",\    "Fermentation Workshops", "Organic Food Delivery Services", "Cooking Classes for Kids",\    "Regional Baking Specialties Workshops", "Home Pickling Classes", "International Desserts Cooking Classes"
   ];
 
   const fonts = [
@@ -91,8 +91,8 @@
     const nicheText = niches[Math.floor(Math.random() * niches.length)];
     niche.innerText = nicheText;
 
-    niche.style.left = `${Math.random() * 100}%`;
-    niche.style.top = `${Math.random() * 100}%`;
+    niche.style.left = `${Math.random() * (window.innerWidth - 150)}px`;
+    niche.style.top = `${Math.random() * (window.innerHeight - 50)}px`;
 
     const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
     niche.style.fontFamily = randomFont;
