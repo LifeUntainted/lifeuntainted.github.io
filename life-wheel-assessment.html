@@ -1,3 +1,5 @@
+life wheel, chart not visible
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,7 +102,7 @@
 
     /* Custom Slider Styling */
     .slider {
-      height: 6px;
+      height: 6px; /* Reduced height */
       background-color: #00e676;
       margin-bottom: 2rem;
     }
@@ -132,11 +134,17 @@
       background: #00c853;
     }
 
-    /* Responsive Chart */
-    .responsive-chart {
-      position: relative;
-      height: 400px;
-      width: 100%;
+    .slider input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #00e676;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .slider input[type="range"]::-moz-range-thumb:hover {
+      background: #00c853;
     }
 
     /* Buttons */
@@ -155,6 +163,17 @@
       background-color: #00c853;
       box-shadow: 0 0 15px rgba(0, 230, 118, 0.7);
       transform: scale(1.05);
+    }
+
+    /* Footer */
+    .page-footer {
+      background-color: #121212;
+      border-top: 2px solid #00e676;
+      padding: 20px 0;
+    }
+
+    .page-footer a {
+      color: #00e676 !important;
     }
 
     /* Motivational Section */
@@ -177,6 +196,51 @@
     .motivation-section p {
       font-size: 1rem;
       color: #b2dfdb;
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 600px) {
+      .life-wheel-container {
+        padding: 2rem 1rem;
+      }
+
+      .brand-logo {
+        margin-left: 10px;
+        font-size: 1.5rem;
+      }
+
+      .life-wheel-header h2 {
+        font-size: 2rem;
+      }
+
+      .slider-label {
+        font-size: 0.9rem;
+      }
+
+      .btn, .btn-large {
+        padding: 8px 16px;
+        margin: 5px;
+      }
+
+      .motivation-section h5 {
+        font-size: 1.2rem;
+      }
+
+      .motivation-section p {
+        font-size: 0.9rem;
+      }
+
+      /* Adjust Chart Height on Mobile */
+      .responsive-chart {
+        height: 300px;
+      }
+    }
+
+    /* Responsive Chart */
+    .responsive-chart {
+      position: relative;
+      height: 400px;
+      width: 100%;
     }
   </style>
 </head>
@@ -224,7 +288,7 @@
 
       <!-- Sliders -->
       <div class="slider-container">
-        <!-- Sliders for each category -->
+        <!-- Health -->
         <div class="row">
           <div class="col s12">
             <div class="slider-label">
@@ -236,7 +300,7 @@
             </div>
           </div>
         </div>
-
+        <!-- Career -->
         <div class="row">
           <div class="col s12">
             <div class="slider-label">
@@ -248,7 +312,7 @@
             </div>
           </div>
         </div>
-
+        <!-- Finances -->
         <div class="row">
           <div class="col s12">
             <div class="slider-label">
@@ -260,7 +324,7 @@
             </div>
           </div>
         </div>
-
+        <!-- Relationships -->
         <div class="row">
           <div class="col s12">
             <div class="slider-label">
@@ -272,7 +336,7 @@
             </div>
           </div>
         </div>
-
+        <!-- Personal Growth -->
         <div class="row">
           <div class="col s12">
             <div class="slider-label">
@@ -284,7 +348,7 @@
             </div>
           </div>
         </div>
-
+        <!-- Recreation -->
         <div class="row">
           <div class="col s12">
             <div class="slider-label">
@@ -327,471 +391,243 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js" defer></script>
   <!-- particles.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
+  <!-- html2canvas for Downloading Chart -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
 
   <script>
-    window.onload = function() {
+    document.addEventListener('DOMContentLoaded', function() {
       // Initialize Mobile Navigation
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
+    });
 
-      // Initialize Particle.js
-      particlesJS('particles-js', {
-        "particles": {
-          "number": {
-            "value": 80,
-            "density": {
-              "enable": true,
-              "value_area": 700
-            }
-          },
-          "color": {
-            "value": "#00e676"
-          },
-          "line_linked": {
+    // Particle.js configuration
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
             "enable": true,
-            "distance": 150,
-            "color": "#00e676",
-            "opacity": 0.2,
-            "width": 1
+            "value_area": 700
+          }
+        },
+        "color": {
+          "value": "#00e676"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
           },
-          "move": {
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true,
+          "anim": {
             "enable": true,
-            "speed": 2
+            "speed": 0.5,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 4,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#00e676",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
           }
         }
-      });
-
-      // Initialize Life Wheel Chart
-      const ctx = document.getElementById('lifeWheelChart').getContext('2d');
-      let lifeWheelChart = new Chart(ctx, {
-        type: 'radar',
-        data: {
-          labels: ['Health', 'Career', 'Finances', 'Relationships', 'Personal Growth', 'Recreation'],
-          datasets: [{
-            label: 'Life Balance',
-            data: [5, 5, 5, 5, 5, 5],
-            backgroundColor: 'rgba(0, 230, 118, 0.2)',
-            borderColor: '#00e676',
-            borderWidth: 2,
-            pointBackgroundColor: '#00e676',
-            pointBorderColor: '#fff'
-          }]
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
         },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            r: {
-              grid: {
-                color: '#00e676'
-              },
-              pointLabels: {
-                color: '#00e676',
-                font: {
-                  size: 14,
-                  family: 'Orbitron'
+        "modes": {
+          "repulse": {
+            "distance": 100,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Life Wheel Chart configuration
+    const ctx = document.getElementById('lifeWheelChart').getContext('2d');
+    let lifeWheelChart;
+
+    window.addEventListener('load', () => {
+      // Initialize Chart after ensuring Chart.js is loaded
+      if (Chart) {
+        console.log('Chart.js loaded successfully.');
+        lifeWheelChart = new Chart(ctx, {
+          type: 'radar',
+          data: {
+            labels: ['Health', 'Career', 'Finances', 'Relationships', 'Personal Growth', 'Recreation'],
+            datasets: [{
+              label: 'Life Balance',
+              data: [5, 5, 5, 5, 5, 5],
+              backgroundColor: 'rgba(0, 230, 118, 0.2)',
+              borderColor: '#00e676',
+              borderWidth: 2,
+              pointBackgroundColor: '#00e676',
+              pointBorderColor: '#fff',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: '#00e676'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              r: {
+                angleLines: {
+                  color: '#00e676'
+                },
+                grid: {
+                  color: '#00e676'
+                },
+                pointLabels: {
+                  color: '#00e676',
+                  font: {
+                    size: 14,
+                    family: 'Orbitron'
+                  }
+                },
+                ticks: {
+                  backdropColor: 'transparent',
+                  color: '#00e676',
+                  font: {
+                    size: 12,
+                    family: 'Orbitron'
+                  },
+                  stepSize: 2,
+                  beginAtZero: true,
+                  max: 10
                 }
-              },
-              ticks: {
-                color: '#00e676',
-                stepSize: 2,
-                max: 10
+              }
+            },
+            plugins: {
+              legend: {
+                labels: {
+                  color: '#00e676',
+                  font: {
+                    family: 'Orbitron'
+                  }
+                }
               }
             }
           }
-        }
-      });
-
-      /**
-       * Update Slider Value Display
-       */
-      function updateSliderValue(id, value) {
-        document.getElementById(`${id}-value`).innerText = value;
-      }
-
-      /**
-       * Update the Life Wheel Chart based on slider values
-       */
-      window.updateChart = function() {
-        const sliders = document.querySelectorAll('.slider input[type="range"]');
-        lifeWheelChart.data.datasets[0].data = Array.from(sliders).map(slider => parseInt(slider.value));
-        lifeWheelChart.update();
-      }
-
-      /**
-       * Reset all sliders to default values
-       */
-      window.resetSliders = function() {
-        const sliders = document.querySelectorAll('.slider input[type="range"]');
-        sliders.forEach(slider => {
-          slider.value = 5;
-          updateSliderValue(slider.id, 5);
         });
-        updateChart();
+      } else {
+        console.error('Chart.js failed to load.');
       }
 
-      /**
-       * Download the Life Wheel Chart as an image
-       */
-      window.downloadChart = function() {
-        const canvas = document.getElementById('lifeWheelChart');
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'life_wheel_chart.png';
-        link.click();
-      }
-    };
-  </script>
-</body>
-</html>
-
-
-    .brand-logo {
-      font-weight: 700;
-      margin-left: 20px;
-      font-size: 1.8rem;
-    }
-
-    /* Particle Background */
-    #particles-js {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    /* Life Wheel Container */
-    .life-wheel-container {
-      background-color: rgba(0, 0, 0, 0.85);
-      padding: 3rem 2rem;
-      border-radius: 12px;
-      margin-top: 4rem;
-      box-shadow: 0 0 30px rgba(0, 230, 118, 0.5);
-      animation: fadeInUp 1s ease-in-out;
-    }
-
-    /* Animation Keyframes */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Header Styles */
-    .life-wheel-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .life-wheel-header h2 {
-      font-size: 2.5rem;
-      color: #00e676;
-      margin-bottom: 1rem;
-    }
-
-    .life-wheel-header p {
-      font-size: 1.2rem;
-      color: #b2dfdb;
-    }
-
-    /* Sliders */
-    .slider-container {
-      margin-top: 2rem;
-    }
-
-    .slider-label {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      color: #00e676;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* Custom Slider Styling */
-    .slider {
-      height: 6px;
-      background-color: #00e676;
-      margin-bottom: 2rem;
-    }
-
-    .slider input[type="range"] {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 6px;
-      background: transparent;
-      margin: 0;
-    }
-
-    .slider input[type="range"]:focus {
-      outline: none;
-    }
-
-    .slider input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #00e676;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .slider input[type="range"]::-webkit-slider-thumb:hover {
-      background: #00c853;
-    }
-
-    /* Responsive Chart */
-    .responsive-chart {
-      position: relative;
-      height: 400px;
-      width: 100%;
-    }
-
-    /* Buttons */
-    .btn, .btn-large {
-      background-color: #00e676;
-      color: #000;
-      text-transform: uppercase;
-      font-family: 'Orbitron', sans-serif;
-      transition: all 0.3s ease;
-      border-radius: 30px;
-      padding: 10px 20px;
-      margin: 10px;
-    }
-
-    .btn:hover, .btn-large:hover {
-      background-color: #00c853;
-      box-shadow: 0 0 15px rgba(0, 230, 118, 0.7);
-      transform: scale(1.05);
-    }
-
-    /* Motivational Section */
-    .motivation-section {
-      margin-top: 3rem;
-      text-align: center;
-      padding: 2rem;
-      background-color: rgba(0, 230, 118, 0.1);
-      border-radius: 8px;
-      border: 2px solid #00e676;
-      animation: fadeInUp 1s ease-in-out;
-    }
-
-    .motivation-section h5 {
-      color: #00e676;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-
-    .motivation-section p {
-      font-size: 1rem;
-      color: #b2dfdb;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
-
-  <!-- Navigation Bar -->
-  <nav>
-    <div class="nav-wrapper">
-      <a href="index.html" class="brand-logo">321Niche</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger" aria-label="Open navigation menu"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="tools.html">Tools & Downloads</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Mobile Navigation -->
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="resources.html">Resources</a></li>
-    <li><a href="tools.html">Tools & Downloads</a></li>
-  </ul>
-
-  <!-- Life Wheel Assessment Section -->
-  <div class="container">
-    <div class="life-wheel-container animate__animated animate__fadeInUp">
-      <div class="life-wheel-header">
-        <h2>Life Wheel Assessment</h2>
-        <p>Evaluate and visualize the balance in different areas of your life. Adjust the sliders below to reflect your current status, and see your Life Wheel chart update in real-time.</p>
-      </div>
-
-      <!-- Life Wheel Chart -->
-      <div class="responsive-chart">
-        <canvas id="lifeWheelChart"></canvas>
-      </div>
-
-      <!-- Sliders -->
-      <div class="slider-container">
-        <div class="row">
-          <div class="col s12">
-            <div class="slider-label">
-              <span>Health</span>
-              <span id="health-value">5</span>
-            </div>
-            <div class="slider">
-              <input type="range" id="health" min="0" max="10" step="1" value="5" oninput="updateChart(); updateSliderValue('health', this.value)">
-            </div>
-          </div>
-        </div>
-        <!-- Repeat slider row for Career, Finances, Relationships, Personal Growth, Recreation -->
-      </div>
-
-      <!-- Buttons -->
-      <div class="center-align">
-        <button class="btn" onclick="downloadChart()">Download Chart</button>
-        <button class="btn-flat" onclick="resetSliders()">Reset</button>
-      </div>
-
-      <!-- Motivational Section -->
-      <div class="motivation-section animate__animated animate__fadeInUp" role="region" aria-live="polite">
-        <h5>Inspiration</h5>
-        <p>"Balance is not something you find, it's something you create." – Jana Kingsford</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="page-footer">
-    <div class="container">
-      © 2024 321Niche
-      <a class="grey-text text-lighten-4 right" href="contact.html">Contact Us</a>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <!-- Materialize JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
-  <!-- Chart.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js" defer></script>
-  <!-- particles.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
-
-  <script>
-    window.onload = function() {
-      // Initialize Mobile Navigation
-      var elems = document.querySelectorAll('.sidenav');
-      M.Sidenav.init(elems);
-
-      // Initialize Particle.js
-      particlesJS('particles-js', {
-        "particles": {
-          "number": {
-            "value": 80,
-            "density": {
-              "enable": true,
-              "value_area": 700
-            }
-          },
-          "color": {
-            "value": "#00e676"
-          },
-          "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#00e676",
-            "opacity": 0.2,
-            "width": 1
-          },
-          "move": {
-            "enable": true,
-            "speed": 2
-          }
-        }
+      // Initialize slider values
+      const sliders = document.querySelectorAll('.slider input[type="range"]');
+      sliders.forEach(slider => {
+        updateSliderValue(slider.id, slider.value);
       });
+      updateChart();
+    });
 
-      // Initialize Life Wheel Chart
-      const ctx = document.getElementById('lifeWheelChart').getContext('2d');
-      let lifeWheelChart = new Chart(ctx, {
-        type: 'radar',
-        data: {
-          labels: ['Health', 'Career', 'Finances', 'Relationships', 'Personal Growth', 'Recreation'],
-          datasets: [{
-            label: 'Life Balance',
-            data: [5, 5, 5, 5, 5, 5],
-            backgroundColor: 'rgba(0, 230, 118, 0.2)',
-            borderColor: '#00e676',
-            borderWidth: 2,
-            pointBackgroundColor: '#00e676',
-            pointBorderColor: '#fff'
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            r: {
-              grid: {
-                color: '#00e676'
-              },
-              pointLabels: {
-                color: '#00e676',
-                font: {
-                  size: 14,
-                  family: 'Orbitron'
-                }
-              },
-              ticks: {
-                color: '#00e676',
-                stepSize: 2,
-                max: 10
-              }
-            }
-          }
-        }
+    /**
+     * Update Slider Value Display
+     * @param {string} id - The ID of the slider
+     * @param {number} value - The current value of the slider
+     */
+    function updateSliderValue(id, value) {
+      document.getElementById(`${id}-value`).innerText = value;
+    }
+
+    /**
+     * Update the Life Wheel Chart based on slider values
+     */
+    function updateChart() {
+      if (!lifeWheelChart) {
+        console.error('Life Wheel Chart is not initialized.');
+        return;
+      }
+      const health = parseInt(document.getElementById('health').value);
+      const career = parseInt(document.getElementById('career').value);
+      const finances = parseInt(document.getElementById('finances').value);
+      const relationships = parseInt(document.getElementById('relationships').value);
+      const personalGrowth = parseInt(document.getElementById('personalGrowth').value);
+      const recreation = parseInt(document.getElementById('recreation').value);
+
+      lifeWheelChart.data.datasets[0].data = [health, career, finances, relationships, personalGrowth, recreation];
+      lifeWheelChart.update();
+    }
+
+    /**
+     * Reset all sliders to default values
+     */
+    function resetSliders() {
+      const sliders = document.querySelectorAll('.slider input[type="range"]');
+      sliders.forEach(slider => {
+        slider.value = 5;
+        updateSliderValue(slider.id, 5);
       });
+      updateChart();
+    }
 
-      /**
-       * Update Slider Value Display
-       */
-      function updateSliderValue(id, value) {
-        document.getElementById(`${id}-value`).innerText = value;
+    /**
+     * Download the Life Wheel Chart as an image
+     */
+    function downloadChart() {
+      if (!lifeWheelChart) {
+        console.error('Life Wheel Chart is not initialized.');
+        return;
       }
-
-      /**
-       * Update the Life Wheel Chart based on slider values
-       */
-      window.updateChart = function() {
-        const sliders = document.querySelectorAll('.slider input[type="range"]');
-        lifeWheelChart.data.datasets[0].data = Array.from(sliders).map(slider => parseInt(slider.value));
-        lifeWheelChart.update();
-      }
-
-      /**
-       * Reset all sliders to default values
-       */
-      window.resetSliders = function() {
-        const sliders = document.querySelectorAll('.slider input[type="range"]');
-        sliders.forEach(slider => {
-          slider.value = 5;
-          updateSliderValue(slider.id, 5);
-        });
-        updateChart();
-      }
-
-      /**
-       * Download the Life Wheel Chart as an image
-       */
-      window.downloadChart = function() {
-        const canvas = document.getElementById('lifeWheelChart');
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'life_wheel_chart.png';
-        link.click();
-      }
-    };
+      const canvas = document.getElementById('lifeWheelChart');
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'life_wheel_chart.png';
+      link.click();
+    }
   </script>
 </body>
 </html>
