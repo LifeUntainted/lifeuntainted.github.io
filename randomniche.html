@@ -116,12 +116,18 @@
     "Artisan Bread Making Courses"
   ];
 
-  const PARTICLE_COUNT = niches.length; 
+  const PARTICLE_COUNT = niches.length;
 
   let scene, camera, renderer, particles;
 
   function init() {
-    // ... (Scene, camera, and renderer setup remain the same) ...
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.z = 1000;
+
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
     const geometry = new THREE.Geometry();
     for (let i = 0; i < PARTICLE_COUNT; i++) {
@@ -132,9 +138,9 @@
       geometry.vertices.push(vertex);
     }
 
-    const sprite = new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png'); 
+    const sprite = new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png');
     const material = new THREE.PointsMaterial({ 
-      size: 50, 
+      size: 30, 
       map: sprite, 
       blending: THREE.AdditiveBlending, 
       depthTest: false, 
@@ -149,7 +155,7 @@
       geometry.vertices.forEach((vertex, i) => {
         const textGeometry = new THREE.TextGeometry(niches[i], {
           font: font,
-          size: 40,
+          size: 20,
           height: 5,
           curveSegments: 12,
           bevelEnabled: true,
@@ -162,15 +168,33 @@
         const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
         const textMesh = new THREE.Mesh(textGeometry, textMaterial);
         textMesh.position.copy(vertex);
-        textMesh.position.z += 50; 
+        textMesh.position.z += 30;
         scene.add(textMesh);
       });
     });
 
-    // ... (Event listeners for resize and mousemove remain the same) ...
+    window.addEventListener('resize', onWindowResize, false);
+    document.addEventListener('mousemove', onDocumentMouseMove, false);
   }
 
-  // ... (Functions onWindowResize, onDocumentMouseMove, and animate remain the same) ...
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
+  function onDocumentMouseMove(event) {
+    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    particles.rotation.y = mouseX * 0.5;
+    particles.rotation.x = mouseY * 0.5;
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    particles.rotation.z += 0.002;
+    renderer.render(scene, camera);
+  }
 
   init();
 </script>
