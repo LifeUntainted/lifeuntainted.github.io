@@ -302,4 +302,85 @@
       });
 
       // Initialize Life Wheel Chart
-      const ctx = document.getElement
+      const ctx = document.getElementById('lifeWheelChart').getContext('2d');
+      let lifeWheelChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['Health', 'Career', 'Finances', 'Relationships', 'Personal Growth', 'Recreation'],
+          datasets: [{
+            label: 'Life Balance',
+            data: [5, 5, 5, 5, 5, 5],
+            backgroundColor: 'rgba(0, 230, 118, 0.2)',
+            borderColor: '#00e676',
+            borderWidth: 2,
+            pointBackgroundColor: '#00e676',
+            pointBorderColor: '#fff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              grid: {
+                color: '#00e676'
+              },
+              pointLabels: {
+                color: '#00e676',
+                font: {
+                  size: 14,
+                  family: 'Orbitron'
+                }
+              },
+              ticks: {
+                color: '#00e676',
+                stepSize: 2,
+                max: 10
+              }
+            }
+          }
+        }
+      });
+
+      /**
+       * Update Slider Value Display
+       */
+      function updateSliderValue(id, value) {
+        document.getElementById(`${id}-value`).innerText = value;
+      }
+
+      /**
+       * Update the Life Wheel Chart based on slider values
+       */
+      window.updateChart = function() {
+        const sliders = document.querySelectorAll('.slider input[type="range"]');
+        lifeWheelChart.data.datasets[0].data = Array.from(sliders).map(slider => parseInt(slider.value));
+        lifeWheelChart.update();
+      }
+
+      /**
+       * Reset all sliders to default values
+       */
+      window.resetSliders = function() {
+        const sliders = document.querySelectorAll('.slider input[type="range"]');
+        sliders.forEach(slider => {
+          slider.value = 5;
+          updateSliderValue(slider.id, 5);
+        });
+        updateChart();
+      }
+
+      /**
+       * Download the Life Wheel Chart as an image
+       */
+      window.downloadChart = function() {
+        const canvas = document.getElementById('lifeWheelChart');
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'life_wheel_chart.png';
+        link.click();
+      }
+    };
+  </script>
+</body>
+</html>
