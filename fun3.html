@@ -129,12 +129,43 @@ function drawPowerUp() {
 }
 
 function updatePacManMouth() {
-  // ... (Mouth animation logic remains the same) ...
+  if (pacMan.mouthOpen) {
+    pacMan.mouthAngle += 0.05; 
+    if (pacMan.mouthAngle >= 0.8) {
+      pacMan.mouthOpen = false;
+    }
+  } else {
+    pacMan.mouthAngle -= 0.05;
+    if (pacMan.mouthAngle <= 0.2) {
+      pacMan.mouthOpen = true;
+    }
+  }
 }
 
 function moveGhosts() {
   ghosts.forEach(ghost => {
-    // ... (Ghost movement logic remains the same) ...
+    const directions = ['up', 'down', 'left', 'right'];
+    if (Math.random() < 0.05) {
+      ghost.direction = directions[Math.floor(Math.random() * directions.length)];
+    }
+
+    switch (ghost.direction) {
+      case 'up':
+        ghost.y -= ghost.speed;
+        break;
+      case 'down':
+        ghost.y += ghost.speed;
+        break;
+      case 'left':
+        ghost.x -= ghost.speed;
+        break;
+      case 'right':
+        ghost.x += ghost.speed;
+        break;
+    }
+
+    ghost.x = Math.max(mapX + ghost.size / 2, Math.min(mapX + mapWidth - ghost.size / 2, ghost.x));
+    ghost.y = Math.max(mapY + ghost.size / 2, Math.min(mapY + mapHeight - ghost.size / 2, ghost.y));
   });
 }
 
@@ -168,7 +199,20 @@ function checkPowerUpCollision() {
 }
 
 window.addEventListener('mousemove', (event) => {
-  // ... (Mouse interaction logic remains the same) ...
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+
+  const angle = Math.atan2(mouseY - pacMan.y, mouseX - pacMan.x);
+
+  if (angle >= -Math.PI * 0.25 && angle < Math.PI * 0.25) {
+    pacMan.direction = 'right';
+  } else if (angle >= Math.PI * 0.25 && angle < Math.PI * 0.75) {
+    pacMan.direction = 'down';
+  } else if (angle >= Math.PI * 0.75 || angle < -Math.PI * 0.75) {
+    pacMan.direction = 'left';
+  } else {
+    pacMan.direction = 'up';
+  }
 });
 
 function animate() {
@@ -178,6 +222,28 @@ function animate() {
   drawGhosts();
   drawPellets();
   drawPowerUp();
+
+  // Move Pac-Man based on its direction
+  switch (pacMan.direction) {
+    case 'up':
+      pacMan.y -= pacMan.speed;
+      break;
+    case 'down':
+      pacMan.y += pacMan.speed;
+      break;
+    case 'left':
+      pacMan.x -= pacMan.speed;
+      break;
+    case 'right':
+      pacMan.x += pacMan.speed;
+      break;
+  }
+
+  // Keep Pac-Man within the map bounds
+  pacMan.x = Math.max(mapX + pacMan.size / 2, Math.min(mapX + mapWidth - pacMan.size / 2, pacMan.x));
+  pacMan.y = Math.max(mapY + pacMan.size / 2, Math.min(mapY + mapHeight - pacMan.size / 2, pacMan.y));
+
+
   updatePacManMouth();
   moveGhosts();
   checkPelletCollisions();
