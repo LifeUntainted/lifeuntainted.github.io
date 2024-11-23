@@ -454,28 +454,46 @@
       }
 
       /**
-       * Download Results as PDF
-       */
-      function downloadPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+      * Download Results as PDF
+ */
+function downloadPDF() {
+  // Load the jsPDF library, ensuring it is available
+  if (window.jspdf) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-        doc.setFont('Helvetica', 'bold');
-        doc.setFontSize(16);
-        doc.text('Your Passion Finder Quiz Results', 105, 20, null, null, 'center');
+    // Set the title and format
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.text('Your Passion Finder Quiz Results', 105, 20, null, null, 'center');
 
-        doc.setFont('Helvetica', 'normal');
-        doc.setFontSize(12);
-        const passions = document.querySelectorAll('#result-list .collection-item');
-        passions.forEach((item, index) => {
-          const title = item.querySelector('.title').innerText;
-          const details = item.querySelector('p').innerText;
-          doc.text(`${title}`, 20, 40 + (index * 20));
-          doc.text(details, 20, 50 + (index * 20));
-        });
-
-        doc.save('Passion_Finder_Results.pdf');
-      }
+    // Collect results from the results list and format them for the PDF
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(12);
+    const passions = document.querySelectorAll('#result-list .collection-item');
+    
+    if (passions.length > 0) {
+      passions.forEach((item, index) => {
+        const title = item.querySelector('.title').innerText;
+        const details = item.querySelector('p').innerText;
+        const yPosition = 40 + (index * 20);
+        
+        // Add text to the PDF at calculated positions to prevent overlap
+        doc.text(`${title}`, 20, yPosition);
+        doc.text(details, 20, yPosition + 10);
+      });
+      
+      // Save the generated PDF file
+      doc.save('Passion_Finder_Results.pdf');
+    } else {
+      console.error("No results available for PDF generation.");
+      M.toast({html: 'No results available to generate PDF.', classes: 'rounded red'});
+    }
+  } else {
+    console.error("jsPDF library not found.");
+    M.toast({html: 'Unable to generate PDF. Please try again later.', classes: 'rounded red'});
+  }
+}
 
       // Initialize Quiz on Page Load
       loadQuestion();
