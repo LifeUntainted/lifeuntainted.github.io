@@ -1,21 +1,285 @@
+<!-- _layouts/default.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover your future niche and turn your passion into income. 321Niche provides tools, resources, and community support to help you succeed.">
 
----
-layout: default
-title: "Blog - 321Niche"
----
+  <!-- Page Title -->
+  <title>Blog - 321Niche - 321Niche.com</title>
 
-<div class="container blog-page">
+  <!-- Import Google Icon Font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Import Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Include Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+
+  <!-- Favicon (Optional) -->
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <!-- _includes/navbar.html -->
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">321Niche</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about.html">About Us</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/resources.html">Resources</a></li>
+      <li><a href="/tools.html">Tools & Downloads</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Mobile Navigation -->
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="/">Home</a></li>
+  <li><a href="/about.html">About Us</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li><a href="/resources.html">Resources</a></li>
+  <li><a href="/tools.html">Tools & Downloads</a></li>
+</ul>
+
+
+  <!-- Main Content -->
+  <main>
+    <div class="container blog-page">
   <div class="blog-header">
     <h1 class="blog-title">Latest Insights</h1>
     <p class="blog-subtitle">Discover strategies, tips, and success stories to help you succeed in your niche</p>
   </div>
 
   <div class="blog-list">
-    {% for post in site.posts %}
-      <a href="{{ post.url | relative_url }}" class="blog-entry">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+    
+      <a href="/2024/11/23/boost-your-productivity-with-the-pomodoro-technique.html" class="blog-entry">
+        <h2>Boost Your Productivity with the Pomodoro Technique</h2>
+        <p>
+  Boost Your Productivity with the Pomodoro Technique
+
+</p>
       </a>
-    {% endfor %}
+    
+      <a href="/2024/11/22/the-importance-of-emotional-intelligence-in-niche-discovery.html" class="blog-entry">
+        <h2>The Importance of Emotional Intelligence in Niche Discovery</h2>
+        <p>
+  The Importance of Emotional Intelligence in Niche Discovery
+
+</p>
+      </a>
+    
+      <a href="/2024/11/21/cultivating-a-growth-mindset-for-personal-and-professional-success.html" class="blog-entry">
+        <h2>Cultivating a Growth Mindset for Personal and Professional Success</h2>
+        <p>
+  Cultivating a Growth Mindset for Personal and Professional Success
+
+</p>
+      </a>
+    
+      <a href="/2024/11/20/top-niche-trends-for-q1-2025.html" class="blog-entry">
+        <h2>Top Niche Trends to Watch in Q1 2025: Get Ahead of the Curve</h2>
+        <p>
+
+</p>
+      </a>
+    
+      <a href="/2024/11/20/ai-tools-for-personal-development-your-digital-coach-for-2025.html" class="blog-entry">
+        <h2>AI Tools for Personal Development: Your Digital Coach for 2025</h2>
+        <p>
+
+</p>
+      </a>
+    
+      <a href="/2024/11/19/the-power-of-ikigai-finding-your-purpose-and-passion.html" class="blog-entry">
+        <h2>The Power of Ikigai: Finding Your Purpose and Passion</h2>
+        <p>
+  The Power of Ikigai: Finding Your Purpose and Passion
+
+</p>
+      </a>
+    
+      <a href="/2024/11/18/discover-your-niche-with-synthesia-ai-video-generator.html" class="blog-entry">
+        <h2>Discover Your Niche with Synthesia: The AI Video Generator Transforming Content Creation</h2>
+        <p>
+
+</p>
+      </a>
+    
+      <a href="/2024/11/17/overcoming-analysis-paralysis.html" class="blog-entry">
+        <h2>Overcoming Analysis Paralysis: Make Decisions with Confidence</h2>
+        <p>
+    Overcoming Analysis Paralysis: Make Decisions with Confidence
+    Analysis paralysis is a common challenge for many people. Faced with too man...</p>
+      </a>
+    
+      <a href="/decision-making/personal-growth/2024/11/16/how-good-are-your-decision-making-skills.html" class="blog-entry">
+        <h2>How Good Are Your Decision-Making Skills?</h2>
+        <p>Decision-making is a vital skill, whether you’re navigating the workplace, managing your family, or pursuing personal goals. Poor decisions can lea...</p>
+      </a>
+    
+      <a href="/2024/11/15/declutter-your-life-for-your-niche.html" class="blog-entry">
+        <h2>Declutter Your Life: Make Space for Your Niche</h2>
+        <p>
+    Declutter Your Life: Make Space for Your Niche
+    In today’s fast-paced world, our lives often become filled with unnecessary clutter—both ph...</p>
+      </a>
+    
+      <a href="/ai%20music/real%20musicians/monetization/2024/11/14/make-money-with-ai-music.html" class="blog-entry">
+        <h2>Make Money with AI Music and Beyond: Exploring Diverse Music Niches</h2>
+        <p>The music industry offers endless niches and opportunities for monetization, whether you’re an AI music creator or a traditional musician. From str...</p>
+      </a>
+    
+      <a href="/content/marketing/2024/11/13/effective-content-marketing-tactics.html" class="blog-entry">
+        <h2>Effective Content Marketing Tactics for Niche Domination</h2>
+        <p>Discover powerful content marketing strategies to elevate your niche authority and grow your audience.</p>
+      </a>
+    
+      <a href="/seo/strategy/2024/11/12/boost-your-niche-seo-strategy.html" class="blog-entry">
+        <h2>Boost Your Niche SEO Strategy for Maximum Impact</h2>
+        <p>Unlock the potential of niche-specific SEO to improve your search rankings and drive more targeted traffic.</p>
+      </a>
+    
+      <a href="/niche,/growth/2024/11/11/scaling-your-niche-business-strategies-for-growth.html" class="blog-entry">
+        <h2>Scaling Your Niche Business: Strategies for Growth</h2>
+        <p>The Challenge of Scaling in a Niche Market
+</p>
+      </a>
+    
+      <a href="/niche/research/2024/11/10/mastering-the-art-of-niche-research.html" class="blog-entry">
+        <h2>Mastering the Art of Niche Research</h2>
+        <p>Niche research is essential to finding success in a focused market. Discover methods to research effectively and stay ahead in your niche.</p>
+      </a>
+    
+      <a href="/niche/community/2024/11/09/building-your-niche-community.html" class="blog-entry">
+        <h2>Building Your Niche Community</h2>
+        <p>Creating a strong community around your niche is key to long-term success. Learn how to build a loyal following that supports your journey and help...</p>
+      </a>
+    
+      <a href="/niche/2024/11/08/expanding-your-niche.html" class="blog-entry">
+        <h2>Expanding Your Niche: Leveraging Creativity and Adaptability</h2>
+        <p>The Ever-Evolving Nature of Niche
+</p>
+      </a>
+    
+      <a href="/niche/success/2024/11/07/unlocking-the-power-of-consistency.html" class="blog-entry">
+        <h2>Unlocking the Power of Consistency</h2>
+        <p>Consistency is key to niche success. Learn how to develop a sustainable routine that drives long-term growth and keeps you focused on your goals.</p>
+      </a>
+    
+      <a href="/niche/2024/11/06/the-sweet-spot-your-niche.html" class="blog-entry">
+        <h2>Aligning Your Passion and Purpose: The Sweet Spot of Your Niche</h2>
+        <p>The Intersection of Passion and Purpose
+</p>
+      </a>
+    
+      <a href="/niche/purpose/2024/11/05/unlocking-your-path-to-purpose.html" class="blog-entry">
+        <h2>Unlocking Your Path to Purpose</h2>
+        <p>Discover the journey of uncovering your niche by aligning passion with purpose. Find what sets your soul on fire and take focused action toward ful...</p>
+      </a>
+    
+      <a href="/niche/guide/2024/11/04/finding-your-niche.html" class="blog-entry">
+        <h2>Finding Your Niche: A Comprehensive Guide</h2>
+        <p>Learn how to identify the perfect niche for your venture. From self-assessment to market research, this guide helps you turn your passion into a pr...</p>
+      </a>
+    
+      <a href="/updates/2024/11/03/welcome-to-our-blog.html" class="blog-entry">
+        <h2>Welcome to the 321Niche Blog!</h2>
+        <p>Welcome to the 321Niche blog, your ultimate resource for tips, tools, and inspiration to help you find, grow, and profit from your niche.</p>
+      </a>
+    
   </div>
 </div>
+
+  </main>
+
+  <!-- Footer -->
+  <!-- _includes/footer.html -->
+<footer class="page-footer">
+  <div class="container center-align">
+    <h5>Trusted by Industry Leaders</h5>
+    <p>Our tools have been used by over 1,000 successful entrepreneurs and have received glowing recommendations from experts across the industry.</p>
+    <div class="social-icons">
+      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">facebook</i></a>
+      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">twitter</i></a>
+      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">instagram</i></a>
+      <a href="#" class="grey-text text-lighten-4"><i class="material-icons">linkedin</i></a>
+    </div>
+    <hr>
+    <span>&copy; 2024 321Niche</span>
+    <a href="/contact.html">Contact Us</a>
+  </div>
+</footer>
+
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+
+  <!-- Initialize Materialize Components -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Mobile Navigation
+      var elemsSidenav = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elemsSidenav);
+
+      // Initialize Carousel
+      var elemsCarousel = document.querySelectorAll('.carousel');
+      M.Carousel.init(elemsCarousel, {
+        duration: 200,
+        shift: 50,
+        padding: 50,
+        numVisible: 3,
+        indicators: true,
+        fullWidth: false,
+        autoplay: true,
+        interval: 3000
+      });
+
+      // Initialize Parallax
+      var elemsParallax = document.querySelectorAll('.parallax');
+      M.Parallax.init(elemsParallax);
+
+      // Smooth Scroll for Hero Button
+      const heroButton = document.querySelector('.hero-content .btn');
+      if (heroButton) {
+        heroButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if(target) {
+            window.scrollTo({
+              top: target.offsetTop - 70,
+              behavior: 'smooth'
+            });
+          }
+        });
+      }
+
+      // Form Validation and Submission
+      const newsletterForm = document.querySelector('.newsletter-section form');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const emailInput = document.getElementById('email');
+          if (emailInput.checkValidity()) {
+            M.toast({html: 'Thank you for subscribing!', classes: 'rounded'});
+            emailInput.value = '';
+            M.updateTextFields();
+          } else {
+            M.toast({html: 'Please enter a valid email address.', classes: 'rounded red'});
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

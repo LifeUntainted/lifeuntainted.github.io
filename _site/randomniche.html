@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Interactive Niche Generator</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://threejs.org/examples/jsm/libs/tween.module.min.js"></script>
+<script src="https://threejs.org/examples/jsm/libs/stats.module.js"></script>
+
+<script>
+const niches = [
+    // Creative & Artistic
+    "AI-Generated Music for Relaxation", "Personalized Children's Book Publishing", "Interactive Digital Art Exhibits",
+    "Sustainable Fashion Photography", "Virtual Reality Museum Tours", "Holographic Concert Experiences",
+    "Upcycled Clothing Design Workshops", "AI-Powered Screenwriting", "Personalized Family Portrait Illustration",
+    "3D-Printed Architectural Models", "Glow-in-the-Dark Tattoo Art", "Vintage Clothing Restoration and Customization",
+    "Eco-Friendly Art Gallery", "AI Music Composition for Film", "Museum Exhibit Design with Augmented Reality",
+    "NFT Digital Art Auctions", "Projection Mapping on Historical Buildings", "Custom Phone Case Design",
+    "Hand-Lettering Workshops for Beginners", "AI-Generated Art Therapy Programs", "Personalized Music Production for Podcasts",
+    "Virtual Reality Theater Productions", "Interactive Storytelling for Children with Disabilities", "3D-Printed Prosthetic Design",
+    "Augmented Reality Travel Guides", "Virtual Reality Escape Rooms", "AI-Powered Music Video Production",
+    "Kinetic Light Installations", "Interactive Storytelling Apps", "Digital Art for Social Causes",
+    "Personalized Comic Strip Creation", "AI-Generated Children's Book Illustrations", "Sustainable Fashion Design with 3D Printing",
+
+    // Technology & Future
+    "Drone Light Shows for Events", "AI-Powered Personal Stylists", "Smart Home Security Systems with Facial Recognition",
+    "Cybersecurity Education for Kids", "Personalized Language Learning with AI Tutors", "Biohacking for Longevity",
+    "Space Debris Removal Solutions", "Community-Owned Solar Power Systems", "Vertical Farming for Urban Food Deserts",
+    "AI-Driven Investment Strategies", "Decentralized Finance (DeFi) Platforms", "Personalized Health Tracking with Wearables",
+    "Augmented Reality City Tours", "Ethical Hacking for Nonprofits", "Quantum Computing Research and Development",
+    "Precision Agriculture with Drones and AI", "Biometric Authentication for Secure Access", "AI-Powered Fitness Trackers",
+    "Home Robotics for Elderly Care", "AI-Driven Content Creation for Education", "Blockchain-Based Digital Identity Systems",
+    "Personalized Virtual Reality Travel Experiences", "AI-Powered Drone Delivery for Medical Supplies", "Cybersecurity for IoT Devices",
+    "Biometric Payment Systems", "Electric Vehicle Conversion Services", "Wearable Technology for Athletes",
+    "AI-Powered Personal Shopping Assistants", "Smart Home Energy Management Systems", "Blockchain-Based Voting Platforms",
+    "Robotics for Household Chores", "AI-Powered Elderly Companions", "Self-Repairing Home Technologies",
+    "3D-Printed Sustainable Housing", "Quantum Internet Services", "AI-Powered Emotion Detection for Therapy",
+
+    // Health & Wellness
+    "Holistic Health Retreats", "Personalized Meditation Programs", "Mental Wellness Apps for Gamers", 
+    "Nutrition Coaching for Athletes", "Sleep Optimization Consultations", "Stress Management for Remote Workers", 
+    "Yoga for Seniors", "Ayurvedic Cooking Classes", "Forest Bathing Tours", 
+    "Mindfulness Retreats for Executives", "Pet Therapy Services", "Eco-Therapy Programs", 
+    "Sound Healing Workshops", "Therapeutic Art Programs", "Herbal Medicine Gardens",
+    "Mobile Wellness Spa", "Specialty Fitness Programs for People with Disabilities", "Organic Meal Planning Services",
+    "Digital Detox Challenges", "Gut Health Workshops", "Cold Exposure Training",
+    "Mindfulness for Children", "Stress Reduction through Art Therapy", "Personalized Fitness Plans with AI",
+    "Plant-Based Nutrition Coaching", "Emotional Resilience Programs", "Herbal Apothecary Classes",
+    "Customized Aromatherapy Blends", "Sleep Coaching for Insomniacs", "Mindful Eating Workshops",
+    "Workplace Wellness Programs", "Corporate Mindfulness Training", "Stress Reduction for Students",
+    "Personalized Online Therapy", "Nutrition Programs for Chronic Conditions", "Virtual Reality Yoga Classes",
+
+    // Community & Lifestyle
+    "Co-living Spaces for Digital Nomads", "Community Gardens with Educational Programs", "Sustainable Tiny Home Construction", 
+    "Skill-Sharing Workshops", "Local Food Delivery Services", "Upcycled Furniture Restoration", 
+    "Community-Owned Renewable Energy", "Zero-Waste Lifestyle Coaching", "Tiny House Festivals", 
+    "Urban Beekeeping", "Permaculture Design Courses", "Seed Libraries", 
+    "Community Composting Programs", "Repair Cafes", "Local Craft Markets",
+    "Nature Immersion Programs", "Sustainable Event Planning", "Pop-up Farmers' Markets",
+    "Local Swap Meets", "Skill-Based Bartering Networks", "Volunteer Vacation Planning",
+    "Community-Supported Agriculture (CSA) Programs", "Eco-Tourism for Families", "Urban Foraging Tours",
+    "Local Time Banking Initiatives", "Community Upcycling Projects", "Eco-Friendly Co-Working Spaces",
+    "Neighborhood Tool Sharing Libraries", "Tiny House Village Projects", "Public Permaculture Parks",
+    "Community Wellness Programs", "Neighborhood Renewable Energy Cooperatives",
+
+    // Personal Growth & Development
+    "Mindfulness Retreats for Entrepreneurs", "Emotional Intelligence Coaching", "Creative Writing Workshops for Introverts", 
+    "Public Speaking Training for Kids", "Personal Branding for Artists", "Life Coaching for Digital Nomads", 
+    "Financial Literacy for Teens", "Time Management for Creatives", "Stress Management for Students", 
+    "Confidence Building Workshops", "Conflict Resolution Training", "Mindfulness in the Workplace Programs", 
+    "Positive Psychology Coaching", "Goal Setting for Athletes", "Leadership Development for Women",
+    "Digital Detox Retreats", "Resilience Building Programs", "Coaching for Career Change",
+    "Networking for Introverts", "Memory Improvement Courses", "Holistic Productivity Workshops",
+    "Speed Reading Courses", "Personal Finance Management Workshops", "Creative Problem-Solving Training",
+    "Public Speaking for Engineers", "Vision Board Creation Workshops", "Financial Independence for Freelancers",
+    "Online Journaling Workshops",
+
+    // Niche Hobbies & Interests
+    "Vintage Video Game Collecting", "Rare Plant Nursery", "Artisan Cheese Making", 
+    "Custom Drone Building", "Historical Reenactment", "Competitive Rubik's Cube Solving", 
+    "Mushroom Foraging Tours", "Terrarium Building Workshops", "Calligraphy and Hand Lettering", 
+    "Brewing Craft Kombucha", "Upcycling Vintage Clothing", "Board Game Design", 
+    "Creative Writing for Video Games", "Podcast Production for Beginners", "DIY Smart Home Automation",
+    "Collectible Toy Restoration", "Leather Crafting Workshops", "Aquascaping Design", "Pet Clothing Design",
+    "Survival Skills Training", "Cosplay Costume Creation", "Custom Bicycle Building",
+    "Antique Restoration Classes", "Nature Photography Tours", "Blacksmithing for Beginners",
+    "Knife Making for Enthusiasts",
+
+    // Travel & Adventure
+    "Luxury Camping (Glamping) Experiences", "Backpacking Tours for Beginners", "Adventure Photography Excursions",
+    "Eco-Friendly Travel Planning", "Motorcycle Touring Groups", "Off-The-Beaten-Path Travel Planning",
+    "Historical Landmark Tours", "Solo Female Travel Coaching", "Mountain Trekking Guides",
+    "Cultural Cooking Travel Tours", "Guided Safari Trips", "RV Living Consulting",
+    "Space Enthusiast Travel (e.g., Rocket Launch Tours)", "Volunteer Travel Programs", "Cycling Tours for Foodies",
+    "Hot Air Balloon Experiences",
+
+    // Pet & Animal Services
+    "Pet Acupuncture Services", "Customized Pet Nutrition Plans", "Exotic Pet Boarding",
+    "Pet Photography Sessions", "Aquarium Maintenance Services", "Pet Grief Counseling",
+    "Luxury Pet Travel Planning", "Pet Fitness and Exercise Programs", "Animal-Assisted Therapy Training",
+    "Pet Fashion Design", "Dog Surfing Lessons", "Pet Massage Services",
+    "Pet Talent Agency", "Customized Birdhouses",
+
+    // Food & Culinary Arts
+    "Molecular Gastronomy Classes", "Vegan Cheese Making", "Regional Cuisine Cooking Classes",
+    "Pop-up Themed Restaurants", "Personal Chef for Dietary Restrictions", "Sustainable Seafood Cooking",
+    "Culinary Tours for Wine Lovers", "Mobile Food Education Classes", "Artisan Chocolate Crafting",
+    "Foraged Foods Cooking", "Global Street Food Workshops", "Farm-to-Table Dinner Events",
+    "Artisan Bread Making Courses"
+  ];
+
+  const PARTICLE_COUNT = niches.length;
+
+  let scene, camera, renderer, particles, raycaster, mouse;
+
+  function init() {
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 5000);
+    camera.position.z = 1500;
+
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Create particle geometry
+    const geometry = new THREE.BufferGeometry();
+    const positions = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      positions.push(Math.random() * 2000 - 1000);
+      positions.push(Math.random() * 2000 - 1000);
+      positions.push(Math.random() * 2000 - 1000);
+    }
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+
+    const sprite = new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png');
+    const material = new THREE.PointsMaterial({ 
+      size: 50, 
+      map: sprite, 
+      blending: THREE.AdditiveBlending, 
+      depthTest: false, 
+      transparent: true,
+      color: 0x00ff00 
+    });
+
+    particles = new THREE.Points(geometry, material);
+    scene.add(particles);
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(100, 200, 300);
+    scene.add(directionalLight);
+
+    // Load Font and Create Text for Each Niche
+    const loader = new THREE.FontLoader();
+    loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+      const positionsArray = geometry.attributes.position.array;
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const textGeometry = new THREE.TextGeometry(niches[i], {
+          font: font,
+          size: 20,
+          height: 5,
+          curveSegments: 12,
+          bevelEnabled: false
+        });
+
+        const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+
+        // Position the text near each particle
+        textMesh.position.set(
+          positionsArray[i * 3] + 20,
+          positionsArray[i * 3 + 1] + 20,
+          positionsArray[i * 3 + 2]
+        );
+        scene.add(textMesh);
+      }
+    });
+
+    // Handle window resizing
+    window.addEventListener('resize', onWindowResize, false);
+
+    // Add mouse interaction
+    mouse = new THREE.Vector2();
+    raycaster = new THREE.Raycaster();
+    document.addEventListener('mousemove', onDocumentMouseMove, false);
+
+    // Start animation
+    animate();
+  }
+
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
+  function onDocumentMouseMove(event) {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    // Update particle rotation based on mouse movement
+    particles.rotation.y = mouse.x * 0.5;
+    particles.rotation.x = mouse.y * 0.5;
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    // Rotate particles
+    particles.rotation.z += 0.001;
+
+    // Render the scene
+    renderer.render(scene, camera);
+  }
+
+  init();
+</script>
+</body>
+</html>
