@@ -226,6 +226,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
+
       particlesJS('particles-js', {
         "particles": {
           "number": {"value": 80, "density": {"enable": true, "value_area": 700}},
@@ -241,7 +242,46 @@
       });
 
       const quizData = [
-        // Quiz questions (as provided in the original full version)
+        {
+          question: "What activities make you lose track of time?",
+          options: ["Creative tasks (painting, writing, designing)", "Helping others", "Analyzing data or problem-solving", "Physical activities (sports, hiking)"]
+        },
+        {
+          question: "Which of these do you enjoy the most?",
+          options: ["Learning new skills", "Spending time with loved ones", "Working on personal projects", "Exploring the outdoors"]
+        },
+        {
+          question: "How do you usually prefer to spend your free time?",
+          options: ["Reading books or watching documentaries", "Volunteering", "Working on hobbies", "Exercise or adventure activities"]
+        },
+        {
+          question: "What type of work environment excites you the most?",
+          options: ["Fast-paced and creative", "Structured and collaborative", "Independent and research-focused", "Hands-on and active"]
+        },
+        {
+          question: "What do you value most in a career?",
+          options: ["Freedom to be creative", "Helping others", "Solving complex problems", "Being physically active"]
+        },
+        {
+          question: "Which of the following makes you feel most fulfilled?",
+          options: ["Creating something new", "Making a difference in someone’s life", "Solving a difficult problem", "Learning new things"]
+        },
+        {
+          question: "What kind of tasks make you feel the most energized?",
+          options: ["Collaborating with a team", "Helping someone achieve a goal", "Diving deep into research", "Working with my hands"]
+        },
+        {
+          question: "When working on a project, which part excites you the most?",
+          options: ["Coming up with ideas", "Seeing how the project impacts others", "Working out the technical details", "Getting physically involved"]
+        },
+        {
+          question: "Which of these best describes your ideal type of challenge?",
+          options: ["A creative challenge", "A challenge that helps others", "A complex analytical challenge", "A physical challenge"]
+        },
+        {
+          question: "What do you most often dream about doing?",
+          options: ["Creating art", "Making a positive impact", "Finding solutions to difficult problems", "Exploring and adventures"]
+        }
       ];
 
       let currentQuestionIndex = 0;
@@ -252,21 +292,28 @@
         document.getElementById("question").innerText = currentQuestion.question;
         const optionsContainer = document.getElementById("options");
         optionsContainer.innerHTML = "";
+
         currentQuestion.options.forEach((option, index) => {
           const optionDiv = document.createElement("p");
+
           const label = document.createElement("label");
+          label.setAttribute("for", `option${index}`);
+
           const checkbox = document.createElement("input");
           checkbox.type = "checkbox";
           checkbox.id = `option${index}`;
           checkbox.name = "quiz-option";
           checkbox.value = option;
+
           const span = document.createElement("span");
           span.innerText = option;
+
           label.appendChild(checkbox);
           label.appendChild(span);
           optionDiv.appendChild(label);
           optionsContainer.appendChild(optionDiv);
         });
+
         updateProgress();
       }
 
