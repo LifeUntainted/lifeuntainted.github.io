@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Interactive Life Wheel Assessment to evaluate and visualize different areas of your life, including finances, relationships, health, and personal growth.">
 
-  <!-- Compiled and minified CSS -->
+  <!-- Compiled and minified CSS (Materialize) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <!-- Import Google Icon Font -->
@@ -186,6 +186,17 @@
     .motivation-section p {
       font-size: 1rem;
       color: #b2dfdb;
+    }
+
+    /* Footer */
+    .page-footer {
+      background-color: #000;
+      color: #e0e0e0;
+      padding-top: 20px;
+    }
+
+    .page-footer a {
+      color: #00e676;
     }
   </style>
 </head>
@@ -504,14 +515,14 @@
        * @param {string} id - The ID of the slider
        * @param {number} value - The current value of the slider
        */
-      function updateSliderValue(id, value) {
+      window.updateSliderValue = function(id, value) {
         document.getElementById(`${id}-value`).innerText = value;
       }
 
       /**
        * Update the Life Wheel Chart based on slider values
        */
-      function updateChart() {
+      window.updateChart = function() {
         const health = parseInt(document.getElementById('health').value);
         const career = parseInt(document.getElementById('career').value);
         const finances = parseInt(document.getElementById('finances').value);
