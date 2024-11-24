@@ -2,11 +2,11 @@
   publish = "_site"
 
 [functions]
-  directory = "netlify/functions" # This line tells Netlify where to find your functions
+  directory = "functions" # Updated path to point to the correct functions folder
 
 [[redirects]]
-  from = "/nicheAnalyzer"
-  to = "/.netlify/functions/nicheAnalyzer"
+  from = "/.netlify/functions/nicheAnalyzer"
+  to = "/functions/nicheAnalyzer.js"  # Adjusted to match the root-level location of the function file
   status = 200
   force = true
   methods = ["POST", "OPTIONS"]
