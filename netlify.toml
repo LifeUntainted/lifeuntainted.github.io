@@ -1,5 +1,8 @@
 [build]
-  publish = "_site/" 
+  publish = "_site/"
+
+[functions]
+  directory = "netlify/functions" # This line tells Netlify where to find your functions
 
 [[redirects]]
   from = "/.netlify/functions/nicheAnalyzer"
