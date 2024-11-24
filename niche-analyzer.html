@@ -103,7 +103,7 @@
   <h1 class="analyzer-title">Niche Analyzer</h1>
   <p>Discover profitable niches and insights to grow your business!</p>
 
-  <form id="niche-form" method="POST" action="/.netlify/functions/nicheAnalyzer"> 
+  <form id="niche-form">
     <div class="input-field">
       <input id="interests" type="text" required>
       <label for="interests">Enter Your Interests</label>
@@ -182,16 +182,7 @@
         });
 
         if (!response.ok) {
-          if (response.status === 429) {
-            // Rate limit error
-            throw new Error("Too many requests. Please try again later."); 
-          } else if (response.status >= 500) {
-            // Server error
-            throw new Error("Server error. Please try again later."); 
-          } else {
-            // Other client or server error
-            throw new Error(`HTTP error! Status: ${response.status}`); 
-          }
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         const data = await response.json();
