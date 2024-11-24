@@ -5,8 +5,8 @@
   directory = "netlify/functions" # This line tells Netlify where to find your functions
 
 [[redirects]]
-  from = "/.netlify/functions/nicheAnalyzer"
-  to = "/.netlify/functions/nicheAnalyzer.js" 
+  from = "/nicheAnalyzer"
+  to = "/.netlify/functions/nicheAnalyzer"
   status = 200
   force = true
   methods = ["POST", "OPTIONS"]
