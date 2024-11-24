@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with Niche Analyzer AI</title>
+    <title>Chat with GPT-4o Mini</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
         body {
@@ -44,7 +44,7 @@
 </head>
 <body>
     <div class="container chat-container">
-        <h4 class="center-align">Chat with the Niche Analyzer AI</h4>
+        <h4 class="center-align">Chat with GPT-4o Mini</h4>
         <div id="chat-window" class="chat-window"></div>
         <div class="input-field">
             <input type="text" id="user-input" placeholder="Type your message here...">
@@ -63,22 +63,19 @@
             document.getElementById('user-input').value = "";
 
             try {
-                const response = await fetch('/.netlify/functions/nicheAnalyzer', {
+                const response = await fetch('/.netlify/functions/gptHandler', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        interests: userInput, // We can use user input directly to get a response from GPT
-                        skills: 'user-provided', // Example placeholder, replace accordingly
-                        audience: 'general audience',
-                        monetization: ['advertisements']
+                        message: userInput
                     })
                 });
 
                 if (response.ok) {
                     const data = await response.json();
-                    addMessage('bot-message', data.result);
+                    addMessage('bot-message', data.response);
                 } else {
                     addMessage('bot-message', 'Error: Could not get a valid response. Please try again later.');
                 }
