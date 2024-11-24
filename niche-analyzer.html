@@ -162,7 +162,7 @@
       document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
 
       try {
-        const response = await fetch('/.netlify/functions/nicheAnalyzer', { // Corrected fetch URL
+        const response = await fetch('/.netlify/functions/nicheAnalyzer', { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -171,22 +171,48 @@
         });
 
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          if (response.status === 429) {
+            // Rate limit error
+            throw new Error("Too many requests. Please try again later."); 
+          } else if (response.status >= 500) {
+            // Server error
+            throw new Error("Server error. Please try again later."); 
+          } else {
+            // Other client or server error
+            throw new Error(`HTTP error! Status: ${response.status}`); 
+          }
         }
 
         const data = await response.json();
 
         if (data.result) {
-          document.getElementById('results').innerHTML = `<h2>Your Niche Ideas:</h2><pre>${data.result}</pre>`;
+          // Parse the result and create HTML elements
+          const resultContainer = document.getElementById('results');
+          resultContainer.innerHTML = ""; // Clear previous results
+
+          const ideas = data.result.split('\n'); // Assuming ideas are separated by newlines
+          ideas.forEach(idea => {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = idea;
+            resultContainer.appendChild(paragraph);
+          });
+
         } else {
           document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
         }
       } catch (error) {
-        document.getElementById('results').innerHTML = "<p>An error occurred while processing your request.</p>";
+        let errorMessage = "An error occurred while processing your request.";
+        if (error.message.includes('NetworkError')) {
+          errorMessage = "Network error. Please check your internet connection.";
+        } else if (error.message.includes('Failed to fetch')) {
+          errorMessage = "Failed to connect to the server. Please try again later.";
+        } 
+        document.getElementById('results').innerHTML = `<p>${errorMessage}</p>`;
         console.error('Error:', error);
       }
     });
   });
 </script>
+
 </body>
 </html>
