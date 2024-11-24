@@ -1,7 +1,8 @@
 const { Configuration, OpenAIApi } = require("openai");
 
+// Ensure you're fetching the API key from environment variables set in Netlify
 const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.OPENAI_API_KEY, // No hard-coded API keys
 });
 const openai = new OpenAIApi(configuration);
 
@@ -18,7 +19,7 @@ exports.handler = async (event) => {
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({message: "Method Not Allowed, please use POST"})
+            body: JSON.stringify({ message: "Method Not Allowed, please use POST" })
         };
     }
 
@@ -26,7 +27,7 @@ exports.handler = async (event) => {
         const ip = event.headers['x-forwarded-for'] || event.headers['client-ip']; // Get user's IP address
         const now = Date.now();
 
-        // Check if the user has exceeded the rate limit
+        // Rate limiting logic
         if (requestCounts[ip]) {
             const requests = requestCounts[ip];
             requests.push(now);
@@ -38,15 +39,19 @@ exports.handler = async (event) => {
             if (requestCounts[ip].length > MAX_REQUESTS_PER_DAY) {
                 return {
                     statusCode: 429,
-                    body: JSON.stringify({error: "Too Many Requests. You are limited to 3 requests per day. Please try again tomorrow."})
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ error: "Too Many Requests. You are limited to 3 requests per day. Please try again tomorrow." })
                 };
             }
         } else {
             requestCounts[ip] = [now];
         }
 
+        // Parse the body
         let body;
-
         if (event.body) {
             body = JSON.parse(event.body);
         } else {
@@ -56,11 +61,11 @@ exports.handler = async (event) => {
                     "Access-Control-Allow-Origin": "*",
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({message: "Invalid request, body cannot be empty."})
+                body: JSON.stringify({ message: "Invalid request, body cannot be empty." })
             };
         }
 
-        const {interests, skills, audience, monetization, trends, geographic} = body;
+        const { interests, skills, audience, monetization, trends, geographic } = body;
 
         if (!interests || !skills || !audience || !monetization) {
             return {
@@ -91,8 +96,9 @@ exports.handler = async (event) => {
             3. Suggest a few ways to monetize it effectively.
           `;
 
+        // Call OpenAI API
         const response = await openai.createCompletion({
-            model: "gpt-3.5-turbo",
+            model: "gpt-3.5-turbo", // Update to gpt-4 if needed
             prompt: prompt,
             max_tokens: 300,
             temperature: 0.7,
@@ -110,7 +116,7 @@ exports.handler = async (event) => {
                     "Content-Type": "application/json",
                     "Access-Control-Allow-Origin": "*",
                 },
-                body: JSON.stringify({result: nicheIdeas})
+                body: JSON.stringify({ result: nicheIdeas })
             };
         } else {
             console.error("Failed to get valid response from OpenAI API", response.data);
@@ -120,7 +126,7 @@ exports.handler = async (event) => {
                     "Access-Control-Allow-Origin": "*",
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({error: "Failed to generate niche ideas. No valid response from OpenAI."})
+                body: JSON.stringify({ error: "Failed to generate niche ideas. No valid response from OpenAI." })
             };
         }
 
@@ -132,7 +138,7 @@ exports.handler = async (event) => {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*",
             },
-            body: JSON.stringify({error: "Failed to analyze niche. Please try again."})
+            body: JSON.stringify({ error: "Failed to analyze niche. Please try again." })
         };
     }
 };

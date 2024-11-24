@@ -1,9 +1,12 @@
 [build]
-  publish = "_site/"  # Assuming your build output is in the "docs" folder
+  publish = "_site"
+
+[functions]
+  directory = "functions" # Updated to point to the correct folder that contains your Netlify functions
 
 [[redirects]]
-  from = "/.netlify/functions/nicheAnalyzer"
-  to = "/.netlify/functions/nicheAnalyzer.js" 
+  from = "/nicheAnalyzer"  # Modified to align with typical redirect practices
+  to = "/.netlify/functions/nicheAnalyzer" # Updated to use the Netlify-provided functions URL
   status = 200
   force = true
   methods = ["POST", "OPTIONS"]

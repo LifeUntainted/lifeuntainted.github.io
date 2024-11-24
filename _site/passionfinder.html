@@ -110,36 +110,45 @@
 
     /* Result Container */
     .result-container {
-      display: none;
-      margin-top: 3rem;
-      text-align: center;
-      background-color: rgba(0, 230, 118, 0.1);
-      padding: 2rem;
-      border-radius: 8px;
-      border: 2px solid #00e676;
-    }
+  display: none;
+  margin-top: 3rem;
+  text-align: center;
+  background-color: rgba(0, 230, 118, 0.15); /* Increased opacity for better readability */
+  padding: 2rem;
+  border-radius: 8px;
+  border: 2px solid #00e676;
+}
 
-    .result-container h5 {
-      color: #00e676;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
+.result-container h5 {
+  color: #00e676;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
 
-    /* Responsive Design */
-    @media screen and (max-width: 600px) {
-      .quiz-container {
-        padding: 2rem 1rem;
-      }
+/* Updated styling for result list items */
+.result-container .collection-item {
+  color: #ffffff; /* Changed to pure white for improved contrast */
+  background-color: rgba(0, 230, 118, 0.25); /* Added light background color for contrast */
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
 
-      .brand-logo {
-        margin-left: 10px;
-        font-size: 1.5rem;
-      }
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+  .quiz-container {
+    padding: 2rem 1rem;
+  }
 
-      .quiz-question {
-        font-size: 1.3rem;
-      }
-    }
+  .brand-logo {
+    margin-left: 10px;
+    font-size: 1.5rem;
+  }
+
+  .quiz-question {
+    font-size: 1.3rem;
+  }
+}
   </style>
 </head>
 <body>
@@ -191,8 +200,8 @@
           <div id="options" class="quiz-options"></div>
         </form>
         <div class="center-align" style="margin-top: 2rem;">
-          <button id="prev-button" class="btn-flat waves-effect waves-light" onclick="prevQuestion()" disabled aria-label="Go to Previous Question">Previous</button>
-          <button id="next-button" class="btn waves-effect waves-light" onclick="nextQuestion()" aria-label="Go to Next Question">Next</button>
+          <button id="prev-button" class="btn-flat waves-effect waves-light" disabled aria-label="Go to Previous Question">Previous</button>
+          <button id="next-button" class="btn waves-effect waves-light" aria-label="Go to Next Question">Next</button>
         </div>
       </div>
 
@@ -219,7 +228,6 @@
   </footer>
 
   <!-- Scripts -->
-  <!-- Ensure scripts are loaded in the correct order -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -229,106 +237,21 @@
       var elems = document.querySelectorAll('.sidenav');
       M.Sidenav.init(elems);
 
-      // Initialize Accessibility Features
-      document.body.classList.add('accessible');
-
       // Particle.js configuration
       particlesJS('particles-js', {
         "particles": {
-          "number": {
-            "value": 80,
-            "density": {
-              "enable": true,
-              "value_area": 700
-            }
-          },
-          "color": {
-            "value": "#00e676"
-          },
-          "shape": {
-            "type": "circle",
-            "stroke": {
-              "width": 0,
-              "color": "#000000"
-            },
-            "polygon": {
-              "nb_sides": 5
-            }
-          },
-          "opacity": {
-            "value": 0.3,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 0.5,
-              "opacity_min": 0.1,
-              "sync": false
-            }
-          },
-          "size": {
-            "value": 4,
-            "random": true,
-            "anim": {
-              "enable": false,
-              "speed": 40,
-              "size_min": 0.1,
-              "sync": false
-            }
-          },
-          "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#00e676",
-            "opacity": 0.2,
-            "width": 1
-          },
-          "move": {
-            "enable": true,
-            "speed": 2,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-              "enable": false,
-              "rotateX": 600,
-              "rotateY": 1200
-            }
-          }
+          "number": {"value": 80, "density": {"enable": true, "value_area": 700}},
+          "color": {"value": "#00e676"},
+          "shape": {"type": "circle"},
+          "opacity": {"value": 0.3, "random": true},
+          "size": {"value": 4, "random": true},
+          "line_linked": {"enable": true, "color": "#00e676", "opacity": 0.2},
+          "move": {"enable": true, "speed": 2}
         },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "repulse"
-            },
-            "onclick": {
-              "enable": true,
-              "mode": "push"
-            },
-            "resize": true
-          },
-          "modes": {
-            "repulse": {
-              "distance": 100,
-              "duration": 0.4
-            },
-            "push": {
-              "particles_nb": 4
-            },
-            "remove": {
-              "particles_nb": 2
-            }
-          }
-        },
+        "interactivity": {"events": {"onhover": {"enable": true, "mode": "repulse"}}},
         "retina_detect": true
       });
 
-      /**
-       * Quiz Data Structure
-       */
       const quizData = [
         {
           question: "What activities make you lose track of time?",
@@ -407,9 +330,6 @@
 
         // Update Progress Bar
         updateProgress();
-
-        // Re-enable Next Button
-        document.getElementById("next-button").disabled = false;
       }
 
       /**
@@ -454,6 +374,15 @@
         if (currentQuestionIndex === 0) {
           document.getElementById("prev-button").disabled = true;
         }
+      }
+
+      /**
+       * Update Progress Bar and Text
+       */
+      function updateProgress() {
+        const progressPercentage = ((currentQuestionIndex + 1) / quizData.length) * 100;
+        document.getElementById("progress-bar").style.width = `${progressPercentage}%`;
+        document.getElementById("progress-text").innerText = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
       }
 
       /**
@@ -513,15 +442,6 @@
       }
 
       /**
-       * Update Progress Bar and Text
-       */
-      function updateProgress() {
-        const progressPercentage = ((currentQuestionIndex) / quizData.length) * 100;
-        document.getElementById("progress-bar").style.width = `${progressPercentage}%`;
-        document.getElementById("progress-text").innerText = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
-      }
-
-      /**
        * Restart the Quiz
        */
       function restartQuiz() {
@@ -530,36 +450,57 @@
         document.getElementById("result").style.display = "none";
         document.getElementById("quiz").style.display = "block";
         loadQuestion();
+        document.getElementById("prev-button").disabled = true;
       }
 
       /**
-       * Download Results as PDF
-       */
-      function downloadPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+      * Download Results as PDF
+ */
+function downloadPDF() {
+  // Load the jsPDF library, ensuring it is available
+  if (window.jspdf) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-        doc.setFont('Helvetica', 'bold');
-        doc.setFontSize(16);
-        doc.text('Your Passion Finder Quiz Results', 105, 20, null, null, 'center');
+    // Set the title and format
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.text('Your Passion Finder Quiz Results', 105, 20, null, null, 'center');
 
-        doc.setFont('Helvetica', 'normal');
-        doc.setFontSize(12);
-        const passions = document.querySelectorAll('#result-list .collection-item');
-        passions.forEach((item, index) => {
-          const title = item.querySelector('.title').innerText;
-          const details = item.querySelector('p').innerText;
-          doc.text(`${title}`, 20, 40 + (index * 20));
-          doc.text(details, 20, 50 + (index * 20));
-        });
+    // Collect results from the results list and format them for the PDF
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(12);
+    const passions = document.querySelectorAll('#result-list .collection-item');
+    
+    if (passions.length > 0) {
+      passions.forEach((item, index) => {
+        const title = item.querySelector('.title').innerText;
+        const details = item.querySelector('p').innerText;
+        const yPosition = 40 + (index * 20);
+        
+        // Add text to the PDF at calculated positions to prevent overlap
+        doc.text(`${title}`, 20, yPosition);
+        doc.text(details, 20, yPosition + 10);
+      });
+      
+      // Save the generated PDF file
+      doc.save('Passion_Finder_Results.pdf');
+    } else {
+      console.error("No results available for PDF generation.");
+      M.toast({html: 'No results available to generate PDF.', classes: 'rounded red'});
+    }
+  } else {
+    console.error("jsPDF library not found.");
+    M.toast({html: 'Unable to generate PDF. Please try again later.', classes: 'rounded red'});
+  }
+}
 
-        doc.save('Passion_Finder_Results.pdf');
-      }
-
-      /**
-       * Initialize the Quiz on Page Load
-       */
+      // Initialize Quiz on Page Load
       loadQuestion();
+
+      // Add Event Listeners for Buttons
+      document.getElementById("next-button").addEventListener("click", nextQuestion);
+      document.getElementById("prev-button").addEventListener("click", prevQuestion);
     });
   </script>
 </body>

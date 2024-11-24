@@ -1,14 +1,26 @@
+---
+layout: default
+title: "Niche Analyzer"
+---
+
+<!-- Include CSS and JS Libraries in the HEAD -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <!-- Meta Tags -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Discover profitable and personalized niche ideas with our AI-powered Niche Analyzer.">
 
+  <!-- Import Google Icon Font and Orbitron Font -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Include Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+  <!-- Custom Styles -->
   <style>
     body {
       background-color: #0A0A0A;
@@ -17,8 +29,9 @@
       margin: 0;
     }
 
-    nav, .page-footer {
-      background-color: #0A0A0A !important;
+    nav,
+    .page-footer {
+      background-color: #0A0A0A !important; /* Black */
       border-top: none;
     }
 
@@ -28,19 +41,13 @@
       border-top: 1px solid #57FF8C;
     }
 
-    .footer-content, nav ul li a {
-      color: #E0E0E0 !important;
+    .footer-content,
+    nav ul li a {
+      color: #E0E0E0 !important; /* White text for readability */
     }
 
     a {
-      color: #57FF8C !important;
-    }
-
-    .background-lines {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+      color: #57FF8C !important; /* Off-green for links */
     }
 
     .niche-analyzer {
@@ -57,10 +64,10 @@
       text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
     }
 
-    .niche-analyzer form input, 
-    .niche-analyzer form textarea, 
+    .niche-analyzer form input,
+    .niche-analyzer form textarea,
     .niche-analyzer form select {
-      color: #E0E0E0 !important; 
+      color: #E0E0E0;
       border-bottom: 1px solid #57FF8C !important;
     }
 
@@ -77,144 +84,145 @@
       background-color: #57FF8C;
     }
 
-    /* Fix for input field text color */
-    .input-field input[type=text]:focus + label,
-    .input-field input[type=text]:not(.browser-default):valid + label {
-      color: #57FF8C !important;
-    }
-    .input-field .prefix.active {
-      color: #57FF8C !important;
-    }
-
-    /* Fix for select dropdown text color */
-    .dropdown-content li > a, .dropdown-content li > span {
-      color: #0A0A0A !important; /* Black text for dropdown options */
+    #results {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #1c1c1c;
+      border-radius: 8px;
+      color: #57FF8C;
+      border: 1px solid #57FF8C;
     }
   </style>
 </head>
 
 <body>
+  <!-- Back to Top Button -->
+  <a href="#" id="back-to-top" class="btn-floating btn-large">
+    <i class="material-icons">keyboard_arrow_up</i>
+  </a>
 
-<a href="#" id="back-to-top" class="btn-floating btn-large">
-  <i class="material-icons">keyboard_arrow_up</i>
-</a>
+  <!-- Niche Analyzer Content -->
+  <div class="container niche-analyzer">
+    <h1 class="analyzer-title">Niche Analyzer</h1>
+    <p>Discover profitable niches and insights to grow your business!</p>
 
-<div class="container niche-analyzer">
-  <h1 class="analyzer-title">Niche Analyzer</h1>
-  <p>Discover profitable niches and insights to grow your business!</p>
+    <!-- Analyzer Form -->
+    <form id="niche-form">
+      <div class="input-field">
+        <input id="interests" type="text" required>
+        <label for="interests">Enter Your Interests</label>
+      </div>
+      <div class="input-field">
+        <input id="skills" type="text" required>
+        <label for="skills">Enter Your Skills</label>
+      </div>
+      <div class="input-field">
+        <input id="audience" type="text" required>
+        <label for="audience">Describe Your Audience</label>
+      </div>
+      <div class="input-field">
+        <select id="monetization" multiple>
+          <option value="ads">Advertisements</option>
+          <option value="affiliate">Affiliate Marketing</option>
+          <option value="products">Product Sales</option>
+          <option value="services">Service Sales</option>
+        </select>
+        <label>Monetization Strategies</label>
+      </div>
+      <div class="input-field">
+        <input id="trends" type="text">
+        <label for="trends">Trends You're Interested In</label>
+      </div>
+      <div class="input-field">
+        <input id="geographic" type="text">
+        <label for="geographic">Geographic Region of Focus</label>
+      </div>
+      <button type="button" id="analyze-button" class="btn waves-effect waves-light">Analyze Niche</button>
+    </form>
 
-  <form id="niche-form">
-    <div class="input-field">
-      <input id="interests" type="text" required>
-      <label for="interests">Enter Your Interests</label>
-    </div>
-    <div class="input-field">
-      <input id="skills" type="text" required>
-      <label for="skills">Enter Your Skills</label>
-    </div>
-    <div class="input-field">
-      <input id="audience" type="text" required>
-      <label for="audience">Describe Your Ideal Audience</label>
-    </div>
-    <div class="input-field">
-      <select id="monetization" multiple>
-        <option value="" disabled selected>Choose your monetization strategy</option>
-        <option value="ads">Advertisements</option>
-        <option value="affiliate">Affiliate Marketing</option>
-        <option value="products">Product Sales</option>
-        <option value="services">Service Sales</option>
-        <option value="other">Other</option>
-      </select>
-      <label for="monetization">Monetization Strategies</label>
-    </div>
-    <div class="input-field">
-      <input id="trends" type="text">
-      <label for="trends">Trends You're Interested In (Optional)</label>
-    </div>
-    <div class="input-field">
-      <input id="geographic" type="text">
-      <label for="geographic">Geographic Region of Focus (Optional)</label>
-    </div>
-    <button type="submit" class="btn waves-effect waves-light">Analyze Niche</button>
-  </form>
+    <div id="results" class="results-section"></div>
+  </div>
 
-  <div id="results" class="results-section"></div>
-</div>
+  <div class="footer-content page-footer">
+    &copy; 2024 321Niche. All Rights Reserved.
+  </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <!-- Include jQuery and GSAP at the end of the body for better loading -->
+  <!-- Include jQuery (required by Materialize JS) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    M.AutoInit();
+  <!-- Include Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    window.addEventListener('scroll', function() {
-      const backToTop = document.getElementById('back-to-top');
-      if (window.scrollY > 500) {
-        backToTop.style.display = 'block';
-      } else {
-        backToTop.style.display = 'none';
-      }
-    });
+  <!-- Include GSAP Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 
-    document.getElementById('niche-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
+  <!-- Custom Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Initialize Materialize Components
+      M.AutoInit();
 
-      const formData = {
-        interests: document.getElementById('interests').value,
-        skills: document.getElementById('skills').value,
-        audience: document.getElementById('audience').value,
-        monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
-        trends: document.getElementById('trends').value || 'N/A',
-        geographic: document.getElementById('geographic').value || 'N/A'
-      };
+      // Back to Top Button functionality
+      window.addEventListener('scroll', function () {
+        const backToTop = document.getElementById('back-to-top');
+        if (window.scrollY > 500) {
+          backToTop.style.display = 'block';
+        } else {
+          backToTop.style.display = 'none';
+        }
+      });
 
-      document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
+      // Handle Form Submission
+      document.getElementById('analyze-button').addEventListener('click', async function () {
+        // Collect form data
+        const formData = {
+          interests: document.getElementById('interests').value.trim(),
+          skills: document.getElementById('skills').value.trim(),
+          audience: document.getElementById('audience').value.trim(),
+          monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
+          trends: document.getElementById('trends').value.trim() || 'N/A',
+          geographic: document.getElementById('geographic').value.trim() || 'N/A'
+        };
 
-      try {
-        const response = await fetch('/.netlify/functions/nicheAnalyzer', { 
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+        // Validate required fields
+        if (!formData.interests || !formData.skills || !formData.audience || formData.monetization.length === 0) {
+          alert('Please fill out all the required fields.');
+          return;
         }
 
-        const data = await response.json();
+        // Display loading message
+        document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
 
-        if (data.result) {
-          // Parse the result and create HTML elements
-          const resultContainer = document.getElementById('results');
-          resultContainer.innerHTML = ""; // Clear previous results
-
-          const ideas = data.result.split('\n'); // Assuming ideas are separated by newlines
-          ideas.forEach(idea => {
-            const paragraph = document.createElement('p');
-            paragraph.textContent = idea;
-            resultContainer.appendChild(paragraph);
+        try {
+          // Send data to backend
+          const response = await fetch('/.netlify/functions/nicheAnalyzer', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
           });
 
-        } else {
-          document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
-        }
-      } catch (error) {
-        let errorMessage = "An error occurred while processing your request.";
-        if (error.message.includes('NetworkError')) {
-          errorMessage = "Network error. Please check your internet connection.";
-        } else if (error.message.includes('Failed to fetch')) {
-          errorMessage = "Failed to connect to the server. Please try again later.";
-        } 
-        document.getElementById('results').innerHTML = `<p>${errorMessage}</p>`;
-        console.error('Error:', error);
-      }
-    });
-  });
-</script>
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
 
+          const data = await response.json();
+
+          if (data.result) {
+            // Display results
+            document.getElementById('results').innerHTML = `<h2>Your Niche Ideas:</h2><pre>${data.result}</pre>`;
+          } else {
+            document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
+          }
+        } catch (error) {
+          document.getElementById('results').innerHTML = "<p>An error occurred while processing your request.</p>";
+          console.error('Error:', error);
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>
