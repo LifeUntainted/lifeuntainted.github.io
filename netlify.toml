@@ -1,5 +1,5 @@
 [build]
-  publish = "_site/"  # Assuming your build output is in the "docs" folder
+  publish = "_site/" 
 
 [[redirects]]
   from = "/.netlify/functions/nicheAnalyzer"
