@@ -84,7 +84,7 @@ exports.handler = async (event) => {
             - Monetization strategies: ${monetization.join(', ')}
             - Trends they're interested in: ${trends || 'N/A'}
             - Geographic Region: ${geographic || 'N/A'}
-    
+        
             Based on this information, suggest 3 potential niches that could be profitable. For each niche:
             1. Describe the niche.
             2. Explain why it could be profitable.
@@ -98,6 +98,8 @@ exports.handler = async (event) => {
             temperature: 0.7,
             n: 1
         });
+
+        console.log(response.data); // Log the OpenAI API response
 
         if (response.data.choices && response.data.choices.length > 0) {
             const nicheIdeas = response.data.choices[0].text.trim();
