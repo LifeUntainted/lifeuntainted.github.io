@@ -6,37 +6,104 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 exports.handler = async (event) => {
+  console.log("Received Event:", JSON.stringify(event, null, 2));
+
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return {
+      statusCode: 405,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: "Method Not Allowed, please use POST" })
+    };
   }
 
   try {
-    const formData = JSON.parse(event.body);
+    let body;
 
-    const prompt = `Based on these inputs, generate three profitable niche business ideas:
-      Interests: ${formData.interests}
-      Skills: ${formData.skills}
-      Audience: ${formData.audience}
-      Monetization: ${formData.monetization.join(', ')}
-      Trends: ${formData.trends}
-      Geographic Focus: ${formData.geographic}
-    `;
+    if (event.body) {
+      body = JSON.parse(event.body);
+    } else {
+      return {
+        statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: "Invalid request, body cannot be empty." })
+      };
+    }
+
+    const { interests, skills, audience, monetization, trends, geographic } = body;
+
+    if (!interests || !skills || !audience || !monetization) {
+      return {
+        statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: "Required fields missing. Please include interests, skills, audience, and monetization." })
+      };
+    }
+
+    const prompt = `
+        You are an AI assistant that helps people find profitable niches for their businesses.
+        Here are some inputs from a user who is looking for niche ideas:
+        - Interests: ${interests}
+        - Skills: ${skills}
+        - Audience: ${audience}
+        - Monetization strategies: ${monetization.join(', ')}
+        - Trends they're interested in: ${trends || 'N/A'}
+        - Geographic Region: ${geographic || 'N/A'}
+
+        Based on this information, suggest 3 potential niches that could be profitable. For each niche:
+        1. Describe the niche.
+        2. Explain why it could be profitable.
+        3. Suggest a few ways to monetize it effectively.
+      `;
 
     const response = await openai.createCompletion({
-      model: "text-davinci-003", // Or whichever model you prefer
+      model: "text-davinci-003",
       prompt: prompt,
-      max_tokens: 200, 
+      max_tokens: 300,
+      temperature: 0.7,
+      n: 1
     });
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ result: response.data.choices[0].text.trim() }),
-    };
+    if (response.data.choices && response.data.choices.length > 0) {
+      const nicheIdeas = response.data.choices[0].text.trim();
+
+      return {
+        statusCode: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ result: nicheIdeas })
+      };
+    } else {
+      console.error("Failed to get valid response from OpenAI API", response.data);
+      return {
+        statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ error: "Failed to generate niche ideas. No valid response from OpenAI." })
+      };
+    }
+
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error calling OpenAI API:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to generate niche ideas' }),
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({ error: "Failed to analyze niche. Please try again." })
     };
   }
 };
