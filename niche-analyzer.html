@@ -77,11 +77,6 @@
       background-color: #57FF8C;
     }
 
-    #monetization option {
-      color: black; 
-      background-color: lightgray; 
-    }
-
     /* Fix for input field text color */
     .input-field input[type=text]:focus + label,
     .input-field input[type=text]:not(.browser-default):valid + label {
@@ -89,6 +84,11 @@
     }
     .input-field .prefix.active {
       color: #57FF8C !important;
+    }
+
+    /* Fix for select dropdown text color */
+    .dropdown-content li > a, .dropdown-content li > span {
+      color: #0A0A0A !important; /* Black text for dropdown options */
     }
   </style>
 </head>
