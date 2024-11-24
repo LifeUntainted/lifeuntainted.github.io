@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat with GPT-3.5 API</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    body {
+      background-color: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    .chat-container {
+      width: 100%;
+      max-width: 600px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .chat-message {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    .user-message {
+      justify-content: flex-end;
+    }
+    .assistant-message {
+      justify-content: flex-start;
+    }
+    .chat-message p {
+      background: #57FF8C;
+      padding: 10px;
+      border-radius: 8px;
+      max-width: 70%;
+      color: #000;
+    }
+    .chat-input {
+      display: flex;
+      padding: 10px;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .chat-input button {
+      margin-left: 10px;
+      padding: 0 15px;
+      background-color: #57FF8C;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div id="chat-box" class="chat-box">
+      <!-- Chat messages will be appended here -->
+    </div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Type your message here...">
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    async function sendMessage() {
+      const message = userInput.value.trim();
+      if (message === '') return;
+
+      // Append the user message to the chatbox
+      appendMessage(message, 'user');
+      userInput.value = '';
+
+      try {
+        // Sending the user's message to the API endpoint
+        const response = await fetch('/.netlify/functions/nicheAnalyzer', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            interests: message,
+            skills: '', // Placeholder values for simplicity
+            audience: '',
+            monetization: [],
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          appendMessage(data.result, 'assistant');
+        } else {
+          appendMessage('Error: Failed to get response from the server.', 'assistant');
+        }
+      } catch (error) {
+        appendMessage('Error: ' + error.message, 'assistant');
+      }
+    }
+
+    function appendMessage(message, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('chat-message');
+      messageDiv.classList.add(sender === 'user' ? 'user-message' : 'assistant-message');
+      const messageContent = document.createElement('p');
+      messageContent.textContent = message;
+      messageDiv.appendChild(messageContent);
+      chatBox.appendChild(messageDiv);
+
+      // Scroll to the bottom when new message is added
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
