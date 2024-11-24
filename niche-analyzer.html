@@ -57,8 +57,10 @@
       text-shadow: 0 0 10px rgba(87, 255, 140, 0.5);
     }
 
-    .niche-analyzer form input, .niche-analyzer form textarea, .niche-analyzer form select {
-      color: #E0E0E0;
+    .niche-analyzer form input, 
+    .niche-analyzer form textarea, 
+    .niche-analyzer form select {
+      color: #E0E0E0 !important; 
       border-bottom: 1px solid #57FF8C !important;
     }
 
@@ -76,8 +78,17 @@
     }
 
     #monetization option {
-      color: black; /* Set text color to black */
-      background-color: lightgray; /* Set background color to light gray */
+      color: black; 
+      background-color: lightgray; 
+    }
+
+    /* Fix for input field text color */
+    .input-field input[type=text]:focus + label,
+    .input-field input[type=text]:not(.browser-default):valid + label {
+      color: #57FF8C !important;
+    }
+    .input-field .prefix.active {
+      color: #57FF8C !important;
     }
   </style>
 </head>
@@ -92,7 +103,7 @@
   <h1 class="analyzer-title">Niche Analyzer</h1>
   <p>Discover profitable niches and insights to grow your business!</p>
 
-  <form id="niche-form">
+  <form id="niche-form" method="POST" action="/.netlify/functions/nicheAnalyzer"> 
     <div class="input-field">
       <input id="interests" type="text" required>
       <label for="interests">Enter Your Interests</label>
