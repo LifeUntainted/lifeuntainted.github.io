@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "functions/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/nicheAnalyzer",
+      "dest": "/functions/nicheAnalyzer.js"
+    },
+    {
+      "src": "/api/gptHandler",
+      "dest": "/functions/gptHandler.js"
+    }
+  ]
+}
