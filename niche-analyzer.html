@@ -195,8 +195,8 @@ title: "Niche Analyzer"
         document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
 
         try {
-          // Send data to backend
-          const response = await fetch('https://321niche.com/nicheAnalyzer', {
+          // Send data to GitHub API or cloud backend
+          const response = await fetch('https://api.321niche.com/analyze', { // Replace with the actual backend endpoint
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
