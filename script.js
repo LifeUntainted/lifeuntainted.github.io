@@ -12,7 +12,7 @@ document.getElementById('niche-form').addEventListener('submit', async (e) => {
 
     try {
         // Send data to the backend serverless function
-        const response = await fetch('https://your-serverless-function-url', {
+        const response = await fetch('https://api-nxmokb6t1-321niche-projects.vercel.app', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
