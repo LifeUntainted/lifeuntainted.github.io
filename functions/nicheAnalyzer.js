@@ -1,12 +1,18 @@
 const { Configuration, OpenAIApi } = require("openai");
 
+// Define reusable headers
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Content-Type": "application/json"
+};
+
 exports.handler = async (event) => {
   // Set CORS headers for preflight requests (OPTIONS)
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        ...corsHeaders,
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
       },
@@ -21,15 +27,24 @@ exports.handler = async (event) => {
   const openai = new OpenAIApi(configuration);
 
   // Parse request body
-  const { interests, skills, audience, monetization, trends, geographic } = JSON.parse(event.body);
+  let requestBody;
+  try {
+    requestBody = JSON.parse(event.body);
+  } catch (e) {
+    return {
+      statusCode: 400,
+      headers: corsHeaders,
+      body: JSON.stringify({ error: "Invalid JSON in request body." }),
+    };
+  }
+
+  const { interests, skills, audience, monetization, trends, geographic } = requestBody;
 
   // Validate request parameters
   if (!interests || !skills || !audience || !monetization) {
     return {
       statusCode: 400,
-      headers: {
-        "Access-Control-Allow-Origin": "*", // Allow CORS
-      },
+      headers: corsHeaders,
       body: JSON.stringify({
         error: "Required fields missing. Please include interests, skills, audience, and monetization.",
       }),
@@ -65,18 +80,14 @@ exports.handler = async (event) => {
     // Return successful response
     return {
       statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*", // Allow CORS
-      },
+      headers: corsHeaders,
       body: JSON.stringify({ result: response.data.choices[0].text.trim() }),
     };
   } catch (error) {
-    console.error("Error calling OpenAI API:", error);
+    console.error("Error calling OpenAI API:", error.response ? error.response.data : error.message);
     return {
       statusCode: 500,
-      headers: {
-        "Access-Control-Allow-Origin": "*", // Allow CORS
-      },
+      headers: corsHeaders,
       body: JSON.stringify({ error: "Failed to analyze niche. Please try again." }),
     };
   }
