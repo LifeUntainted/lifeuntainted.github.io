@@ -4,13 +4,19 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
+// Define reusable headers
+const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/json"
+};
+
 export const handler = async (event) => {
     // Set CORS headers for preflight requests (OPTIONS)
     if (event.httpMethod === 'OPTIONS') {
         return {
             statusCode: 200,
             headers: {
-                "Access-Control-Allow-Origin": "*",
+                ...corsHeaders,
                 "Access-Control-Allow-Methods": "POST, OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type",
             },
@@ -21,10 +27,7 @@ export const handler = async (event) => {
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-Type": "application/json",
-            },
+            headers: corsHeaders,
             body: JSON.stringify({ message: "Method Not Allowed, please use POST" })
         };
     }
@@ -34,10 +37,7 @@ export const handler = async (event) => {
         if (!message) {
             return {
                 statusCode: 400,
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Type": "application/json",
-                },
+                headers: corsHeaders,
                 body: JSON.stringify({ message: "Invalid request, message field cannot be empty." })
             };
         }
@@ -58,19 +58,13 @@ export const handler = async (event) => {
 
             return {
                 statusCode: 200,
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                },
+                headers: corsHeaders,
                 body: JSON.stringify({ response: chatResponse })
             };
         } else {
             return {
                 statusCode: 500,
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                },
+                headers: corsHeaders,
                 body: JSON.stringify({ error: "No valid response from OpenAI." })
             };
         }
@@ -79,10 +73,7 @@ export const handler = async (event) => {
         console.error("Error calling OpenAI API:", error.response ? error.response.data : error.message);
         return {
             statusCode: 500,
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
+            headers: corsHeaders,
             body: JSON.stringify({ error: "Failed to get response from OpenAI API." })
         };
     }
