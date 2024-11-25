@@ -1,85 +1,36 @@
 const { Configuration, OpenAIApi } = require("openai");
 
-// Ensure you're fetching the API key from environment variables set in Netlify
+// Load environment variables (for local development)
+require('dotenv').config();
+
+// Set up OpenAI configuration
 const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY, // No hard-coded API keys
+    apiKey: process.env.OPENAI_API_KEY, // Ensure you have your API key stored securely in GitHub Secrets
 });
 const openai = new OpenAIApi(configuration);
 
-const requestCounts = {}; // In-memory store for request counts
-const MAX_REQUESTS_PER_DAY = 3; // Adjust as needed
+// Request handling function
+exports.handler = async (req, res) => {
+    console.log("Received Event:", JSON.stringify(req.body, null, 2));
 
-exports.handler = async (event) => {
-    console.log("Received Event:", JSON.stringify(event, null, 2));
-
-    if (event.httpMethod !== 'POST') {
-        return {
-            statusCode: 405,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ message: "Method Not Allowed, please use POST" })
-        };
+    if (req.method !== 'POST') {
+        return res.status(405).json({
+            message: "Method Not Allowed, please use POST",
+        });
     }
 
     try {
-        const ip = event.headers['x-forwarded-for'] || event.headers['client-ip']; // Get user's IP address
-        const now = Date.now();
+        // Extract body data
+        const { interests, skills, audience, monetization, trends, geographic } = req.body;
 
-        // Rate limiting logic
-        if (requestCounts[ip]) {
-            const requests = requestCounts[ip];
-            requests.push(now);
-
-            // Remove requests older than one day
-            const oneDayAgo = now - (24 * 60 * 60 * 1000);
-            requestCounts[ip] = requests.filter(time => time > oneDayAgo);
-
-            if (requestCounts[ip].length > MAX_REQUESTS_PER_DAY) {
-                return {
-                    statusCode: 429,
-                    headers: {
-                        "Access-Control-Allow-Origin": "*",
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ error: "Too Many Requests. You are limited to 3 requests per day. Please try again tomorrow." })
-                };
-            }
-        } else {
-            requestCounts[ip] = [now];
-        }
-
-        // Parse the body
-        let body;
-        if (event.body) {
-            body = JSON.parse(event.body);
-        } else {
-            return {
-                statusCode: 400,
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ message: "Invalid request, body cannot be empty." })
-            };
-        }
-
-        const { interests, skills, audience, monetization, trends, geographic } = body;
-
+        // Validate inputs
         if (!interests || !skills || !audience || !monetization) {
-            return {
-                statusCode: 400,
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    message: "Required fields missing. Please include interests, skills, audience, and monetization."
-                })
-            };
+            return res.status(400).json({
+                message: "Required fields missing. Please include interests, skills, audience, and monetization.",
+            });
         }
 
+        // Create prompt for OpenAI API
         const prompt = `
             You are an AI assistant that helps people find profitable niches for their businesses.
             Here are some inputs from a user who is looking for niche ideas:
@@ -94,51 +45,39 @@ exports.handler = async (event) => {
             1. Describe the niche.
             2. Explain why it could be profitable.
             3. Suggest a few ways to monetize it effectively.
-          `;
+        `;
 
-        // Call OpenAI API
+        // Get a response from OpenAI
         const response = await openai.createCompletion({
-            model: "gpt-3.5-turbo", // Update to gpt-4 if needed
+            model: "text-davinci-003", // Updated to use the more common model name
             prompt: prompt,
             max_tokens: 300,
             temperature: 0.7,
-            n: 1
+            n: 1,
         });
 
-        console.log(response.data); // Log the OpenAI API response
+        // Log OpenAI response for debugging
+        console.log(response.data);
 
         if (response.data.choices && response.data.choices.length > 0) {
             const nicheIdeas = response.data.choices[0].text.trim();
 
-            return {
-                statusCode: 200,
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                },
-                body: JSON.stringify({ result: nicheIdeas })
-            };
+            return res.status(200).json({
+                result: nicheIdeas,
+            });
         } else {
             console.error("Failed to get valid response from OpenAI API", response.data);
-            return {
-                statusCode: 500,
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ error: "Failed to generate niche ideas. No valid response from OpenAI." })
-            };
+            return res.status(500).json({
+                error: "Failed to generate niche ideas. No valid response from OpenAI.",
+            });
         }
 
     } catch (error) {
         console.error("Error calling OpenAI API:", error);
-        return {
-            statusCode: 500,
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
-            body: JSON.stringify({ error: "Failed to analyze niche. Please try again." })
-        };
+        return res.status(500).json({
+            error: "Failed to analyze niche. Please try again.",
+        });
     }
 };
+
+// Note: If you're using an Express.js server for GitHub Pages or a custom server, make sure this function is called accordingly.
