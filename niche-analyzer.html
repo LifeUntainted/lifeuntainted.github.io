@@ -31,7 +31,7 @@ title: "Niche Analyzer"
 
     nav,
     .page-footer {
-      background-color: #0A0A0A !important; /* Black */
+      background-color: #0A0A0A !important;
       border-top: none;
     }
 
@@ -43,11 +43,11 @@ title: "Niche Analyzer"
 
     .footer-content,
     nav ul li a {
-      color: #E0E0E0 !important; /* White text for readability */
+      color: #E0E0E0 !important;
     }
 
     a {
-      color: #57FF8C !important; /* Off-green for links */
+      color: #57FF8C !important;
     }
 
     .niche-analyzer {
@@ -69,11 +69,39 @@ title: "Niche Analyzer"
     .niche-analyzer form select {
       color: #E0E0E0;
       border-bottom: 1px solid #57FF8C !important;
+      background-color: #1c1c1c;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .niche-analyzer form input:focus,
+    .niche-analyzer form textarea:focus,
+    .niche-analyzer form select:focus {
+      background-color: #333 !important;
+      border-bottom: 1px solid #57FF8C !important;
+      box-shadow: 0 1px 0 0 #57FF8C !important;
+      color: #57FF8C !important;
+    }
+
+    .niche-analyzer form label {
+      color: #57FF8C;
+    }
+
+    .dropdown-content li>a,
+    .select-dropdown {
+      color: #0A0A0A !important;
+      background-color: #57FF8C !important;
     }
 
     .niche-analyzer .btn {
       background-color: #57FF8C;
       color: #0A0A0A;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+
+    .niche-analyzer .btn:hover {
+      background-color: #45D679;
     }
 
     #back-to-top {
@@ -82,6 +110,7 @@ title: "Niche Analyzer"
       right: 30px;
       display: none;
       background-color: #57FF8C;
+      color: #0A0A0A;
     }
 
     #results {
@@ -91,6 +120,24 @@ title: "Niche Analyzer"
       border-radius: 8px;
       color: #57FF8C;
       border: 1px solid #57FF8C;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+
+    .loading-spinner {
+      border: 3px solid #f3f3f3; /* Light grey */
+      border-top: 3px solid #57FF8C; /* Green */
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -148,13 +195,8 @@ title: "Niche Analyzer"
   </div>
 
   <!-- Include jQuery and GSAP at the end of the body for better loading -->
-  <!-- Include jQuery (required by Materialize JS) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!-- Include Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-  <!-- Include GSAP Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 
   <!-- Custom Scripts -->
@@ -175,6 +217,10 @@ title: "Niche Analyzer"
 
       // Handle Form Submission
       document.getElementById('analyze-button').addEventListener('click', async function () {
+        // Disable the button and add custom loading animation
+        this.disabled = true;
+        this.innerHTML = '<span class="loading-spinner"></span> Analyzing...';
+
         // Collect form data
         const formData = {
           interests: document.getElementById('interests').value.trim(),
@@ -188,6 +234,8 @@ title: "Niche Analyzer"
         // Validate required fields
         if (!formData.interests || !formData.skills || !formData.audience || formData.monetization.length === 0) {
           alert('Please fill out all the required fields.');
+          this.disabled = false;
+          this.innerHTML = 'Analyze Niche';
           return;
         }
 
@@ -195,8 +243,8 @@ title: "Niche Analyzer"
         document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
 
         try {
-          // Send data to GitHub API or cloud backend
-          const response = await fetch('https://api-seven-lake.vercel.app', { // Replace with the actual backend endpoint
+          // Send data to the backend API
+          const response = await fetch('https://api-seven-lake.vercel.app/api/nicheAnalyzer', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -219,6 +267,10 @@ title: "Niche Analyzer"
         } catch (error) {
           document.getElementById('results').innerHTML = "<p>An error occurred while processing your request.</p>";
           console.error('Error:', error);
+        } finally {
+          // Re-enable the button and reset text
+          this.disabled = false;
+          this.innerHTML = 'Analyze Niche';
         }
       });
     });
