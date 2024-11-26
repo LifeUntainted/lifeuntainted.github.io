@@ -1,8 +1,8 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 module.exports = async (req, res) => {
-  // Set CORS headers for all responses
-  res.setHeader("Access-Control-Allow-Origin", "https://www.321niche.com"); // Replace with your actual domain
+  // Set CORS headers
+  res.setHeader("Access-Control-Allow-Origin", "https://www.321niche.com"); // Replace with your domain
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
