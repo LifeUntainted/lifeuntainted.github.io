@@ -1,0 +1,9 @@
+{
+    "name": "niche-analyzer-api",
+    "version": "1.0.0",
+    "main": "api/nicheAnalyzer.js",
+    "dependencies": {
+      "openai": "^3.1.0"
+    }
+  }
+  
