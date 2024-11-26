@@ -1,36 +1,32 @@
-// api/nicheAnalyzer.js
-
 const { Configuration, OpenAIApi } = require("openai");
 
 module.exports = async (req, res) => {
-  // Set CORS headers
-  res.setHeader("Access-Control-Allow-Origin", "*"); // Replace '*' with your domain for better security
-  res.setHeader("Content-Type", "application/json");
+  // Set CORS headers for all responses
+  res.setHeader("Access-Control-Allow-Origin", "https://www.321niche.com"); // Replace with your actual domain
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   // Handle preflight requests (OPTIONS)
-  if (req.method === 'OPTIONS') {
-    // Set CORS headers for all responses
-res.setHeader("Access-Control-Allow-Origin", "https://www.321niche.com"); // Replace with your actual domain
-res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-res.setHeader("Content-Type", "application/json");
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
 
-// Handle preflight requests (OPTIONS)
-if (req.method === 'OPTIONS') {
-  return res.status(200).end();
-}
+  // Ensure it's a POST request
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
 
   // Parse request body
   let requestBody = req.body;
 
   // If req.body is undefined, parse it manually
   if (!requestBody) {
-    let body = '';
+    let body = "";
     await new Promise((resolve) => {
-      req.on('data', (chunk) => {
+      req.on("data", (chunk) => {
         body += chunk.toString();
       });
-      req.on('end', resolve);
+      req.on("end", resolve);
     });
     try {
       requestBody = JSON.parse(body);
