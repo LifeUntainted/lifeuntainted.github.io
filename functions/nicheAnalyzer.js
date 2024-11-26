@@ -9,16 +9,16 @@ module.exports = async (req, res) => {
 
   // Handle preflight requests (OPTIONS)
   if (req.method === 'OPTIONS') {
-    res.setHeader("Access-Control-Allow-Origin", "https://lifeuntainted.github.io");
+    // Set CORS headers for all responses
+res.setHeader("Access-Control-Allow-Origin", "https://www.321niche.com"); // Replace with your actual domain
 res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
 res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    return res.status(200).end();
-  }
+res.setHeader("Content-Type", "application/json");
 
-  // Ensure it's a POST request
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: "Method Not Allowed" });
-  }
+// Handle preflight requests (OPTIONS)
+if (req.method === 'OPTIONS') {
+  return res.status(200).end();
+}
 
   // Parse request body
   let requestBody = req.body;
