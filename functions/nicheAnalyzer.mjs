@@ -1,6 +1,6 @@
-const { Configuration, OpenAIApi } = require("openai");
+import OpenAI from "openai";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   // Set CORS headers
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -41,12 +41,11 @@ module.exports = async (req, res) => {
     });
   }
 
-  // Create OpenAI API configuration
   try {
-    const configuration = new Configuration({
-      apiKey: process.env.OPENAI_API_KEY,
+    // Create OpenAI API instance with API key from Vercel environment variable
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY, // Vercel should have this variable set up
     });
-    const openai = new OpenAIApi(configuration);
 
     // Prepare prompt for OpenAI API
     const prompt = `
@@ -83,14 +82,15 @@ module.exports = async (req, res) => {
       Please output only the JSON array, without any additional text.
     `;
 
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: prompt,
+    // Request completion from GPT-4
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [{ role: "system", content: "You are a helpful assistant." }, { role: "user", content: prompt }],
       max_tokens: 500,
       temperature: 0.7,
     });
 
-    const aiResponse = response.data.choices[0].text.trim();
+    const aiResponse = completion.choices[0].message?.content.trim();
 
     let suggestions;
     try {
