@@ -4,7 +4,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
 module.exports = async (req, res) => {
   // Set CORS headers
-  res.setHeader("Access-Control-Allow-Origin", "*"); // Replace '*' with your frontend domain for better security
+  res.setHeader("Access-Control-Allow-Origin", "https://www.321niche.com"); // Replace with your frontend domain
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
@@ -25,8 +25,7 @@ module.exports = async (req, res) => {
   // Validate request parameters
   if (!interests || !skills || !audience || !monetization) {
     return res.status(400).json({
-      error:
-        "Required fields missing. Please include interests, skills, audience, and monetization.",
+      error: "Required fields missing. Please include interests, skills, audience, and monetization.",
     });
   }
 
