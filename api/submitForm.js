@@ -3,9 +3,19 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 module.exports = async (req, res) => {
+  // Set CORS headers
+  res.setHeader("Access-Control-Allow-Origin", "*"); // Replace '*' with your frontend domain for better security
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  // Handle preflight OPTIONS request
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   // Ensure it's a POST request
-  if (req.method !== 'POST') {
-    res.setHeader("Allow", "POST");
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "POST, OPTIONS");
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
@@ -15,7 +25,8 @@ module.exports = async (req, res) => {
   // Validate request parameters
   if (!interests || !skills || !audience || !monetization) {
     return res.status(400).json({
-      error: "Required fields missing. Please include interests, skills, audience, and monetization.",
+      error:
+        "Required fields missing. Please include interests, skills, audience, and monetization.",
     });
   }
 
@@ -83,7 +94,10 @@ Please output only the JSON array, without any additional text.
     // Return successful response
     return res.status(200).json({ suggestions });
   } catch (error) {
-    console.error("Error calling OpenAI API:", error.response ? error.response.data : error.message);
+    console.error(
+      "Error calling OpenAI API:",
+      error.response ? error.response.data : error.message
+    );
     return res.status(500).json({ error: "Failed to analyze niche. Please try again." });
   }
 };
