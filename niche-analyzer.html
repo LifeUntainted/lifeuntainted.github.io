@@ -119,8 +119,8 @@
     }
 
     .loading-spinner {
-      border: 3px solid #f3f3f3; /* Light grey */
-      border-top: 3px solid #57FF8C; /* Green */
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #57FF8C;
       border-radius: 50%;
       width: 16px;
       height: 16px;
@@ -244,7 +244,9 @@
       });
 
       // Handle Form Submission
-      document.getElementById('analyze-button').addEventListener('click', async function () {
+      document.getElementById('analyze-button').addEventListener('click', async function (event) {
+        event.preventDefault(); // Prevent default form submission
+
         // Disable the button and add custom loading animation
         this.disabled = true;
         this.innerHTML = '<span class="loading-spinner"></span> Analyzing...';
@@ -272,7 +274,7 @@
 
         try {
           // Send data to the backend API
-          const response = await fetch('https://functions-nldi4mont-321niche-projects.vercel.app/api/nicheAnalyzer', {
+          const response = await fetch('/api/submitForm', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -323,7 +325,7 @@
           resultsContainer.appendChild(suggestionCard);
         });
       } catch (error) {
-        console.error('Error parsing suggestions:', error);
+        console.error('Error processing suggestions:', error);
         resultsContainer.innerHTML = '<p>Could not parse the suggestions. Please try again.</p>';
       }
     }
