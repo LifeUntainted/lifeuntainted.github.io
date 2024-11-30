@@ -1,8 +1,8 @@
 // api/submitForm.js
 
-const { Configuration, OpenAIApi } = require("openai");
+import OpenAI from "openai";
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader("Access-Control-Allow-Origin", "https://www.321niche.com"); // Replace with your frontend domain
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -20,18 +20,42 @@ module.exports = async (req, res) => {
   }
 
   // Parse request body
-  const { interests, skills, audience, monetization, trends, geographic } = req.body;
+  let body = req.body;
+  if (!body || typeof body !== "object") {
+    try {
+      body = JSON.parse(req.body);
+    } catch (error) {
+      return res.status(400).json({ error: "Invalid JSON in request body." });
+    }
+  }
+
+  const { interests, skills, audience, monetization, trends, geographic } = body;
 
   // Validate request parameters
   if (!interests || !skills || !audience || !monetization) {
     return res.status(400).json({
-      error: "Required fields missing. Please include interests, skills, audience, and monetization.",
+      error:
+        "Required fields missing. Please include interests, skills, audience, and monetization.",
     });
   }
 
-  // Create prompt for OpenAI
-  const prompt = `
-You are an AI assistant that helps people find profitable niches for their businesses.
+  // Create the OpenAI client
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
+  try {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo", // You can change the model if needed
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are an AI assistant that helps people find profitable niches for their businesses.",
+        },
+        {
+          role: "user",
+          content: `
 Here are some inputs from a user who is looking for niche ideas:
 - Interests: ${interests}
 - Skills: ${skills}
@@ -62,24 +86,12 @@ Please present the niches as a JSON array like this:
 ]
 
 Please output only the JSON array, without any additional text.
-`;
-
-  // Set up OpenAI API Configuration
-  const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
-  const openai = new OpenAIApi(configuration);
-
-  try {
-    // Make request to OpenAI
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: prompt,
-      max_tokens: 500,
-      temperature: 0.7,
+`,
+        },
+      ],
     });
 
-    const aiResponse = response.data.choices[0].text.trim();
+    const aiResponse = completion.choices[0].message.content.trim();
 
     // Try to parse the AI response as JSON
     let suggestions;
@@ -99,4 +111,4 @@ Please output only the JSON array, without any additional text.
     );
     return res.status(500).json({ error: "Failed to analyze niche. Please try again." });
   }
-};
+}
