@@ -1,4 +1,4 @@
-// api/submitForm.js
+// api/submitForm.mjs
 
 import OpenAI from "openai";
 
@@ -45,18 +45,46 @@ export default async function handler(req, res) {
   });
 
   try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // You can change the model if needed
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are an AI assistant that helps people find profitable niches for their businesses.",
+    // Define the function schema
+    const functions = [
+      {
+        name: "generate_niche_suggestions",
+        description: "Generates niche suggestions based on user inputs",
+        parameters: {
+          type: "object",
+          properties: {
+            suggestions: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  title: { type: "string" },
+                  description: { type: "string" },
+                  monetizationStrategies: {
+                    type: "array",
+                    items: { type: "string" },
+                  },
+                },
+                required: ["title", "description", "monetizationStrategies"],
+              },
+            },
+          },
+          required: ["suggestions"],
         },
-        {
-          role: "user",
-          content: `
-Here are some inputs from a user who is looking for niche ideas:
+      },
+    ];
+
+    // Create messages for OpenAI Chat Completion API
+    const messages = [
+      {
+        role: "system",
+        content: "You are an AI assistant that helps people find profitable niches for their businesses.",
+      },
+      {
+        role: "user",
+        content: `
+Please generate 3 potential niches based on the following information:
+
 - Interests: ${interests}
 - Skills: ${skills}
 - Audience: ${audience}
@@ -64,42 +92,27 @@ Here are some inputs from a user who is looking for niche ideas:
 - Trends they're interested in: ${trends || "N/A"}
 - Geographic Region: ${geographic || "N/A"}
 
-Based on this information, suggest 3 potential niches that could be profitable.
+Provide the suggestions in the form of a JSON object following the function schema.`,
+      },
+    ];
 
-For each niche, provide the following information:
-
-{
-  "title": "Niche Title",
-  "description": "Brief description of the niche.",
-  "monetizationStrategies": ["Strategy 1", "Strategy 2"]
-}
-
-Please present the niches as a JSON array like this:
-
-[
-  {
-    "title": "Niche Title",
-    "description": "Brief description of the niche.",
-    "monetizationStrategies": ["Strategy 1", "Strategy 2"]
-  },
-  ...
-]
-
-Please output only the JSON array, without any additional text.
-`,
-        },
-      ],
+    // Call the OpenAI API with function calling
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo-0613",
+      messages: messages,
+      functions: functions,
+      function_call: { name: "generate_niche_suggestions" },
     });
 
-    const aiResponse = completion.choices[0].message.content.trim();
+    const responseMessage = completion.choices[0].message;
 
-    // Try to parse the AI response as JSON
     let suggestions;
-    try {
-      suggestions = JSON.parse(aiResponse);
-    } catch (e) {
-      console.error("Failed to parse AI response as JSON:", aiResponse);
-      return res.status(500).json({ error: "AI response is not valid JSON." });
+
+    if (responseMessage.function_call) {
+      const args = JSON.parse(responseMessage.function_call.arguments);
+      suggestions = args.suggestions;
+    } else {
+      throw new Error("No function call in the response");
     }
 
     // Return successful response
