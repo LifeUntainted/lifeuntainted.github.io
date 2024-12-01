@@ -89,7 +89,7 @@ This means you have the power to create a happier life through your choices and 
 ## Resources to Explore
 
 - **Books:**
-  - *The How of Happiness: A New Approach to Getting the Life You Want* by Sonja Lyubomirsky. [Available on Amazon](https://amzn.to/3OAkgqU).
+  - *The How of Happiness: A New Approach to Getting the Life You Want* by Sonja Lyubomirsky. [Available on Amazon](https://amzn.to/3ZxFmwn).
   - *Happier: Learn the Secrets to Daily Joy and Lasting Fulfillment* by Tal Ben-Shahar. [Available on Amazon](https://amzn.to/4fSLaGb).
 
 - **TED Talks:**
