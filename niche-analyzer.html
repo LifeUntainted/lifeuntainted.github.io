@@ -1,185 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Meta Tags -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Discover profitable and personalized niche ideas with our AI-powered Niche Analyzer.">
+    <!-- Metadata and Title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niche Analyzer - 321Niche</title>
+    
+    <!-- Google Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Materialize CSS for Enhanced Styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <!-- Import Google Icon Font and Orbitron Font -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #212121; /* Default dark background */
+            color: white; /* Default light text color */
+            font-family: 'Orbitron', sans-serif;
+        }
 
-  <!-- Include Materialize CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        .suggestion-card {
+            border: 2px solid #00c853; 
+            background-color: #212121; 
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px; 
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); 
+        }
 
-  <!-- Custom Styles -->
-  <style>
-    /* (styles unchanged for brevity) */
-  </style>
+        .suggestion-card h3 {
+            color: #00c853; 
+        }
+
+        .error-message {
+            color: #ff4444; 
+            font-weight: bold;
+        }
+
+        /* Light mode styles (initially hidden) */
+        body.light-mode {
+            background-color: white;
+            color: black;
+        }
+
+        .light-mode .suggestion-card {
+            border-color: #00796b; /* Darker green border for light mode */
+            background-color: white;
+            color: black;
+        }
+
+        .light-mode .suggestion-card h3 {
+            color: #00796b; 
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 50px;
+            right: 30px;
+            display: none;
+            background-color: #00c853;
+        }
+
+        .footer-content {
+            text-align: center;
+            padding: 20px;
+            background-color: #1b1b1b;
+            color: #777;
+            margin-top: 40px;
+        }
+
+        .niche-analyzer {
+            margin-top: 50px;
+        }
+
+        .analyzer-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00c853;
+        }
+
+        /* Loading Indicator */
+        #loading-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Switch Label */
+        .switch label {
+            color: white;
+        }
+
+        .light-mode .switch label {
+            color: black;
+        }
+    </style>
 </head>
-
 <body>
-  <!-- Back to Top Button -->
-  <a href="#" id="back-to-top" class="btn-floating btn-large">
-    <i class="material-icons">keyboard_arrow_up</i>
-  </a>
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" class="btn-floating btn-large">
+        <i class="material-icons">keyboard_arrow_up</i>
+    </a>
 
-  <!-- Niche Analyzer Content -->
-  <div class="container niche-analyzer">
-    <h1 class="analyzer-title">Niche Analyzer</h1>
-    <p>Discover profitable niches and insights to grow your business!</p>
+    <div class="container niche-analyzer">
+        <h1 class="analyzer-title">Niche Analyzer</h1>
+        <p>Discover profitable niches and insights to grow your business!</p>
 
-    <!-- Analyzer Form -->
-    <form id="niche-form">
-      <div class="input-field">
-        <input id="interests" name="interests" type="text" required>
-        <label for="interests">Enter Your Interests</label>
-      </div>
-      <div class="input-field">
-        <input id="skills" name="skills" type="text" required>
-        <label for="skills">Enter Your Skills</label>
-      </div>
-      <div class="input-field">
-        <input id="audience" name="audience" type="text" required>
-        <label for="audience">Describe Your Audience</label>
-      </div>
-      <div class="input-field">
-        <select id="monetization" name="monetization" multiple required>
-          <option value="" disabled>Select Monetization Strategies</option>
-          <option value="ads">Advertisements</option>
-          <option value="affiliate">Affiliate Marketing</option>
-          <option value="products">Product Sales</option>
-          <option value="services">Service Sales</option>
-        </select>
-        <label for="monetization">Monetization Strategies</label>
-      </div>
-      <div class="input-field">
-        <input id="trends" name="trends" type="text">
-        <label for="trends">Trends You're Interested In</label>
-      </div>
-      <div class="input-field">
-        <input id="geographic" name="geographic" type="text">
-        <label for="geographic">Geographic Region of Focus</label>
-      </div>
-      <button type="button" id="analyze-button" class="btn waves-effect waves-light">Analyze Niche</button>
-    </form>
+        <form id="niche-form">
+            <div class="input-field">
+                <input id="interests" name="interests" type="text" required>
+                <label for="interests">Enter Your Interests</label>
+            </div>
+            <div class="input-field">
+                <input id="skills" name="skills" type="text" required>
+                <label for="skills">Enter Your Skills</label>
+            </div>
+            <div class="input-field">
+                <input id="audience" name="audience" type="text" required>
+                <label for="audience">Describe Your Audience</label>
+            </div>
+            <div class="input-field">
+                <select id="monetization" name="monetization" multiple required>
+                    <option value="" disabled>Select Monetization Strategies</option>
+                    <option value="Advertisements">Advertisements</option>
+                    <option value="Affiliate Marketing">Affiliate Marketing</option>
+                    <option value="Product Sales">Product Sales</option>
+                    <option value="Service Sales">Service Sales</option>
+                    <option value="Subscriptions">Subscriptions</option>
+                    <option value="Sponsorships">Sponsorships</option>
+                </select>
+                <label for="monetization">Monetization Strategies</label>
+            </div>
+            <div class="input-field">
+                <input id="trends" name="trends" type="text">
+                <label for="trends">Trends You're Interested In</label>
+            </div>
+            <div class="input-field">
+                <input id="geographic" name="geographic" type="text">
+                <label for="geographic">Geographic Region of Focus</label>
+            </div>
+            <button type="button" id="analyze-button" class="btn waves-effect waves-light">Analyze Niche</button>
+        </form>
 
-    <div id="results" class="results-section"></div>
-  </div>
+        <div id="results" class="results-section">
+            <div id="loading-indicator" class="preloader-wrapper big active" style="display: none;">
+                <div class="spinner-layer spinner-green-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <div class="footer-content page-footer">
-    &copy; 2024 321Niche. All Rights Reserved.
-  </div>
+        <!-- Dark/Light Mode Switch -->
+        <div class="switch" style="margin-top: 20px;">
+            <label>
+                Dark Mode
+                <input type="checkbox" id="mode-switch">
+                <span class="lever"></span>
+                Light Mode
+            </label>
+        </div>
+    </div>
 
-  <!-- Include jQuery and Materialize JS -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <div class="footer-content page-footer">
+        &copy; 2024 321Niche. All Rights Reserved.
+    </div>
 
-  <!-- Custom Scripts -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Initialize Materialize Components
-      M.AutoInit();
+    <!-- jQuery and Materialize JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
 
-      // Back to Top Button functionality
-      window.addEventListener('scroll', function () {
-        const backToTop = document.getElementById('back-to-top');
-        if (window.scrollY > 500) {
-          backToTop.style.display = 'block';
-        } else {
-          backToTop.style.display = 'none';
-        }
-      });
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.AutoInit();
 
-      // Handle Form Submission
-      document.getElementById('analyze-button').addEventListener('click', async function (event) {
-        event.preventDefault(); // Prevent default form submission
+            const modeSwitch = document.getElementById('mode-switch');
+            modeSwitch.addEventListener('change', () => {
+                document.body.classList.toggle('light-mode');
+            });
 
-        // Disable the button and add custom loading animation
-        this.disabled = true;
-        this.innerHTML = '<span class="loading-spinner"></span> Analyzing...';
+            const backToTop = document.getElementById('back-to-top');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 500) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
 
-        // Collect form data
-        const formData = {
-          interests: document.getElementById('interests').value.trim(),
-          skills: document.getElementById('skills').value.trim(),
-          audience: document.getElementById('audience').value.trim(),
-          monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
-          trends: document.getElementById('trends').value.trim() || 'N/A',
-          geographic: document.getElementById('geographic').value.trim() || 'N/A'
-        };
+            backToTop.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
 
-        // Validate required fields
-        if (!formData.interests || !formData.skills || !formData.audience || formData.monetization.length === 0) {
-          alert('Please fill out all the required fields.');
-          this.disabled = false;
-          this.innerHTML = 'Analyze Niche';
-          return;
-        }
+            document.getElementById('analyze-button').addEventListener('click', async function (event) {
+                event.preventDefault();
+                this.disabled = true;
+                this.innerHTML = 'Analyzing...';
 
-        // Display loading message
-        document.getElementById('results').innerHTML = "<p>Analyzing your inputs, please wait...</p>";
+                const formData = {
+                    interests: document.getElementById('interests').value.trim(),
+                    skills: document.getElementById('skills').value.trim(),
+                    audience: document.getElementById('audience').value.trim(),
+                    monetization: M.FormSelect.getInstance(document.getElementById('monetization')).getSelectedValues(),
+                    trends: document.getElementById('trends').value.trim() || 'N/A',
+                    geographic: document.getElementById('geographic').value.trim() || 'N/A'
+                };
 
-        try {
-          // Send data to the backend API
-          const response = await fetch('https://niche-analyzer-84e5rguhg-321niche-projects.vercel.app/api/submitForm', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-          });
+                if (!formData.interests || !formData.skills || !formData.audience || formData.monetization.length === 0) {
+                    alert('Please fill out all the required fields.');
+                    this.disabled = false;
+                    this.innerHTML = 'Analyze Niche';
+                    return;
+                }
 
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
+                document.getElementById('results').innerHTML = ''; 
+                document.getElementById('loading-indicator').style.display = 'block'; 
 
-          const data = await response.json();
+                try {
+                    const apiKey = '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'; // Replace with your actual OpenAI API key
 
-          if (data.suggestions) {
-            // Process and display suggestions
-            displaySuggestions(data.suggestions);
-          } else {
-            document.getElementById('results').innerHTML = "<p>Sorry, we couldn't generate niche ideas at this time.</p>";
-          }
-        } catch (error) {
-          document.getElementById('results').innerHTML = "<p>An error occurred while processing your request.</p>";
-          console.error('Error:', error);
-        } finally {
-          // Re-enable the button and reset text
-          this.disabled = false;
-          this.innerHTML = 'Analyze Niche';
-        }
-      });
-    });
+                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${apiKey}`
+                        },
+                        body: JSON.stringify({
+                            model: 'gpt-4-turbo',
+                            messages: [
+                                {
+                                    role: "system",
+                                    content: `You are a niche analyzer, assessing potential markets or topics for their viability, audience characteristics, and potential growth opportunities. Provide a detailed analysis based on the user's inputs, including niche suggestions, audience insights, monetization strategies, and potential challenges or opportunities.`
+                                },
+                                {
+                                    role: "user",
+                                    content: `
+Here's some information about a user:
+- Interests: ${formData.interests}
+- Skills: ${formData.skills}
+- Target audience: ${formData.audience}
+- Preferred monetization strategies: ${formData.monetization.join(', ')}
+- Interested in trends: ${formData.trends}
+- Geographic focus: ${formData.geographic}
 
-    function displaySuggestions(suggestions) {
-      const resultsContainer = document.getElementById('results');
-      resultsContainer.innerHTML = '';
+Please provide a niche analysis based on this information.
+                                    `
+                                }
+                            ],
+                            max_tokens: 500,
+                            temperature: 0.7
+                        })
+                    });
 
-      try {
-        suggestions.forEach(suggestion => {
-          const suggestionCard = document.createElement('div');
-          suggestionCard.classList.add('suggestion-card');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
 
-          suggestionCard.innerHTML = `
-            <h3>${suggestion.title}</h3>
-            <p>${suggestion.description}</p>
-            <ul>
-              ${suggestion.monetizationStrategies.map(strategy => `<li>${strategy}</li>`).join('')}
-            </ul>
-          `;
+                    const data = await response.json();
 
-          resultsContainer.appendChild(suggestionCard);
+                    document.getElementById('loading-indicator').style.display = 'none'; 
+                    displaySuggestions(data.choices[0].message.content);
+
+                } catch (error) {
+                    document.getElementById('loading-indicator').style.display = 'none'; 
+
+                    const errorMessage = error.message.includes('HTTP error!')
+                        ? 'Error communicating with the server. Please try again later.'
+                        : 'An error occurred while processing your request.';
+
+                    document.getElementById('results').innerHTML = `<p class="error-message">${errorMessage}</p>`;
+                    console.error('Error:', error);
+
+                } finally {
+                    this.disabled = false;
+                    this.innerHTML = 'Analyze Niche';
+                }
+            });
+
+            function displaySuggestions(suggestions) {
+                const resultsContainer = document.getElementById('results');
+                resultsContainer.innerHTML = '';
+
+                const suggestionCard = document.createElement('div');
+                suggestionCard.classList.add('suggestion-card');
+
+                suggestionCard.innerHTML = `
+                    <h3>Niche Analysis Results</h3>
+                    <p>${suggestions.replace(/\n/g, '<br>')}</p>
+                `;
+
+                resultsContainer.appendChild(suggestionCard);
+            }
         });
-      } catch (error) {
-        console.error('Error processing suggestions:', error);
-        resultsContainer.innerHTML = '<p>Could not parse the suggestions. Please try again.</p>';
-      }
-    }
-  </script>
+    </script>
 </body>
-
 </html>
