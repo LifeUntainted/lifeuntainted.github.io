@@ -53,7 +53,7 @@ Start building resilience today with our free [Daily Reflection Journal](https:/
 ---
 
 ## Personal Anecdotes and Case Studies
-Jane Doe, a small business owner, faced significant setbacks when her first business failed. By practicing gratitude, journaling her progress, and seeking support from mentors, she turned her next venture into a thriving success.
+Sarah Wilson, a small business owner, faced significant setbacks when her first business failed. By practicing gratitude, journaling her progress, and seeking support from mentors, she turned her next venture into a thriving success.
 
 > “Resilience isn’t about bouncing back—it’s about growing stronger through challenges.” – Dr. Lucy Hone, TED Speaker
 
@@ -142,7 +142,7 @@ To help you build resilience, we've outlined essential steps below. These steps 
 Resilience is a skill you can develop with intentional effort. By adopting these strategies, leveraging our free tools, and engaging with expert resources, you can build a more resilient mindset starting today.
 
 ### Share Your Story
-What strategies have worked for you in building resilience? Share your experience in the comments below or on social media with **#321niche** to inspire others!
+What strategies have worked for you in building resilience? Share your experience on social media with **#321niche** to inspire others!
 
 ---
 321niche.com
