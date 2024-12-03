@@ -97,6 +97,47 @@
         .light-mode .switch label {
             color: black;
         }
+
+        /* Modal Styles */
+        .modal {
+            color: black; /* Ensure text is visible */
+        }
+
+        /* Buffering Animation */
+        .buffering-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(33, 33, 33, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+
+        .buffering-overlay .preloader-wrapper {
+            width: 100px;
+            height: 100px;
+        }
+
+        /* Console Overlay */
+        #console-overlay {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: rgba(33, 33, 33, 0.9);
+            color: #00c853;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            display: none; /* Hidden by default */
+        }
     </style>
 </head>
 <body>
@@ -145,8 +186,20 @@
             <button type="button" id="analyze-button" class="btn waves-effect waves-light">Analyze Niche</button>
         </form>
 
-        <div id="results" class="results-section">
-            <div id="loading-indicator" class="preloader-wrapper big active" style="display: none;">
+        <!-- Modal Structure -->
+        <div id="result-modal" class="modal">
+            <div class="modal-content">
+                <h4>Niche Analysis Results</h4>
+                <div id="modal-results"></div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close btn waves-effect">Close</a>
+            </div>
+        </div>
+
+        <!-- Buffering Overlay -->
+        <div class="buffering-overlay" id="buffering-overlay">
+            <div class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-green-only">
                     <div class="circle-clipper left">
                         <div class="circle"></div>
@@ -158,6 +211,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Console Overlay -->
+        <div id="console-overlay"></div>
 
         <!-- Dark/Light Mode Switch -->
         <div class="switch" style="margin-top: 20px;">
@@ -201,7 +257,8 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            document.getElementById('analyze-button').addEventListener('click', async function (event) {
+            const analyzeButton = document.getElementById('analyze-button');
+            analyzeButton.addEventListener('click', async function (event) {
                 event.preventDefault();
                 this.disabled = true;
                 this.innerHTML = 'Analyzing...';
@@ -222,11 +279,18 @@
                     return;
                 }
 
-                document.getElementById('results').innerHTML = ''; 
-                document.getElementById('loading-indicator').style.display = 'block'; 
+                // Show buffering animation
+                document.getElementById('buffering-overlay').style.display = 'flex';
+
+                // Show console overlay
+                const consoleOverlay = document.getElementById('console-overlay');
+                consoleOverlay.style.display = 'block';
+                consoleOverlay.innerHTML = 'Initializing analysis...<br>';
 
                 try {
-                    const apiKey = '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'; // Replace with your actual OpenAI API key
+                    const apiKey = 'YOUR_API_KEY_HERE'; // Replace with your actual OpenAI API key (securely)
+
+                    consoleOverlay.innerHTML += 'Sending request to OpenAI API...<br>';
 
                     const response = await fetch('https://api.openai.com/v1/chat/completions', {
                         method: 'POST',
@@ -235,7 +299,7 @@
                             'Authorization': `Bearer ${apiKey}`
                         },
                         body: JSON.stringify({
-                            model: 'gpt-4-turbo',
+                            model: 'gpt-4',
                             messages: [
                                 {
                                     role: "system",
@@ -256,7 +320,7 @@ Please provide a niche analysis based on this information.
                                     `
                                 }
                             ],
-                            max_tokens: 500,
+                            max_tokens: 1000,
                             temperature: 0.7
                         })
                     });
@@ -265,41 +329,39 @@ Please provide a niche analysis based on this information.
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
 
+                    consoleOverlay.innerHTML += 'Processing response...<br>';
+
                     const data = await response.json();
 
-                    document.getElementById('loading-indicator').style.display = 'none'; 
-                    displaySuggestions(data.choices[0].message.content);
+                    // Hide buffering animation
+                    document.getElementById('buffering-overlay').style.display = 'none';
+
+                    // Display results in modal
+                    const modalResults = document.getElementById('modal-results');
+                    modalResults.innerHTML = data.choices[0].message.content.replace(/\n/g, '<br>');
+
+                    const resultModal = M.Modal.getInstance(document.getElementById('result-modal'));
+                    resultModal.open();
+
+                    consoleOverlay.innerHTML += 'Analysis complete.<br>';
 
                 } catch (error) {
-                    document.getElementById('loading-indicator').style.display = 'none'; 
+                    // Hide buffering animation
+                    document.getElementById('buffering-overlay').style.display = 'none';
 
                     const errorMessage = error.message.includes('HTTP error!')
                         ? 'Error communicating with the server. Please try again later.'
                         : 'An error occurred while processing your request.';
 
-                    document.getElementById('results').innerHTML = `<p class="error-message">${errorMessage}</p>`;
+                    alert(errorMessage);
                     console.error('Error:', error);
+                    consoleOverlay.innerHTML += `Error: ${error.message}<br>`;
 
                 } finally {
                     this.disabled = false;
                     this.innerHTML = 'Analyze Niche';
                 }
             });
-
-            function displaySuggestions(suggestions) {
-                const resultsContainer = document.getElementById('results');
-                resultsContainer.innerHTML = '';
-
-                const suggestionCard = document.createElement('div');
-                suggestionCard.classList.add('suggestion-card');
-
-                suggestionCard.innerHTML = `
-                    <h3>Niche Analysis Results</h3>
-                    <p>${suggestions.replace(/\n/g, '<br>')}</p>
-                `;
-
-                resultsContainer.appendChild(suggestionCard);
-            }
         });
     </script>
 </body>
