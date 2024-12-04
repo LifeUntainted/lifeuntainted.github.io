@@ -17,7 +17,7 @@ Reading is one of the best ways to expand your knowledge, gain new perspectives,
 - **Estimated Reading Time:** 5-7 hours
 - **Key Lessons:** Embrace the present, release past regrets and future anxieties.
 - **Audience:** Anyone seeking inner peace and clarity.
-- **Link:** [Buy on Amazon](https://amzn.to/4fYsJ2W)
+- **Link:** [The Power of Now on Amazon](https://amzn.to/4fYsJ2W)
 
 ### 2. **Atomic Habits by James Clear**
 - **Description:** Clear provides actionable advice on how to build good habits, break bad ones, and master the tiny behaviors that lead to remarkable results. This book will guide you on how to make small changes that lead to significant results.
@@ -25,7 +25,7 @@ Reading is one of the best ways to expand your knowledge, gain new perspectives,
 - **Estimated Reading Time:** 6-8 hours
 - **Key Lessons:** Importance of small habits, habit stacking, the power of consistency.
 - **Audience:** Those looking to improve their daily routines and achieve long-term goals.
-- **Link:** [Buy on Amazon](https://amzn.to/4fXht79)
+- **Link:** [Atomic Habits on Amazon](https://amzn.to/4fXht79)
 
 ### 3. **The Subtle Art of Not Giving a F*ck by Mark Manson**
 - **Description:** Manson argues that life's struggles give it meaning and advises focusing on what truly matters. This book teaches you to prioritize your values and embrace the challenges that come your way.
@@ -33,7 +33,7 @@ Reading is one of the best ways to expand your knowledge, gain new perspectives,
 - **Estimated Reading Time:** 5-7 hours
 - **Key Lessons:** Embrace life's struggles, prioritize values, let go of unnecessary worries.
 - **Audience:** Individuals seeking a no-nonsense approach to personal growth.
-- **Link:** [Buy on Amazon](https://amzn.to/3D9I7uL)
+- **Link:** [The Subtle Art of Not Giving a F*ck](https://amzn.to/3D9I7uL)
 
 ### 4. **Mindset: The New Psychology of Success by Carol S. Dweck**
 - **Description:** Dweck reveals how a growth mindset can foster a love of learning and resilience that's essential for great accomplishment. Learn to cultivate a mindset that embraces challenges and persists through setbacks.
@@ -41,7 +41,7 @@ Reading is one of the best ways to expand your knowledge, gain new perspectives,
 - **Estimated Reading Time:** 6-8 hours
 - **Key Lessons:** Growth vs. fixed mindset, embracing challenges, resilience.
 - **Audience:** Anyone interested in enhancing their learning potential and overcoming obstacles.
-- **Link:** [Buy on Amazon](https://amzn.to/41gBhO6)
+- **Link:** [The New Psychology of Success on Amazon](https://amzn.to/41gBhO6)
 
 ### 5. **Grit: The Power of Passion and Perseverance by Angela Duckworth**
 - **Description:** Duckworth explains how passion and perseverance are the secrets to achieving long-term goals. Understand the importance of grit in achieving success and how to develop it.
@@ -49,7 +49,7 @@ Reading is one of the best ways to expand your knowledge, gain new perspectives,
 - **Estimated Reading Time:** 7-9 hours
 - **Key Lessons:** Importance of grit, perseverance, long-term goal achievement.
 - **Audience:** Those committed to long-term success and personal development.
-- **Link:** [Buy on Amazon](https://amzn.to/3B8580J)
+- **Link:** [The Power of Passion and Perseverance on Amazon](https://amzn.to/3B8580J)
 
 ### 6. **How to Win Friends and Influence People by Dale Carnegie**
 - **Description:** Carnegie's timeless principles for better communication and relationships are essential for personal and professional success. Master the art of persuasion and influence to improve your interactions.
@@ -57,7 +57,7 @@ Reading is one of the best ways to expand your knowledge, gain new perspectives,
 - **Estimated Reading Time:** 6-8 hours
 - **Key Lessons:** Effective communication, building relationships, influence and persuasion.
 - **Audience:** Professionals and anyone looking to improve their social skills.
-- **Link:** [Buy on Amazon](https://amzn.to/3ZlquQ5)
+- **Link:** [How to Win Friends and Influence People on Amazon](https://amzn.to/3ZlquQ5)
 
 ### 7. **The 7 Habits of Highly Effective People by Stephen R. Covey**
 - **Description:** Covey's classic book on leadership and personal development outlines seven habits that can transform your life. Develop habits that promote effectiveness in personal and professional life.
@@ -65,7 +65,7 @@ Reading is one of the best ways to expand your knowledge, gain new perspectives,
 - **Estimated Reading Time:** 8-10 hours
 - **Key Lessons:** Proactivity, goal setting, time management, interpersonal skills.
 - **Audience:** Individuals seeking comprehensive self-improvement and leadership skills.
-- **Link:** [Buy on Amazon](https://amzn.to/3Bp49sW)
+- **Link:** [The 7 Habits of Highly Effective People on Amazon](https://amzn.to/3Bp49sW)
 
 ### 8. **The Art of Happiness by Dalai Lama and Howard Cutler**
 - **Description:** Combining the Dalai Lama's spiritual wisdom with cutting-edge psychology, this book offers practical tools for a happier life. Learn how to achieve happiness through compassion and mindfulness.
@@ -73,7 +73,7 @@ Reading is one of the best ways to expand your knowledge, gain new perspectives,
 - **Estimated Reading Time:** 7-9 hours
 - **Key Lessons:** Happiness through compassion, mindfulness, dealing with suffering.
 - **Audience:** Anyone interested in improving their emotional well-being and mindfulness.
-- **Link:** [Buy on Amazon](https://amzn.to/3VqFNpB)
+- **Link:** [The Art of Happiness by Dalai Lama on Amazon](https://amzn.to/3VqFNpB)
 
 ### 9. **Man's Search for Meaning by Viktor E. Frankl**
 - **Description:** Frankl's memoir about surviving Nazi death camps and his reflections on finding purpose in life is a powerful testament to human resilience. Understand the importance of finding meaning even in the most difficult times.
@@ -81,7 +81,7 @@ Reading is one of the best ways to expand your knowledge, gain new perspectives,
 - **Estimated Reading Time:** 4-6 hours
 - **Key Lessons:** Finding purpose, resilience, the importance of meaning in life.
 - **Audience:** Those seeking inspiration and a deeper understanding of purpose.
-- **Link:** [Buy on Amazon](https://amzn.to/3Vmvxic)
+- **Link:** [Man's Search for Meaning on Amazon](https://amzn.to/3Vmvxic)
 
 ### 10. **The Four Agreements by Don Miguel Ruiz**
 - **Description:** Ruiz offers a code of conduct based on ancient Toltec wisdom that can transform your life to a new experience of freedom, true happiness, and love. Adopt these agreements to improve your personal and professional life.
@@ -89,7 +89,7 @@ Reading is one of the best ways to expand your knowledge, gain new perspectives,
 - **Estimated Reading Time:** 3-5 hours
 - **Key Lessons:** Principles of personal freedom, honesty, and integrity.
 - **Audience:** Anyone looking to adopt simple yet profound guidelines for living.
-- **Link:** [Buy on Amazon](https://amzn.to/3Vpww0X)
+- **Link:** [The Four Agreements on Amazon](https://amzn.to/3Vpww0X)
 
 ---
 
