@@ -47,14 +47,11 @@
   <!-- Include dat.GUI Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
   
-  <!-- Include Howler.js for Sound -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-  
-  <!-- Include EffectComposer and Passes -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/examples/js/postprocessing/EffectComposer.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/examples/js/postprocessing/RenderPass.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/examples/js/postprocessing/UnrealBloomPass.js"></script>
-  
+  <!-- Include EffectComposer and Passes (Make sure these match your Three.js version) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/EffectComposer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/RenderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
   <script>
     let scene, camera, renderer, particleSystem, pointLight, composer, bloomPass;
     const PARTICLE_COUNT = 10000;
@@ -68,23 +65,10 @@
       particleSpeed: 0.1,
       backgroundColor: '#000000',
       glow: true,
-      sound: true,
       bloomStrength: 1.0,
       bloomThreshold: 0.0,
       bloomRadius: 0.0
     };
-    
-    // Sound Setup
-    const ambientSound = new Howl({
-      src: ['https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'],
-      loop: true,
-      volume: 0.5
-    });
-    
-    const interactionSound = new Howl({
-      src: ['https://www.soundjay.com/buttons/sounds/button-09.mp3'],
-      volume: 0.7
-    });
     
     // Initialize GUI
     const gui = new dat.GUI();
@@ -97,13 +81,6 @@
     });
     gui.add(params, 'glow').name('Enable Glow').onChange(value => {
       bloomPass.enabled = value;
-    });
-    gui.add(params, 'sound').name('Enable Sound').onChange(value => {
-      if (value) {
-        ambientSound.play();
-      } else {
-        ambientSound.pause();
-      }
     });
     gui.add(params, 'bloomStrength', 0, 3).name('Bloom Strength').onChange(value => {
       bloomPass.strength = value;
@@ -164,11 +141,8 @@
           void main() {
             vColor = color;
             vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-            
-            // Prevent division by zero and ensure positive gl_PointSize
             float safeZ = max(mvPosition.z, 1.0);
             gl_PointSize = size * (300.0 / safeZ);
-            
             gl_Position = projectionMatrix * mvPosition;
           }
         `,
@@ -176,12 +150,9 @@
           varying vec3 vColor;
           uniform float time;
           void main() {
-            // Dynamic color change over time, ensuring visibility
             vec3 color = vColor * (0.5 + 0.5 * sin(time));
-            
             float dist = distance(gl_PointCoord, vec2(0.5, 0.5));
             if (dist > 0.5) discard;
-            
             gl_FragColor = vec4(color, 1.0);
           }
         `,
@@ -194,7 +165,6 @@
         }
       });
       
-      // Particle System
       particleSystem = new THREE.Points(geometry, material);
       scene.add(particleSystem);
       
@@ -209,7 +179,7 @@
       
       bloomPass = new THREE.UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
-        params.bloomStrength, // Adjusted for better visibility
+        params.bloomStrength,
         params.bloomRadius,
         params.bloomThreshold
       );
@@ -223,12 +193,8 @@
       window.addEventListener('keydown', onKeyDown, false); 
       window.addEventListener('deviceorientation', onDeviceOrientation, false); 
       
-      // Fullscreen Button
       const fullscreenBtn = document.getElementById('fullscreenBtn');
       fullscreenBtn.addEventListener('click', toggleFullscreen);
-      
-      // Start Ambient Sound
-      if (params.sound) ambientSound.play();
     }
     
     function updateParticles() {
@@ -238,7 +204,6 @@
       const sizes = new Float32Array(params.particleCount);
       
       for (let i = 0; i < params.particleCount; i++) {
-        // Distribute particles within a cube centered around the camera
         positions[i * 3] = (Math.random() - 0.5) * 400;
         positions[i * 3 + 1] = (Math.random() - 0.5) * 400;
         positions[i * 3 + 2] = (Math.random() - 0.5) * 400;
@@ -277,15 +242,12 @@
     function onDocumentMouseMove(event) {
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-      if (params.sound) interactionSound.play();
     }
     
     function onTouchStart(event) {
       if (event.touches.length > 0) {
         mouse.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.touches[0].clientY / window.innerHeight) * 2 + 1;
-        if (params.sound) interactionSound.play();
-        triggerExplosion(mouse);
       }
     }
     
@@ -313,8 +275,6 @@
           gui.updateDisplay();
           break;
       }
-      if (params.sound) interactionSound.play();
-      triggerExplosion(mouse);
     }
     
     function onDeviceOrientation(event) {
@@ -325,7 +285,6 @@
       }
     }
     
-    // Toggle Fullscreen Mode
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
         document.body.requestFullscreen().catch(err => {
@@ -333,54 +292,6 @@
         });
       } else {
         document.exitFullscreen();
-      }
-    }
-    
-    // Trigger Explosion Effect
-    function triggerExplosion(interactionPoint) {
-      // Convert normalized device coordinates to world coordinates
-      const vector = new THREE.Vector3(interactionPoint.x, interactionPoint.y, 0.5).unproject(camera);
-      
-      // Raycaster to find intersection point
-      raycaster.setFromCamera(interactionPoint, camera);
-      const intersects = raycaster.intersectObject(particleSystem);
-      
-      if (intersects.length > 0) {
-        const intersect = intersects[0];
-        const particlePositions = particleSystem.geometry.attributes.position.array;
-        const particleVelocities = new Float32Array(particlePositions.length); // Simple velocity array
-        
-        for (let i = 0; i < params.particleCount; i++) {
-          const idx = i * 3;
-          const px = particlePositions[idx];
-          const py = particlePositions[idx + 1];
-          const pz = particlePositions[idx + 2];
-          
-          const dx = px - intersect.point.x;
-          const dy = py - intersect.point.y;
-          const dz = pz - intersect.point.z;
-          const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
-          
-          if (distance < 100) { // Influence radius
-            const force = 5 / distance;
-            particleVelocities[idx] += dx * force;
-            particleVelocities[idx + 1] += dy * force;
-            particleVelocities[idx + 2] += dz * force;
-          }
-        }
-        
-        // Apply velocities to particles
-        for (let i = 0; i < params.particleCount; i++) {
-          const idx = i * 3;
-          particlePositions[idx] += particleVelocities[idx];
-          particlePositions[idx + 1] += particleVelocities[idx + 1];
-          particlePositions[idx + 2] += particleVelocities[idx + 2];
-        }
-        
-        particleSystem.geometry.attributes.position.needsUpdate = true;
-        
-        // Play interaction sound
-        if (params.sound) interactionSound.play();
       }
     }
     
@@ -421,7 +332,7 @@
             Math.pow(pz - intersect.point.z, 2)
           );
           
-          if (distance < 50) { // Influence radius
+          if (distance < 50) {
             const force = 2;
             particlePositions[idx] += (px - intersect.point.x) / distance * force;
             particlePositions[idx + 1] += (py - intersect.point.y) / distance * force;
@@ -431,7 +342,7 @@
         particleSystem.geometry.attributes.position.needsUpdate = true;
       }
       
-      // Animate Particles
+      // Slightly move particles to create a dynamic effect
       const particleArray = particleSystem.geometry.attributes.position.array;
       for (let i = 0; i < params.particleCount; i++) {
         const idx = i * 3;
@@ -443,16 +354,6 @@
       
       // Render Scene with Post-Processing
       composer.render();
-    }
-    
-    // Handle Initial Particle Count
-    function updateParticlesCount() {
-      if (params.particleCount !== PARTICLE_COUNT) {
-        particleSystem.geometry.dispose();
-        particleSystem.material.dispose();
-        scene.remove(particleSystem);
-        init();
-      }
     }
     
     // Initial GUI setup
