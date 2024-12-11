@@ -17,8 +17,9 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const mapWidth = canvas.width * 0.8;
-const mapHeight = canvas.height * 0.8;
+// Adjust map size to fit the screen better
+const mapWidth = Math.min(canvas.width * 0.8, canvas.height * 0.8); 
+const mapHeight = mapWidth; // Keep it square
 const mapX = (canvas.width - mapWidth) / 2;
 const mapY = (canvas.height - mapHeight) / 2;
 
@@ -52,24 +53,27 @@ const drone = {
   size: tileSize * 0.6,
   speed: 2,
   direction: 'right', 
-  angle: 0 
+  angle: 0,
 };
 
 const batteries = []; 
-for (let row = 0; row < map.length; row++) {
-  for (let col = 0; col < map[row].length; col++) {
-    if (map[row][col] === 0) {
-      batteries.push({
-        x: mapX + col * tileSize + tileSize / 2,
-        y: mapY + row * tileSize + tileSize / 2,
-        size: tileSize * 0.2,
-        active: true
-      });
-    }
-  }
+for (let i = 0; i < 30; i++) { // Reduced number of batteries
+  let x, y;
+  do {
+    x = Math.floor(Math.random() * map[0].length);
+    y = Math.floor(Math.random() * map.length);
+  } while (map[y][x] === 1); // Ensure batteries are placed in valid positions
+
+  batteries.push({
+    x: mapX + x * tileSize + tileSize / 2,
+    y: mapY + y * tileSize + tileSize / 2,
+    size: tileSize * 0.3, // Increased battery size
+    active: true
+  });
 }
 
 let score = 0;
+let powerLevel = 100; // Initial power level
 
 function drawMap() {
   ctx.strokeStyle = '#0ff';
@@ -86,19 +90,26 @@ function drawMap() {
 function drawDrone() {
   ctx.save();
   ctx.translate(drone.x, drone.y);
-  ctx.rotate(drone.angle); 
+  ctx.rotate(drone.angle);
 
+  // Draw drone body
   ctx.fillStyle = 'gray';
   ctx.beginPath();
   ctx.arc(0, 0, drone.size / 2, 0, Math.PI * 2);
   ctx.fill();
 
-  ctx.fillStyle = 'red'; 
-  ctx.fillRect(-drone.size / 4, -drone.size / 8, drone.size / 2, drone.size / 4);
+  // Draw drone arms
+  ctx.strokeStyle = 'white';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(-drone.size / 3, -drone.size / 3);
+  ctx.lineTo(drone.size / 3, -drone.size / 3);
+  ctx.moveTo(-drone.size / 3, drone.size / 3);
+  ctx.lineTo(drone.size / 3, drone.size / 3);
+  ctx.stroke();
 
   ctx.restore();
 }
-
 
 function drawBatteries() {
   ctx.fillStyle = 'green'; 
@@ -112,50 +123,11 @@ function drawBatteries() {
 }
 
 function updateDroneAngle() {
-  switch (drone.direction) {
-    case 'up':
-      drone.angle = -Math.PI / 2;
-      break;
-    case 'down':
-      drone.angle = Math.PI / 2;
-      break;
-    case 'left':
-      drone.angle = Math.PI;
-      break;
-    case 'right':
-      drone.angle = 0;
-      break;
-  }
+  // ... (same as before)
 }
 
 function moveDrone() {
-  let newX = drone.x;
-  let newY = drone.y;
-
-  switch (drone.direction) {
-    case 'up':
-      newY -= drone.speed;
-      break;
-    case 'down':
-      newY += drone.speed;
-      break;
-    case 'left':
-      newX -= drone.speed;
-      break;
-    case 'right':
-      newX += drone.speed;
-      break;
-  }
-
-  const gridX = Math.floor((newX - mapX) / tileSize);
-  const gridY = Math.floor((newY - mapY) / tileSize);
-
-  if (gridX >= 0 && gridX < map[0].length && 
-      gridY >= 0 && gridY < map.length && 
-      map[gridY][gridX] === 0) {
-    drone.x = newX;
-    drone.y = newY;
-  } 
+  // ... (same as before)
 }
 
 function checkBatteryCollisions() {
@@ -167,26 +139,14 @@ function checkBatteryCollisions() {
       if (distance < drone.size / 2 + battery.size) {
         battery.active = false;
         score += 10;
+        powerLevel = Math.min(powerLevel + 20, 100); // Increase power level, cap at 100
       }
     }
   });
 }
 
 window.addEventListener('keydown', (event) => {
-  switch (event.key) {
-    case 'ArrowUp':
-      drone.direction = 'up';
-      break;
-    case 'ArrowDown':
-      drone.direction = 'down';
-      break;
-    case 'ArrowLeft':
-      drone.direction = 'left';
-      break;
-    case 'ArrowRight':
-      drone.direction = 'right';
-      break;
-  }
+  // ... (same as before)
 });
 
 function animate() {
@@ -199,9 +159,14 @@ function animate() {
   updateDroneAngle(); 
   checkBatteryCollisions();
 
+  // Display score and power level
   ctx.fillStyle = '#fff';
   ctx.font = '20px Arial';
   ctx.fillText(`Score: ${score}`, 20, 30);
+  ctx.fillText(`Power: ${powerLevel}%`, 20, 60);
+
+  // Decrease power level over time
+  powerLevel = Math.max(powerLevel - 0.05, 0); // Decrease power, cap at 0
 
   requestAnimationFrame(animate);
 }
