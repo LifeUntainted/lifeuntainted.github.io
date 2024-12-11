@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Beyond the Obvious: Surprising Methods to Discover & Grow Your Niche"
-date: 2024-02-01 10:00:00 -0500
+date: 2024-12-11 10:00:00 -0500
 categories: [growth, niche]
 ---
 
