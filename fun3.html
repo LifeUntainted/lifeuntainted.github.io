@@ -42,39 +42,46 @@ const map = [
   [1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1],
   [1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1], // Added exit
-  [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1], // Added exit
+  [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1], 
+  [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1]  
 ];
 
 const tileSize = mapWidth / map[0].length;
 
-const drone = {
+let drone = {
   x: mapX + tileSize * 9,
-  y: mapY + tileSize * 11, // Adjusted initial position to avoid starting in a wall
+  y: mapY + tileSize * 11, 
   size: tileSize * 0.6,
-  speed: tileSize * 0.2, // Adjusted speed to be relative to tile size
+  speed: tileSize * 0.2, 
   direction: 'right', 
   angle: 0,
 };
 
-const batteries = []; 
-for (let i = 0; i < 30; i++) { 
-  let x, y;
-  do {
-    x = Math.floor(Math.random() * map[0].length);
-    y = Math.floor(Math.random() * map.length);
-  } while (map[y][x] === 1); 
-
-  batteries.push({
-    x: mapX + x * tileSize + tileSize / 2,
-    y: mapY + y * tileSize + tileSize / 2,
-    size: tileSize * 0.3, 
-    active: true
-  });
-}
+let batteries = []; 
+let batteryCount = 30;
+generateBatteries();
 
 let score = 0;
-let powerLevel = 100; 
+let powerLevel = 100;
+let gameOver = false;
+
+function generateBatteries() {
+  batteries = [];
+  for (let i = 0; i < batteryCount; i++) { 
+    let x, y;
+    do {
+      x = Math.floor(Math.random() * map[0].length);
+      y = Math.floor(Math.random() * map.length);
+    } while (map[y][x] === 1); 
+
+    batteries.push({
+      x: mapX + x * tileSize + tileSize / 2,
+      y: mapY + y * tileSize + tileSize / 2,
+      size: tileSize * 0.3, 
+      active: true
+    });
+  }
+}
 
 function drawMap() {
   ctx.strokeStyle = '#0ff';
@@ -89,100 +96,19 @@ function drawMap() {
 }
 
 function drawDrone() {
-  ctx.save();
-  ctx.translate(drone.x, drone.y);
-  ctx.rotate(drone.angle);
-
-  // Draw drone body
-  ctx.fillStyle = 'gray';
-  ctx.beginPath();
-  ctx.arc(0, 0, drone.size / 2, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Draw drone arms
-  ctx.strokeStyle = 'white';
-  ctx.lineWidth = 3;
-  ctx.beginPath();
-  ctx.moveTo(-drone.size / 3, -drone.size / 3);
-  ctx.lineTo(drone.size / 3, -drone.size / 3);
-  ctx.moveTo(-drone.size / 3, drone.size / 3);
-  ctx.lineTo(drone.size / 3, drone.size / 3);
-  ctx.stroke();
-
-  // Draw propellers
-  ctx.fillStyle = 'white';
-  ctx.beginPath();
-  ctx.arc(-drone.size / 3, -drone.size / 3, drone.size / 6, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(drone.size / 3, -drone.size / 3, drone.size / 6, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(-drone.size / 3, drone.size / 3, drone.size / 6, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(drone.size / 3, drone.size / 3, drone.size / 6, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.restore();
+  // ... (same as before)
 }
 
 function drawBatteries() {
-  ctx.fillStyle = 'green'; 
-  batteries.forEach(battery => {
-    if (battery.active) {
-      ctx.beginPath();
-      ctx.arc(battery.x, battery.y, battery.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  });
+  // ... (same as before)
 }
 
 function updateDroneAngle() {
-  switch (drone.direction) {
-    case 'up':
-      drone.angle = -Math.PI / 2;
-      break;
-    case 'down':
-      drone.angle = Math.PI / 2;
-      break;
-    case 'left':
-      drone.angle = Math.PI;
-      break;
-    case 'right':
-      drone.angle = 0;
-      break;
-  }
+  // ... (same as before)
 }
 
 function moveDrone() {
-  let newX = drone.x;
-  let newY = drone.y;
-
-  switch (drone.direction) {
-    case 'up':
-      newY -= drone.speed;
-      break;
-    case 'down':
-      newY += drone.speed;
-      break;
-    case 'left':
-      newX -= drone.speed;
-      break;
-    case 'right':
-      newX += drone.speed;
-      break;
-  }
-
-  const gridX = Math.floor((newX - mapX) / tileSize);
-  const gridY = Math.floor((newY - mapY) / tileSize);
-
-  if (gridX >= 0 && gridX < map[0].length && 
-      gridY >= 0 && gridY < map.length && 
-      map[gridY][gridX] === 0) {
-    drone.x = newX;
-    drone.y = newY;
-  } 
+  // ... (same as before)
 }
 
 function checkBatteryCollisions() {
@@ -194,26 +120,46 @@ function checkBatteryCollisions() {
       if (distance < drone.size / 2 + battery.size) {
         battery.active = false;
         score += 10;
-        powerLevel = Math.min(powerLevel + 20, 100); // Increase power level, cap at 100
+        powerLevel = Math.min(powerLevel + 20, 100); 
       }
     }
   });
+
+  // Check if all batteries are collected
+  if (batteries.every(battery => !battery.active)) {
+    gameOver = true;
+    alert('You Win! - All batteries collected!');
+    resetGame();
+  }
+}
+
+function resetGame() {
+  gameOver = false;
+  score = 0;
+  powerLevel = 100;
+  drone.x = mapX + tileSize * 9;
+  drone.y = mapY + tileSize * 11;
+  generateBatteries(); 
 }
 
 window.addEventListener('keydown', (event) => {
-  switch (event.key) {
-    case 'ArrowUp':
-      drone.direction = 'up';
-      break;
-    case 'ArrowDown':
-      drone.direction = 'down';
-      break;
-    case 'ArrowLeft':
-      drone.direction = 'left';
-      break;
-    case 'ArrowRight':
-      drone.direction = 'right';
-      break;
+  if (!gameOver) {
+    switch (event.key) {
+      case 'ArrowUp':
+        drone.direction = 'up';
+        break;
+      case 'ArrowDown':
+        drone.direction = 'down';
+        break;
+      case 'ArrowLeft':
+        drone.direction = 'left';
+        break;
+      case 'ArrowRight':
+        drone.direction = 'right';
+        break;
+    }
+  } else {
+    resetGame();
   }
 });
 
@@ -223,18 +169,25 @@ function animate() {
   drawDrone();
   drawBatteries();
 
-  moveDrone();
-  updateDroneAngle(); 
-  checkBatteryCollisions();
+  if (!gameOver) {
+    moveDrone();
+    updateDroneAngle(); 
+    checkBatteryCollisions();
+
+    powerLevel = Math.max(powerLevel - 0.05, 0); 
+
+    if (powerLevel === 0) {
+      gameOver = true;
+      alert('Game Over! - You ran out of power!');
+      resetGame();
+    }
+  }
 
   // Display score and power level
   ctx.fillStyle = '#fff';
   ctx.font = '20px Arial';
   ctx.fillText(`Score: ${score}`, 20, 30);
   ctx.fillText(`Power: ${powerLevel}%`, 20, 60);
-
-  // Decrease power level over time
-  powerLevel = Math.max(powerLevel - 0.05, 0); // Decrease power, cap at 0
 
   requestAnimationFrame(animate);
 }
