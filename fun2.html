@@ -69,9 +69,9 @@
       backgroundColor: '#000000',
       glow: true,
       sound: true,
-      bloomStrength: 1.5,
-      bloomThreshold: 0,
-      bloomRadius: 0
+      bloomStrength: 1.0,
+      bloomThreshold: 0.0,
+      bloomRadius: 0.0
     };
     
     // Sound Setup
@@ -139,9 +139,10 @@
       const sizes = new Float32Array(params.particleCount);
       
       for (let i = 0; i < params.particleCount; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * 800;
-        positions[i * 3 + 1] = (Math.random() - 0.5) * 800;
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 800;
+        // Distribute particles within a cube centered around the camera
+        positions[i * 3] = (Math.random() - 0.5) * 400;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 400;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 400;
         
         colors[i * 3] = Math.random();
         colors[i * 3 + 1] = Math.random();
@@ -163,7 +164,11 @@
           void main() {
             vColor = color;
             vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-            gl_PointSize = size * (300.0 / -mvPosition.z);
+            
+            // Prevent division by zero and ensure positive gl_PointSize
+            float safeZ = max(mvPosition.z, 1.0);
+            gl_PointSize = size * (300.0 / safeZ);
+            
             gl_Position = projectionMatrix * mvPosition;
           }
         `,
@@ -171,10 +176,12 @@
           varying vec3 vColor;
           uniform float time;
           void main() {
-            // Dynamic color change over time
-            vec3 color = vColor * abs(sin(time));
+            // Dynamic color change over time, ensuring visibility
+            vec3 color = vColor * (0.5 + 0.5 * sin(time));
+            
             float dist = distance(gl_PointCoord, vec2(0.5, 0.5));
             if (dist > 0.5) discard;
+            
             gl_FragColor = vec4(color, 1.0);
           }
         `,
@@ -202,7 +209,7 @@
       
       bloomPass = new THREE.UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
-        params.bloomStrength,
+        params.bloomStrength, // Adjusted for better visibility
         params.bloomRadius,
         params.bloomThreshold
       );
@@ -231,9 +238,10 @@
       const sizes = new Float32Array(params.particleCount);
       
       for (let i = 0; i < params.particleCount; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * 800;
-        positions[i * 3 + 1] = (Math.random() - 0.5) * 800;
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 800;
+        // Distribute particles within a cube centered around the camera
+        positions[i * 3] = (Math.random() - 0.5) * 400;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 400;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 400;
         
         colors[i * 3] = Math.random();
         colors[i * 3 + 1] = Math.random();
