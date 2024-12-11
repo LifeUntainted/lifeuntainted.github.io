@@ -1,335 +1,499 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Drone Battery Collector</title>
-<style>
-body { 
-  margin: 0; 
-  overflow: hidden; 
-  background-color: #222; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; /* Align items vertically */
-  font-family: monospace; /* Use a monospace font */
-}
-canvas {
-  display: block;
-  border: 2px solid #0ff; /* Add a border to the canvas */
-  margin-top: 20px; /* Add some space above the canvas */
-}
-</style>
+  <title>Drone Battery Collector</title>
+  <style>
+    body { 
+      margin: 0; 
+      overflow: hidden; 
+      background-color: #222; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; /* Align items vertically */
+      font-family: monospace; /* Use a monospace font */
+      color: #0ff;
+    }
+    canvas {
+      display: block;
+      border: 2px solid #0ff; /* Add a border to the canvas */
+      margin-top: 20px; /* Add some space above the canvas */
+      background-color: #333;
+    }
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(34, 34, 34, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #0ff;
+      font-size: 24px;
+      display: none; /* Hidden by default */
+    }
+    #overlay.active {
+      display: flex;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-top: 10px;
+      cursor: pointer;
+      background-color: #0ff;
+      border: none;
+      border-radius: 5px;
+      color: #222;
+    }
+    button:hover {
+      background-color: #0cc;
+    }
+  </style>
 </head>
 <body>
 
-<button id="startButton">Start Game</button>
+  <div id="overlay">
+    <h1 id="overlayTitle">Drone Battery Collector</h1>
+    <button id="startButton">Start Game</button>
+    <button id="restartButton" style="display:none;">Restart Game</button>
+    <p id="overlayMessage"></p>
+  </div>
 
-<canvas id="myCanvas"></canvas>
+  <canvas id="myCanvas"></canvas>
 
-<script>
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth 1  * 0.8; // Adjust canvas size
-canvas.height = window.innerHeight * 0.8;
+  <!-- Audio Elements -->
+  <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+  <audio id="collectSound" src="https://www.soundjay.com/button/sounds/button-09.mp3"></audio>
+  <audio id="gameOverSound" src="https://www.soundjay.com/misc/sounds/fail-buzzer-01.mp3"></audio>
 
-const mapWidth = canvas.width;
-const mapHeight = canvas.height;
-const mapX = 0;
-const mapY = 0;
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    const overlay = document.getElementById('overlay');
+    const startButton = document.getElementById('startButton');
+    const restartButton = document.getElementById('restartButton');
+    const overlayTitle = document.getElementById('overlayTitle');
+    const overlayMessage = document.getElementById('overlayMessage');
 
-const levels = [
-  [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1],
-    [1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
-    [1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1],
-    [1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1],
-    [1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-    [1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
-    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  ],
-  // More levels can be added here with different map layouts
-];
+    const bgMusic = document.getElementById('bgMusic');
+    const collectSound = document.getElementById('collectSound');
+    const gameOverSound = document.getElementById('gameOverSound');
 
-let currentLevel = 0;
-const tileSize = mapWidth / levels[currentLevel][0].length;
-
-let drone = {
-  x: mapX + tileSize * 9,
-  y: mapY + tileSize * 11, 
-  size: tileSize * 0.6,
-  speed: 0, // Start with 0 speed
-  direction: 'right', 
-  angle: 0,
-  moving: false, // Add a moving property
-};
-
-let batteries = []; 
-let batteryCount = 30;
-generateBatteries();
-
-let score = 0;
-let powerLevel = 100;
-let gameOver = false;
-let gameStarted = false; // Add gameStarted flag
-let totalBatteriesCollected = 0;
-
-function generateBatteries() {
-  batteries = [];
-  for (let i = 0; i < batteryCount; i++) { 
-    let x, y;
-    do {
-      x = Math.floor(Math.random() * levels[currentLevel][0].length);
-      y = Math.floor(Math.random() * levels[currentLevel].length);
-    } while (levels[currentLevel][y][x] === 1); 
-
-    batteries.push({
-      x: mapX + x * tileSize + tileSize / 2,
-      y: mapY + y * tileSize + tileSize / 2,
-      size: tileSize * 0.3, 
-      active: true
-    });
-  }
-}
-
-function drawMap() {
-  ctx.strokeStyle = '#0ff';
-  ctx.lineWidth = 2;
-  for (let row = 0; row < levels[currentLevel].length; row++) {
-    for (let col = 0; col < levels[currentLevel][row].length; col++) {
-      if (levels[currentLevel][row][col] === 1) {
-        ctx.strokeRect(mapX + col * tileSize, mapY + row * tileSize, tileSize, tileSize);
+    // Adjust canvas size for responsiveness
+    function resizeCanvas() {
+      canvas.width = window.innerWidth * 0.8;
+      canvas.height = window.innerHeight * 0.8;
+      if (levels[currentLevel]) {
+        const newTileSize = canvas.width / levels[currentLevel][0].length;
+        if (tileSize !== newTileSize) {
+          tileSize = newTileSize;
+          resetGame();
+        }
       }
     }
-  }
-}
 
-function drawDrone() {
-  ctx.save();
-  ctx.translate(drone.x, drone.y);
-  ctx.rotate(drone.angle);
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-  // Draw drone body
-  ctx.fillStyle = 'gray';
-  ctx.beginPath();
-  ctx.arc(0, 0, drone.size / 2, 0, Math.PI * 2);
-  ctx.fill();
+    let levels = [
+      // Level 1
+      [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+        [1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+        [1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+        [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1],
+        [1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+        [1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1],
+        [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+        [1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
+        [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      ],
+      // Level 2 (More complex)
+      [
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,0,1,1,0,1,0,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
+        [1,0,1,1,0,1,0,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
+        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        // Add more rows as needed for complexity
+      ],
+      // Additional levels can be added here
+    ];
 
-  // Draw drone arms
-  ctx.strokeStyle = 'white';
-  ctx.lineWidth = 3;
-  ctx.beginPath();
-  ctx.moveTo(-drone.size / 3, -drone.size / 3);
-  ctx.lineTo(drone.size / 3, -drone.size / 3);
-  ctx.moveTo(-drone.size / 3, drone.size / 3);
-  ctx.lineTo(drone.size / 3, drone.size / 3);
-  ctx.stroke();
+    let currentLevel = 0;
+    let tileSize = canvas.width / levels[currentLevel][0].length;
 
-  // Draw propellers
-  ctx.fillStyle = 'white';
-  for (let i = 0; i < 4; i++) {
-    ctx.beginPath();
-    const propellerAngle = i * Math.PI / 2 + drone.angle;
-    const propellerX = drone.size / 3 * Math.cos(propellerAngle);
-    const propellerY = drone.size / 3 * Math.sin(propellerAngle);
-    ctx.arc(propellerX, propellerY, drone.size / 6, 0, Math.PI * 2);
-    ctx.fill();
-  }
+    let drone = {
+      x: 0,
+      y: 0, 
+      size: 0,
+      speed: 0, // Start with 0 speed
+      direction: 'right', 
+      angle: 0,
+      moving: false, // Add a moving property
+    };
 
-  ctx.restore();
-}
+    let batteries = []; 
+    let batteryCount = 30;
+    let score = 0;
+    let powerLevel = 100;
+    let gameOver = false;
+    let gameStarted = false; // Add gameStarted flag
+    let totalBatteriesCollected = 0;
+    let highScore = 0;
 
-function drawBatteries() {
-  ctx.fillStyle = 'green'; 
-  batteries.forEach(battery => {
-    if (battery.active) {
-      // Draw battery rectangle
-      ctx.fillRect(battery.x - battery.size / 2, battery.y - battery.size / 4, battery.size, battery.size / 2);
+    // Initialize drone properties based on tileSize
+    function initDrone() {
+      drone.size = tileSize * 0.6;
+      drone.x = mapX + tileSize * 1; // Starting position
+      drone.y = mapY + tileSize * 1;
+      drone.speed = tileSize * 0.2;
+      drone.moving = false;
+      drone.direction = 'right';
+      drone.angle = 0;
+    }
 
-      // Draw lightning bolt (simplified)
-      ctx.strokeStyle = 'yellow';
+    const mapWidth = canvas.width;
+    const mapHeight = canvas.height;
+    const mapX = 0;
+    const mapY = 0;
+
+    function generateBatteries() {
+      batteries = [];
+      for (let i = 0; i < batteryCount; i++) { 
+        let x, y;
+        do {
+          x = Math.floor(Math.random() * levels[currentLevel][0].length);
+          y = Math.floor(Math.random() * levels[currentLevel].length);
+        } while (levels[currentLevel][y][x] === 1); 
+
+        batteries.push({
+          x: mapX + x * tileSize + tileSize / 2,
+          y: mapY + y * tileSize + tileSize / 2,
+          size: tileSize * 0.3, 
+          active: true
+        });
+      }
+    }
+
+    function drawMap() {
+      ctx.strokeStyle = '#0ff';
       ctx.lineWidth = 2;
+      for (let row = 0; row < levels[currentLevel].length; row++) {
+        for (let col = 0; col < levels[currentLevel][row].length; col++) {
+          if (levels[currentLevel][row][col] === 1) {
+            ctx.fillStyle = '#555';
+            ctx.fillRect(mapX + col * tileSize, mapY + row * tileSize, tileSize, tileSize);
+            ctx.strokeRect(mapX + col * tileSize, mapY + row * tileSize, tileSize, tileSize);
+          }
+        }
+      }
+    }
+
+    function drawDrone() {
+      ctx.save();
+      ctx.translate(drone.x, drone.y);
+      ctx.rotate(drone.angle);
+
+      // Draw drone body
+      ctx.fillStyle = 'gray';
       ctx.beginPath();
-      ctx.moveTo(battery.x - battery.size / 4, battery.y - battery.size / 8);
-      ctx.lineTo(battery.x + battery.size / 4, battery.y + battery.size / 8);
-      ctx.moveTo(battery.x + battery.size / 4, battery.y - battery.size / 8);
-      ctx.lineTo(battery.x - battery.size / 4, battery.y + battery.size / 8);
+      ctx.arc(0, 0, drone.size / 2, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Draw drone arms
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(-drone.size / 3, -drone.size / 3);
+      ctx.lineTo(drone.size / 3, -drone.size / 3);
+      ctx.moveTo(-drone.size / 3, drone.size / 3);
+      ctx.lineTo(drone.size / 3, drone.size / 3);
       ctx.stroke();
-    }
-  });
-}
 
+      // Draw propellers with rotation animation
+      ctx.fillStyle = 'yellow';
+      for (let i = 0; i < 4; i++) {
+        ctx.beginPath();
+        const propellerAngle = i * Math.PI / 2 + (performance.now() / 100) % (2 * Math.PI);
+        const propellerX = drone.size / 3 * Math.cos(propellerAngle);
+        const propellerY = drone.size / 3 * Math.sin(propellerAngle);
+        ctx.arc(propellerX, propellerY, drone.size / 6, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
-function updateDroneAngle() {
-  // ... (same as before)
-}
-
-function moveDrone() {
-  if (drone.moving) {
-    let newX = drone.x;
-    let newY = drone.y;
-
-    switch (drone.direction) {
-      case 'up':
-        newY -= drone.speed;
-        break;
-      case 'down':
-        newY += drone.speed;
-        break;
-      case 'left':
-        newX -= drone.speed;
-        break;
-      case 'right':
-        newX += drone.speed;
-        break;
+      ctx.restore();
     }
 
-    const gridX = Math.floor((newX - mapX) / tileSize);
-    const gridY = Math.floor((newY - mapY) / tileSize);
+    function drawBatteries() {
+      batteries.forEach(battery => {
+        if (battery.active) {
+          // Draw battery rectangle
+          ctx.fillStyle = 'green'; 
+          ctx.fillRect(battery.x - battery.size / 2, battery.y - battery.size / 4, battery.size, battery.size / 2);
 
-    if (gridX >= 0 && gridX < levels[currentLevel][0].length && 
-        gridY >= 0 && gridY < levels[currentLevel].length && 
-        levels[currentLevel][gridY][gridX] === 0) {
-      drone.x = newX;
-      drone.y = newY;
-    } 
-  }
-}
+          // Draw lightning bolt (simplified)
+          ctx.strokeStyle = 'yellow';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(battery.x - battery.size / 4, battery.y - battery.size / 8);
+          ctx.lineTo(battery.x + battery.size / 4, battery.y + battery.size / 8);
+          ctx.moveTo(battery.x + battery.size / 4, battery.y - battery.size / 8);
+          ctx.lineTo(battery.x - battery.size / 4, battery.y + battery.size / 8);
+          ctx.stroke();
+        }
+      });
+    }
 
-function checkBatteryCollisions() {
-  batteries.forEach((battery, index) => {  
-    if (battery.active) {
-      const dx = drone.x - battery.x;
-      const dy = drone.y - battery.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      if (distance < drone.size / 2 + battery.size) {
-        battery.active = false;
-        score += 10;
-        powerLevel = Math.min(powerLevel + 1, 100); // Add 1 power for each battery
-        totalBatteriesCollected++;
+    function updateDroneAngle() {
+      switch (drone.direction) {
+        case 'up':
+          drone.angle = -Math.PI / 2;
+          break;
+        case 'down':
+          drone.angle = Math.PI / 2;
+          break;
+        case 'left':
+          drone.angle = Math.PI;
+          break;
+        case 'right':
+          drone.angle = 0;
+          break;
       }
     }
-  });
 
-  // Check if all batteries are collected
-  if (batteries.every(battery => !battery.active)) {
-    gameOver = true;
-    if (currentLevel < levels.length - 1) {
-      currentLevel++;
-      alert('Level Complete!');
-      resetGame();
-    } else {
-      alert('You Win! - All levels completed!');
-      resetGame();
-      currentLevel = 0; // Reset to the first level
+    function moveDrone() {
+      if (drone.moving) {
+        let newX = drone.x;
+        let newY = drone.y;
+
+        switch (drone.direction) {
+          case 'up':
+            newY -= drone.speed;
+            break;
+          case 'down':
+            newY += drone.speed;
+            break;
+          case 'left':
+            newX -= drone.speed;
+            break;
+          case 'right':
+            newX += drone.speed;
+            break;
+        }
+
+        const gridX = Math.floor((newX - mapX) / tileSize);
+        const gridY = Math.floor((newY - mapY) / tileSize);
+
+        if (gridX >= 0 && gridX < levels[currentLevel][0].length && 
+            gridY >= 0 && gridY < levels[currentLevel].length && 
+            levels[currentLevel][gridY][gridX] === 0) {
+          drone.x = newX;
+          drone.y = newY;
+        } 
+      }
     }
-  }
-}
 
-function resetGame() {
-  gameOver = false;
-  gameStarted = false;
-  score = 0;
-  powerLevel = 100;
-  totalBatteriesCollected = 0;
-  drone.x = mapX + tileSize * 9;
-  drone.y = mapY + tileSize * 11;
-  drone.moving = false;
-  drone.speed = 0;
-  generateBatteries(); 
-}
+    function checkBatteryCollisions() {
+      batteries.forEach((battery, index) => {  
+        if (battery.active) {
+          const dx = drone.x - battery.x;
+          const dy = drone.y - battery.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < drone.size / 2 + battery.size) {
+            battery.active = false;
+            score += 10;
+            powerLevel = Math.min(powerLevel + 1, 100); // Add 1 power for each battery
+            totalBatteriesCollected++;
+            collectSound.currentTime = 0;
+            collectSound.play();
+          }
+        }
+      });
 
-// Start button functionality
-const startButton = document.getElementById('startButton');
-startButton.addEventListener('click', () => {
-  gameStarted = true;
-  startButton.style.display = 'none'; // Hide the button after starting
-});
-
-window.addEventListener('keydown', (event) => {
-  if (!gameOver && gameStarted) { 
-    switch (event.key) {
-      case 'ArrowUp':
-        drone.direction = 'up';
-        drone.moving = true;
-        drone.speed = tileSize * 0.2;
-        break;
-      case 'ArrowDown':
-        drone.direction = 'down';
-        drone.moving = true;
-        drone.speed = tileSize * 0.2;
-        break;
-      case 'ArrowLeft':
-        drone.direction = 'left';
-        drone.moving = true;
-        drone.speed = tileSize * 0.2;
-        break;
-      case 'ArrowRight':
-        drone.direction = 'right';
-        drone.moving = true;
-        drone.speed = tileSize * 0.2;
-        break;
-    }
-  }
-});
-
-// Stop drone when key is released
-window.addEventListener('keyup', (event) => {
-  if (event.key.startsWith('Arrow')) {
-    drone.moving = false;
-    drone.speed = 0;
-  }
-});
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawMap();
-
-  if (gameStarted) {
-    drawDrone();
-    drawBatteries();
-
-    if (!gameOver) {
-      moveDrone();
-      updateDroneAngle(); 
-      checkBatteryCollisions();
-
-      powerLevel = Math.max(powerLevel - 0.05, 0); 
-
-      if (powerLevel === 0) {
+      // Check if all batteries are collected
+      if (batteries.every(battery => !battery.active)) {
         gameOver = true;
-        alert('Game Over! - You ran out of power!');
-        resetGame();
-        startButton.style.display = 'block'; // Show the start button again
+        bgMusic.pause();
+        gameOverSound.play();
+        overlayTitle.textContent = 'Level Complete!';
+        overlayMessage.textContent = `Score: ${score}\nBatteries Collected: ${totalBatteriesCollected}`;
+        overlay.classList.add('active');
+        restartButton.style.display = 'block';
       }
     }
-  }
 
-  // Display score, power level, and total batteries collected
-  ctx.fillStyle = '#fff';
-  ctx.font = '16px monospace';
-  ctx.fillText(`Level: ${currentLevel + 1}`, 20, 30); // Display current level
-  ctx.fillText(`Score: ${score}`, 20, 60);
-  ctx.fillText(`Power: ${powerLevel.toFixed(2)}%`, 20, 90);
-  ctx.fillText(`Batteries: ${totalBatteriesCollected}`, 20, 120);
+    function resetGame() {
+      gameOver = false;
+      gameStarted = false;
+      score = 0;
+      powerLevel = 100;
+      totalBatteriesCollected = 0;
+      initDrone();
+      generateBatteries(); 
+      overlay.classList.add('active');
+      overlayTitle.textContent = 'Drone Battery Collector';
+      overlayMessage.textContent = '';
+      startButton.style.display = 'block';
+      restartButton.style.display = 'none';
+    }
 
-  requestAnimationFrame(animate);
-}
+    // Start button functionality
+    startButton.addEventListener('click', () => {
+      gameStarted = true;
+      overlay.classList.remove('active');
+      bgMusic.play();
+    });
 
-animate();
-</script>
+    restartButton.addEventListener('click', () => {
+      if (score > highScore) {
+        highScore = score;
+      }
+      if (currentLevel < levels.length - 1) {
+        currentLevel++;
+      } else {
+        currentLevel = 0;
+      }
+      resetGame();
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (!gameOver && gameStarted) { 
+        switch (event.key) {
+          case 'ArrowUp':
+            drone.direction = 'up';
+            drone.moving = true;
+            updateDroneAngle();
+            break;
+          case 'ArrowDown':
+            drone.direction = 'down';
+            drone.moving = true;
+            updateDroneAngle();
+            break;
+          case 'ArrowLeft':
+            drone.direction = 'left';
+            drone.moving = true;
+            updateDroneAngle();
+            break;
+          case 'ArrowRight':
+            drone.direction = 'right';
+            drone.moving = true;
+            updateDroneAngle();
+            break;
+        }
+      }
+    });
+
+    // Stop drone when key is released
+    window.addEventListener('keyup', (event) => {
+      if (event.key.startsWith('Arrow')) {
+        drone.moving = false;
+        drone.speed = tileSize * 0.2; // Maintain speed consistency
+      }
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawMap();
+
+      if (gameStarted) {
+        drawDrone();
+        drawBatteries();
+
+        if (!gameOver) {
+          moveDrone();
+          checkBatteryCollisions();
+
+          powerLevel = Math.max(powerLevel - 0.05, 0); 
+
+          if (powerLevel === 0) {
+            gameOver = true;
+            bgMusic.pause();
+            gameOverSound.play();
+            overlayTitle.textContent = 'Game Over!';
+            overlayMessage.textContent = `Score: ${score}\nBatteries Collected: ${totalBatteriesCollected}\nHigh Score: ${highScore}`;
+            overlay.classList.add('active');
+            restartButton.style.display = 'block';
+          }
+        }
+      }
+
+      // Display score, power level, and total batteries collected
+      ctx.fillStyle = '#0ff';
+      ctx.font = '16px monospace';
+      ctx.fillText(`Level: ${currentLevel + 1}`, 20, 30); // Display current level
+      ctx.fillText(`Score: ${score}`, 20, 60);
+      ctx.fillText(`Power: ${powerLevel.toFixed(2)}%`, 20, 90);
+      ctx.fillText(`Batteries: ${totalBatteriesCollected}`, 20, 120);
+      ctx.fillText(`High Score: ${highScore}`, 20, 150);
+
+      requestAnimationFrame(animate);
+    }
+
+    // Initialize the game
+    function initializeGame() {
+      tileSize = canvas.width / levels[currentLevel][0].length;
+      initDrone();
+      generateBatteries();
+      resetGame();
+      animate();
+    }
+
+    initializeGame();
+
+    // Touch controls for mobile
+    let touchStartX = null;
+    let touchStartY = null;
+
+    canvas.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    });
+
+    canvas.addEventListener('touchend', (e) => {
+      if (touchStartX === null || touchStartY === null) return;
+
+      const touch = e.changedTouches[0];
+      const deltaX = touch.clientX - touchStartX;
+      const deltaY = touch.clientY - touchStartY;
+
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX > 30) {
+          drone.direction = 'right';
+        } else if (deltaX < -30) {
+          drone.direction = 'left';
+        }
+      } else {
+        if (deltaY > 30) {
+          drone.direction = 'down';
+        } else if (deltaY < -30) {
+          drone.direction = 'up';
+        }
+      }
+
+      drone.moving = true;
+      updateDroneAngle();
+
+      touchStartX = null;
+      touchStartY = null;
+    });
+  </script>
 
 </body>
 </html>
