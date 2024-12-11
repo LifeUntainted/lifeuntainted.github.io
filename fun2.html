@@ -9,6 +9,7 @@
       margin: 0;
       overflow: hidden;
       background-color: #000;
+      touch-action: none; 
     }
   </style>
 </head>
@@ -19,6 +20,7 @@
     const PARTICLE_COUNT = 10000;
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
+    let cameraRotation = { x: 0, y: 0 };
 
     init();
     animate();
@@ -44,7 +46,7 @@
         colors[i * 3 + 1] = Math.random();
         colors[i * 3 + 2] = Math.random();
 
-        sizes[i] = Math.random() * 5;
+        sizes[i] = Math.random() * 10 + 5; 
       }
 
       const geometry = new THREE.BufferGeometry();
@@ -53,8 +55,8 @@
       geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
       const material = new THREE.PointsMaterial({
-        vertexColors: true, 
-        sizeAttenuation: true, 
+        vertexColors: true,
+        sizeAttenuation: true,
         blending: THREE.AdditiveBlending,
         transparent: true
       });
@@ -64,6 +66,9 @@
 
       window.addEventListener('resize', onWindowResize, false);
       document.addEventListener('mousemove', onDocumentMouseMove, false);
+      document.addEventListener('touchstart', onTouchStart, false); 
+      window.addEventListener('keydown', onKeyDown, false); 
+      window.addEventListener('deviceorientation', onDeviceOrientation, false); // Tilt
     }
 
     function onWindowResize() {
@@ -74,30 +79,69 @@
 
     function onDocumentMouseMove(event) {
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+
+    function onTouchStart(event) {
+      if (event.touches.length > 0) {
+        mouse.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.touches[0].clientY / window.innerHeight) * 2 + 1;
+      }
+    }
+
+    function onKeyDown(event) {
+      const speed = 0.05; 
+      switch (event.key) {
+        case 'ArrowUp':
+          cameraRotation.x -= speed;
+          break;
+        case 'ArrowDown':
+          cameraRotation.x += speed;
+          break;
+        case 'ArrowLeft':
+          cameraRotation.y -= speed;
+          break;
+        case 'ArrowRight':
+          cameraRotation.y += speed;
+          break;
+      }
+    }
+
+    function onDeviceOrientation(event) {
+      if (event.alpha && event.beta && event.gamma) {
+        const rotationSpeed = 0.02; 
+        cameraRotation.y = event.alpha * rotationSpeed; 
+        cameraRotation.x = event.beta * rotationSpeed; 
+      }
     }
 
     function animate() {
       requestAnimationFrame(animate);
+
+      camera.position.z -= 0.1; 
+
+      camera.rotation.x = cameraRotation.x;
+      camera.rotation.y = cameraRotation.y;
 
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObject(particleSystem);
 
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         const particle = particleSystem.geometry.attributes.position.array;
-        particle[i * 3 + 1] += Math.sin(Date.now() * 0.001 + i * 0.1) * 0.1; // Subtle movement
 
         if (intersects.length > 0) {
           const intersectionDistance = intersects[0].distance;
           const particleDistance = intersects[0].point.distanceTo(new THREE.Vector3(particle[i * 3], particle[i * 3 + 1], particle[i * 3 + 2]));
 
           if (particleDistance < intersectionDistance) {
-            particle[i * 3] += (Math.random() - 0.5) * 2;
-            particle[i * 3 + 1] += (Math.random() - 0.5) * 2;
+            const direction = new THREE.Vector3(particle[i * 3], particle[i * 3 + 1], particle[i * 3 + 2]).sub(intersects[0].point).normalize();
+            particle[i * 3] += direction.x * 2;
+            particle[i * 3 + 1] += direction.y * 2;
+            particle[i * 3 + 2] += direction.z * 2; 
           }
         }
       }
-      particleSystem.geometry.attributes.position.needsUpdate = true; 
+      particleSystem.geometry.attributes.position.needsUpdate = true;
 
       renderer.render(scene, camera);
     }
