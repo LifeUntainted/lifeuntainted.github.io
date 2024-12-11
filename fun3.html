@@ -42,38 +42,39 @@ const map = [
   [1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1],
   [1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1], // Added exit
+  [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1], // Added exit
 ];
 
 const tileSize = mapWidth / map[0].length;
 
 const drone = {
   x: mapX + tileSize * 9,
-  y: mapY + tileSize * 13,
+  y: mapY + tileSize * 11, // Adjusted initial position to avoid starting in a wall
   size: tileSize * 0.6,
-  speed: 2,
+  speed: tileSize * 0.2, // Adjusted speed to be relative to tile size
   direction: 'right', 
   angle: 0,
 };
 
 const batteries = []; 
-for (let i = 0; i < 30; i++) { // Reduced number of batteries
+for (let i = 0; i < 30; i++) { 
   let x, y;
   do {
     x = Math.floor(Math.random() * map[0].length);
     y = Math.floor(Math.random() * map.length);
-  } while (map[y][x] === 1); // Ensure batteries are placed in valid positions
+  } while (map[y][x] === 1); 
 
   batteries.push({
     x: mapX + x * tileSize + tileSize / 2,
     y: mapY + y * tileSize + tileSize / 2,
-    size: tileSize * 0.3, // Increased battery size
+    size: tileSize * 0.3, 
     active: true
   });
 }
 
 let score = 0;
-let powerLevel = 100; // Initial power level
+let powerLevel = 100; 
 
 function drawMap() {
   ctx.strokeStyle = '#0ff';
@@ -108,6 +109,21 @@ function drawDrone() {
   ctx.lineTo(drone.size / 3, drone.size / 3);
   ctx.stroke();
 
+  // Draw propellers
+  ctx.fillStyle = 'white';
+  ctx.beginPath();
+  ctx.arc(-drone.size / 3, -drone.size / 3, drone.size / 6, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(drone.size / 3, -drone.size / 3, drone.size / 6, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(-drone.size / 3, drone.size / 3, drone.size / 6, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(drone.size / 3, drone.size / 3, drone.size / 6, 0, Math.PI * 2);
+  ctx.fill();
+
   ctx.restore();
 }
 
@@ -123,11 +139,50 @@ function drawBatteries() {
 }
 
 function updateDroneAngle() {
-  // ... (same as before)
+  switch (drone.direction) {
+    case 'up':
+      drone.angle = -Math.PI / 2;
+      break;
+    case 'down':
+      drone.angle = Math.PI / 2;
+      break;
+    case 'left':
+      drone.angle = Math.PI;
+      break;
+    case 'right':
+      drone.angle = 0;
+      break;
+  }
 }
 
 function moveDrone() {
-  // ... (same as before)
+  let newX = drone.x;
+  let newY = drone.y;
+
+  switch (drone.direction) {
+    case 'up':
+      newY -= drone.speed;
+      break;
+    case 'down':
+      newY += drone.speed;
+      break;
+    case 'left':
+      newX -= drone.speed;
+      break;
+    case 'right':
+      newX += drone.speed;
+      break;
+  }
+
+  const gridX = Math.floor((newX - mapX) / tileSize);
+  const gridY = Math.floor((newY - mapY) / tileSize);
+
+  if (gridX >= 0 && gridX < map[0].length && 
+      gridY >= 0 && gridY < map.length && 
+      map[gridY][gridX] === 0) {
+    drone.x = newX;
+    drone.y = newY;
+  } 
 }
 
 function checkBatteryCollisions() {
@@ -146,7 +201,20 @@ function checkBatteryCollisions() {
 }
 
 window.addEventListener('keydown', (event) => {
-  // ... (same as before)
+  switch (event.key) {
+    case 'ArrowUp':
+      drone.direction = 'up';
+      break;
+    case 'ArrowDown':
+      drone.direction = 'down';
+      break;
+    case 'ArrowLeft':
+      drone.direction = 'left';
+      break;
+    case 'ArrowRight':
+      drone.direction = 'right';
+      break;
+  }
 });
 
 function animate() {
