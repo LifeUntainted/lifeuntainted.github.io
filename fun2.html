@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Interactive Particle Animation</title>
   <style>
     body {
@@ -10,141 +10,445 @@
       overflow: hidden;
       background-color: #000;
       touch-action: none; 
+      font-family: Arial, sans-serif;
+    }
+    #info {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: #fff;
+      z-index: 1;
+    }
+    #fullscreenBtn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+      z-index: 1;
+      transition: background 0.3s;
+    }
+    #fullscreenBtn:hover {
+      background: rgba(255, 255, 255, 0.4);
     }
   </style>
 </head>
 <body>
+  <div id="info">Use mouse or touch to interact. Use arrow keys to rotate. Use '+'/'-' to adjust speed.</div>
+  <button id="fullscreenBtn">Toggle Fullscreen</button>
+  
+  <!-- Include Three.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  
+  <!-- Include dat.GUI Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
+  
+  <!-- Include Howler.js for Sound -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  
+  <!-- Include EffectComposer and Passes -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/examples/js/postprocessing/EffectComposer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/examples/js/postprocessing/RenderPass.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/examples/js/postprocessing/UnrealBloomPass.js"></script>
+  
   <script>
-    let scene, camera, renderer, particleSystem;
+    let scene, camera, renderer, particleSystem, pointLight, composer, bloomPass;
     const PARTICLE_COUNT = 10000;
     const mouse = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
     let cameraRotation = { x: 0, y: 0 };
-
+    let speed = 0.1; 
+    let params = {
+      particleCount: PARTICLE_COUNT,
+      particleSize: 5,
+      particleSpeed: 0.1,
+      backgroundColor: '#000000',
+      glow: true,
+      sound: true,
+      bloomStrength: 1.5,
+      bloomThreshold: 0,
+      bloomRadius: 0
+    };
+    
+    // Sound Setup
+    const ambientSound = new Howl({
+      src: ['https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'],
+      loop: true,
+      volume: 0.5
+    });
+    
+    const interactionSound = new Howl({
+      src: ['https://www.soundjay.com/buttons/sounds/button-09.mp3'],
+      volume: 0.7
+    });
+    
+    // Initialize GUI
+    const gui = new dat.GUI();
+    gui.add(params, 'particleCount', 1000, 20000).step(1000).name('Particle Count').onChange(updateParticles);
+    gui.add(params, 'particleSize', 1, 20).step(1).name('Particle Size').onChange(updateParticleSize);
+    gui.add(params, 'particleSpeed', 0.01, 1).step(0.01).name('Speed').onChange(value => speed = value);
+    gui.addColor(params, 'backgroundColor').name('Background Color').onChange(value => {
+      renderer.setClearColor(value);
+      scene.background = new THREE.Color(value);
+    });
+    gui.add(params, 'glow').name('Enable Glow').onChange(value => {
+      bloomPass.enabled = value;
+    });
+    gui.add(params, 'sound').name('Enable Sound').onChange(value => {
+      if (value) {
+        ambientSound.play();
+      } else {
+        ambientSound.pause();
+      }
+    });
+    gui.add(params, 'bloomStrength', 0, 3).name('Bloom Strength').onChange(value => {
+      bloomPass.strength = value;
+    });
+    gui.add(params, 'bloomThreshold', 0, 1).name('Bloom Threshold').onChange(value => {
+      bloomPass.threshold = value;
+    });
+    gui.add(params, 'bloomRadius', 0, 1).name('Bloom Radius').onChange(value => {
+      bloomPass.radius = value;
+    });
+    
     init();
     animate();
-
+    
     function init() {
+      // Scene Setup
       scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+      scene.background = new THREE.Color(params.backgroundColor);
+      
+      // Camera Setup
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 2000);
       camera.position.z = 200;
+      
+      // Renderer Setup
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
-
-      const positions = new Float32Array(PARTICLE_COUNT * 3);
-      const colors = new Float32Array(PARTICLE_COUNT * 3);
-      const sizes = new Float32Array(PARTICLE_COUNT);
-
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
+      
+      // Particle Geometry
+      const geometry = new THREE.BufferGeometry();
+      const positions = new Float32Array(params.particleCount * 3);
+      const colors = new Float32Array(params.particleCount * 3);
+      const sizes = new Float32Array(params.particleCount);
+      
+      for (let i = 0; i < params.particleCount; i++) {
         positions[i * 3] = (Math.random() - 0.5) * 800;
         positions[i * 3 + 1] = (Math.random() - 0.5) * 800;
         positions[i * 3 + 2] = (Math.random() - 0.5) * 800;
-
+        
         colors[i * 3] = Math.random();
         colors[i * 3 + 1] = Math.random();
         colors[i * 3 + 2] = Math.random();
-
-        sizes[i] = Math.random() * 10 + 5; 
+        
+        sizes[i] = params.particleSize;
       }
-
-      const geometry = new THREE.BufferGeometry();
+      
       geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
       geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
       geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
-      const material = new THREE.PointsMaterial({
+      
+      // Custom Shader Material with Dynamic Color Animation
+      const material = new THREE.ShaderMaterial({
+        vertexShader: `
+          attribute float size;
+          varying vec3 vColor;
+          uniform float time;
+          void main() {
+            vColor = color;
+            vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+            gl_PointSize = size * (300.0 / -mvPosition.z);
+            gl_Position = projectionMatrix * mvPosition;
+          }
+        `,
+        fragmentShader: `
+          varying vec3 vColor;
+          uniform float time;
+          void main() {
+            // Dynamic color change over time
+            vec3 color = vColor * abs(sin(time));
+            float dist = distance(gl_PointCoord, vec2(0.5, 0.5));
+            if (dist > 0.5) discard;
+            gl_FragColor = vec4(color, 1.0);
+          }
+        `,
         vertexColors: true,
-        sizeAttenuation: true,
+        transparent: params.glow,
         blending: THREE.AdditiveBlending,
-        transparent: true
+        depthTest: false,
+        uniforms: {
+          time: { value: 0.0 }
+        }
       });
-
+      
+      // Particle System
       particleSystem = new THREE.Points(geometry, material);
       scene.add(particleSystem);
-
+      
+      // Point Light
+      pointLight = new THREE.PointLight(0xffffff, 1, 800); 
+      scene.add(pointLight);
+      
+      // Post-Processing Setup with Bloom Effect
+      composer = new THREE.EffectComposer(renderer);
+      const renderPass = new THREE.RenderPass(scene, camera);
+      composer.addPass(renderPass);
+      
+      bloomPass = new THREE.UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        params.bloomStrength,
+        params.bloomRadius,
+        params.bloomThreshold
+      );
+      bloomPass.enabled = params.glow;
+      composer.addPass(bloomPass);
+      
+      // Event Listeners
       window.addEventListener('resize', onWindowResize, false);
       document.addEventListener('mousemove', onDocumentMouseMove, false);
       document.addEventListener('touchstart', onTouchStart, false); 
       window.addEventListener('keydown', onKeyDown, false); 
-      window.addEventListener('deviceorientation', onDeviceOrientation, false); // Tilt
+      window.addEventListener('deviceorientation', onDeviceOrientation, false); 
+      
+      // Fullscreen Button
+      const fullscreenBtn = document.getElementById('fullscreenBtn');
+      fullscreenBtn.addEventListener('click', toggleFullscreen);
+      
+      // Start Ambient Sound
+      if (params.sound) ambientSound.play();
     }
-
+    
+    function updateParticles() {
+      const geometry = particleSystem.geometry;
+      const positions = new Float32Array(params.particleCount * 3);
+      const colors = new Float32Array(params.particleCount * 3);
+      const sizes = new Float32Array(params.particleCount);
+      
+      for (let i = 0; i < params.particleCount; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 800;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 800;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 800;
+        
+        colors[i * 3] = Math.random();
+        colors[i * 3 + 1] = Math.random();
+        colors[i * 3 + 2] = Math.random();
+        
+        sizes[i] = params.particleSize;
+      }
+      
+      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+      
+      geometry.attributes.position.needsUpdate = true;
+      geometry.attributes.color.needsUpdate = true;
+      geometry.attributes.size.needsUpdate = true;
+    }
+    
+    function updateParticleSize(value) {
+      const sizes = particleSystem.geometry.attributes.size.array;
+      for (let i = 0; i < sizes.length; i++) {
+        sizes[i] = value;
+      }
+      particleSystem.geometry.attributes.size.needsUpdate = true;
+    }
+    
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
+      composer.setSize(window.innerWidth, window.innerHeight);
     }
-
+    
     function onDocumentMouseMove(event) {
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      if (params.sound) interactionSound.play();
     }
-
+    
     function onTouchStart(event) {
       if (event.touches.length > 0) {
         mouse.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(event.touches[0].clientY / window.innerHeight) * 2 + 1;
+        if (params.sound) interactionSound.play();
+        triggerExplosion(mouse);
       }
     }
-
+    
     function onKeyDown(event) {
-      const speed = 0.05; 
+      const speedChange = 0.02; 
       switch (event.key) {
         case 'ArrowUp':
-          cameraRotation.x -= speed;
+          cameraRotation.x -= speedChange;
           break;
         case 'ArrowDown':
-          cameraRotation.x += speed;
+          cameraRotation.x += speedChange;
           break;
         case 'ArrowLeft':
-          cameraRotation.y -= speed;
+          cameraRotation.y -= speedChange;
           break;
         case 'ArrowRight':
-          cameraRotation.y += speed;
+          cameraRotation.y += speedChange;
+          break;
+        case '+': 
+          speed += 0.05;
+          gui.updateDisplay();
+          break;
+        case '-': 
+          speed = Math.max(0, speed - 0.05); 
+          gui.updateDisplay();
           break;
       }
+      if (params.sound) interactionSound.play();
+      triggerExplosion(mouse);
     }
-
+    
     function onDeviceOrientation(event) {
-      if (event.alpha && event.beta && event.gamma) {
+      if (event.alpha !== null && event.beta !== null && event.gamma !== null) {
         const rotationSpeed = 0.02; 
-        cameraRotation.y = event.alpha * rotationSpeed; 
-        cameraRotation.x = event.beta * rotationSpeed; 
+        cameraRotation.y = THREE.MathUtils.degToRad(event.alpha) * rotationSpeed; 
+        cameraRotation.x = THREE.MathUtils.degToRad(event.beta) * rotationSpeed; 
       }
     }
-
-    function animate() {
-      requestAnimationFrame(animate);
-
-      camera.position.z -= 0.1; 
-
-      camera.rotation.x = cameraRotation.x;
-      camera.rotation.y = cameraRotation.y;
-
-      raycaster.setFromCamera(mouse, camera);
+    
+    // Toggle Fullscreen Mode
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.body.requestFullscreen().catch(err => {
+          alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+    
+    // Trigger Explosion Effect
+    function triggerExplosion(interactionPoint) {
+      // Convert normalized device coordinates to world coordinates
+      const vector = new THREE.Vector3(interactionPoint.x, interactionPoint.y, 0.5).unproject(camera);
+      
+      // Raycaster to find intersection point
+      raycaster.setFromCamera(interactionPoint, camera);
       const intersects = raycaster.intersectObject(particleSystem);
-
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const particle = particleSystem.geometry.attributes.position.array;
-
-        if (intersects.length > 0) {
-          const intersectionDistance = intersects[0].distance;
-          const particleDistance = intersects[0].point.distanceTo(new THREE.Vector3(particle[i * 3], particle[i * 3 + 1], particle[i * 3 + 2]));
-
-          if (particleDistance < intersectionDistance) {
-            const direction = new THREE.Vector3(particle[i * 3], particle[i * 3 + 1], particle[i * 3 + 2]).sub(intersects[0].point).normalize();
-            particle[i * 3] += direction.x * 2;
-            particle[i * 3 + 1] += direction.y * 2;
-            particle[i * 3 + 2] += direction.z * 2; 
+      
+      if (intersects.length > 0) {
+        const intersect = intersects[0];
+        const particlePositions = particleSystem.geometry.attributes.position.array;
+        const particleVelocities = new Float32Array(particlePositions.length); // Simple velocity array
+        
+        for (let i = 0; i < params.particleCount; i++) {
+          const idx = i * 3;
+          const px = particlePositions[idx];
+          const py = particlePositions[idx + 1];
+          const pz = particlePositions[idx + 2];
+          
+          const dx = px - intersect.point.x;
+          const dy = py - intersect.point.y;
+          const dz = pz - intersect.point.z;
+          const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+          
+          if (distance < 100) { // Influence radius
+            const force = 5 / distance;
+            particleVelocities[idx] += dx * force;
+            particleVelocities[idx + 1] += dy * force;
+            particleVelocities[idx + 2] += dz * force;
           }
         }
+        
+        // Apply velocities to particles
+        for (let i = 0; i < params.particleCount; i++) {
+          const idx = i * 3;
+          particlePositions[idx] += particleVelocities[idx];
+          particlePositions[idx + 1] += particleVelocities[idx + 1];
+          particlePositions[idx + 2] += particleVelocities[idx + 2];
+        }
+        
+        particleSystem.geometry.attributes.position.needsUpdate = true;
+        
+        // Play interaction sound
+        if (params.sound) interactionSound.play();
+      }
+    }
+    
+    function animate() {
+      requestAnimationFrame(animate);
+      
+      // Update Time Uniform for Shaders
+      particleSystem.material.uniforms.time.value += 0.01;
+      
+      // Move Camera Forward
+      camera.position.z -= speed; 
+      
+      // Rotate Camera
+      camera.rotation.x += (cameraRotation.x - camera.rotation.x) * 0.05;
+      camera.rotation.y += (cameraRotation.y - camera.rotation.y) * 0.05;
+      
+      // Update Light Position
+      pointLight.position.copy(camera.position);
+      
+      // Raycasting for Interaction
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObject(particleSystem);
+      
+      if (intersects.length > 0) {
+        const intersect = intersects[0];
+        const particlePositions = particleSystem.geometry.attributes.position.array;
+        
+        // Influence nearby particles
+        for (let i = 0; i < params.particleCount; i++) {
+          const idx = i * 3;
+          const px = particlePositions[idx];
+          const py = particlePositions[idx + 1];
+          const pz = particlePositions[idx + 2];
+          
+          const distance = Math.sqrt(
+            Math.pow(px - intersect.point.x, 2) +
+            Math.pow(py - intersect.point.y, 2) +
+            Math.pow(pz - intersect.point.z, 2)
+          );
+          
+          if (distance < 50) { // Influence radius
+            const force = 2;
+            particlePositions[idx] += (px - intersect.point.x) / distance * force;
+            particlePositions[idx + 1] += (py - intersect.point.y) / distance * force;
+            particlePositions[idx + 2] += (pz - intersect.point.z) / distance * force;
+          }
+        }
+        particleSystem.geometry.attributes.position.needsUpdate = true;
+      }
+      
+      // Animate Particles
+      const particleArray = particleSystem.geometry.attributes.position.array;
+      for (let i = 0; i < params.particleCount; i++) {
+        const idx = i * 3;
+        particleArray[idx] += (Math.random() - 0.5) * 0.5;
+        particleArray[idx + 1] += (Math.random() - 0.5) * 0.5;
+        particleArray[idx + 2] += (Math.random() - 0.5) * 0.5;
       }
       particleSystem.geometry.attributes.position.needsUpdate = true;
-
-      renderer.render(scene, camera);
+      
+      // Render Scene with Post-Processing
+      composer.render();
     }
+    
+    // Handle Initial Particle Count
+    function updateParticlesCount() {
+      if (params.particleCount !== PARTICLE_COUNT) {
+        particleSystem.geometry.dispose();
+        particleSystem.material.dispose();
+        scene.remove(particleSystem);
+        init();
+      }
+    }
+    
+    // Initial GUI setup
+    gui.close(); // Start with GUI closed
   </script>
 </body>
 </html>
